@@ -416,6 +416,7 @@ h6,
 }
 #ext_menu-4 .navbar-caption {
   color: #ffffff;
+  font-size: 36px;
 }
 #ext_menu-4 .navbar-toggler {
   color: #ffffff;
@@ -429,11 +430,11 @@ h6,
   color: #ffffff;
 }
 #ext_menu-4 .link {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }
 #ext_menu-4 .dropdown-item,
 #ext_menu-4 .nav-dropdown-sm .link {
-  font-size: 1.191rem;
+  font-size: 1.354rem;
 }
 #ext_menu-4 .link:hover,
 #ext_menu-4 .dropdown-item:hover,
