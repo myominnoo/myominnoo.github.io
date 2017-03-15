@@ -1,100 +1,78 @@
-/*
-	Theme Name: 1stwebdesigner HTML5/CSS3 Layout
-	Date: March 2013
-	Description: Basic HTML5/CSS3 layout built on a responsive framework
-	Version: 1.0
-	Author: Christian Vasile
-	Author URL: http://christianvasile.com
-*/
-
 body {
-	/*background-image: url('img/logo.png');*/
-	color: #000385;
-	font-size: 87.5%; /* base font size is 14px */
-	font-family: Arial, 'Lucida Sans Unicode';
-	line-height: 1.5;
-	text-align: left;
+	font: 15px/1.5 Arial, Helvetica, sans-serif;
+	padding: 0;
+	margin: 0;
+	background-color: #f4f4f4;
 }
 
-a {
+/* header **/
+header {
+	background-color: #2c3e50;
+	color: #ffffff;
+	min-height: 30px;
+	border-bottom: #c0392b 2px solid;
+}
+
+header img {
+	width: 3%;
+	padding: 25px 10px 0 0;
+	float: left;	
+}
+
+header#branding, header h1 {
+	float: left;	
+}
+
+#brandtext  {
+	text-transform: none;
+}
+
+header a {
+	color: #ffffff;
 	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 16px;
 }
 
-a:link, a:visited {
-	
+header nav {
+	margin-top: 20px;
+	display: inline;
+	float: right;
 }
 
-a:hover, a:active {
-	
-}
-
-
-.body {
-	margin: 0 auto;
-	width: 70%;
-	clear: both;
-	
-}
-
-.mainHeader img {
-	width: 10%;
-	height: auto;
-	margin: 2% 0; 
-}
-
-.mainHeader nav {
-	background-color: #666;
-	height: 40px;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
-
-.mainHeader nav ul {
-	list-style: none;
-	margin: 0 auto;
-}
-
-.mainHeader nav ul li {
+header li {
 	float: left;
 	display: inline;
+	padding: 0 20px 0 20px;
 }
 
-.mainHeader nav a:link, .mainHeader nav a:visited {
-	color: #FFF;
-	display: inline-block;
-	padding: 10px 25px;
-	height: 20px;
-} 
-
-.mainHeader nav a:hover, .mainHeader nav a:active,
-.mainHeader nav .active a:link, .mainHeader nav .active a:visited {
-	background-color: #CF5C3F;
-	text-shadow: none;
+header .highlight, header .current a {
+	color: #c0392b;
+	font-weight: bold;
 }
 
-.mainHeader nav ul li a {
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+header div li a:hover {
+	color: #c0392b;
+	font-weight: bold;
 }
 
-.mainContent {
-	line-height: 25px;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+.container {
+	width: 80%;
+	margin: auto;
 	overflow: hidden;
 }
 
-.content {
-	width: 70%;
-	float: left;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+
+/* section */
+.content h3 {
+	text-align: center;
 }
 
-.topcontent {
-	background-color: #FFF;
+/*  Footer */
+footer {
+	padding: 1px 0 1px 0;
+	margin-top: 20px;
+	color: #ffffff;
+	background-color: #c0392b;
+	text-align: center;
 }
