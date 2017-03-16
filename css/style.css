@@ -1,77 +1,62 @@
-body {
-	font: 15px/1.5 Arial, Helvetica, sans-serif;
-	padding: 0;
+body, html {
 	margin: 0;
-	background-color: #f4f4f4;
+	font: sans-serif, Arial, "Lato","Helvetica Neue",Helvetica;
 }
 
-/* header **/
-header {
-	background-color: #2c3e50;
+.content {
+	padding: 30px;
+}
+
+.nav-main {
+	width: 100%;
+	background: #131418;
+	height: 110px;
 	color: #ffffff;
-	min-height: 30px;
-	border-bottom: #c0392b 2px solid;
+	font-family: sans-serif;
 }
 
-header img {
-	width: 3%;
-	padding: 25px 10px 0 0;
-	float: left;	
+.nav-main .logo {
+	float: left;
+	width: 20%;
+	padding: 0 50px;
 }
 
-header#branding, header h1 {
-	float: left;	
+
+.nav-main > ul {
+	margin: 0; 
+	padding: 0;
+	float: left;
+	list-style-type: none; 
 }
 
-#brandtext  {
-	text-transform: none;
+.nav-main > ul > li {
+	float: left;
 }
 
-header a {
+#current {
+	color:#c0392b;
+	font-weight: bold;
+}
+
+.nav-item {
+	display: inline-block;
+	padding: 25px 50px;
+	height: 70px;
+	line-height: 70px;
 	color: #ffffff;
 	text-decoration: none;
+	font-size: 20px;
 	text-transform: uppercase;
-	font-size: 16px;
 }
 
-header nav {
-	margin-top: 20px;
-	display: inline;
-	float: right;
-}
-
-header li {
-	float: left;
-	display: inline;
-	padding: 0 20px 0 20px;
-}
-
-header .highlight, header .current a {
+.nav-item:hover {
 	color: #c0392b;
-	font-weight: bold;
-}
-
-header div li a:hover {
-	color: #c0392b;
-	font-weight: bold;
-}
-
-.container {
-	width: 80%;
-	margin: auto;
-	overflow: hidden;
 }
 
 
-/* section */
-.content h3 {
-	text-align: center;
-}
-
-/*  Footer */
 footer {
 	padding: 1px 0 1px 0;
-	margin-top: 20px;
+	margin-top: 10px;
 	color: #ffffff;
 	background-color: #c0392b;
 	text-align: center;
