@@ -45,11 +45,14 @@ section h2 {
     font-size: 3em;
 }
 
-#upload img { margin: 35px auto; }
-section { margin: 30px 0; }
+#upload { 
+	width: 100%;
+}
+section { margin: 35px 0; }
+
 
 @media(min-width:768px) {
-  #upload img { margin: 55px auto; }
+  #upload { margin: 55px auto; }
   section { margin: 50px 0; }
 }
 
@@ -88,7 +91,7 @@ section { margin: 30px 0; }
 }
 
 .navbar {
-    text-transform: uppercase;
+    text-transform: none;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
     background-color: #34465d;
@@ -111,6 +114,57 @@ section { margin: 30px 0; }
     border: 0;
 }
 
+
+
+
+
+/* carousel ------------------------------------------------------------------- */
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+
+.carousel-caption   {
+	color: #f57d00;
+}
+
+.carousel-indicators{
+   top:0px; 
+}
+
+.carousel-indicators li {
+	background-color: #bdc3c7;
+}
+
+.carousel-indicators .active {
+	background-color: #7f8c8d;
+}
+
+.carouselcontainer {
+	margin: auto;
+	width: 70%;
+	
+}
+
+.carousel-control.left, 
+.carousel-control.right {
+  background-image: none;
+	background-color: #ecf0f1;
+	height: 500px;
+}
+
+.item {
+	height: 500px;
+}
+
+.glyphicon-chevron-left,
+.glyphicon-chevron-right {
+ 	background-color: #2c3e50;
+	
+}
+
+
 /* Footer ------------------------------------------------------------------- */
 
 footer {
@@ -118,3 +172,7 @@ footer {
   background-color: #21759b;
   padding: 25px 0;
 }
+
+/* Footer ------------------------------------------------------------------- */
+
+
