@@ -1,0 +1,78 @@
+<!--DOWNLOAD AND INSTALLATIONG OF EPIDATA MANAGER AND ENTRYCLIENT-->
+
+# Getting EpiData Manager and EntryClient
+
+##### <u>What will you learn in this chapter</u>
+* [What are they](#epidata-manager-and-entryclient)
+* [The EpiData website](#the-epidata-website)
+* [How to get the duplex software](#getting-the-duplex-software)
+* [How to install the software on your computer](#installation)
+* [How to run the software](#running-the-software)
+* [Optional Download and Install](#optional-download-and-install)
+* [How to find help](#finding-help)
+
+***
+
+## EpiData Manager and EntryClient
+They are a collection of software suite maintained and released by [The EpiData Association, Odense Denmark](http://www.epidata.dk/about.htm#about). The two are sequential in usage and play a very important role in authoring the design of the data collection form for project and data manager and data entry by the data staffs. 
+The most distinct feature of the EpiData Manager duplex is the **user interface**. QES-REC-CHK concept is not well known to new comers to EpiData. Most of them are graphically oriented and prefer to use mouse. Unlike EpiData Entry, the duplex software is now supported across all platform of popular operating systems including Mac and Linux. It also supports user access control system, logging user's activities at detailed level, strong encrypting algorithms and easy backup tool. The dedicated EntryClient of the duplex serves the exclusive purpose of data entry without having access to change the design or structure. 
+
+***
+
+## The EpiData Website
+[The EpiData website](http://www.epidata.dk/) is where you visit to obtain the software. It is also a good place to find help, examples and documentations. 
+
+The website is split into several parts. Links to each part are on the top navigation bar of the website. (See figure 1) The three most useful links are the **Download**, **Docuemntation**, and **Examples Sections**. 
+
+![figure 1: The EpiData website, navigation bar](sc001.png)
+
+***
+
+## Getting the duplex software
+The EpiData website mentioned above is the one that host a collection of softwares including EpiData Manager and EntryClient. 
+To get started downloading the EpiData Manager and EntryClient duplex, you'll want to perform the following steps:
+
+> 1. Visit the main [The EpiData website](http://www.epidata.dk/); you will see the download link in the navigation bar to download the duplex. (See figure 2)
+
+![figure 2: The EpiData website, the Download link](sc002.png)
+
+> 2. Click on that link and you are directed to the select the appropriate version to download the duplex.
+
+> 3. It provides with several choices to download. Therefore, Check your computer system. Here my computer system is `64-bit version Window 10`. Therefore, I choose `Windows 64 bit`. (See figure 3)   
+
+If you don't have administrative right to your computer (means that the computer prevents you from installing anything without admin password), see [the optional Download and Install](#optional-download-and-install) section below. 
+
+![figure 3: The EpiData website, the Download Page](sc003.png)
+
+> 4. Once you click on the appropriate link, downloading the duplex software is straightforward. 
+
+***
+
+## Installation 
+Navigate to the download folder and double-click on the installer **EpiData Manager**. Proceed with all <u>**the default setting**</u>. When it is done, you will have the software installed on your computer. The same goes with the installer **EntryClient** as well.  
+
+***
+
+## Running the software
+Once the duplex software is installed, you can open in a few ways. It works like any other softwares. You may have a desktop shortcut or simply get to it via the Start button and the regular program list.
+
+## Optional Download and Install
+If you don't have administrative password of your computer, then this is the right section for you. Otherwise, please skip to the next section.   
+
+> 1. Under the `Zipped executables` heading (See figure 4), choose the appropriate links based on your computer system. Here, I choose `Windows 64 bit`.
+
+![figure 4: The EpiData website, the Download Page](sc004.png)
+
+> 2. Navigate to the Download folder and extract the content to the directory you desire.
+
+> 3. Go to your directory and open the `epidatamanager.exe`.
+
+***
+
+## Finding Help
+The EpiData website is the first site you go to look for help. It provides two useful links; the Documentation and Examples sections. If you don't find there, the next place is the Help page. 
+
+***
+
+<center>This post is written in `rmarkdown` using `R version 3.3.2 (2016-10-31)` and `RStudion Version 1.0.44`.    
+You can see the `source code` of rmarkdown [here](http://myominnoo.blogspot.com/2017/03/getting-epidata-manager-and-entryclient_14.html)</center>
