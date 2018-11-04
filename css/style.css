@@ -1,0 +1,114 @@
+/*!
+ * Start Bootstrap - Freelancer Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    overflow-x: hidden;
+}
+
+p, li {
+    font-size: 16px;
+}
+
+.small {
+    font-size: 12px;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+    color: #18bc9c;
+}
+
+.img-centered {
+    margin: 0 auto;
+}
+
+#me {
+    background: #000000;
+}
+
+#me img {
+    margin: 55px auto;
+}
+
+#me img { margin: 35px auto; }
+section { margin: 30px 0; }
+
+@media(min-width:768px) {
+  #me img { margin: 55px auto; }
+  section { margin: 50px 0; }
+}
+
+.round img {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 250px;
+  height: 250px;
+}
+
+.carousel-inner img {
+  margin: auto;
+  height: 60%;
+  width: 60%;
+}
+
+
+/* Navbar ------------------------------------------------------------------- */
+
+.first .container {
+    padding-top: 75px;
+}
+
+
+
+.navbar {
+       margin-bottom: 0;
+       border-radius: 0;
+       background-color: #00184D;
+       color: #ffffff;
+       padding: 1% 0;
+       font-size: 1.2em;
+       border: 0;
+       letter-spacing: 1px;
+        padding-left: 200px;
+        padding-right: 100px;
+    }
+
+.navbar-brand {
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 150%;
+  font-weight: 700;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.dropdown-toggle .active a {
+       background-color: #00184D;
+       color: #ffffff;
+    }
+
+
+/* Footer ------------------------------------------------------------------- */
+
+footer {
+  color: #fff;
+  background-color: #00184D;
+  padding: 25px 0;
+}
+
+.fa {
+  font-size: 20px;
+  letter-spacing: 5px;
+  color: #ffffff;
+}
+
+.fa:hover {
+  color: #D5D5D5;
+  text-decoration: none;
+}
