@@ -61,20 +61,23 @@
 
 <section id="about" class="first">
   <div class="container" align="justify">
-  <p><h2>A fun package of R Software</h2></p>
+  <br>
+  <p><h2>Myo's Stats and Graph Package</h2></p>
   <p><code>mStats</code> is a package I write for fun. It also helps me in my daily tasks of R data management and analysis. </br>Here is how to install the package.</p>
+  <br>
   <strong>Installation</strong></br>
-  <p><code>mStats</code> package is hosted on <a href="https://github.com/">Github</a>. To install it, you can do it from R using <code>install_github()</code>.</p>
+  <p><code>mStats</code> package is hosted on <a href="https://github.com/">Github</a>. To install it, you can do it from R using <code>install_github()</code>.</p><br>
     
-  First, install "devtools" package. 
+  First Step: <code>mStats</code> package depends on <code>ggplot2</code> package as I like its graph features. So install "<code>ggplot2</code>" package. 
+    <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>("ggplot2")</code></pre></div>
+
+  Second Step: install "<code>devtools</code>" package. 
     <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>("devtools")</code></pre></div>
 
-  Then load the package. 
-
+  Third Step: load the package. 
     <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)</code></pre></div>
 
   Finally, run the command.
-
     <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install_github</span>("myominnoo/mStats")</code></pre></div>
 
   <p>
@@ -88,7 +91,7 @@
   </p>
   <hr>
   <p>
-    <code>*.tar.gz</code> file is also available <a href="https://myominnoo.github.io/files/mStats_1.01.13.tar.gz">here</a>.
+    <code>*.tar.gz</code> file is also available for version <a href="https://myominnoo.github.io/files/mStats_1.02.01.tar.gz">1.02.01</a>.
   </p>
   </div>
 </section>
