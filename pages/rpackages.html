@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Myo Minn Oo">
+    <link href="../img/logo.png" rel="shortcut icon">
+
+    <title>R Packages</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+
+<body id="page-top" class="index">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">Myo Minn Oo</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="publications.html">Publications</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="resume.html">Resume</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#rpackages">R Packages</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#epidata">EpiData</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- add Body here -->
+
+
+<!-- About Section -->
+<section id="rpackages" class="first">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+              <h2>mStats</h2>
+              <hr> 
+              <h3>Introduction</h3>
+              <p>The package <code>mStats</code>came into life when I started my PhD in 2018. The first version of <code>mStats</code> was started in late 2018. Initially it was intended for fun and I wanted to know how much I could make use of what I have learnt so far. Also I would like to try something different but may not be entirely innovative since there are tens of thousands of R packages out there. 
+              </p>
+              <p>There are two packages that deeply inspired me: <code>GGPlot2</code> and <code>dplyr</code>. With that inspiration in my mind, I developed version 1 of <code>mStats</code> where I tried an easy way to make ready-made plots with <code>GGPLOT2</code>. It's a lot fun and this in turn encourages me to do more with the package. I updated several small patch versions with a few functions that were interesting to me at that time. It's still dependent on <code>GGPLOT2</code>.</p>
+              <p>In mid 2019, I started another package called <code>stats2</code>. In this package, I tried to simplify the concept that one function should do one job without too many options for users. For example, <code>tab</code> function should perform the task of tabulation with few options to tweak its outputs. That's the whole idea of the package. Although this may be limiting the advantages of R, I hardly doubt beginners would mind this. In fact, such consistency may make users' life easier to get their jobs in R done.</p>  
+
+              <p>Keeping that in mind, I am constantly developing and upating functions. In early 2020, I decided that the package is mature enough to be standalong package for data manipulation and analysis. I submitted to CRAN and one month later after several revision, it was released on 31st March 2020 on its version 3.2.2.</p>
+              <p>As times progress, I hope this package will at least provide some contributions in some people. Any constructive criticism, suggestions or comemnts are most welcome. Please contact me at <a href="mailto::dr.myominnoo@gmail.com">dr.myominnoo@gmail.com.</a></p>
+
+              <div id="overview" class="section level2">
+                <h3>Overview</h3>
+                <p>mStats is a tool for epidemiological data analysis, providing four consistent domains of functions that help you perform the most common procedures of data analysis flow.</p>
+                <ul>
+                    <li><code>data manipulation</code> - helps you manipulate, process and manage your dataset.</li>
+                    <li><code>statistical analysis</code> - lets you create well-formated outputs of common statistical procedures.</li>
+                    <li><code>epidemiological calculation</code> - integrates such calculations into your pipeline of analysis.</li>
+                    <li><code>miscellaneous</code> - includes functions that support functions from the other three domains and streamline transfering results outside R environment.</li>
+                </ul>
+              </div>
+              <div id="installation" class="section level2">
+              <h4>Installation</h4>
+              <pre class="r"><code># The easiest way to get mStats is from CRAN:
+              install.packages(&quot;mStats&quot;)</code></pre>
+              <div id="development-version" class="section level3">
+              <h6>Development version</h6>
+              <p>To get a bug fix or to use a feature from the development version, you can install the development version of mStats from GitHub.</p>
+              <pre class="r"><code># install.packages(&quot;devtools&quot;)
+              devtools::install_github(&quot;myominnoo/mStats&quot;)</code></pre>
+              </div>
+              </div>
+
+              <div id="getting-help" class="section level2">
+                <h4>Getting help</h4>
+                <p>If you encounter a clear bug, please file an issue with a minimal reproducible example on <a href="https://github.com/myominnoo/mStats/issues">GitHub</a>. For questions and other discussion, please email me via <a href="mailto::dr.myominnoo@gmail.com">dr.myominnoo@gmail.com</a>.</p>
+                <hr />
+                <p>Please note that this project is looking for contributors. By participating in this project, you agree to abide by its terms with <a href="https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/">Contributor Code of Conduct</a>, version 1.0.0, available at <a href="https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/">https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/</a>.</p>
+              </div>
+              </div>
+
+            </div>
+          </div>
+    </div>
+</section>
+
+
+
+<!-- About Section -->
+<section id="r_archive">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+              <hr>
+              <h2>Archives of old versions</h2>
+              <p><br>Older versions are archived and can be accessed <a href="r_archives.html">here</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center">
+  <div class="container">
+      <div class="row">
+          <div class="footer-col col-sm-12">
+              <p>
+               &copy; 2020 <br />
+               Hat Yai, Songkla, Thailand, 90110 <br />
+               Developed by <a href="https://myominnoo.github.io">Myo&nbsp;Minn&nbsp;Oo</a><br />
+               Hosted on <a href="https://github.com/"> github.com</a>
+          </div>
+      </div>
+  </div>
+</footer>
+
+<!-- jQuery -->
+<script src="../js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="../js/classie.js"></script>
+<script src="../js/cbpAnimatedHeader.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../js/freelancer.js"></script>
+
+</body>
+
+</html>

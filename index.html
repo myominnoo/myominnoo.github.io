@@ -1,71 +1,92 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+
+<head>
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Myo Minn Oo">
+    <link href="img/logo.png" rel="shortcut icon">
 
-        <link href="img/logo.png" rel="shortcut icon">
     <title>Myo Minn Oo</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
-    <script src="css/jquery.min.js"></script>
-    <script src="css/bootstrap.min.js"></script>
-
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-  </head> <!-- End of heading -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
 
 
-<body>
 
-  <!-- Navigation Secion -->
-  <nav class="navbar navbar-inverse navbar-fixed-top"> 
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">Myo Minn Oo</a>
+<body id="page-top" class="index">
 
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="pages/publications.html">Publications</a>
-          </li>
-          <li>
-            <a href="pages/R/r_intro.html">R</a>
-          </li>
-          <li>
-            <a href="pages/epidata/epidata.html">EpiData</a>
-          </li>
-          <li>
-            <a href="https://myominnoo.blogspot.com">Blog</a>
-          </li>
-        </ul>
-      </div>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Myo Minn Oo</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="pages/publications.html">Publications</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="pages/resume.html">Resume</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#rpackages">R Packages</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#epidata">EpiData</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-  </nav>
+    <!-- /.container-fluid -->
+</nav>
 
-  <!-- About Section -->
+<!-- add Body here -->
 
+
+
+<!-- About Section -->
 <section id="about" class="first">
-  <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <p align="justify">Hi! I am Myo Minn Oo, a public health researcher and PhD candidate at the <a href="https://http://medipe2.psu.ac.th">Epidemiology Unit</a>, <a href="https://en.psu.ac.th/">Prince of Songkla University</a> in Thailand. I conduct health-related researches with an aim to inform better policies and practices to health systems. My ambition is to change the world around me through evidence-based actions. I also love to learn data science, often make <a href="https://www.youtube.com/channel/UCPymgY8_Pxk5ibg4TJNMjnQ">videos</a> and build analytic tools. for 5+ years. I am from Myanmar but currently live in Mae Sot where I do my PhD research project. 
-                </p>
+
+<p>Hi! I am Myo Minn Oo, a PhD candidate at the <a href="https://http://medipe2.psu.ac.th">Epidemiology Unit</a>, <a href="https://en.psu.ac.th/">Prince of Songkla University</a> in Thailand. I conduct health-related researches that aims to provide policymakers with facts in order to help them improve public behaviour and health systems. My ambition is to change the world around me through evidence-based actions. I also love to learn data science, often make videos and build tools. I am from Myanmar but I currently live in Thailand. </p>    
+
             </div>
         </div>
     </div>
@@ -77,68 +98,73 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <img class="img-responsive" src="img/myominn_oo.jpg" alt="">
+                <img class="img-responsive" src="img/myominnoo.jpg" alt="">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Current Works -->
-<section id="works">
-  <div class="container">
+
+
+<section id="teaching">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <p><h2>Current Works</h2></p>
-                <hr>
-                <p>
-                    Primary focus is my PhD research project. It is about situational assessment of health insurance, delays into healthcare, treatment outcomes among among Myanmar migrants who fall ill with tuberculosis, and changes in quality of life, stigma and social support while they are on treatment. The project period is one and a half year and now in the phase of data collection. 
-                </p>
-            </br>
-                <p>
-                    Outside work, I am writing a guidebook for <a href="https://www.epidata.dk/">EpiData</a> Manager and EntryClient. I am also developing two R packages: 
-                    <ul class="compact fa-ul">
-                        <li>
-                            <a href="https://github.com/myominnoo/mStats">mStats</a> for my own use which is based on ggplot2 for plotting, and
-                        </li>
-                        <li>
-                            <a href="https://github.com/myominnoo/stats2">stats2</a> - an upgraded version from mStats that contains functions for easy and quick use.
-                        </li>
-                    </ol>
+            <div class="col-lg-12 text-center">
+              <h2>Current Works</h2>
+              <hr />
             </div>
+            <div class="col-lg-12">
+              <p>My primary focus is PhD project that assesses situations of health insurance, impact of health seeking delays as well as changes in quality of life, stigma and social support on treatment outcomes. Population is Myanmar migrants who fall ill with tuberculosis in a border area. The project is now in data collection phase.</p>
+
+              <p>If you’d like to learn more about what I do, I’d recommend getting started with R and EpiData softwares. Since quantitative research also comes hand in hand with data collection and analysis, my preferred (conventional) data analysis workflow includes EpiData for data collection and R for data manipulation and statistical analysis.</p>
+              <ul>
+              <li><p><a href="https://www.youtube.com/playlist?list=PLopxIleZRP2b8peVo5K8KuCo5Yo_yk4Is">Statistics with R</a> are serialized webinars that introduce to the fundamentals of descriptive and inferential statistics with an application in R using <code>mStats</code> package. All webinars are made available on YouTube.</p></li>
+              <li><p><a href="pages/R/mStats"><code>mStats</code> for epidemiological data analysis</a> is intended to make learning R as minimum as possible and get users quickly started with performing data manipulation and statistical procedures in R. It hugely mimics STATA's commands as well as outputs. It is available from CRAN and its development version from <a href="https://github.com/myominnoo/mStats">github.com</a>. </p></li>
+              <li><p>Writing a practical guidebook to data collection with EpiData: It is still under development and around two-third is finished.</p></li>
+              </ul>
+
+              <p>I also love to explore and learn new techs, like this website which is self-developed and hosted on <a href="https://github.com/myominnoo/myominnoo.github.io">github.com</a>.</p>
+          </div>
         </div>
     </div>
 </section>
 
-<!-- About Publications -->
-<section id="publications">
-  <div class="container" align="justify">
-    <div>
-      <p><h2>Publications</h2></p>
-      <hr>
-      <ul class="compact fa-ul">
-        <li>
-          <i class="fa-li fa  fa-file-o   fa-fw" style="color:#03396c;font-size:80%;padding-top:6px;"></i>
-          Htwe KK, Kyaw NTT, Kumar AM V, Kyaw KWY, <strong>Oo MM</strong>, Thwin T, et al. Pre-treatment loss to follow-up and treatment delay among bacteriologically-confirmed tuberculosis patients diagnosed in Mandalay Region, Myanmar. Trop Med Health. 2019;47(1):30.
-          <br />
-          <hr /> 
-        </li>
-        <li>
-          <i class="fa-li fa  fa-file-o   fa-fw" style="color:#03396c;font-size:80%;padding-top:6px;"></i>
-          Phyo KH, <strong>Oo MM</strong>, Harries AD, Saw S, Aung TK, Moe J, et al. High prevalence and incidence of tuberculosis in people living with the HIV in Mandalay, Myanmar, 2011–2017. Int J Tuberc Lung Dis. 2019;23(3):349–57.
-          <br />
-          <hr />
-        </li>
-        <li>
-          <i class="fa-li fa  fa-file-o   fa-fw" style="color:#03396c;font-size:80%;padding-top:6px;"></i>
-          Wang T, Zhou S-S, Feng J, <strong>Oo MM</strong>, Chen J, Yan C-F, et al. Monitoring and evaluation of intervals from onset of fever to diagnosis before “1-3-7” approach in malaria elimination: a retrospective study in Shanxi Province, China from 2013 to 2018. Malar J. 2019;18(1):235.
-          <br />
-          <hr />
-        </li>
-        <p><a href="pages/publications.html">See all publications.</a></p>
-      </ul>
+
+
+<section id="personal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+              <h2>Personal</h2>
+              <hr />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Outside of work, I love to read books. Top three includes: 
+                <ul>
+                    <li>The Alchemist by Paulo Coelho, </li>
+                    <li>Sapiens: A brief history of humankind by Yuval Noah Harari, and </li>
+                    <li>12 rules to life: An Antidote to Chaos by Jordan B Peterson</li>
+                </ul>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p>I am a huge fan of anime series and an otaku. Top three anime series that constantly inspire me are 
+                <ul>
+                    <li>Naruto, </li>
+                    <li>My Hero Academia, and </li>
+                    <li>Black Clover</li>
+                </ul>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-  </div>  
 </section>
+
 
 <!-- StatCounter Code Start here -->
 <div align="center">
@@ -151,18 +177,37 @@ border="0" alt="Web Counters"></a>
 <!-- End of Statcounter Code -->
   </p>
 </div>
-    
+
+
 <!-- Footer -->
 <footer class="text-center">
-  <div> &copy; 2019
-    <br />
-    Hat Yai, Songkla, Thailand, 90110
-    <br />
-    maintained by <a href="https://myominnoo.github.io">Myo&nbsp;Minn&nbsp;Oo</a>
-    <br />
-    Hosted on <a href="https://github.com/"> Github.com</a>.
+  <div class="container">
+      <div class="row">
+          <div class="footer-col col-sm-12">
+              <p>
+               &copy; 2020 <br />
+               Hat Yai, Songkla, Thailand, 90110 <br />
+               Developed by <a href="https://myominnoo.github.io">Myo&nbsp;Minn&nbsp;Oo</a><br />
+               Hosted on <a href="https://github.com/"> github.com</a>
+          </div>
+      </div>
   </div>
 </footer>
 
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/cbpAnimatedHeader.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/freelancer.js"></script>
+
 </body>
+
 </html>
