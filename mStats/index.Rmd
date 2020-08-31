@@ -1,28 +1,25 @@
 ---
 title: "A Guide to Data Analysis using R"
-author: "by [Myo Minn Oo](https://myominnoo.github.io/) - last updated on `r format(Sys.time(), '%d %B %Y')`"
-mail: "dr.myominnoo@gmail.com"
-linkedin: "myominnoo"
-twitter: "drmyominnoo"
-github: "myominnoo"
-# home: "https://myominnoo.github.io/"
-logo: "./img/logo.png"
+author: "by Myo Minn Oo - last updated on `r format(Sys.time(), '%d %B %Y')`"
+# output:
+#   prettydoc::html_pretty:
+#     theme: cayman
+#     highlight: github
+#     toc: true
+#     collapse: true
 output:
-  epuRate::epurate:
-    toc: TRUE
-    number_sections: TRUE
-    code_folding: "show"
+  html_document:
+    number_sections: true
+    code_folding: show
+    theme: united
+    # "cerulean", "journal", "flatly", "darkly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", "yeti"
+    highlight: tango
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    collapsed: true
+    smooth_scroll: true
 ---
-
-<style>
-#TOC {
-  top: 1%;
-  opacity: 0.5;
-}
-#TOC:hover {
-  opacity: 1;
-}
-</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -33,15 +30,18 @@ knitr::opts_chunk$set(
 )
 options(tibble.print_min = 5, tibble.print_max = 5)
 
-library(epuRate)
-library(rmarkdown)
+## load packages
+library(magrittr)
 library(mStats)
 ```
  
  
 # Introduction   
 
-## R 
+*** 
+This chapter introduces you to R, RStudio, packages and other things to get you started in R. 
+
+## R
 
 `R` is a **free** software for statistics and graphics. It is widely used among statisticians and data scientists for developing statistical software and data analysis. It is also increasingly popular among medical and public health researchers and analysts. `R` is primarily developed in three programming languages: C, Fortran, and R itself. Although It can be used by its default command-line interface, there are several third-party integrated development environments (IDE) with a friendly graphical user interface, including RStudio and Jupyter Notebook.    
 
@@ -54,6 +54,7 @@ R can be downloaded from [http://cran.r-project.org/](http://cran.r-project.org/
 
 
 ## RStudio  
+***
 
 `RStudio` is an integrated development environment for R. It meansIt comes in two versions: Desktop version is a desktop application and server version runs on a web browser. Regular `RStudio` for personal usage is free for both desktop and server version.    
 
@@ -62,19 +63,20 @@ R can be downloaded from [http://cran.r-project.org/](http://cran.r-project.org/
 `RStudio` can be downloaded from [https://rstudio.com/products/rstudio/download](https://rstudio.com/products/rstudio/download). 
 
 ### RStudio's Interface
+***
 
 The interface has four windows. Each window may have several tabs or sub-windows. By default, Source is on the top-left corner, console on bottom-left, environment on top-right, and files on bottom-right. 
 
-* `Source` is a text editor that will be referred to as R Script later on. You can write commands and save them, which is the main point of reproducibility. Anyone who has this R Script can review and edit it in the future. 
-* `Console` is the place you write your line-by-line command. It means you can only write a single command or a long paragraph of commands. After you close the RStudio, the commands will not be saved unless you specified to do so. However, it is the best way to saving R Script to store the commands you desire. 
+1. `Source` is a text editor that will be referred to as R Script later on. You can write commands and save them, which is the main point of reproducibility. Anyone who has this R Script can review and edit it in the future. 
+2. `Console` is the place you write your line-by-line command. It means you can only write a single command or a long paragraph of commands. After you close the RStudio, the commands will not be saved unless you specified to do so. However, it is the best way to saving R Script to store the commands you desire. 
     -	Symbol “>” called prompt
     -	Type `3 + 4`, and press `Enter`. 
-* `Environment` has several sub-windows. For data management and beginner, you only have to know `Environment` and `History`. 
+3. `Environment` has several sub-windows. For data management and beginner, you only have to know `Environment` and `History`. 
     - `Environment` is where R works. 
     - `Global Environment` is the place where your data will be after importing data.
     - `History` saves the commands you run in R console.
     - `Connections` is where you connect to external databases.
-* `Files` also has several sub-windows. 
+4. `Files` also has several sub-windows. 
     - `Files` is like a folder manager on your phone. You can manage files and folders as well as set the working directory.
     - `Plots` is where your plots will appear.
     - `Packages` is where you manage your R packages. You can install it from CRAN or other repositories. You can also install locally stored R packages.
@@ -82,7 +84,8 @@ The interface has four windows. Each window may have several tabs or sub-windows
     
 ![RStudio's Interface](./img/rstudio_interface.png)
  
-## mStats <a href='https://myominnoo.github.io'><img src='./img/logo.png' align="right" width="120" height="120"/></a>
+## mStats 
+***
 
 <!-- badges: start -->
 
@@ -92,3 +95,321 @@ The interface has four windows. Each window may have several tabs or sub-windows
 <!-- badges: end -->
 
  
+ 
+The `mStats` is a R package that provides tools for epidemiological and statistical data analysis. There are four major groups of functions: 
+
+  - `data management` - cleans, processes and manages your
+    dataset.
+  - `statistical analysis` - produces well-formatted outputs of
+    common statistical procedures.
+  - `epidemiological calculation` - integrates such calculations into
+    your pipeline of analysis.
+  - `helpers` - support the remaining functions in their calculation and output as well as streamline the process of transferring results for manuscript writing. 
+
+### History
+***
+
+The package `mStats` came into life when I started my Ph.D. in 2018. Its first version was released on GitHub in late 2018. Initially, it was intended for fun and I wanted to know how much I could make use of what I have learned R so far. Also, I would like to create something different which may not be entirely innovative since there are lots of good R packages out there.
+
+Two main packages deeply inspired me, `tidyverse` and `epicalc`. In the first version of `mStats`, I created some functions to make plots based on `ggplot2`. I updated several small patch versions adding a few more functions that were interesting to me at that time. In mid-2019, I started another package called `stats2` where I tried to simplify the concept that one function should do a task without too many options. For example, the `tab` function should perform the task of tabulation with a few options to tweak its outputs. That's the whole idea of the package. I felt that beginners do not mind having only a few options to do so. They do not use as much as advanced users do. 
+
+I continued developing the package with feedback from teachers, friends, and colleagues. In early 2020, I submitted to `CRAN` and published version 3.2.2 a month later on March 31, 2020. As times progress, I hope this package will at least provide some contributions in some people. Any constructive criticism, suggestions, or comments are most welcome. For detail, visit my website. [https://myominnoo.github.io/](https://myominnoo.github.io/)
+
+### Concepts
+***
+The `mStats` comes with the following concepts.   
+
+1) `data` as the first input
+
+During analysis, it is common to use a dataset, either imported from an external source or created. R functions are usually very generic and created for basic data structures of R. Hence, to use variables from a dataset, there are two general ways: 1) use the  `attach` function and use the names of variables directly, and 2) to subset data using dollar sign `$` or square brackets `[]` to provide integer positions of desired variables. To avoid this, functions in `mStats` need dataset as its first input. It also helps to remember the dataset you are working with. After all, words are easier to write and comprehend than complex characters and symbols.  
+
+
+2) Keep `functions` short and simple. 
+
+All functions in `mStats` are straight-forward. Each function works one task with only a handful of optional arguments to change its nature of the output.  
+    
+As an instance, the function `tab` simplifies the process of frequency tabulation for a single variable, and cross-tabulation if `by` input is specified. It provides only three additional inputs, `row.pct`, `na.rm` and `rnd`, to change the nature of percentages, missing values, and decimal points. However, even these three input options are used scarcely.
+
+3) Labels
+
+It maintains the concept of labeling variables and dataset. However, labeling at value level is deemed as unnecessary in R. This can be done though, using `forcats` package. 
+
+4) Well-formatted outputs  
+
+Functions for data analysis produces well-formatted outputs. This helps the readability and comprehensibility of the users as well as further processing for manuscript writing. 
+
+5) Messages for users
+
+Notification is important. Functions in `mStats` provide a message of what has been done to the dataset. For example, `generate` function is used to create a new variable. The message indicates how many real (`valid`) values are generated. If any `missing` values are detected, the message also includes how many `missing` values are produced. This is an important part of communication between R, `mStats`, and the users.
+
+## Packages in R 
+***
+
+`Base R` is what you get after installing R. R is powerful because of its tens of thousands of packages. The number is still growing. This also creates the problem of confusion. Even no single user can check or use all packages within his field. A solution is to stick to certain packages that work well for you.
+
+There are tons of recommendations out there, listing all popular packages in R. The strategy is to try out a few packages and remember the ones that work well. If a function you want to use does not exist and it is still possible, you can write the package yourself and contribute to the R community. Here is a list of R packages I find useful for my work though it may not be a comprehensive list: 
+
+* Data import
+    - `readr` for reading and writing text data like comma-separated value `CSV` file
+    - `readxl` for reading excel files (both `xls` and `xlsx`)
+    - `haven` for `STATA`, `SPSS` and `SAS` format
+    - `foreign` for EpiData `.rec` file 
+* Data management
+    - tidyverse 
+    - mStats
+* Epidemiological calculation
+    - `epicalc`
+    - `mStats`
+    - `epiR`
+    - `epitools`
+* Statistical data analysis
+    - `gee` and `geepack` for hierarchical data modeling
+    - `survminer` for survival analysis
+    
+    
+To install a package, you can use the following command if it is published on `CRAN`. `CRAN` is the `comprehensive R Archive Network`, web servers that store R packages.
+
+```{r packages in R 1, eval=FALSE, include=FALSE}
+# install.packages("package_name")
+install.packages("mStats")
+```
+
+For packages published on GitHub, use the following command. Note that each package usually provides different instructions for installation. 
+
+```{r packages in R 2, eval=FALSE, include=FALSE}
+install.packages("devtools")
+# devtools::install_github("username/package_name")
+devtools::install_github("myominnoo/mStats")
+```
+The package on Github is usually up-to-date and often free from previous issues and bugs. 
+
+
+Let us install the packages used in this book.
+
+```{r packages installation, eval=FALSE}
+## install tidyverse will automatically include magrittr 
+install.packages("tidyverse", dependencies = TRUE)
+
+## install latest version of mStats
+devtools::install_github("myominnoo/mStats") 
+
+## note: you can download mStats version from CRAN
+# install.packages("mStats")
+
+## install other packages:
+install.packages(c("readr", "readxl", "haven"))
+```
+
+## Functions in R 
+
+In R, everything is called an object and `function` is also a type of object. Functions are used to perform certain actions or tasks and if a result is returned, it can be stored as another object for further use.  
+    
+A function needs arguments or simply inputs. Inputs can be either `must-have` or `optional`. For example, the function `tab` is used to create frequency tabulation. The arguments can be checked using `str` function. `str` shows the structure of the R object.
+
+```{r exampe function in R, echo=TRUE}
+library(mStats)
+str(tab)
+```
+
+It has six inputs. But it only needs the first one `data` to work. Three dots  `...` means that you can put as many variables as you want for tabulation. For the rest, they are set to some default values. For `by`, the default value is set to `NULL`, which means it performs frequency tabulation. If a categorical variable is specified, it generates a contingency table and reports p-values from association tests (Chi-squared and Fisher's Exact). 
+
+The input for `row.pct` can be `TRUE`, `FALSE` or `NULL`. If `TRUE`, it reports `row` percentages. If `FALSE`, `column` percentages, and if `NULL`, `no` percentages.
+You can remove missing levels in the table by specifying `na.rm` to `FALSE`. You can set your desired level of decimal with `rnd` input.
+
+The outputs from functions in R can be stored as an object. However, what you see in the console may not be the exact format or content that the function returns. It means that you do not always get what you see. (What you see is what you get - `WYSIWYG`)
+
+
+## Masking
+
+The `mStats`package contains two functions (`append`, `replace`) that have the same names (doing different operation) with base R packages (`stats` and `base`). Loading the `mStats` masks the functions from base R. It means that when you use `append` function, you are using the function from `mStats`. To avoid this: 
+
+* use the syntax `package::function()`, for example `base::append()` or `mStats::append()`.
+* remove `mStats` from the session using `detach(package:mStats)`.
+
+Here is an example of using `read_dta` function from `haven` package. 
+
+```{example masking, eval=FALSE}
+## directly using read_dta function from haven package
+## without loading it
+haven::read_dta("file.dta") 
+```
+
+This is often handy when you only need to use a function of the package one or two times. 
+
+## Piping `%>%` 
+
+Data management usually involves multiple steps to produce the final polished dataset. These are usually sequential operations done on the same dataset. The pipe operator `%>%` from the package `magrittr` streamlines such operations into comprehensible steps or structures so that R codes become more readable to the users.    
+
+
+The pipe operator `%>%` essentially hands over the left-hand side values (dataset in this case) into the function that appears on the right-hand side. This is frequently written in two lines that the right-hand side appears on the next line below. This process is called piping, like joing pipes to continue the water flow. 
+
+Check the example below. A series of tasks are performed to get the desired output in a continuous workflow, starting from importing data into R to summarizing variables. 
+
+By piping `%>%`, the raw dataset is being handed over to the right-hand side. The dataset being handed behind the scene is stored as an object named `.`. 
+
+This is then put into the function, `replace` where the variables `test1` and `test2` are checked whether they are equal to `-99`. If equal, these values are replaced with `NA`, the missing value in R. Of course, these two tasks are done one after another. 
+
+After that, the now-updated dataset `.` is put into `generate` function. The function again takes `test1` and `test2` and creates a new variable called `average` based on the formula specified.
+
+Finally, the dataset, still named `.`, is now being used in `summ` function to generate summary statistics of `test1`, `test2` and `average`.
+    
+When the pipe operator `%>%` is used, the input `data` does not need to be specified. This is because the dot `.` that represents the modified dataset along the piping process is automatically passed into that `data` input. Check the two examples below that produces the same output. 
+
+
+```{r using pipe, echo=TRUE}
+## Here is a series of operations:
+## 1) Import STATA's dta format from online 
+## 2) Replace test1 and test2 if they are -99, meaning missing value 
+## 3) Generate a new variable name "average" by taking average of the two tests
+## 4) Summarize all three variables
+haven::read_dta("https://stats.idre.ucla.edu/stat/data/patient_pt1_stata_dm.dta") %>% 
+    replace(test1, NA, test1 == -99) %>% 
+    replace(test2, NA, test2 == -99) %>% 
+    generate(average, (test1 + test2) / 2 ) %>% 
+    summ(test1, test2, average)
+```
+
+As you can see from the output in the console, notification of what have been done is a great way to track whether the functions are doing what they are supposed to do. There are 7 values changed to `NA` in both `test1` and `test2`, and 11 `NA` values when `average` is created. These are consistent with numbers reported the column `NA.` of the `Summary` output.
+
+Being able to run these codes in your RStudio means that you just used R for data management and analysis. Well done! I hope this gets you inspired to continue reading the book.
+
+## Versions used in this book 
+
+Versions are important to make references in case you run into errors. 
+
+```{r versions, eval=TRUE}
+## R version
+version
+
+## mStats version 
+packageVersion("mStats")
+packageVersion("tidyverse")
+packageVersion("readr")
+packageVersion("readxl")
+packageVersion("haven")
+```
+
+
+If you do not have R or this version of R, download and install it from the official website.  [https://www.r-project.org/](https://www.r-project.org/).   
+
+If you don't have `mStats` installed, see the section above,`Packages in R`. 
+
+## Getting help
+
+If you encounter an error or the function does not work, please file an issue with a minimal reproducible example on
+[GitHub](https://github.com/myominnoo/mStats/issues). 
+
+For questions and other discussion, please email me view
+[dr.myominnoo@gmail.com](mailto::dr.myominnoo@gmail.com).
+
+Please note that this project is looking for contributors. By participating in this project, you agree to abide by its terms with [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/), version 1.0.0, available at [https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/).
+
+## Intention of the book  
+
+This book is intended to guide new R users to quickly get on with data management and analysis. The package is also largely inspired by `STATA` software, hence `STATA` users may benefit largely from this book.  
+
+
+## References
+
+1. STATA DATA MANAGEMENT. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/seminars/stata-data-management/ (accessed March 23, 2020).
+2. SUBSETTING DATA | STATA LEARNING MODULES. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/modules/ubsetting-data/ (accessed March 23, 2020).
+3. LABELING DATA | STATA LEARNING MODULES. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/modules/labeling-data/ (accessed March 23, 2020).
+4. LOGISTIC REGRESSION | STATA DATA ANALYSIS EXAMPLES. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/dae/logistic-regression/ (accessed March 23, 2020).
+5. REGRESSION ANALYSIS | STATA ANNOTATED OUTPUT. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/output/regression-analysis/ (accessed March 23, 2020).
+6. Betty R. Kirkwood, Jonathan A.C. Sterne (2006, ISBN:978 0 86542 871 3)
+7. Burt B. Gerstman (2013, ISBN:978 1 4443 3608 5)
+8. Douglas G. Altman (2005, ISBN:0 7279 1375 1)
+9. R Fundamentals, R Core Development Team, 2006
+10. R for Data Science, Hadley Wickham & Garrett Grolemund, 2017
+11. Advanced R, Hadley Wickham
+12. Exploratory Data Analysis with R, Roger D. Peng
+13. R Programming by Robin Evans: http://www.stats.ox.ac.uk/~evans/teaching.htm
+14. All books and websites that I forget to mention
+
+
+# Data Management
+*** 
+
+This chapter covers methods in R to prepare data for further analysis. What we want at the end of this chapter is to create a tidy data so that we can run further analyses. So what is a tidy data? 
+
+    Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how rows, columns, and tables are matched up with observations, variables, and types. In tidy data:
+    1. Each variable forms a column.
+    2. Each observation forms a row.
+    3. Each type of observational unit forms a table.
+    - Hadley Wickham, R for Data Science
+    
+If you are familiar with spreadsheet data, you already understand some of the data concepts. Like any spreadsheets, R also handles such a fairly similar data structure, which has rows and columns. Hence, they are called two-dimensional data. 
+
+The first step in doing so is getting your data into R. So let's get started.
+
+## Inputting data into R
+
+Here are commonly used data formats in medical research: 
+
+1. Comma-separated value `CSV`
+2. Excel's `xls` or `xlsx`
+3. STATA's `dta`
+
+### `CSV` 
+
+Base R has a built-in function to import `CSV` file. You can read the help page by running this command `?write.csv`. To run a function, you just put the link with quotes into the brackets of the function `write.csv`. 
+
+```{r input CSV}
+## Here is original post from UCLA
+## https://stats.idre.ucla.edu/r/faq/how-to-input-data-into-r/
+df.csv <- read.csv("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/test-1.csv")
+
+## check the dataset (show the first 10 rows)
+head(df.csv)
+```
+
+We imported the dataset from the internet and printed the first 10 lines using `head`. As you can see we have five columns: `make`, `model`, `mpg`, `weight`, `price`. You can print out the last 10 rows using `tail` function.
+
+
+Comma in `CSV` is called delimiter because it separates the values into respective columns. So you can call it as separator. Other common delimiters are space and semi-colon. Here are their examples. 
+
+```{r input space text}
+## Here is original post from UCLA
+## https://stats.idre.ucla.edu/r/faq/how-to-input-data-into-r/
+## We add 'header = TRUE' to indicate the first row as names of columns: 
+## You can call this header or names of variables.
+df.space <- read.table("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/test.txt", header = TRUE)
+
+## Check the dataset (show the first 10 rows)
+head(df.space)
+```
+
+```{r input semi-colon}
+## Here is original post from UCLA
+## https://stats.idre.ucla.edu/r/faq/how-to-input-data-into-r/
+## To indicate semi-colon, we add another input 'sep = ";"'
+df.semi <- read.table("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/testsemicolon.txt", 
+                       header = TRUE, sep = ";")
+
+## Check the dataset (show the first 10 rows)
+head(df.semi)
+```
+
+### `xls` or `xlsx`
+
+To read Excel files, we install another package `readxl`. 
+```{r install readxl, eval=FALSE}
+install.packages("readxl")
+```
+
+
+### `dta`
+
+## Viewing the dataset 
+
+# Data Analysis 
+
+## Exploratory Data Analysis
+
+## Epidemiological Measures
+
+## Statistics
+
+# Data Visualization 
+
+
