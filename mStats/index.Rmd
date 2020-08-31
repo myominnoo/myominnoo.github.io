@@ -37,7 +37,6 @@ library(mStats)
  
  
 # Introduction   
-
 *** 
 This chapter introduces you to R, RStudio, packages and other things to get you started in R. 
 
@@ -200,7 +199,8 @@ devtools::install_github("myominnoo/mStats")
 install.packages(c("readr", "readxl", "haven"))
 ```
 
-## Functions in R 
+## Functions in R  
+*** 
 
 In R, everything is called an object and `function` is also a type of object. Functions are used to perform certain actions or tasks and if a result is returned, it can be stored as another object for further use.  
     
@@ -219,7 +219,8 @@ You can remove missing levels in the table by specifying `na.rm` to `FALSE`. You
 The outputs from functions in R can be stored as an object. However, what you see in the console may not be the exact format or content that the function returns. It means that you do not always get what you see. (What you see is what you get - `WYSIWYG`)
 
 
-## Masking
+## Masking 
+*** 
 
 The `mStats`package contains two functions (`append`, `replace`) that have the same names (doing different operation) with base R packages (`stats` and `base`). Loading the `mStats` masks the functions from base R. It means that when you use `append` function, you are using the function from `mStats`. To avoid this: 
 
@@ -236,7 +237,8 @@ haven::read_dta("file.dta")
 
 This is often handy when you only need to use a function of the package one or two times. 
 
-## Piping `%>%` 
+## Piping `%>%`  
+*** 
 
 Data management usually involves multiple steps to produce the final polished dataset. These are usually sequential operations done on the same dataset. The pipe operator `%>%` from the package `magrittr` streamlines such operations into comprehensible steps or structures so that R codes become more readable to the users.    
 
@@ -273,7 +275,8 @@ As you can see from the output in the console, notification of what have been do
 
 Being able to run these codes in your RStudio means that you just used R for data management and analysis. Well done! I hope this gets you inspired to continue reading the book.
 
-## Versions used in this book 
+## Versions used in this book  
+*** 
 
 Versions are important to make references in case you run into errors. 
 
@@ -294,7 +297,8 @@ If you do not have R or this version of R, download and install it from the offi
 
 If you don't have `mStats` installed, see the section above,`Packages in R`. 
 
-## Getting help
+## Getting help 
+*** 
 
 If you encounter an error or the function does not work, please file an issue with a minimal reproducible example on
 [GitHub](https://github.com/myominnoo/mStats/issues). 
@@ -304,12 +308,14 @@ For questions and other discussion, please email me view
 
 Please note that this project is looking for contributors. By participating in this project, you agree to abide by its terms with [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/), version 1.0.0, available at [https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/).
 
-## Intention of the book  
+## Intention of the book   
+*** 
 
 This book is intended to guide new R users to quickly get on with data management and analysis. The package is also largely inspired by `STATA` software, hence `STATA` users may benefit largely from this book.  
 
 
-## References
+## References 
+*** 
 
 1. STATA DATA MANAGEMENT. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/seminars/stata-data-management/ (accessed March 23, 2020).
 2. SUBSETTING DATA | STATA LEARNING MODULES. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/modules/ubsetting-data/ (accessed March 23, 2020).
@@ -342,7 +348,8 @@ If you are familiar with spreadsheet data, you already understand some of the da
 
 The first step in doing so is getting your data into R. So let's get started.
 
-## Inputting data into R
+## Inputting data into R 
+*** 
 
 Here are commonly used data formats in medical research: 
 
@@ -350,7 +357,8 @@ Here are commonly used data formats in medical research:
 2. Excel's `xls` or `xlsx`
 3. STATA's `dta`
 
-### `CSV` 
+### `CSV`  
+*** 
 
 Base R has a built-in function to import `CSV` file. You can read the help page by running this command `?write.csv`. To run a function, you just put the link with quotes into the brackets of the function `write.csv`. 
 
@@ -366,7 +374,7 @@ head(df.csv)
 We imported the dataset from the internet and printed the first 10 lines using `head`. As you can see we have five columns: `make`, `model`, `mpg`, `weight`, `price`. You can print out the last 10 rows using `tail` function.
 
 
-Comma in `CSV` is called delimiter because it separates the values into respective columns. So you can call it as separator. Other common delimiters are space and semi-colon. Here are their examples. 
+The comma in `CSV` is called delimiter because it separates the values into respective columns. So you can call it as the separator. Other common delimiters are space and semi-colon. Here are their examples. 
 
 ```{r input space text}
 ## Here is original post from UCLA
@@ -390,26 +398,476 @@ df.semi <- read.table("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/te
 head(df.semi)
 ```
 
-### `xls` or `xlsx`
+### `xls` or `xlsx` 
+*** 
 
 To read Excel files, we install another package `readxl`. 
+
 ```{r install readxl, eval=FALSE}
 install.packages("readxl")
 ```
 
+Let us use an excel dataset from World Bank (accessed on August 31, 2020). Download it [here](https://myominnoo.github.io/mStats/data/world_bank_life_exp.xls). 
 
-### `dta`
+```{r read excel 1}
+library(readxl)
+df.xls <- read_excel("./data/world_bank_life_exp.xls")
+head(df.xls)
+```
 
-## Viewing the dataset 
+Note that you can specify this file location on your computer. You may also notice that the output from `head` function is a bit different this time. But don't be afraid. It's nothing wrong but shows a variant of the dataset in R. 
 
+    Alternatively, you can create a folder named `data` in the same directory where your R script file is stored. For this to work, first close `RStudio` if it is opened. Double-click on the R Script to open it in RStudio. You will notice that the directory changes where your R script is stored.
+    
+If you download it from World Bank web API, you will notice that the first two rows describe data sources and indicators. This time, we will import the raw file with two invalid rows. Download the raw file [here](https://myominnoo.github.io/mStats/data/world_bank_life_exp_raw.xls). Check the file in a spreadsheet program like Excel before inputting it into R.
+
+In the example below, we will skip these two rows when we read the excel file. We can set this by specifying `skip = 2`.
+
+```{r read excel 2}
+df.xls <- read_excel("./data/world_bank_life_exp_raw.xls", skip = 2)
+head(df.xls)
+```
+
+
+### `dta` 
+*** 
+
+Reading `.dta` is fairly easy. There are two great packages to read this data format: `haven` and `foreign`. In this book, I will demonstrate it using `haven`. Also, check the `foreign` package. 
+
+First, install the package. If you already installed `tidyverse`, you don't need to install it again.
+
+```{r install haven, eval=FALSE}
+install.packages("haven")
+```
+
+The function we will use is `read_dta`. Here is an example. 
+
+```{r read dta}
+library(haven)
+df.dta <- read_dta("https://stats.idre.ucla.edu/stat/data/test.dta")
+head(df.dta)
+```
+
+Check the version of `STATA` used to export `.dta`. Sometimes, older versions do not work well. 
+
+### Exercises 
+*** 
+
+Try importing the following dataset into R. First, use the link to input from online. Then also download the dataset and import it from your computer.
+
+* Downs Syndrome data from STATA: http://www.stata-press.com/data/r16/downs.dta
+* Diet data from STATA: https://www.stata-press.com/data/r16/diet.dta
+* Low Birth Weight data from STATA: http://www.stata-press.com/data/r16/lbw.dta
+
+## Viewing the dataset  
+*** 
+
+We load the first dataset used in this book^[Starting from this point, the book loosely follows on the [STATA tutorial from UCLA](https://stats.idre.ucla.edu/stata/seminars/stata-data-management/).]. 
+
+```{r import pt dataset, include=TRUE}
+pt <- haven::read_dta("https://stats.idre.ucla.edu/stat/data/patient_pt1_stata_dm.dta")
+```
+
+### `View` 
+*** 
+
+The dataset can be viewed in a spreadsheet-style window by using `View` function or clicking on the dataset in the `Environment` window. It is always a good thing to eye-ball your data before you start anything. 
+
+```{r View function, eval=FALSE}
+View(pt)
+```
+
+
+![Spreadsheet-style window in RStudio](./img/View_pt.png)
+
+
+### `codebook`
+*** 
+
+Before you do any type of analysis, you need to understand your data. First, let us take a look at the codebook of `pt` dataset. The `codebook` function provides the following list of information on the dataset and variables.
+
+1. Number of variables (`No`)
+2. Name of variables (`Variable`)
+3. Their descriptions (`Label`)
+4. Data types (`Type`)
+5. Number of valid observations (`Obs_Num`)
+6. Number of missing observations (`<NA>`)
+7. Percentage of missing observations (`<NA>(%)`)
+8. Label of dataset
+
+```{r codebook pt}
+library(mStats)
+codebook(pt)
+```
+
+The `pt` dataset has 25 variables and 120 observations. But no missing values are reported. Twelve variables do not have labels. The dataset also does not have a label. There are three different data types reported here: `character`, `numeric`, and `Date`. Right now, knowing this much is still very helpful for further data management.
+
+    Recall data types in statistics. 
+    
+    1. Characters are generally categorical variables and numbers often represent categorical data. For example, `sex` variable with `male` or `female` is of character type and that with 1 and 2 are of numeric type. 
+    
+    2. Dates can be treated as numbers, meaning that we can do arithmetic calculations on them.
+
+
+## Labeling variables and data
+***
+
+Labels can be used to provide additional information about variables or dataset to the users. Value labels are not important in R though it can be done using certain packages such as `forcats`. 
+
+### labelVar 
+*** 
+
+We often deal with variable names that do not make any sense at all. For example, `test1` and `test2` have no meaning in `pt` dataset unless they relate to `Interleukin-6` (`IL6`) and `C-Reactive Protein` (`CRP`) respectively. 
+
+The `codebook` function shows labels up to 22 characters and truncates the rest of the label. However, other functions can show the full length of the labels. Labels also depend on the data storage format. While `dta` file can store labels for both variables and the dataset, `CSV` and `excel` files can't be used to store such data. 
+
+The `labelVar` function needs at least two inputs: `dataset`, and `variable name` = `label`. You can add as many variables as you want if they are valid names. 
+
+Let's label `test1` as `Interleukin-6` and `test2` as `C-Reactive Protein`.
+
+```{r labelvar test1 test2}
+## label variables test1 and test2 
+pt <- labelVar(pt, test1="Interleukin-6", test2="C-Reactive Protein")
+
+## Check the changes
+codebook(pt)
+```
+
+
+### labelData
+*** 
+ 
+The `labelData` function is used to label the dataset. The `codebook` prints the full length of this label. Since this is applied to the whole dataset, the function needs a dataset and its label as inputs.
+
+```{r labelData}
+## Labelling pt dataset
+pt <- labelData(pt, "Fake Cancer Patient Data")
+
+## Check the change
+codebook(pt)
+```
+
+
+## Exploring data 
+*** 
+
+While `codebook` provides us some insights, we need to check the content inside the dataset. Eyeballing using `View` is the first method we discussed earlier. Now we use `tab` and `summ` functions to look deeper into each individual variable. The function `tab` is used with categorical data for frequency tabulation and `summ` with numerical data for summary measures. Doing this along with data visualization is sometimes called `exploratory data analysis` or `EDA`. 
+
+### `tab` 
+*** 
+
+The tab function is a quick way to generate frequency tabulation. It can be either one-way or two-way tabulation. Let's have a look at the example below. 
+
+```{r tab single}
+## one-way tabulation of sex
+tab(pt, sex)
+```
+
+One-way tabulation generates frequencies, percentages, and cumulative percentages of a variable. A tabulation of `sex` shows that it has one invalid observation with the value `12.2`. This may be due to the data entry or coding error. We need to fix it later. 
+
+We can check the one-way tabulation of multiple variables at the same time. Here is another example. 
+
+```{r tab multiple}
+## one-way tabulation of multiple variables
+tab(pt, married, familyhx, smokinghx)
+```
+
+The variable `married` looks fine while there are 6 invalid values of `-99` in both `familyhx` and `smokinghx`. I think you get the importance of checking the data before doing analysis. 
+
+To save the time of writing `tab` command variable-by-variable, we can add a series of variables indicated by colon separator `:`.  
+
+```{r tab single line}
+## one-way tabulation of multiple variables using a colon to indicate a range of variables
+tab(pt, married:cancerstage, ntumors, remission)
+```
+
+After all, you can tabulate the whole dataset without specifying any variable. This needs the variables you desire to be of a categorical data type in R: either `character`, `factor`, or `ordered factor`.
+
+```{r tab dataset, eval=FALSE}
+## Tabulating the whole dataset
+## Output not shown due to redundancy !!! 
+tab(pt)
+```
+
+If you run the command above, you will notice that `wbc` is wrongly tabulated though it should be numerical data. If you look back to the output of `codebook` above, `wbc` is reported to be character data type. This is wrong. We will fix it later. 
+
+    Two-way tabulation has a few aliases: cross-tabulation, contingency table, and 2x2 table. This will be discussed in a later chapter. [mention chapter number] 
+
+
+### `summ` 
+*** 
+Often our dataset might come with extreme numeric values. These values can sometimes represent missing codes, such as `-99` or `999`. Including in summary measures can distort the findings. Hence, it is important to detect and recode these values into appropriate ones.  
+
+We use summary measures for numerical data. The `summ` function estimates several important numerical statistics. 
+
+1. Number of observations (`Obs.`)
+2. Number of missing observations (`NA.`)
+3. Mean 
+4. Standard Deviation (`Std.Dev`)
+5. Median 
+6. 25th Quantile (`Q1`)
+7. 75th Quantile (`Q3`)
+8. Minimum (`Min`)
+9. Maximum (`Max`)
+10. P-value from Shapiro-Wilk test of Normality (`Normality`)
+
+    Such extreme or missing values can be often found in the minimum and maximum values.
+
+```{r summ single var}
+## Estimating summary measures of a single variable
+summ(pt, age)
+```
+
+A summary of `age` is reported with 120 observations, no missing values, the average age at 53.6, and median at 51.8. The test for normality shows that the data does not follow the normal distribution. More importantly, the maximum value is 357.9, which is clearly an error and needs to be addressed by cross-checking in the original database or recoding the value.   
+
+Just like the tab, we can input multiple variables or the whole dataset. 
+
+```{r summ multiple var}
+## Estimating summary measures of multiple variables
+## summ allows the use of colon :
+## we omit wbc here since it is character. 
+summ(pt, tumorsize:age, lengthofstay, rbc:test2)
+```
+
+We see suspicious codes `-99.0` and `-98.0` under the column `Min`. They pull means aways from the center and give negative mean values which do not make sense. We already discussed the invalid value in `age`.
+
+
+### `histogram`
+*** 
+
+Graphs are a great way to check these missing coding errors or outliers. The `histogram` function provides the distribution of the variable with a normal curve overlaid. Here we use it to detect missing codes in `age`, `lungcapacity`, `test1`, and `test2`.
+
+```{r histogram 1}
+## Setting the graph layout to 2 rows and 2 columns to combine four graphs
+par(mfrow = c(2, 2))
+## Creating four histograms with a normal curve 
+histogram(pt, age)
+histogram(pt, lungcapacity)
+histogram(pt, test1)
+histogram(pt, test2)
+
+## Setting the graph layout to 1 row and 1 column
+par(mfrow = c(1, 1))
+```
+
+We see obvious outliers, 1 observation in `age`, 23 in `lungcapacity`, and 7 each in `test1` and `test2`. 
+
+## Changing values 
+*** 
+
+As we see extreme or invalid values in the examples above, we need to change these values into appropriate values for further analysis. There are two functions to accommodate this, `recode` and `replace`. While the function `recode` is a quick way to change values, it only allows one condition. If you want to change values based on multiple criteria or conditions, use `replace`. 
+
+### `recode`  
+*** 
+
+We can quickly convert these extreme values or outliers to missing value allowed in R, `NA` with `recode` function. This function needs three inputs: `dataset`, `variable name`, and `old value`-`new value`. You can read its help page by running `?recode`. 
+
+    Note that if you already loaded `tidyverse` or `dplyr` package, the function masks or is masked, depending on which one you load first. To work well, use `mStats::recode()`. 
+
+Let's recode the invalid values in `test1` and `test2` to the missing value, `NA`. Since the value is negative, we indicate the negative symbol `-` is a part of the number by adding quotes. Normally, we can write numbers without any quotes. 
+
+```{r recode age}
+## Recoding outlier '-99' in test1 and test2 to NA
+## We save the result from the first command into pt1. 
+## In the second command, we use pt1 dataset to recode and save into the same pt1.
+pt1 <- recode(pt, test1, "-99"-NA)
+pt1 <- recode(pt1, test2, "-99"-NA)
+```
+
+To simply it, we use the piping operation to write these into a series of commands. Below is an example of how you can use `%>%` piping operation from the package `magrittr`. 
+
+```{r recode age piping}
+## Writing two lines of commands into a series of operation with piping
+pt <- pt %>% 
+    recode(test1, "-99"-NA) %>% 
+    recode(test2, "-99"-NA)
+
+## Check the summary to see the changes
+summ(pt, test1, test2)
+```
+
+Using the piping operation, the data on the left side of the piping symbol `%>%` is sent over as input into the function on the right side. Hence, we do not need to specify the dataset in this chain of commands. This simplifies writing and saves time. After recoding, always check whether the changes took place correctly.
+
+We also use `recode` to change values in character data types. For example, `married` has `0` for `No` and `1` for `Yes`. The command is similar to the previous example. 
+
+```{r recode married}
+## Recode married, 1 to Yes and 0 to No
+pt <- recode(pt, married, 1-"Yes", 0-"No")
+
+## Check the changes in married
+tab(pt, married)
+```
+
+We use the same structure to recode missing value into a separate category. In the following example, we recode the invalide value `12.2` in `sex` into `NA` and then recode it back to a separate  category, "Missing".
+
+```{r recode sex}
+## Recode 12.2 in sex to NA and then NA to 'Missing'
+pt <- recode(pt, sex, 12.2-NA)
+
+## Check the first change 
+tab(pt, sex)
+
+## then change NA to 'Missing'
+pt <- recode(pt, sex, NA-"Missing")
+
+## Check the second change
+tab(pt, sex)
+```
+
+The first tabulation reports a missing category as `<NA>` while in the second, it is represented by a formal one, `Missing`. This categorization of missing values is useful when analyzing missing data.
+
+
+
+### `replace`
+***
+
+When we have multiple criteria or when `recode` does not work, we use `replace`. The function `replace` needs at least three inputs, `dataset`, `variable`, `value` to be replaced. If you have conditions, you can specify as many as you need afterward. 
+
+Here is a simple example to replace `-99` in `familyhx` and `smokinghx` to `NA`. When the values in these variables are equal to `-99`, we replace them with `NA`. So, we have one condition to specify in the function. Since we discussed the use of piping operation, we will just use it here. 
+
+```{r replace familyhx smokinghx}
+## Replace -99 in familyhx and smokinghx to NA
+pt <- pt %>% 
+    ## you can read like this: 
+    ## replace familyhx with NA when familyhx is equal to -99
+    replace(familyhx, NA, familyhx == -99) %>% 
+    replace(smokinghx, NA, smokinghx == -99)
+
+## Check the changes
+## Remember they are categorical in nature though the missing value is represented by a number
+tab(pt, familyhx, smokinghx)
+```
+
+Often we need to change the variable as a whole. For example, `wbc` should be a numeric data type though it is represented by a character type. We need to change its data type even to summarize it. 
+
+First, let's think about our operation. This has two steps: 1) change the character to numeric, and 2) replace current `wbc` with numeric `wbc`. To change the character to numeric data type, we use `as.numeric` function. Vice versa, we can use `as.character` to change back to the character type. This is known as `coercing` in R. Other related functions are `as.Date`, `as.factor`, and `as.data.frame`. Don't worry about these for now. 
+
+Let's try out this example. 
+
+```{r replace wbc to numeric}
+## Replace wbc with numeric wbc
+## We don't have a condition here. So no need to specify.
+pt <- replace(pt, wbc, as.numeric(wbc))
+
+## Check the changes with summ. You can also check it with codebook.
+## if you try this before, there will be error since summ does not work with character. 
+summ(pt, wbc)
+```
+
+
+## Creating variables
+*** 
+
+We often do not get datasets with variables that are ready for final analysis, hence a big chapter on data management. We create new variables by either transforming or combining different variables. 
+
+### `generate`
+*** 
+
+The function `generate` is used to create a new variable in three ways. 
+
+1. Specifying a constant such as `NA`
+2. Copying an existing variable
+3. Performing arithmetic or logical operations on existing variables.
+
+It requires three inputs: 1) `dataset`, 2) `name of new variable` and 3) either a `constant`, `name of existing variable`, or `expression`.
+
+Below we create a variable named `average` by taking the average of `test1` and `test2`. If there are any missing values in the input variables, the resulting value will also be missing. The function `generate` lets us know how many valid and missing values are generated. 
+
+```{r generate average}
+## Create average between test1 and test2
+pt <- generate(pt, average, (test1 + test2) / 2)
+
+## Check the summary 
+summ(pt, average)
+```
+
+We see that the command produces 109 valid and 11 missing values for `average`. The minimum and maximum values look fine. Also, note that the `generate` function automatically labels the variable `average` with `(test1 + test2)/2)`. So you don't need to worry about what `average` is, and you can easily change it in case you don't like the label. 
+
+In R, logical operation gives `TRUE` or `FALSE` if a certain condition or conditions are met. When we coerce these logical values into numbers, `TRUE` becomes `1` and `FALSE` `0`. For example, the following set of commands create a dummy indicator variable coding for `age over 50`. 
+
+```{r generate age over 50}
+## Generate ageover50, put 1 if age > 50 and 0 if not.
+pt <- generate(pt, ageover50, as.numeric(age > 50))
+
+## Check the tabulation. 
+tab(pt, ageover50)
+```
+
+Again, we don't necessarily change the logical value to a numeric data type since we can directly tabulate logical values. Here is how we do it. 
+
+```{r generate age over 50 logical}
+## Generate ageover50, put 1 if age > 50 and 0 if not.
+## Keep logical values
+pt <- generate(pt, ageover50_logi, age > 50)
+
+## Check the tabulation. 
+tab(pt, ageover50_logi)
+```
+
+Remember that we can always `recode` or `replace` the values into the ones we desire. So, do not worry if you don't get it right for the first time. 
+
+### `egen` 
+*** 
+
+## `append` 
+***
+
+to add this after introducing select and generate
+
+Often the data are collected in multiple sites and datasets are split into several files. We use `append` function to add more observations of the same variables. To use `append`, the datasets must have the same names of variables in the same column. 
+
+Let us first read the second dataset into R.
+
+```{r read second pt}
+## read second dataset
+pt2 <- haven::read_dta("https://stats.idre.ucla.edu/stat/data/patient_pt2_stata_dm.dta")
+## check data
+codebook(pt2)
+```
+
+In this second dataset, there are only 24 variables
+
+## Dates 
+
+how to create today's date 
+use system date and time etc.
+day, month, year
+formatDate
+is.Date
+
+## expand2, countBy, lagRows
 # Data Analysis 
 
 ## Exploratory Data Analysis
 
+### pyramid
+
 ## Epidemiological Measures
 
-## Statistics
+### expandFreq, expandTables
+
+### Odds Ratio 
+
+### Risk Ratio 
+
+### Rate Ratio
+
+## Regression models
+
+### regress
+
+### logit
+
+### esttab
 
 # Data Visualization 
+
+# Tables for manuscript
+
+## esttab 
+
+## finalize
+
+## export 
 
 
