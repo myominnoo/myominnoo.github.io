@@ -1670,7 +1670,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">A Guide to Data Analysis using R</h1>
-<h4 class="author">by Myo Minn Oo - last updated on 01 September 2020</h4>
+<h4 class="author">by <a href="https://myominnoo.github.io/">Myo Minn Oo</a> - last updated on 01 September 2020</h4>
 
 </div>
 
@@ -1827,9 +1827,7 @@ div.tocify {
 <p>A function needs arguments or simply inputs. Inputs can be either <code>must-have</code> or <code>optional</code>. For example, the function <code>tab</code> is used to create frequency tabulation. The arguments can be checked using <code>str</code> function. <code>str</code> shows the structure of the R object.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(mStats)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">str</span>(tab)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; function (data, ..., by = NULL, row.pct = TRUE, na.rm = FALSE, rnd = 1)  </span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt;  - attr(*, &quot;srcref&quot;)= &#39;srcref&#39; int [1:8] 108 8 250 1 8 1 5079 5221</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt;   ..- attr(*, &quot;srcfile&quot;)=Classes &#39;srcfilealias&#39;, &#39;srcfile&#39; &lt;environment: 0x00000000157292f8&gt;</span></span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; function (data, ..., by = NULL, row.pct = TRUE, na.rm = FALSE, rnd = 1)</span></span></code></pre></div>
 <p>It has six inputs. But it only needs the first one <code>data</code> to work. Three dots <code>...</code> means that you can put as many variables as you want for tabulation. For the rest, they are set to some default values. For <code>by</code>, the default value is set to <code>NULL</code>, which means it performs frequency tabulation. If a categorical variable is specified, it generates a contingency table and reports p-values from association tests (Chi-squared and Fisher’s Exact).</p>
 <p>The input for <code>row.pct</code> can be <code>TRUE</code>, <code>FALSE</code> or <code>NULL</code>. If <code>TRUE</code>, it reports <code>row</code> percentages. If <code>FALSE</code>, <code>column</code> percentages, and if <code>NULL</code>, <code>no</code> percentages. You can remove missing levels in the table by specifying <code>na.rm</code> to <code>FALSE</code>. You can set your desired level of decimal with <code>rnd</code> input.</p>
 <p>The outputs from functions in R can be stored as an object. However, what you see in the console may not be the exact format or content that the function returns. It means that you do not always get what you see. (What you see is what you get - <code>WYSIWYG</code>)</p>
@@ -1962,7 +1960,7 @@ haven::read_dta(&quot;file.dta&quot;) </code></pre>
 <div id="data-management" class="section level1">
 <h1><span class="header-section-number">2</span> Data Management</h1>
 <hr />
-<p>This chapter covers methods in R to prepare data for further analysis. What we want at the end of this chapter is to create a tidy data so that we can run further analyses. So what is a tidy data?</p>
+<p>This chapter covers methods in R to prepare data for further analysis. At the end of this chapter, we will get a tidy data on which we can run further analyses. So what is a tidy data?</p>
 <pre><code>Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how rows, columns, and tables are matched up with observations, variables, and types. In tidy data:
 1. Each variable forms a column.
 2. Each observation forms a row.
@@ -2824,109 +2822,72 @@ par(mfrow = c(1, 1))</code></pre>
 <span id="cb42-27"><a href="#cb42-27"></a><span class="co">#&gt; (bmi_grp: bmi categories)</span></span>
 <span id="cb42-28"><a href="#cb42-28"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
 <p>We see only six out of eight categories reported, meaning that there are no observations with values less than 16.</p>
+<pre><code>Remember that the variable that `egen` generates is of factor data type. Check it using `codebook`.   </code></pre>
 </div>
 </div>
 <div id="subsetting-the-dataset" class="section level2">
 <h2><span class="header-section-number">2.7</span> Subsetting the dataset</h2>
+<hr />
 <p>A <code>subset</code> is a part of a larger group of something. You can make a smaller dataset by changing either rows or columns or both. For these operations, we use two of five well-known functions from <code>dplyr</code> package: <code>select</code> and <code>filter</code>. We <code>select</code> variables and <code>filter</code> observations based on their values. So, it is easy to remember the function names.</p>
 <p>The <code>dplyr</code> package is also a part of <code>tidyverse</code> which is a collection of several packages. To get started, we install the package. Do this step if you haven’t installed it yet.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">## Run either one of the following lines.</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="co"># install.packages(&quot;tidyverse&quot;, dependencies = TRUE)</span></span>
-<span id="cb43-3"><a href="#cb43-3"></a><span class="co"># install.packages(&quot;dplyr&quot;)</span></span>
-<span id="cb43-4"><a href="#cb43-4"></a></span>
-<span id="cb43-5"><a href="#cb43-5"></a><span class="co">## Load the library </span></span>
-<span id="cb43-6"><a href="#cb43-6"></a><span class="co">## library(tidyverse) ## it is not wise to load everything unless you actually use them</span></span>
-<span id="cb43-7"><a href="#cb43-7"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb43-8"><a href="#cb43-8"></a><span class="co">#&gt; </span></span>
-<span id="cb43-9"><a href="#cb43-9"></a><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></span>
-<span id="cb43-10"><a href="#cb43-10"></a><span class="co">#&gt; The following object is masked from &#39;package:mStats&#39;:</span></span>
-<span id="cb43-11"><a href="#cb43-11"></a><span class="co">#&gt; </span></span>
-<span id="cb43-12"><a href="#cb43-12"></a><span class="co">#&gt;     recode</span></span>
-<span id="cb43-13"><a href="#cb43-13"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
-<span id="cb43-14"><a href="#cb43-14"></a><span class="co">#&gt; </span></span>
-<span id="cb43-15"><a href="#cb43-15"></a><span class="co">#&gt;     filter, lag</span></span>
-<span id="cb43-16"><a href="#cb43-16"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb43-17"><a href="#cb43-17"></a><span class="co">#&gt; </span></span>
-<span id="cb43-18"><a href="#cb43-18"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co">## Run either one of the following lines.</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="co"># install.packages(&quot;tidyverse&quot;, dependencies = TRUE)</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="co"># install.packages(&quot;dplyr&quot;)</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a></span>
+<span id="cb44-5"><a href="#cb44-5"></a><span class="co">## Load the library </span></span>
+<span id="cb44-6"><a href="#cb44-6"></a><span class="co">## library(tidyverse) ## it is not wise to load everything unless you actually use them</span></span>
+<span id="cb44-7"><a href="#cb44-7"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb44-8"><a href="#cb44-8"></a><span class="co">#&gt; </span></span>
+<span id="cb44-9"><a href="#cb44-9"></a><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></span>
+<span id="cb44-10"><a href="#cb44-10"></a><span class="co">#&gt; The following object is masked from &#39;package:mStats&#39;:</span></span>
+<span id="cb44-11"><a href="#cb44-11"></a><span class="co">#&gt; </span></span>
+<span id="cb44-12"><a href="#cb44-12"></a><span class="co">#&gt;     recode</span></span>
+<span id="cb44-13"><a href="#cb44-13"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
+<span id="cb44-14"><a href="#cb44-14"></a><span class="co">#&gt; </span></span>
+<span id="cb44-15"><a href="#cb44-15"></a><span class="co">#&gt;     filter, lag</span></span>
+<span id="cb44-16"><a href="#cb44-16"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb44-17"><a href="#cb44-17"></a><span class="co">#&gt; </span></span>
+<span id="cb44-18"><a href="#cb44-18"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <p>There is one function overlapped between <code>dplyr</code> and <code>mStats</code>, and a few other functions from other packages are also masked. For these overlapped functions, it is always good to indicate the package you want to use in this way: <code>package::function()</code>.</p>
 <p>I recommend reading the book by Hadley Wickham: <code>R for Data Science</code>.</p>
 <div id="select-columns" class="section level3">
 <h3><span class="header-section-number">2.7.1</span> <code>select</code> columns</h3>
+<hr />
 <p>Often we get more variables that we wish for a dataset. The foremost task, in this case, is to narrow the list of variables that you need to meet your interest. We either pick or remove the variables we want with the function <code>select</code>.</p>
 <p>Below we pick socio-demographic variables from <code>pt</code> dataset: <code>age</code>, <code>sex</code>, <code>married</code>, <code>familyhx</code>, and <code>smokinghx</code>.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co">## pt dataset with hospital, hospid, docid and five socio-demographic variables</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="co">## Select a range of variables by colon separator :</span></span>
-<span id="cb44-3"><a href="#cb44-3"></a>pt_sd &lt;-<span class="st"> </span><span class="kw">select</span>(pt, hospital, hospid, docid, age<span class="op">:</span>sex)</span>
-<span id="cb44-4"><a href="#cb44-4"></a></span>
-<span id="cb44-5"><a href="#cb44-5"></a><span class="co">## Check the data </span></span>
-<span id="cb44-6"><a href="#cb44-6"></a><span class="kw">codebook</span>(pt_sd)</span>
-<span id="cb44-7"><a href="#cb44-7"></a><span class="co">#&gt; ________________________________________________________ </span></span>
-<span id="cb44-8"><a href="#cb44-8"></a><span class="co">#&gt; </span></span>
-<span id="cb44-9"><a href="#cb44-9"></a><span class="co">#&gt; Codebook: &#39;pt_sd&#39; </span></span>
-<span id="cb44-10"><a href="#cb44-10"></a><span class="co">#&gt; ________________________________________________________ </span></span>
-<span id="cb44-11"><a href="#cb44-11"></a><span class="co">#&gt; </span></span>
-<span id="cb44-12"><a href="#cb44-12"></a><span class="co">#&gt;  No  Variable |     Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
-<span id="cb44-13"><a href="#cb44-13"></a><span class="co">#&gt;  -- --------- + --------- --------- ------- ---- -------</span></span>
-<span id="cb44-14"><a href="#cb44-14"></a><span class="co">#&gt;   1  hospital |      &lt;NA&gt; character     120    0       0</span></span>
-<span id="cb44-15"><a href="#cb44-15"></a><span class="co">#&gt;   2    hospid |       HID   numeric     120    0       0</span></span>
-<span id="cb44-16"><a href="#cb44-16"></a><span class="co">#&gt;   3     docid |      &lt;NA&gt; character     120    0       0</span></span>
-<span id="cb44-17"><a href="#cb44-17"></a><span class="co">#&gt;   4       age |       Age   numeric     120    0       0</span></span>
-<span id="cb44-18"><a href="#cb44-18"></a><span class="co">#&gt;   5   married |   Married character     120    0       0</span></span>
-<span id="cb44-19"><a href="#cb44-19"></a><span class="co">#&gt;   6  familyhx |  FamilyHx character     114    6       5</span></span>
-<span id="cb44-20"><a href="#cb44-20"></a><span class="co">#&gt;   7 smokinghx | SmokingHx character     114    6       5</span></span>
-<span id="cb44-21"><a href="#cb44-21"></a><span class="co">#&gt;   8       sex |       Sex character     120    0       0</span></span>
-<span id="cb44-22"><a href="#cb44-22"></a><span class="co">#&gt;  -- --------- + --------- --------- ------- ---- -------</span></span>
-<span id="cb44-23"><a href="#cb44-23"></a><span class="co">#&gt; ________________________________________________________ </span></span>
-<span id="cb44-24"><a href="#cb44-24"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co">## pt dataset with hospital, hospid, docid and five socio-demographic variables</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a><span class="co">## Select a range of variables by colon separator :</span></span>
+<span id="cb45-3"><a href="#cb45-3"></a>pt_sd &lt;-<span class="st"> </span><span class="kw">select</span>(pt, hospital, hospid, docid, age<span class="op">:</span>sex)</span>
+<span id="cb45-4"><a href="#cb45-4"></a></span>
+<span id="cb45-5"><a href="#cb45-5"></a><span class="co">## Check the data </span></span>
+<span id="cb45-6"><a href="#cb45-6"></a><span class="kw">codebook</span>(pt_sd)</span>
+<span id="cb45-7"><a href="#cb45-7"></a><span class="co">#&gt; ________________________________________________________ </span></span>
+<span id="cb45-8"><a href="#cb45-8"></a><span class="co">#&gt; </span></span>
+<span id="cb45-9"><a href="#cb45-9"></a><span class="co">#&gt; Codebook: &#39;pt_sd&#39; </span></span>
+<span id="cb45-10"><a href="#cb45-10"></a><span class="co">#&gt; ________________________________________________________ </span></span>
+<span id="cb45-11"><a href="#cb45-11"></a><span class="co">#&gt; </span></span>
+<span id="cb45-12"><a href="#cb45-12"></a><span class="co">#&gt;  No  Variable |     Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
+<span id="cb45-13"><a href="#cb45-13"></a><span class="co">#&gt;  -- --------- + --------- --------- ------- ---- -------</span></span>
+<span id="cb45-14"><a href="#cb45-14"></a><span class="co">#&gt;   1  hospital |      &lt;NA&gt; character     120    0       0</span></span>
+<span id="cb45-15"><a href="#cb45-15"></a><span class="co">#&gt;   2    hospid |       HID   numeric     120    0       0</span></span>
+<span id="cb45-16"><a href="#cb45-16"></a><span class="co">#&gt;   3     docid |      &lt;NA&gt; character     120    0       0</span></span>
+<span id="cb45-17"><a href="#cb45-17"></a><span class="co">#&gt;   4       age |       Age   numeric     120    0       0</span></span>
+<span id="cb45-18"><a href="#cb45-18"></a><span class="co">#&gt;   5   married |   Married character     120    0       0</span></span>
+<span id="cb45-19"><a href="#cb45-19"></a><span class="co">#&gt;   6  familyhx |  FamilyHx character     114    6       5</span></span>
+<span id="cb45-20"><a href="#cb45-20"></a><span class="co">#&gt;   7 smokinghx | SmokingHx character     114    6       5</span></span>
+<span id="cb45-21"><a href="#cb45-21"></a><span class="co">#&gt;   8       sex |       Sex character     120    0       0</span></span>
+<span id="cb45-22"><a href="#cb45-22"></a><span class="co">#&gt;  -- --------- + --------- --------- ------- ---- -------</span></span>
+<span id="cb45-23"><a href="#cb45-23"></a><span class="co">#&gt; ________________________________________________________ </span></span>
+<span id="cb45-24"><a href="#cb45-24"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
 <p>We use the same function to drop variables we don’t want. In the example below, We exclude five socio-demographic variables from <code>pt</code> dataset. It means we have to write 21 variable names. Of course, you can write, but it is good thinking to just remove five names, rather include 21 names. We indicate variables to be removed by the symbol, dash <code>-</code>.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co">## pt dataset with variables apart from five socio-demographic variables</span></span>
-<span id="cb45-2"><a href="#cb45-2"></a>pt_others &lt;-<span class="st"> </span><span class="kw">select</span>(pt, <span class="op">-</span><span class="kw">c</span>(age<span class="op">:</span>sex))</span>
-<span id="cb45-3"><a href="#cb45-3"></a></span>
-<span id="cb45-4"><a href="#cb45-4"></a><span class="co">## Check the data </span></span>
-<span id="cb45-5"><a href="#cb45-5"></a><span class="kw">codebook</span>(pt_others)</span>
-<span id="cb45-6"><a href="#cb45-6"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
-<span id="cb45-7"><a href="#cb45-7"></a><span class="co">#&gt; </span></span>
-<span id="cb45-8"><a href="#cb45-8"></a><span class="co">#&gt; Codebook: &#39;pt_others&#39; </span></span>
-<span id="cb45-9"><a href="#cb45-9"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
-<span id="cb45-10"><a href="#cb45-10"></a><span class="co">#&gt; </span></span>
-<span id="cb45-11"><a href="#cb45-11"></a><span class="co">#&gt;  No       Variable |                Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
-<span id="cb45-12"><a href="#cb45-12"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
-<span id="cb45-13"><a href="#cb45-13"></a><span class="co">#&gt;   1       hospital |                 &lt;NA&gt; character     120    0       0</span></span>
-<span id="cb45-14"><a href="#cb45-14"></a><span class="co">#&gt;   2         hospid |                  HID   numeric     120    0       0</span></span>
-<span id="cb45-15"><a href="#cb45-15"></a><span class="co">#&gt;   3          docid |                 &lt;NA&gt; character     120    0       0</span></span>
-<span id="cb45-16"><a href="#cb45-16"></a><span class="co">#&gt;   4       dis_date |                 &lt;NA&gt;      Date     120    0       0</span></span>
-<span id="cb45-17"><a href="#cb45-17"></a><span class="co">#&gt;   5      tumorsize |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-18"><a href="#cb45-18"></a><span class="co">#&gt;   6            co2 |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-19"><a href="#cb45-19"></a><span class="co">#&gt;   7           pain |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-20"><a href="#cb45-20"></a><span class="co">#&gt;   8          wound |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-21"><a href="#cb45-21"></a><span class="co">#&gt;   9       mobility |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-22"><a href="#cb45-22"></a><span class="co">#&gt;  10        ntumors |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-23"><a href="#cb45-23"></a><span class="co">#&gt;  11      nmorphine |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-24"><a href="#cb45-24"></a><span class="co">#&gt;  12      remission |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-25"><a href="#cb45-25"></a><span class="co">#&gt;  13   lungcapacity |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb45-26"><a href="#cb45-26"></a><span class="co">#&gt;  14    cancerstage |          CancerStage character     120    0       0</span></span>
-<span id="cb45-27"><a href="#cb45-27"></a><span class="co">#&gt;  15   lengthofstay |         LengthofStay   numeric     120    0       0</span></span>
-<span id="cb45-28"><a href="#cb45-28"></a><span class="co">#&gt;  16            wbc |                  WBC   numeric     118    2     1.7</span></span>
-<span id="cb45-29"><a href="#cb45-29"></a><span class="co">#&gt;  17            rbc |                  RBC   numeric     120    0       0</span></span>
-<span id="cb45-30"><a href="#cb45-30"></a><span class="co">#&gt;  18            bmi |                  BMI   numeric     120    0       0</span></span>
-<span id="cb45-31"><a href="#cb45-31"></a><span class="co">#&gt;  19          test1 |        Interleukin-6   numeric     113    7     5.8</span></span>
-<span id="cb45-32"><a href="#cb45-32"></a><span class="co">#&gt;  20          test2 |   C-Reactive Protein   numeric     113    7     5.8</span></span>
-<span id="cb45-33"><a href="#cb45-33"></a><span class="co">#&gt;  21        average |    (test1 + test2)/2   numeric     109   11     9.2</span></span>
-<span id="cb45-34"><a href="#cb45-34"></a><span class="co">#&gt;  22      ageover50 | as.numeric(age &gt; 50)   numeric     120    0       0</span></span>
-<span id="cb45-35"><a href="#cb45-35"></a><span class="co">#&gt;  23 ageover50_logi |             age &gt; 50   logical     120    0       0</span></span>
-<span id="cb45-36"><a href="#cb45-36"></a><span class="co">#&gt;  24        bmi_grp |       bmi categories    factor     120    0       0</span></span>
-<span id="cb45-37"><a href="#cb45-37"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
-<span id="cb45-38"><a href="#cb45-38"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
-<span id="cb45-39"><a href="#cb45-39"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
-<p>The <code>select</code> is also used to arrange the order of variable names. In the following example, we put five socio-demographic variables after <code>hospital</code>, <code>hospid</code> and <code>docid</code> and then add the rest of the variables to the order. Although we can write all names or even use the colon separator, I show another way to do this with the help of <code>everything()</code> function from <code>dplyr</code> package.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co">## Using select() to order the variable names</span></span>
-<span id="cb46-2"><a href="#cb46-2"></a>pt &lt;-<span class="st"> </span><span class="kw">select</span>(pt, hospital<span class="op">:</span>docid, age, sex, married<span class="op">:</span>smokinghx, <span class="kw">everything</span>())</span>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co">## pt dataset with variables apart from five socio-demographic variables</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>pt_others &lt;-<span class="st"> </span><span class="kw">select</span>(pt, <span class="op">-</span><span class="kw">c</span>(age<span class="op">:</span>sex))</span>
 <span id="cb46-3"><a href="#cb46-3"></a></span>
-<span id="cb46-4"><a href="#cb46-4"></a><span class="co">## Check the data</span></span>
-<span id="cb46-5"><a href="#cb46-5"></a><span class="kw">codebook</span>(pt)</span>
+<span id="cb46-4"><a href="#cb46-4"></a><span class="co">## Check the data </span></span>
+<span id="cb46-5"><a href="#cb46-5"></a><span class="kw">codebook</span>(pt_others)</span>
 <span id="cb46-6"><a href="#cb46-6"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
 <span id="cb46-7"><a href="#cb46-7"></a><span class="co">#&gt; </span></span>
-<span id="cb46-8"><a href="#cb46-8"></a><span class="co">#&gt; Codebook: &#39;pt&#39; </span></span>
+<span id="cb46-8"><a href="#cb46-8"></a><span class="co">#&gt; Codebook: &#39;pt_others&#39; </span></span>
 <span id="cb46-9"><a href="#cb46-9"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
 <span id="cb46-10"><a href="#cb46-10"></a><span class="co">#&gt; </span></span>
 <span id="cb46-11"><a href="#cb46-11"></a><span class="co">#&gt;  No       Variable |                Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
@@ -2934,115 +2895,118 @@ par(mfrow = c(1, 1))</code></pre>
 <span id="cb46-13"><a href="#cb46-13"></a><span class="co">#&gt;   1       hospital |                 &lt;NA&gt; character     120    0       0</span></span>
 <span id="cb46-14"><a href="#cb46-14"></a><span class="co">#&gt;   2         hospid |                  HID   numeric     120    0       0</span></span>
 <span id="cb46-15"><a href="#cb46-15"></a><span class="co">#&gt;   3          docid |                 &lt;NA&gt; character     120    0       0</span></span>
-<span id="cb46-16"><a href="#cb46-16"></a><span class="co">#&gt;   4            age |                  Age   numeric     120    0       0</span></span>
-<span id="cb46-17"><a href="#cb46-17"></a><span class="co">#&gt;   5            sex |                  Sex character     120    0       0</span></span>
-<span id="cb46-18"><a href="#cb46-18"></a><span class="co">#&gt;   6        married |              Married character     120    0       0</span></span>
-<span id="cb46-19"><a href="#cb46-19"></a><span class="co">#&gt;   7       familyhx |             FamilyHx character     114    6       5</span></span>
-<span id="cb46-20"><a href="#cb46-20"></a><span class="co">#&gt;   8      smokinghx |            SmokingHx character     114    6       5</span></span>
-<span id="cb46-21"><a href="#cb46-21"></a><span class="co">#&gt;   9       dis_date |                 &lt;NA&gt;      Date     120    0       0</span></span>
-<span id="cb46-22"><a href="#cb46-22"></a><span class="co">#&gt;  10      tumorsize |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-23"><a href="#cb46-23"></a><span class="co">#&gt;  11            co2 |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-24"><a href="#cb46-24"></a><span class="co">#&gt;  12           pain |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-25"><a href="#cb46-25"></a><span class="co">#&gt;  13          wound |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-26"><a href="#cb46-26"></a><span class="co">#&gt;  14       mobility |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-27"><a href="#cb46-27"></a><span class="co">#&gt;  15        ntumors |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-28"><a href="#cb46-28"></a><span class="co">#&gt;  16      nmorphine |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-29"><a href="#cb46-29"></a><span class="co">#&gt;  17      remission |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-30"><a href="#cb46-30"></a><span class="co">#&gt;  18   lungcapacity |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb46-31"><a href="#cb46-31"></a><span class="co">#&gt;  19    cancerstage |          CancerStage character     120    0       0</span></span>
-<span id="cb46-32"><a href="#cb46-32"></a><span class="co">#&gt;  20   lengthofstay |         LengthofStay   numeric     120    0       0</span></span>
-<span id="cb46-33"><a href="#cb46-33"></a><span class="co">#&gt;  21            wbc |                  WBC   numeric     118    2     1.7</span></span>
-<span id="cb46-34"><a href="#cb46-34"></a><span class="co">#&gt;  22            rbc |                  RBC   numeric     120    0       0</span></span>
-<span id="cb46-35"><a href="#cb46-35"></a><span class="co">#&gt;  23            bmi |                  BMI   numeric     120    0       0</span></span>
-<span id="cb46-36"><a href="#cb46-36"></a><span class="co">#&gt;  24          test1 |        Interleukin-6   numeric     113    7     5.8</span></span>
-<span id="cb46-37"><a href="#cb46-37"></a><span class="co">#&gt;  25          test2 |   C-Reactive Protein   numeric     113    7     5.8</span></span>
-<span id="cb46-38"><a href="#cb46-38"></a><span class="co">#&gt;  26        average |    (test1 + test2)/2   numeric     109   11     9.2</span></span>
-<span id="cb46-39"><a href="#cb46-39"></a><span class="co">#&gt;  27      ageover50 | as.numeric(age &gt; 50)   numeric     120    0       0</span></span>
-<span id="cb46-40"><a href="#cb46-40"></a><span class="co">#&gt;  28 ageover50_logi |             age &gt; 50   logical     120    0       0</span></span>
-<span id="cb46-41"><a href="#cb46-41"></a><span class="co">#&gt;  29        bmi_grp |       bmi categories    factor     120    0       0</span></span>
-<span id="cb46-42"><a href="#cb46-42"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
-<span id="cb46-43"><a href="#cb46-43"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
-<span id="cb46-44"><a href="#cb46-44"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
+<span id="cb46-16"><a href="#cb46-16"></a><span class="co">#&gt;   4       dis_date |                 &lt;NA&gt;      Date     120    0       0</span></span>
+<span id="cb46-17"><a href="#cb46-17"></a><span class="co">#&gt;   5      tumorsize |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-18"><a href="#cb46-18"></a><span class="co">#&gt;   6            co2 |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-19"><a href="#cb46-19"></a><span class="co">#&gt;   7           pain |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-20"><a href="#cb46-20"></a><span class="co">#&gt;   8          wound |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-21"><a href="#cb46-21"></a><span class="co">#&gt;   9       mobility |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-22"><a href="#cb46-22"></a><span class="co">#&gt;  10        ntumors |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-23"><a href="#cb46-23"></a><span class="co">#&gt;  11      nmorphine |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-24"><a href="#cb46-24"></a><span class="co">#&gt;  12      remission |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-25"><a href="#cb46-25"></a><span class="co">#&gt;  13   lungcapacity |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb46-26"><a href="#cb46-26"></a><span class="co">#&gt;  14    cancerstage |          CancerStage character     120    0       0</span></span>
+<span id="cb46-27"><a href="#cb46-27"></a><span class="co">#&gt;  15   lengthofstay |         LengthofStay   numeric     120    0       0</span></span>
+<span id="cb46-28"><a href="#cb46-28"></a><span class="co">#&gt;  16            wbc |                  WBC   numeric     118    2     1.7</span></span>
+<span id="cb46-29"><a href="#cb46-29"></a><span class="co">#&gt;  17            rbc |                  RBC   numeric     120    0       0</span></span>
+<span id="cb46-30"><a href="#cb46-30"></a><span class="co">#&gt;  18            bmi |                  BMI   numeric     120    0       0</span></span>
+<span id="cb46-31"><a href="#cb46-31"></a><span class="co">#&gt;  19          test1 |        Interleukin-6   numeric     113    7     5.8</span></span>
+<span id="cb46-32"><a href="#cb46-32"></a><span class="co">#&gt;  20          test2 |   C-Reactive Protein   numeric     113    7     5.8</span></span>
+<span id="cb46-33"><a href="#cb46-33"></a><span class="co">#&gt;  21        average |    (test1 + test2)/2   numeric     109   11     9.2</span></span>
+<span id="cb46-34"><a href="#cb46-34"></a><span class="co">#&gt;  22      ageover50 | as.numeric(age &gt; 50)   numeric     120    0       0</span></span>
+<span id="cb46-35"><a href="#cb46-35"></a><span class="co">#&gt;  23 ageover50_logi |             age &gt; 50   logical     120    0       0</span></span>
+<span id="cb46-36"><a href="#cb46-36"></a><span class="co">#&gt;  24        bmi_grp |       bmi categories    factor     120    0       0</span></span>
+<span id="cb46-37"><a href="#cb46-37"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
+<span id="cb46-38"><a href="#cb46-38"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
+<span id="cb46-39"><a href="#cb46-39"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
+<p>The <code>select</code> is also used to arrange the order of variable names. In the following example, we put five socio-demographic variables after <code>hospital</code>, <code>hospid</code> and <code>docid</code> and then add the rest of the variables to the order. Although we can write all names or even use the colon separator, I show another way to do this with the help of <code>everything()</code> function from <code>dplyr</code> package.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co">## Using select() to order the variable names</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>pt &lt;-<span class="st"> </span><span class="kw">select</span>(pt, hospital<span class="op">:</span>docid, age, sex, married<span class="op">:</span>smokinghx, <span class="kw">everything</span>())</span>
+<span id="cb47-3"><a href="#cb47-3"></a></span>
+<span id="cb47-4"><a href="#cb47-4"></a><span class="co">## Check the data</span></span>
+<span id="cb47-5"><a href="#cb47-5"></a><span class="kw">codebook</span>(pt)</span>
+<span id="cb47-6"><a href="#cb47-6"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
+<span id="cb47-7"><a href="#cb47-7"></a><span class="co">#&gt; </span></span>
+<span id="cb47-8"><a href="#cb47-8"></a><span class="co">#&gt; Codebook: &#39;pt&#39; </span></span>
+<span id="cb47-9"><a href="#cb47-9"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
+<span id="cb47-10"><a href="#cb47-10"></a><span class="co">#&gt; </span></span>
+<span id="cb47-11"><a href="#cb47-11"></a><span class="co">#&gt;  No       Variable |                Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
+<span id="cb47-12"><a href="#cb47-12"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
+<span id="cb47-13"><a href="#cb47-13"></a><span class="co">#&gt;   1       hospital |                 &lt;NA&gt; character     120    0       0</span></span>
+<span id="cb47-14"><a href="#cb47-14"></a><span class="co">#&gt;   2         hospid |                  HID   numeric     120    0       0</span></span>
+<span id="cb47-15"><a href="#cb47-15"></a><span class="co">#&gt;   3          docid |                 &lt;NA&gt; character     120    0       0</span></span>
+<span id="cb47-16"><a href="#cb47-16"></a><span class="co">#&gt;   4            age |                  Age   numeric     120    0       0</span></span>
+<span id="cb47-17"><a href="#cb47-17"></a><span class="co">#&gt;   5            sex |                  Sex character     120    0       0</span></span>
+<span id="cb47-18"><a href="#cb47-18"></a><span class="co">#&gt;   6        married |              Married character     120    0       0</span></span>
+<span id="cb47-19"><a href="#cb47-19"></a><span class="co">#&gt;   7       familyhx |             FamilyHx character     114    6       5</span></span>
+<span id="cb47-20"><a href="#cb47-20"></a><span class="co">#&gt;   8      smokinghx |            SmokingHx character     114    6       5</span></span>
+<span id="cb47-21"><a href="#cb47-21"></a><span class="co">#&gt;   9       dis_date |                 &lt;NA&gt;      Date     120    0       0</span></span>
+<span id="cb47-22"><a href="#cb47-22"></a><span class="co">#&gt;  10      tumorsize |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-23"><a href="#cb47-23"></a><span class="co">#&gt;  11            co2 |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-24"><a href="#cb47-24"></a><span class="co">#&gt;  12           pain |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-25"><a href="#cb47-25"></a><span class="co">#&gt;  13          wound |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-26"><a href="#cb47-26"></a><span class="co">#&gt;  14       mobility |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-27"><a href="#cb47-27"></a><span class="co">#&gt;  15        ntumors |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-28"><a href="#cb47-28"></a><span class="co">#&gt;  16      nmorphine |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-29"><a href="#cb47-29"></a><span class="co">#&gt;  17      remission |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-30"><a href="#cb47-30"></a><span class="co">#&gt;  18   lungcapacity |                 &lt;NA&gt;   numeric     120    0       0</span></span>
+<span id="cb47-31"><a href="#cb47-31"></a><span class="co">#&gt;  19    cancerstage |          CancerStage character     120    0       0</span></span>
+<span id="cb47-32"><a href="#cb47-32"></a><span class="co">#&gt;  20   lengthofstay |         LengthofStay   numeric     120    0       0</span></span>
+<span id="cb47-33"><a href="#cb47-33"></a><span class="co">#&gt;  21            wbc |                  WBC   numeric     118    2     1.7</span></span>
+<span id="cb47-34"><a href="#cb47-34"></a><span class="co">#&gt;  22            rbc |                  RBC   numeric     120    0       0</span></span>
+<span id="cb47-35"><a href="#cb47-35"></a><span class="co">#&gt;  23            bmi |                  BMI   numeric     120    0       0</span></span>
+<span id="cb47-36"><a href="#cb47-36"></a><span class="co">#&gt;  24          test1 |        Interleukin-6   numeric     113    7     5.8</span></span>
+<span id="cb47-37"><a href="#cb47-37"></a><span class="co">#&gt;  25          test2 |   C-Reactive Protein   numeric     113    7     5.8</span></span>
+<span id="cb47-38"><a href="#cb47-38"></a><span class="co">#&gt;  26        average |    (test1 + test2)/2   numeric     109   11     9.2</span></span>
+<span id="cb47-39"><a href="#cb47-39"></a><span class="co">#&gt;  27      ageover50 | as.numeric(age &gt; 50)   numeric     120    0       0</span></span>
+<span id="cb47-40"><a href="#cb47-40"></a><span class="co">#&gt;  28 ageover50_logi |             age &gt; 50   logical     120    0       0</span></span>
+<span id="cb47-41"><a href="#cb47-41"></a><span class="co">#&gt;  29        bmi_grp |       bmi categories    factor     120    0       0</span></span>
+<span id="cb47-42"><a href="#cb47-42"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
+<span id="cb47-43"><a href="#cb47-43"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
+<span id="cb47-44"><a href="#cb47-44"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
 <p>Like <code>everything()</code>, there are a few more useful helper functions. If you want to select variables with the same prefix or suffix, you use <code>starts_with()</code> and <code>ends_with()</code>. If the variables should contain a common text, use <code>contains()</code>. For detail, check their respective help pages by running <code>?function_name</code>.</p>
 </div>
 <div id="filter-rows" class="section level3">
 <h3><span class="header-section-number">2.7.2</span> <code>filter</code> rows</h3>
+<hr />
 <p>Often we want to perform separate analyses on different datasets. The <code>filter</code> function is used to pick rows when there is a condition or there are conditions to be met. If you are familiar with a spreadsheet program like Excel, you have probably used the <code>filter</code> function.</p>
 <p>In the example below, we separate two datasets pt_male and pt_female using <code>filter</code>.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co">## Filter rows if sex == &quot;male&quot;</span></span>
-<span id="cb47-2"><a href="#cb47-2"></a>pt_male &lt;-<span class="st"> </span><span class="kw">filter</span>(pt, sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>)</span>
-<span id="cb47-3"><a href="#cb47-3"></a><span class="co">## Filter rows if sex == &quot;female&quot;</span></span>
-<span id="cb47-4"><a href="#cb47-4"></a>pt_female &lt;-<span class="st"> </span><span class="kw">filter</span>(pt, sex <span class="op">==</span><span class="st"> &quot;female&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co">## Not run due to redundancy !!!</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="co">## Check the tabulation</span></span>
-<span id="cb48-3"><a href="#cb48-3"></a><span class="kw">tab</span>(pt_male, sex)</span>
-<span id="cb48-4"><a href="#cb48-4"></a><span class="kw">tab</span>(pt_female, sex)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co">## Filter rows if sex == &quot;male&quot;</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>pt_male &lt;-<span class="st"> </span><span class="kw">filter</span>(pt, sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>)</span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="co">## Filter rows if sex == &quot;female&quot;</span></span>
+<span id="cb48-4"><a href="#cb48-4"></a>pt_female &lt;-<span class="st"> </span><span class="kw">filter</span>(pt, sex <span class="op">==</span><span class="st"> &quot;female&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co">## Not run due to redundancy !!!</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="co">## Check the tabulation</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="kw">tab</span>(pt_male, sex)</span>
+<span id="cb49-4"><a href="#cb49-4"></a><span class="kw">tab</span>(pt_female, sex)</span></code></pre></div>
 <p>The <code>pt_male</code> dataset has 45 observations and <code>pt_female</code> 74 observations. These numbers should correspond with the frequency distribution of <code>sex</code>.</p>
 <p>Another use is to check data values based on certain criteria. Below we check the data of <code>age</code> where <code>sex</code> is <code>female</code> and pain is greater than 8. This is <code>AND</code> combination, meaning that the task runs only when both conditions are met. <code>AND</code> is indicated by the ampersand <code>&amp;</code> where OR by the vertical line <code>|</code>.</p>
 <pre><code>The vertical line is above the ENTER key on your keyboard. Press Shift + Backward Slash.</code></pre>
 <p>We do this in two steps: 1) we filter <code>sex</code> and <code>pain</code>, and 2) we select only <code>age</code>. Since we only want to check the data, we do not assign the result to a name.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co">## We use piping operation to make it easy</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a>pt <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb50-3"><a href="#cb50-3"></a><span class="st">    </span><span class="co">## no need to mention dataset name</span></span>
-<span id="cb50-4"><a href="#cb50-4"></a><span class="st">    </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;female&quot;</span> <span class="op">&amp;</span><span class="st"> </span>pain <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb50-5"><a href="#cb50-5"></a><span class="st">    </span><span class="kw">select</span>(age)</span>
-<span id="cb50-6"><a href="#cb50-6"></a><span class="co">#&gt; # A tibble: 2 x 1</span></span>
-<span id="cb50-7"><a href="#cb50-7"></a><span class="co">#&gt;     age</span></span>
-<span id="cb50-8"><a href="#cb50-8"></a><span class="co">#&gt;   &lt;dbl&gt;</span></span>
-<span id="cb50-9"><a href="#cb50-9"></a><span class="co">#&gt; 1  41.5</span></span>
-<span id="cb50-10"><a href="#cb50-10"></a><span class="co">#&gt; 2  52.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co">## We use piping operation to make it easy</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a>pt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb51-3"><a href="#cb51-3"></a><span class="st">    </span><span class="co">## no need to mention dataset name</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a><span class="st">    </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;female&quot;</span> <span class="op">&amp;</span><span class="st"> </span>pain <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb51-5"><a href="#cb51-5"></a><span class="st">    </span><span class="kw">select</span>(age)</span>
+<span id="cb51-6"><a href="#cb51-6"></a><span class="co">#&gt; # A tibble: 2 x 1</span></span>
+<span id="cb51-7"><a href="#cb51-7"></a><span class="co">#&gt;     age</span></span>
+<span id="cb51-8"><a href="#cb51-8"></a><span class="co">#&gt;   &lt;dbl&gt;</span></span>
+<span id="cb51-9"><a href="#cb51-9"></a><span class="co">#&gt; 1  41.5</span></span>
+<span id="cb51-10"><a href="#cb51-10"></a><span class="co">#&gt; 2  52.0</span></span></code></pre></div>
 <p>We see only two observations who are <code>female</code> and whose <code>pain</code> value &gt; <code>8</code>.</p>
 </div>
 <div id="rename" class="section level3">
-<h3><span class="header-section-number">2.7.3</span> rename</h3>
+<h3><span class="header-section-number">2.7.3</span> <code>rename</code></h3>
 <p>Variables are renamed with the function <code>rename</code>. Renaming takes this format: <code>New Name</code> = <code>Old Name</code>. Multiple variables can be renamed at the same time.</p>
 <p>Below we rename <code>test1</code> and <code>test2</code> what they are measuring for biomarkers <code>il6</code> and <code>crp</code>.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co">## rename test1 to il6 and test2 to crp</span></span>
-<span id="cb51-2"><a href="#cb51-2"></a>pt &lt;-<span class="st"> </span><span class="kw">rename</span>(pt, <span class="dt">il6 =</span> test1, <span class="dt">crp =</span> test2)</span></code></pre></div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co">## Not run due to redundancy !!!</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="kw">codebook</span>(pt)</span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
-<span id="cb52-4"><a href="#cb52-4"></a><span class="co">#&gt; </span></span>
-<span id="cb52-5"><a href="#cb52-5"></a><span class="co">#&gt; Codebook: &#39;pt&#39; </span></span>
-<span id="cb52-6"><a href="#cb52-6"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
-<span id="cb52-7"><a href="#cb52-7"></a><span class="co">#&gt; </span></span>
-<span id="cb52-8"><a href="#cb52-8"></a><span class="co">#&gt;  No       Variable |                Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
-<span id="cb52-9"><a href="#cb52-9"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
-<span id="cb52-10"><a href="#cb52-10"></a><span class="co">#&gt;   1       hospital |                 &lt;NA&gt; character     120    0       0</span></span>
-<span id="cb52-11"><a href="#cb52-11"></a><span class="co">#&gt;   2         hospid |                  HID   numeric     120    0       0</span></span>
-<span id="cb52-12"><a href="#cb52-12"></a><span class="co">#&gt;   3          docid |                 &lt;NA&gt; character     120    0       0</span></span>
-<span id="cb52-13"><a href="#cb52-13"></a><span class="co">#&gt;   4            age |                  Age   numeric     120    0       0</span></span>
-<span id="cb52-14"><a href="#cb52-14"></a><span class="co">#&gt;   5            sex |                  Sex character     120    0       0</span></span>
-<span id="cb52-15"><a href="#cb52-15"></a><span class="co">#&gt;   6        married |              Married character     120    0       0</span></span>
-<span id="cb52-16"><a href="#cb52-16"></a><span class="co">#&gt;   7       familyhx |             FamilyHx character     114    6       5</span></span>
-<span id="cb52-17"><a href="#cb52-17"></a><span class="co">#&gt;   8      smokinghx |            SmokingHx character     114    6       5</span></span>
-<span id="cb52-18"><a href="#cb52-18"></a><span class="co">#&gt;   9       dis_date |                 &lt;NA&gt;      Date     120    0       0</span></span>
-<span id="cb52-19"><a href="#cb52-19"></a><span class="co">#&gt;  10      tumorsize |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-20"><a href="#cb52-20"></a><span class="co">#&gt;  11            co2 |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-21"><a href="#cb52-21"></a><span class="co">#&gt;  12           pain |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-22"><a href="#cb52-22"></a><span class="co">#&gt;  13          wound |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-23"><a href="#cb52-23"></a><span class="co">#&gt;  14       mobility |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-24"><a href="#cb52-24"></a><span class="co">#&gt;  15        ntumors |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-25"><a href="#cb52-25"></a><span class="co">#&gt;  16      nmorphine |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-26"><a href="#cb52-26"></a><span class="co">#&gt;  17      remission |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-27"><a href="#cb52-27"></a><span class="co">#&gt;  18   lungcapacity |                 &lt;NA&gt;   numeric     120    0       0</span></span>
-<span id="cb52-28"><a href="#cb52-28"></a><span class="co">#&gt;  19    cancerstage |          CancerStage character     120    0       0</span></span>
-<span id="cb52-29"><a href="#cb52-29"></a><span class="co">#&gt;  20   lengthofstay |         LengthofStay   numeric     120    0       0</span></span>
-<span id="cb52-30"><a href="#cb52-30"></a><span class="co">#&gt;  21            wbc |                  WBC   numeric     118    2     1.7</span></span>
-<span id="cb52-31"><a href="#cb52-31"></a><span class="co">#&gt;  22            rbc |                  RBC   numeric     120    0       0</span></span>
-<span id="cb52-32"><a href="#cb52-32"></a><span class="co">#&gt;  23            bmi |                  BMI   numeric     120    0       0</span></span>
-<span id="cb52-33"><a href="#cb52-33"></a><span class="co">#&gt;  24            il6 |        Interleukin-6   numeric     113    7     5.8</span></span>
-<span id="cb52-34"><a href="#cb52-34"></a><span class="co">#&gt;  25            crp |   C-Reactive Protein   numeric     113    7     5.8</span></span>
-<span id="cb52-35"><a href="#cb52-35"></a><span class="co">#&gt;  26        average |    (test1 + test2)/2   numeric     109   11     9.2</span></span>
-<span id="cb52-36"><a href="#cb52-36"></a><span class="co">#&gt;  27      ageover50 | as.numeric(age &gt; 50)   numeric     120    0       0</span></span>
-<span id="cb52-37"><a href="#cb52-37"></a><span class="co">#&gt;  28 ageover50_logi |             age &gt; 50   logical     120    0       0</span></span>
-<span id="cb52-38"><a href="#cb52-38"></a><span class="co">#&gt;  29        bmi_grp |       bmi categories    factor     120    0       0</span></span>
-<span id="cb52-39"><a href="#cb52-39"></a><span class="co">#&gt;  -- -------------- + -------------------- --------- ------- ---- -------</span></span>
-<span id="cb52-40"><a href="#cb52-40"></a><span class="co">#&gt; ________________________________________________________________________ </span></span>
-<span id="cb52-41"><a href="#cb52-41"></a><span class="co">#&gt; (Dataset Label: Fake Cancer Patient Data)</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co">## rename test1 to il6 and test2 to crp</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>pt &lt;-<span class="st"> </span><span class="kw">rename</span>(pt, <span class="dt">il6 =</span> test1, <span class="dt">crp =</span> test2)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="co">## Not run due to redundancy !!!</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a><span class="co">## Check the data</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a><span class="kw">codebook</span>(pt)</span></code></pre></div>
 </div>
 <div id="arrange" class="section level3">
-<h3><span class="header-section-number">2.7.4</span> arrange</h3>
+<h3><span class="header-section-number">2.7.4</span> <code>arrange</code></h3>
 </div>
 </div>
 <div id="append" class="section level2">
@@ -3051,43 +3015,43 @@ par(mfrow = c(1, 1))</code></pre>
 <p>to add this after introducing select and generate</p>
 <p>Often the data are collected in multiple sites and datasets are split into several files. We use <code>append</code> function to add more observations of the same variables. To use <code>append</code>, the datasets must have the same names of variables in the same column.</p>
 <p>Let us first read the second dataset into R.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="co">## read second dataset</span></span>
-<span id="cb53-2"><a href="#cb53-2"></a>pt2 &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw">read_dta</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/patient_pt2_stata_dm.dta&quot;</span>)</span>
-<span id="cb53-3"><a href="#cb53-3"></a><span class="co">## check data</span></span>
-<span id="cb53-4"><a href="#cb53-4"></a><span class="kw">codebook</span>(pt2)</span>
-<span id="cb53-5"><a href="#cb53-5"></a><span class="co">#&gt; ______________________________________________________________ </span></span>
-<span id="cb53-6"><a href="#cb53-6"></a><span class="co">#&gt; </span></span>
-<span id="cb53-7"><a href="#cb53-7"></a><span class="co">#&gt; Codebook: &#39;pt2&#39; </span></span>
-<span id="cb53-8"><a href="#cb53-8"></a><span class="co">#&gt; ______________________________________________________________ </span></span>
-<span id="cb53-9"><a href="#cb53-9"></a><span class="co">#&gt; </span></span>
-<span id="cb53-10"><a href="#cb53-10"></a><span class="co">#&gt;  No     Variable |        Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
-<span id="cb53-11"><a href="#cb53-11"></a><span class="co">#&gt;  -- ------------ + ------------ --------- ------- ---- -------</span></span>
-<span id="cb53-12"><a href="#cb53-12"></a><span class="co">#&gt;   1     hospital |         &lt;NA&gt; character     111    0       0</span></span>
-<span id="cb53-13"><a href="#cb53-13"></a><span class="co">#&gt;   2       hospid |          HID   numeric     111    0       0</span></span>
-<span id="cb53-14"><a href="#cb53-14"></a><span class="co">#&gt;   3        docid |         &lt;NA&gt; character     111    0       0</span></span>
-<span id="cb53-15"><a href="#cb53-15"></a><span class="co">#&gt;   4     dis_date |         &lt;NA&gt;      Date     111    0       0</span></span>
-<span id="cb53-16"><a href="#cb53-16"></a><span class="co">#&gt;   5    tumorsize |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-17"><a href="#cb53-17"></a><span class="co">#&gt;   6          co2 |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-18"><a href="#cb53-18"></a><span class="co">#&gt;   7         pain |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-19"><a href="#cb53-19"></a><span class="co">#&gt;   8        wound |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-20"><a href="#cb53-20"></a><span class="co">#&gt;   9     mobility |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-21"><a href="#cb53-21"></a><span class="co">#&gt;  10      ntumors |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-22"><a href="#cb53-22"></a><span class="co">#&gt;  11    remission |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-23"><a href="#cb53-23"></a><span class="co">#&gt;  12 lungcapacity |         &lt;NA&gt;   numeric     111    0       0</span></span>
-<span id="cb53-24"><a href="#cb53-24"></a><span class="co">#&gt;  13          age |          Age   numeric     111    0       0</span></span>
-<span id="cb53-25"><a href="#cb53-25"></a><span class="co">#&gt;  14      married |      Married   numeric     111    0       0</span></span>
-<span id="cb53-26"><a href="#cb53-26"></a><span class="co">#&gt;  15     familyhx |     FamilyHx character     111    0       0</span></span>
-<span id="cb53-27"><a href="#cb53-27"></a><span class="co">#&gt;  16    smokinghx |    SmokingHx character     111    0       0</span></span>
-<span id="cb53-28"><a href="#cb53-28"></a><span class="co">#&gt;  17          sex |          Sex character     111    0       0</span></span>
-<span id="cb53-29"><a href="#cb53-29"></a><span class="co">#&gt;  18  cancerstage |  CancerStage character     111    0       0</span></span>
-<span id="cb53-30"><a href="#cb53-30"></a><span class="co">#&gt;  19 lengthofstay | LengthofStay   numeric     111    0       0</span></span>
-<span id="cb53-31"><a href="#cb53-31"></a><span class="co">#&gt;  20          wbc |          WBC character     111    0       0</span></span>
-<span id="cb53-32"><a href="#cb53-32"></a><span class="co">#&gt;  21          rbc |          RBC   numeric     111    0       0</span></span>
-<span id="cb53-33"><a href="#cb53-33"></a><span class="co">#&gt;  22          bmi |          BMI   numeric     111    0       0</span></span>
-<span id="cb53-34"><a href="#cb53-34"></a><span class="co">#&gt;  23        test1 |          IL6   numeric     111    0       0</span></span>
-<span id="cb53-35"><a href="#cb53-35"></a><span class="co">#&gt;  24        test2 |          CRP   numeric     111    0       0</span></span>
-<span id="cb53-36"><a href="#cb53-36"></a><span class="co">#&gt;  -- ------------ + ------------ --------- ------- ---- -------</span></span>
-<span id="cb53-37"><a href="#cb53-37"></a><span class="co">#&gt; ______________________________________________________________</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co">## read second dataset</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>pt2 &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw">read_dta</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/patient_pt2_stata_dm.dta&quot;</span>)</span>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="co">## check data</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a><span class="kw">codebook</span>(pt2)</span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="co">#&gt; ______________________________________________________________ </span></span>
+<span id="cb54-6"><a href="#cb54-6"></a><span class="co">#&gt; </span></span>
+<span id="cb54-7"><a href="#cb54-7"></a><span class="co">#&gt; Codebook: &#39;pt2&#39; </span></span>
+<span id="cb54-8"><a href="#cb54-8"></a><span class="co">#&gt; ______________________________________________________________ </span></span>
+<span id="cb54-9"><a href="#cb54-9"></a><span class="co">#&gt; </span></span>
+<span id="cb54-10"><a href="#cb54-10"></a><span class="co">#&gt;  No     Variable |        Label      Type Obs_Num &lt;NA&gt; &lt;NA&gt;(%)</span></span>
+<span id="cb54-11"><a href="#cb54-11"></a><span class="co">#&gt;  -- ------------ + ------------ --------- ------- ---- -------</span></span>
+<span id="cb54-12"><a href="#cb54-12"></a><span class="co">#&gt;   1     hospital |         &lt;NA&gt; character     111    0       0</span></span>
+<span id="cb54-13"><a href="#cb54-13"></a><span class="co">#&gt;   2       hospid |          HID   numeric     111    0       0</span></span>
+<span id="cb54-14"><a href="#cb54-14"></a><span class="co">#&gt;   3        docid |         &lt;NA&gt; character     111    0       0</span></span>
+<span id="cb54-15"><a href="#cb54-15"></a><span class="co">#&gt;   4     dis_date |         &lt;NA&gt;      Date     111    0       0</span></span>
+<span id="cb54-16"><a href="#cb54-16"></a><span class="co">#&gt;   5    tumorsize |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-17"><a href="#cb54-17"></a><span class="co">#&gt;   6          co2 |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-18"><a href="#cb54-18"></a><span class="co">#&gt;   7         pain |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-19"><a href="#cb54-19"></a><span class="co">#&gt;   8        wound |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-20"><a href="#cb54-20"></a><span class="co">#&gt;   9     mobility |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-21"><a href="#cb54-21"></a><span class="co">#&gt;  10      ntumors |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-22"><a href="#cb54-22"></a><span class="co">#&gt;  11    remission |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-23"><a href="#cb54-23"></a><span class="co">#&gt;  12 lungcapacity |         &lt;NA&gt;   numeric     111    0       0</span></span>
+<span id="cb54-24"><a href="#cb54-24"></a><span class="co">#&gt;  13          age |          Age   numeric     111    0       0</span></span>
+<span id="cb54-25"><a href="#cb54-25"></a><span class="co">#&gt;  14      married |      Married   numeric     111    0       0</span></span>
+<span id="cb54-26"><a href="#cb54-26"></a><span class="co">#&gt;  15     familyhx |     FamilyHx character     111    0       0</span></span>
+<span id="cb54-27"><a href="#cb54-27"></a><span class="co">#&gt;  16    smokinghx |    SmokingHx character     111    0       0</span></span>
+<span id="cb54-28"><a href="#cb54-28"></a><span class="co">#&gt;  17          sex |          Sex character     111    0       0</span></span>
+<span id="cb54-29"><a href="#cb54-29"></a><span class="co">#&gt;  18  cancerstage |  CancerStage character     111    0       0</span></span>
+<span id="cb54-30"><a href="#cb54-30"></a><span class="co">#&gt;  19 lengthofstay | LengthofStay   numeric     111    0       0</span></span>
+<span id="cb54-31"><a href="#cb54-31"></a><span class="co">#&gt;  20          wbc |          WBC character     111    0       0</span></span>
+<span id="cb54-32"><a href="#cb54-32"></a><span class="co">#&gt;  21          rbc |          RBC   numeric     111    0       0</span></span>
+<span id="cb54-33"><a href="#cb54-33"></a><span class="co">#&gt;  22          bmi |          BMI   numeric     111    0       0</span></span>
+<span id="cb54-34"><a href="#cb54-34"></a><span class="co">#&gt;  23        test1 |          IL6   numeric     111    0       0</span></span>
+<span id="cb54-35"><a href="#cb54-35"></a><span class="co">#&gt;  24        test2 |          CRP   numeric     111    0       0</span></span>
+<span id="cb54-36"><a href="#cb54-36"></a><span class="co">#&gt;  -- ------------ + ------------ --------- ------- ---- -------</span></span>
+<span id="cb54-37"><a href="#cb54-37"></a><span class="co">#&gt; ______________________________________________________________</span></span></code></pre></div>
 <p>In this second dataset, there are only 24 variables</p>
 </div>
 <div id="dates" class="section level2">
@@ -3096,6 +3060,9 @@ par(mfrow = c(1, 1))</code></pre>
 </div>
 <div id="expand2-countby-lagrows" class="section level2">
 <h2><span class="header-section-number">2.10</span> expand2, countBy, lagRows</h2>
+</div>
+<div id="reshaping-data" class="section level2">
+<h2><span class="header-section-number">2.11</span> reshaping data</h2>
 </div>
 </div>
 <div id="data-analysis" class="section level1">
@@ -3108,8 +3075,11 @@ par(mfrow = c(1, 1))</code></pre>
 </div>
 <div id="epidemiological-measures" class="section level2">
 <h2><span class="header-section-number">3.2</span> Epidemiological Measures</h2>
-<div id="expandfreq-expandtables" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> expandFreq, expandTables</h3>
+<div id="creating-epi-dataset" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Creating epi dataset</h3>
+<div id="expandfreq-expandtables" class="section level4">
+<h4><span class="header-section-number">3.2.1.1</span> expandFreq, expandTables</h4>
+</div>
 </div>
 <div id="odds-ratio" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Odds Ratio</h3>

@@ -1,6 +1,6 @@
 ---
 title: "A Guide to Data Analysis using R"
-author: "by Myo Minn Oo - last updated on `r format(Sys.time(), '%d %B %Y')`"
+author: "by [Myo Minn Oo](https://myominnoo.github.io/) - last updated on `r format(Sys.time(), '%d %B %Y')`"
 # output:
 #   prettydoc::html_pretty:
 #     theme: cayman
@@ -336,7 +336,7 @@ This book is intended to guide new R users to quickly get on with data managemen
 # Data Management
 *** 
 
-This chapter covers methods in R to prepare data for further analysis. What we want at the end of this chapter is to create a tidy data so that we can run further analyses. So what is a tidy data? 
+This chapter covers methods in R to prepare data for further analysis. At the end of this chapter, we will get a tidy data on which we can run further analyses. So what is a tidy data? 
 
     Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how rows, columns, and tables are matched up with observations, variables, and types. In tidy data:
     1. Each variable forms a column.
@@ -841,7 +841,11 @@ tab(pt, bmi_grp)
 
 We see only six out of eight categories reported, meaning that there are no observations with values less than 16. 
 
+    Remember that the variable that `egen` generates is of factor data type. Check it using `codebook`.   
+
+
 ## Subsetting the dataset
+*** 
 
 A `subset` is a part of a larger group of something. You can make a smaller dataset by changing either rows or columns or both. For these operations, we use two of five well-known functions from `dplyr` package: `select` and `filter`. We `select` variables and `filter` observations based on their values. So, it is easy to remember the function names. 
 
@@ -863,6 +867,7 @@ There is one function overlapped between `dplyr` and `mStats`, and a few other f
 I recommend reading the book by Hadley Wickham: `R for Data Science`.
 
 ### `select` columns
+*** 
 
 Often we get more variables that we wish for a dataset. The foremost task, in this case, is to narrow the list of variables that you need to meet your interest. We either pick or remove the variables we want with the function `select`. 
 
@@ -901,6 +906,7 @@ codebook(pt)
 Like `everything()`, there are a few more useful helper functions. If you want to select variables with the same prefix or suffix, you use `starts_with()` and `ends_with()`. If the variables should contain a common text, use `contains()`. For detail, check their respective help pages by running `?function_name`.
 
 ### `filter` rows
+*** 
 
 Often we want to perform separate analyses on different datasets. The `filter` function is used to pick rows when there is a condition or there are conditions to be met. If you are familiar with a spreadsheet program like Excel, you have probably used the `filter` function.
 
@@ -949,8 +955,9 @@ Below we rename `test1` and `test2` what they are measuring for biomarkers `il6`
 pt <- rename(pt, il6 = test1, crp = test2)
 ```
 
-```{r rename il6 crp codebook}
+```{r rename il6 crp codebook, eval=FALSE}
 ## Not run due to redundancy !!!
+## Check the data
 codebook(pt)
 ```
 
