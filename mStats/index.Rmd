@@ -984,6 +984,7 @@ formatDate
 is.Date
 
 ## expand2, countBy, lagRows
+## reshaping data
 # Data Analysis 
 
 ## Exploratory Data Analysis
@@ -992,7 +993,9 @@ is.Date
 
 ## Epidemiological Measures
 
-### expandFreq, expandTables
+### Creating epi dataset
+
+#### expandFreq, expandTables
 
 ### Odds Ratio 
 
