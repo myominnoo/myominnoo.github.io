@@ -809,6 +809,154 @@ Remember that we can always `recode` or `replace` the values into the ones we de
 ### `egen` 
 *** 
 
+The `egen` function is an extension to `generate`, specifically used for converting numerical data into categorical variables. While you can do the same operation using `generate` and `replace` functions, it saves time and simplifies the process. 
+
+The `egen` requires at least two inputs: `dataset` and `continuous variable`. If we don't specify cut-off points, it automatically cuts into an interval of 10 units from the minimum value. Specified cut-off points are the starting points of the intervals. When specifying the cut-off points, we use `c()` to put all points together. For instance, if we want to break `age` at 30, 50, and 70 years, we set it to `c(31, 51, 71)`. Because we want to have intervals of "<=30", "31-50", "51-70", and "71+". Remember that the cut-off points you specify are the starting points of the range.
+
+The name of the newly created variable is automatically created by adding a suffix `_cat` to the name of the numerical variable. For example, if we `egen` `age` variable into different categories, the name of the new variable would be `age_cat`. You can also set a name you desire in the input, `new_var`.
+
+The values are also derived from the intervals in this format: `lbl[lowervalue-uppervalue]`. You can change these values by specifying `lbl`.
+
+Below we cut `bmi` by the cut-off points at 0, 15, 16, 18.5, 25, 30, 35, 40, and 500. Note that if the values specified are not in the data, the function will simply ignore them and start the category from the minimum valid point.  
+
+```{r egen bmi 1}
+## Set cut-off points at 0, 15, 16, 18.5, 25, 30, 35, 40, 500
+## We do not assign the result back to pt because we want to check the tabulation
+egen(pt, bmi, c(0, 15, 16, 18.5, 25, 30, 35, 40, 500)) %>% 
+    tab(bmi_cat)
+```
+
+Here, we try to break `bmi` into several categories and do not assign to `pt` dataset using `<-`. If the categories do not satisfy us, we may want to change it. Furthermore, the outputs from `egen` and `tab` are not the same. The `egen` produces the dataset with updated values from the operation whereas `tab` generates frequency tabulation.  
+
+```{r egen bmi 2}
+## Set cut-off points at 0, 15, 16, 18.5, 25, 30, 35, 40, 500
+## We name it bmi_grp = BMI groups
+pt <- egen(pt, bmi, c(0, 15, 16, 18.5, 25, 30, 35, 40, 500), 
+     new_var = bmi_grp, 
+     lbl = c("<18.5", "18.5-24", "25-29", "30-34", "35-39", "40+")) 
+
+## Check the changes
+tab(pt, bmi_grp)
+```
+
+We see only six out of eight categories reported, meaning that there are no observations with values less than 16. 
+
+## Subsetting the dataset
+
+A `subset` is a part of a larger group of something. You can make a smaller dataset by changing either rows or columns or both. For these operations, we use two of five well-known functions from `dplyr` package: `select` and `filter`. We `select` variables and `filter` observations based on their values. So, it is easy to remember the function names. 
+
+The `dplyr` package is also a part of `tidyverse` which is a collection of several packages. To get started, we install the package. Do this step if you haven't installed it yet. 
+
+```{r install tidyverse or dplyr, eval=TRUE}
+## Run either one of the following lines.
+# install.packages("tidyverse", dependencies = TRUE)
+# install.packages("dplyr")
+
+## Load the library 
+## library(tidyverse) ## it is not wise to load everything unless you actually use them
+library(dplyr)
+```
+
+There is one function overlapped between `dplyr` and `mStats`, and a few other functions from other packages are also masked. For these overlapped functions, it is always good to indicate the package you want to use in this way: `package::function()`.
+
+
+I recommend reading the book by Hadley Wickham: `R for Data Science`.
+
+### `select` columns
+
+Often we get more variables that we wish for a dataset. The foremost task, in this case, is to narrow the list of variables that you need to meet your interest. We either pick or remove the variables we want with the function `select`. 
+
+Below we pick socio-demographic variables from `pt` dataset: `age`, `sex`, `married`, `familyhx`, and `smokinghx`.
+
+```{r select pick}
+## pt dataset with hospital, hospid, docid and five socio-demographic variables
+## Select a range of variables by colon separator :
+pt_sd <- select(pt, hospital, hospid, docid, age:sex)
+
+## Check the data 
+codebook(pt_sd)
+```
+
+We use the same function to drop variables we don't want. In the example below, We exclude five socio-demographic variables from `pt` dataset. It means we have to write 21 variable names. Of course, you can write, but it is good thinking to just remove five names, rather include 21 names. We indicate variables to be removed by the symbol, dash `-`. 
+
+
+```{r select drop}
+## pt dataset with variables apart from five socio-demographic variables
+pt_others <- select(pt, -c(age:sex))
+
+## Check the data 
+codebook(pt_others)
+```
+
+The `select` is also used to arrange the order of variable names. In the following example, we put five socio-demographic variables after `hospital`, `hospid` and `docid` and then add the rest of the variables to the order. Although we can write all names or even use the colon separator, I show another way to do this with the help of `everything()` function from `dplyr` package. 
+
+```{r select order}
+## Using select() to order the variable names
+pt <- select(pt, hospital:docid, age, sex, married:smokinghx, everything())
+
+## Check the data
+codebook(pt)
+```
+
+Like `everything()`, there are a few more useful helper functions. If you want to select variables with the same prefix or suffix, you use `starts_with()` and `ends_with()`. If the variables should contain a common text, use `contains()`. For detail, check their respective help pages by running `?function_name`.
+
+### `filter` rows
+
+Often we want to perform separate analyses on different datasets. The `filter` function is used to pick rows when there is a condition or there are conditions to be met. If you are familiar with a spreadsheet program like Excel, you have probably used the `filter` function.
+
+In the example below, we separate two datasets pt_male and pt_female using `filter`.
+
+```{r filter sex}
+## Filter rows if sex == "male"
+pt_male <- filter(pt, sex == "male")
+## Filter rows if sex == "female"
+pt_female <- filter(pt, sex == "female")
+```
+
+```{r filter sex tab, eval=FALSE}
+## Not run due to redundancy !!!
+## Check the tabulation
+tab(pt_male, sex)
+tab(pt_female, sex)
+```
+
+The `pt_male` dataset has 45 observations and `pt_female` 74 observations. These numbers should correspond with the frequency distribution of `sex`.
+
+Another use is to check data values based on certain criteria. Below we check the data of `age` where `sex` is `female` and pain is greater than 8. This is `AND` combination, meaning that the task runs only when both conditions are met. `AND` is indicated by the ampersand `&` where OR by the vertical line `|`. 
+
+    The vertical line is above the ENTER key on your keyboard. Press Shift + Backward Slash.
+
+We do this in two steps: 1) we filter `sex` and `pain`, and 2) we select only `age`. Since we only want to check the data, we do not assign the result to a name.
+
+```{r filter check data}
+## We use piping operation to make it easy
+pt %>% 
+    ## no need to mention dataset name
+    filter(sex == "female" & pain > 8) %>% 
+    select(age)
+```
+
+We see only two observations who are `female` and whose `pain` value > `8`. 
+
+### `rename`
+
+Variables are renamed with the function `rename`. Renaming takes this format: `New Name` = `Old Name`. Multiple variables can be renamed at the same time.
+
+Below we rename `test1` and `test2` what they are measuring for biomarkers `il6` and `crp`.
+
+```{r rename il6 crp}
+## rename test1 to il6 and test2 to crp
+pt <- rename(pt, il6 = test1, crp = test2)
+```
+
+```{r rename il6 crp codebook}
+## Not run due to redundancy !!!
+codebook(pt)
+```
+
+### `arrange`
+
+
 ## `append` 
 ***
 
