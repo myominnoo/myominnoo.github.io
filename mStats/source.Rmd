@@ -1,0 +1,39 @@
+---
+title: "A Guide to Data Analysis using R"
+author: "by [Myo Minn Oo](https://myominnoo.github.io/) - last updated on `r format(Sys.time(), '%d %B %Y')`"
+# output:
+#   prettydoc::html_pretty:
+#     theme: cayman
+#     highlight: github
+#     toc: true
+#     collapse: true
+output:
+  html_document:
+    number_sections: true
+    code_folding: show
+    theme: united
+    # "cerulean", "journal", "flatly", "darkly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", "yeti"
+    highlight: tango
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    collapsed: true
+    smooth_scroll: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+options(tibble.print_min = 5, tibble.print_max = 5)
+
+## load packages
+library(dplyr)
+library(magrittr)
+library(mStats)
+```
+ 
+

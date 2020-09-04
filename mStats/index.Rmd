@@ -93,7 +93,7 @@ The interface has four windows. Each window may have several tabs or sub-windows
 
 <!-- badges: end -->
 
- 
+<a href='https://myominnoo.github.io'><img src='./img/logo.png' align="right" height="120" /></a>
  
 The `mStats` is a R package that provides tools for epidemiological and statistical data analysis. There are four major groups of functions: 
 
@@ -1010,13 +1010,475 @@ is.Date
 
 ### Rate Ratio
 
-## Regression models
 
-### regress
+## Linear Regression
+*** 
 
-### logit
+This chapter covers a variety of topics about using R for linear regression. We demonstrate how R can be used for linear regression analysis. This chapter is based on the `STATA` web tutorial from UCLA. ^[Chen, X., Ender, P., Mitchell, M. and Wells, C. (2003). Regression with Stata, from https://stats.idre.ucla.edu/stat/stata/webbooks/reg/default.htm]
 
-### esttab
+In this chapter, we use a dataset that was created by random sampling of 400 elementary schools from `API 2000` dataset of the United States' California Department of Education. This is the same dataset from the tutorial.
+
+Let's import this dataset to R. 
+
+```{r import elemapi, eval=FALSE}
+elemapi <- haven::read_dta("https://stats.idre.ucla.edu/stat/stata/webbooks/reg/elemapi.dta")
+```
+
+```{r import elemapi local, include=FALSE}
+elemapi <- haven::read_dta("../../data/elemapi.dta")
+```
+
+
+### First regression analysis
+*** 
+
+Now let's run our first regression analysis. We focus on one dependent variable, `api00` and three independent variables, `acs_k3`, `meals`, and `full`. 
+
+    api00 - the academic performance of the school 
+    acs_k3 - the average class size in kindergarten through third grade
+    meals - the percentage of students receiving free meals
+    full - the percentage of teachers who have full teaching credentials 
+    
+The `meals` is an indicator of poverty. We hypothesize that better academic performance is associated with the lower class size, fewer students receiving free meals, and a higher proportion of teachers with full teaching credentials. Below is the R command to fit and generate regression analysis. 
+
+```{r first regression analysis}
+## Fit the regression model using lm
+fit <- lm(api00 ~ acs_k3 + meals + full, data = elemapi)
+
+## Generate regression output 
+regress(fit)
+```
+
+Of the three independent variables, `acs_k3` and `meals` have a negative relationship with api00, meaning that a larger class size or higher number of students having free meals is associated with lower academic performance. However, `acs_k3` does not show a statistically significant association as the p-value is greater than 0.05. Moreover, `meals` is highly related to income level and serves as a proxy for poverty.
+
+Finally, full has a mild positive relationship, showing that one unit increase in the percentage of teachers with full teaching credentials, only 0.11 unit increase in academic performance. However, the relationship is not statistically significant.
+
+Before we publish these results, we need to run several checks to make sure so we can `firmly stand behind these results`. 
+
+### Examining the dataset
+*** 
+We start by having a close look at the dataset. 
+
+```{r elemapi codebook}
+## Check the dataset
+codebook(elemapi)
+```
+There are 400 observations and 21 variables. Our regression analysis only used 313 observations. The `meals` indicates a substantial amount (21%) of missing data, followed by `avg_ed` with 4.8%.
+
+There are several variables about school performance, class size, parent education, percentages of teachers, and number of students. 
+
+```{r elemapi summ 4}
+## Summary measures of four variables 
+summ(elemapi, api00, acs_k3, meals, full)
+```
+It seems that some class sizes show negative values which may be data entry error and percentages of teachers also range from very low value `0.4` to full percentage, `100`.
+
+Let's first tabulate the class size. 
+
+
+```{r elemapi tab acs}
+## Tabulation of acs_k3 
+tab(elemapi, acs_k3)
+```
+
+Next, we look at the school and district number of these negative values in `acs_k3`. 
+
+```{r elemapi check negative sign}
+## Load packages 
+library(dplyr)
+library(magrittr)
+
+## we check those school and district if acs_k3 is negative
+elemapi %>% 
+  filter(acs_k3 < 0) %>%
+  tab(snum, dnum)
+```
+
+All observations with negative `acs_k3` come from the district number, `140`. let's list all observations in that district. 
+
+
+```{r elemapi check negative district}
+## we check all observations for district 140
+elemapi %>% 
+  filter(dnum == 140) %>% 
+  select(dnum, snum, api00, acs_k3, meals, full)
+```
+It seems all observations of `acs_k3` from the district `140` have the same problem. Make a note about this and continue with checking the dataset.
+
+Below we look at the `histogram` of `acs_k3` and a `boxplot` to show this. 
+
+
+```{r histogram acs_k3}
+## Set up graphical parameters 
+par(mfrow = c(1, 2))
+## Histogram with normal curve overlay 
+histogram(elemapi, acs_k3)
+
+## We use %$% as boxplot() does not have data input.
+elemapi %$% 
+  boxplot(acs_k3, main = "Boxplot of 'acs_k3'", 
+          xlab = "Average class size")
+
+## Reset graphical parameters 
+par(mfrow = c(1, 1))
+```
+
+You can see the outliers on the left side of the histogram and at the bottom of the boxplot.
+
+
+Now we check the variable `full` whether very low percentages are valid. Below we tabulate if `full` is less than 50%. 
+
+```{r tabulate full }
+## Tabulate if full < 50.0
+elemapi %>% 
+  filter(full < 50.0) %>% 
+  tab(full)
+```
+It seems like they are recorded as proportions instead of percentages.
+
+Let's check which district they come from.
+
+```{r check full ditrict}
+## Check district number 
+elemapi %>% 
+  filter(full < 37) %>% 
+  tab(dnum)
+```
+
+We have 104 such observations that come from the district number `401`.
+
+
+Another useful technique is to use a scatterplot matrix. While it is useful as a data screening tool, it is commonly used as a diagnostic tool for non-linearities and outliers of your dataset. 
+
+```{r scatterplot matrix}
+## Scatterplot matrix on 4 variables
+elemapi %>% 
+  select(api00, acs_k3, meals, full) %>% 
+  scatterPlotMatrix()
+```
+
+So far, we have identified three problems while looking at four variables in the dataset `elemapi`.
+
+    1) A large number of missing values in `meals`
+    2) Negative values in `acs_k3`
+    3) Miscoded percentage values in `full`
+
+
+Now let's use the correct version and re-run our regression analysis. 
+```{r elemapi2 correct, include=FALSE}
+## Import elemapi - corrected version
+elemapi2 <- haven::read_dta("../../data/elemapi2.dta")
+```
+
+```{r elemapi2 correct regression, eval=FALSE}
+## Import elemapi - corrected version
+elemapi2 <- haven::read_dta(
+  "https://stats.idre.ucla.edu/stat/stata/webbooks/reg/elemapi2.dta"
+)
+```
+
+
+```{r elemapi2 correct regression 2}
+## Fit linear model: Note we use 'elemapi2'
+fit <- lm(api00 ~ acs_k3 + meals + full, data = elemapi2)
+
+## Generate regression output 
+regress(fit)
+```
+
+We have covered data checking before regression analysis.
+
+### Simple Linear Regression
+*** 
+
+Let's take a step back and we look at simple linear regression (SLR). SLR has only one independent (predictor) variable. It can be either numeric or categorical. SLR's response (outcome) variable must be numeric.
+
+In R, regress is used to generate the regression output after fitting the linear model using either `lm()` or `glm()` function. 
+
+Below we fit the linear model to examine the relationship between the size of the school, `enroll`, and academic performance, `api00`.
+
+
+```{r elemapi2 SLR 1, eval=FALSE}
+## Fit linear model: Note we use 'elemapi2'
+fit <- lm(api00 ~ enroll, data = elemapi2)
+
+## Generate regression output 
+regress(fit)
+```
+```{r elemapi2 SLR 1 not show, include=FALSE}
+## Fit linear model: Note we use 'elemapi2'
+fit <- lm(api00 ~ enroll, data = elemapi2)
+```
+We use the same object `fit` to assign the output from a fitting linear model. You do not need to assign to different names as we run the command from top to bottom and we do not plan to use earlier `fit` versions.
+
+
+### Annotated output
+
+The regression output is shown below with annotated explanations.
+
+![Annotated Output of Linear Regression](./img/ao_LR.png)
+
+Let's review the regression output. 
+
+* We see all `400` observations are used in the analysis. 
+* The `F-test` is statistically significant, which means that the model is statistically significant. 
+* The R-squared of `.1012` means that approximately 10% of the variance of api00 is accounted for by the model, in this case, enroll. The `t-test` for enroll equals -6.70, and is statistically significant, meaning that the regression coefficient for `enroll` is significantly different from zero. Note that `(-6.70)^2 = 44.89`, which is the same as the F-statistic (with some rounding error). 
+* The coefficient for `enroll` is -.1998674, or approximately -.2, meaning that for one unit increase in `enroll`, we would expect a .2-unit decrease in `api00`. In other words, a school with 1100 students would be expected to have an API score 20 units lower than a school with 1000 students.  
+* The constant or `Intercept` is 744.2514, and this is the predicted value when enroll equals zero.  In most cases, this is not very interesting. 
+
+    The output has four parts: 
+
+        1) Statistics about the model in the blue box, 
+        2) Variance Table in the red box, and 
+        3) The coefficient table in the green box. 
+        4) Regression formula with variable labels in the yellow box
+
+Below the tables, the fitting formula is displayed along with variable labels.
+
+***
+**Footnotes**^[ANNOTATED STATA OUTPUT SIMPLE REGRESSION ANALYSIS. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/webbooks/reg/chapter1/simple-regression-analysis/ (accessed September 4, 2020)]
+
+***
+**a. Number of Obs**
+
+This is the number of observations used in the regression analysis.
+
+***
+**b & c. `F` Value**
+
+The `F` Value is the `Mean Square Model` (`817326.293`) divided by the `Mean Square Residual` (`18232.0244`), yielding `F=44.83`.  The `p-value` associated with this `F` value is very small (0.0000). These values are used to answer the question “`Do the independent variables reliably predict the dependent variable?`”.  The `p-value` is compared to your alpha level (typically 0.05) and, if smaller, you can conclude “Yes, the independent variables reliably predict the dependent variable”.  You could say that the variable enroll can be used to reliably predict `api00` (the dependent variable).  If the `p-value` were greater than 0.05, you would say that the independent variable does not show a significant relationship with the dependent variable, or that the independent variable does not reliably predict the dependent variable.
+    b. 
+    c. 
+
+***
+**d. `R-Squared`** 
+
+It is the proportion of variance in the dependent variable (`api00`) which can be predicted from the independent variable (`enroll`).  This value indicates that 10% of the variance in `api00` can be predicted from the variable `enroll`.
+
+
+***
+**e. `Adjusted R-squared`**
+
+As predictors are added to the model, each predictor will explain some of the variances in the dependent variable simply due to chance.  One could continue to add predictors to the model which would continue to improve the ability of the predictors to explain the dependent variable, although some of this increase in `R-squared` would be simply due to chance variation in that particular sample.  The adjusted `R-Squared` attempts to yield a more honest value to estimate the R-squared for the population.   The value of `R-Squared` was `.10`, while the value of Adjusted `R-Square`d was `.099`.  Adjusted R-squared is computed using the formula `1 – ( (1-Rsq)*(N-1)/(N-k-1) )`.  From this formula, you can see that when the number of observations is small and the number of predictors is large, there will be a much greater difference between `R-Squared` and adjusted R-Squared, because the ratio `(N-1)/(N-k-1)` will be much greater than 1 and adjusted `R-squared` will be much smaller than unadjusted `R-squared`.  By contrast, when the number of observations is very large compared to the number of predictors, the value of R-square and adjusted `R-square` will be much closer because the ratio `(N-1)/(N-k-1)` will approach 1.
+
+***
+**f. `AIC` Value**
+
+The `AIC` (Akaike information criterion) is used as a measure of model parsimony. It penalizes the likelihood by the number of parameters to add an amount to it that is proportional to the number of parameters. Lower indicates a more parsimonious model, relative to a model fit
+with a higher `AIC`. However, the comparisons are only valid for models that are fit to the same response data, i.e., values of `y`.
+
+***
+**g. Root `MSE`**
+
+The `Root MSE` is the standard deviation of the error term, and is the square root of the `Mean Square Residuals` (or Errors).
+
+***
+**h. Source**
+
+
+This is the source of variance, Model, Residual, and Total.  The Total variance is partitioned into the variance which can be explained by the independent variables (Model) and the variance which is not explained by the independent variables. Note that the Sums of Squares for the Model and Residual add up to the Total Variance, reflecting the fact that the Total Variance is partitioned into Model and Residual variance.
+
+***
+**i. `DF`**
+
+
+These are the Sum of Squares associated with the three sources of variance, Total, Model & Residual.  These can be computed in many ways.  Conceptually, these formulas can be expressed as: `SSTotal`. The total variability around the mean. `Σ(Y – Ybar)^2. SSResidual`.  The sum of squared errors in prediction.  `Σ(Y – Ypredicted)^2` . `SSModel`. The improvement in prediction by using the predicted value of Y over just using the mean of Y.  Hence, this would be the squared differences between the predicted value of Y and the mean of Y, `Σ(Ypredicted – Ybar)^2`.  Another way to think of this is the `SSModel` is `SSTotal` – `SSResidual.`  Note that the `SSTotal` = `SSModel` + `SSResidual.` Note that `SSModel` / `SSTotal` is equal to .10, the value of `R-Square`. This is because R-Square is the proportion of the variance explained by the independent variables, hence can be computed by `SSModel` / `SSTotal.`
+
+***
+**j. `SS`**
+
+These are the degrees of freedom associated with the sources of variance. The total variance has `N-1` degrees of freedom. In this case, there were `N=400` observations, so the `DF` for total is `399`. The model degrees of freedom corresponds to the number of predictors minus 1 `(K-1)`. You may think this would be 1-1 (since there was 1 independent variable in the model statement, `enroll`). But, the intercept is automatically included in the model (unless you explicitly omit the intercept).  Including the intercept, there are 2 predictors, so the model has 2-1=1 degree of freedom.  The Residual degree of freedom is the DF total minus the DF model, `399 – 1` is `398`.
+
+***
+**k. `MS`**
+
+These are the Mean Squares, the Sum of Squares divided by their respective DF.  For the Model, `817326.293 / 1` is equal to 817326.293.  For the Residual, `7256345.7 / 398` equals `18232.0244`.  These are computed so you can compute the `F ratio`, dividing the `Mean Square Model` by the `Mean Square Residual` to test the significance of the predictor(s) in the model.
+
+***
+**l. `api00`**
+
+This column shows the dependent variable at the top (`api00`) with the predictor variables below it (`enroll`).  The last variable `(Intercept)` represents the constant, also referred to in textbooks as the Y-intercept, the height of the regression line when it crosses the Y-axis.
+
+***
+**m. `Coef.`**
+
+These are the values for the regression equation for predicting the dependent variable from the independent variable.  The regression equation is presented in many different ways, for example…
+
+    `Ypredicted` = `b0` + `b1` * `x1`
+
+The column of estimates (coefficients or parameter estimates, from here on labeled coefficients) provides the values for `b0` and `b1` for this equation.  Expressed in terms of the variables used in this example, the regression equation is
+
+    `api00Predicted` = `744.25` – `.20` * `enroll`
+
+This estimate tells you about the relationship between the independent variable and the dependent variable.  This estimate indicates the amount of increase in `api00` that would be predicted by a 1 unit increase in the predictor.   
+
+Note: If an independent variable is not significant, the coefficient is not significantly different from 0, which should be taken into account when interpreting the coefficient.  (See the columns with the t value and `p-value` about testing whether the coefficients are significant). `enroll` – The coefficient (parameter estimate) is -.20.  So, for every unit increase in `enroll`, a -.20 unit decrease in api00 is predicted.
+
+***
+**n. Standard Errors**
+
+These are the standard errors associated with the coefficients.  The standard error is used for testing whether the parameter is significantly different from 0 by dividing the parameter estimate by the standard error to obtain a t value (see the column with t values and p values).  The standard errors can also be used to form a confidence interval for the parameter, as shown in the last 2 columns of this table.
+
+***
+**o & p. `t` and `p` Values** 
+
+These columns provide the `t` value and 2 tailed `p` value used in testing the null hypothesis that the coefficient/parameter is 0.   If you use a 2 tailed test, then you would compare each p-value to your pre-selected value of alpha.  Coefficients having p values less than alpha are significant.  For example, if you chose alpha to be 0.05, coefficients having a p-value of 0.05 or less would be statistically significant (i.e. you can reject the null hypothesis and say that the coefficient is significantly different from 0). If you use a 1 tailed test (i.e., you predict that the parameter will go in a particular direction), then you can divide the p-value by 2 before comparing it to your preselected alpha level.  With a 2 tailed test and alpha of 0.05, you can reject the null hypothesis that the coefficient for `enroll` is equal to 0.  The coefficient of -.20 is significantly different from 0. The constant `(Intercept)` is significantly different from 0 at the 0.05 alpha level.  However, having a significant intercept is seldom interesting.
+
+***
+**q. 95% Confident Interval** 
+
+This shows a 95% confidence interval for the coefficient.  This is very useful as it helps you understand how high and how low the actual population value of the parameter might be.  Such confidence intervals help you to put the estimate from the coefficient into perspective by seeing how much the value could vary.
+
+
+### Fitted values 
+*** 
+In addition to getting the regression output, it can be useful to see a scatterplot of the predicted and outcome variables with the regression line plotted.  After you run `regress`, you can use the `predict` function to generate predicted (fitted) values. You can get these values at any point by inputting the output from `regress`. 
+
+Below we predict the output from `regress`. 
+
+```{r predict regress}
+## To avoid displaying the output from regress 
+sink <- capture.output(lm <- regress(fit)) 
+
+## Output from regress is stored in lm. Let's predict lm
+predict(lm) %>% 
+  ## check the dataset
+  codebook
+```
+
+### Scatter plots
+*** 
+Below we create a scatterplot of the outcome variable, `api00` and the predictor, `enroll`.
+
+
+```{r scatterplot regression line}
+## Plot api00 and enroll 
+plot(api00 ~ enroll, data = elemapi2, 
+     main = "Scatter plot with regression line", 
+     xlab = "Number of students",
+     ylab = "Academic Performance")
+
+## Add regression line 
+abline(fit, col = "red")
+```
+
+
+
+## Multiple Linear Regression
+
+Multiple linear regression (MLR) has one outcome variable and multiple predictors. 
+
+Below we fit an MLR and `regress` to generate its output. Note that we continue using `elemapi` which is the corrected version.
+
+```{r MLR 1}
+## Fit MLR 
+fit <- lm(api00 ~ ell + meals + yr_rnd + mobility + acs_k3 + acs_46 + 
+            full + emer + enroll, data = elemapi2)
+
+## Generate the MLR output
+regress(fit)
+```
+
+As with the SLR, we check the number of observations first. The analysis included only 395 observations. Next, we check the p-value of the `F-test` to see if the overall model is significant. With a p-value of zero to four decimal places, the model is statistically significant. 
+
+The R-squared is 0.8446, meaning that approximately 84% of the variability of `api00` is accounted for by the variables in the model. In this case, the adjusted R-squared indicates that about 84% of the variability of `api00` is accounted for by the model, even after taking into account the number of predictor variables in the model. The coefficients for each of the variables indicates the amount of change one could expect in `api00` given a one-unit change in the value of that variable, given that all other variables in the model are held constant. For example, consider the variable ell. We would expect a decrease of 0.86 in the `api00` score for every one unit increase in `ell`, assuming that all other variables in the model are held constant.
+
+Finally, the interpretation of much of the output from the multiple regression is the same as it was for the simple regression.  
+
+### Correlation
+*** 
+Another useful step is to see the correlations among the variables in the regression model. You can do this with `cor` function in base R.
+
+
+```{r correlations regression}
+## First select only those variables included in the regression model
+elemapi2 %>% 
+  ## from dplyr package
+  select(api00, ell, meals, yr_rnd, mobility, acs_k3, acs_46, full, 
+         emer, enroll) %>% 
+  ## By default, we use Pearson's correlation coefficients.
+  ## Since there are missing values, we use complete observations.
+  cor(use = "complete.obs")
+```
+
+    We see `meals` and `ell` have the two strongest correlations with api00. These correlations are negative, meaning that as the value of one variable goes down, the value of the other variable tends to go up. Knowing that these variables are strongly associated with `api00`, we might predict that they would be statistically significant predictor variables in the regression model.
+
+### Transforming variables
+*** 
+Earlier we focus on screening the data for potential errors. Here we look at the issue of normality before moving on to the regression diagnostics to verify the required assumptions of linear regression. 
+
+    Some researchers believe that linear regression requires that the outcome (dependent) and predictor variables be normally distributed. We need to clarify this issue. In actuality, it is the residuals that need to be normally distributed.  The residuals need to be normal only for the t-tests to be valid. The estimation of the regression coefficients does not require normally distributed residuals. As we are interested in having valid t-tests, we will investigate issues concerning normality.
+    
+A common cause of non-normally distributed residuals is non-normally distributed outcome and/or predictor variables.  
+
+Another option is to check the normal quantile plot which plots the quantiles of a variable against the quantiles of a normal (`Gaussian`) distribution. The `qnorm` is sensitive to non-normality near the tails, and indeed we see considerable deviations from normal, the diagonal line, in the tails. This plot is typical of variables that are strongly skewed to the right.
+
+
+
+Below we make a histogram, boxplot, and normal quantile plot of `enroll`. By default, the function superimposes a normal curve on the histogram. 
+
+```{r histogram enroll}
+## Set up graph parameter
+par(mfrow = c(1, 3))
+
+## Histogram of enroll
+histogram(elemapi2, enroll, 
+          main = "Histogram of enroll", 
+          xlab = "Number of students")
+
+## Boxplot enroll
+elemapi2 %$% 
+  boxplot(enroll, 
+          main = "Boxplot of enroll", 
+          xlab = "Number of students")
+
+## Normal quantile plot
+elemapi2 %$%
+  qqnorm(enroll, 
+          main = "Boxplot of enroll", 
+          xlab = "Number of students")
+## Add a diagonal line 
+elemapi2 %$% 
+  qqline(enroll, col = "red")
+
+par(mfrow = c(1, 1))
+```
+
+The distribution looks a bit right-skewed and the Shapiro-Wilk test of normality shows a significance, meaning that the data is not normally distributed.
+
+Now we are fairly convinced that enroll is not normally distributed. How should we address this problem?  First, we may try entering the variable as it is into the regression, but if we see problems, which we likely would, then we may try to transform enroll to make it more normally distributed.  Potential transformations include taking the log, the square root, or raising the variable to a power. Selecting the appropriate transformation is somewhat of an art. 
+
+The `mStats` has the function `ladder` to help the process.
+
+```{r ladder enroll}
+## Check ladder transformation of enroll
+ladder(elemapi2, enroll)
+```
+
+The `log` transform has the smallest `W` statistics and non-significant p-value from the Shapiro-Wilk test of normality.
+
+Let's use `generate` and create a new variable to transform into `log` scale. 
+
+```{r generate log enroll}
+## Generate log enroll 
+elemapi2 <- generate(elemapi2, lenroll, log(enroll))
+
+## Check log enroll in histogram 
+histogram(elemapi2, lenroll, 
+          xlab = "Number of students on log scale")
+```
+
+### Exercise 
+
+1. Make graphs of `api99`: histogram, boxplot, and normal quantile plot.
+2. What is the correlation between `api99` and `meals`?
+3. Regress `api99` on `meals`. What does the output tell you?
+4. Create and list the fitted (predicted) values.
+5. Graph `meals` and `api99` with and without the regression line.
+6. Look at the correlations among the variables `api99` `meals` `ell` `avg_ed` using `cor`. 
+7. Make a scatterplot matrix for these variables and relate the correlation results to the scatterplot matrix.
+8. Perform a regression predicting `api99` from `meals` and `ell`. Interpret the output.
+
 
 # Data Visualization 
 
