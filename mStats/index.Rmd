@@ -15,7 +15,7 @@ output:
     # "cerulean", "journal", "flatly", "darkly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", "yeti"
     highlight: tango
     toc: true
-    toc_depth: 3
+    toc_depth: 4
     toc_float: true
     collapsed: true
     smooth_scroll: true
@@ -1010,7 +1010,7 @@ is.Date
 
 ### Rate Ratio
 
-
+*** 
 ## Linear Regression
 *** 
 
@@ -1212,8 +1212,8 @@ fit <- lm(api00 ~ enroll, data = elemapi2)
 We use the same object `fit` to assign the output from a fitting linear model. You do not need to assign to different names as we run the command from top to bottom and we do not plan to use earlier `fit` versions.
 
 
-### Annotated output
-
+#### Annotated output
+*** 
 The regression output is shown below with annotated explanations.
 
 ![Annotated Output of Linear Regression](./img/ao_LR.png)
@@ -1330,7 +1330,7 @@ These columns provide the `t` value and 2 tailed `p` value used in testing the n
 This shows a 95% confidence interval for the coefficient.  This is very useful as it helps you understand how high and how low the actual population value of the parameter might be.  Such confidence intervals help you to put the estimate from the coefficient into perspective by seeing how much the value could vary.
 
 
-### Fitted values 
+#### Fitted values 
 *** 
 In addition to getting the regression output, it can be useful to see a scatterplot of the predicted and outcome variables with the regression line plotted.  After you run `regress`, you can use the `predict` function to generate predicted (fitted) values. You can get these values at any point by inputting the output from `regress`. 
 
@@ -1346,7 +1346,7 @@ predict(lm) %>%
   codebook
 ```
 
-### Scatter plots
+#### Scatter plots
 *** 
 Below we create a scatterplot of the outcome variable, `api00` and the predictor, `enroll`.
 
@@ -1363,9 +1363,9 @@ abline(fit, col = "red")
 ```
 
 
-
-## Multiple Linear Regression
-
+*** 
+### Multiple Linear Regression
+*** 
 Multiple linear regression (MLR) has one outcome variable and multiple predictors. 
 
 Below we fit an MLR and `regress` to generate its output. Note that we continue using `elemapi` which is the corrected version.
@@ -1385,7 +1385,7 @@ The R-squared is 0.8446, meaning that approximately 84% of the variability of `a
 
 Finally, the interpretation of much of the output from the multiple regression is the same as it was for the simple regression.  
 
-### Correlation
+#### Correlation
 *** 
 Another useful step is to see the correlations among the variables in the regression model. You can do this with `cor` function in base R.
 
@@ -1403,7 +1403,7 @@ elemapi2 %>%
 
     We see `meals` and `ell` have the two strongest correlations with api00. These correlations are negative, meaning that as the value of one variable goes down, the value of the other variable tends to go up. Knowing that these variables are strongly associated with `api00`, we might predict that they would be statistically significant predictor variables in the regression model.
 
-### Transforming variables
+#### Transforming variables
 *** 
 Earlier we focus on screening the data for potential errors. Here we look at the issue of normality before moving on to the regression diagnostics to verify the required assumptions of linear regression. 
 
@@ -1468,8 +1468,8 @@ histogram(elemapi2, lenroll,
           xlab = "Number of students on log scale")
 ```
 
-### Exercise 
-
+#### Exercise 
+*** 
 1. Make graphs of `api99`: histogram, boxplot, and normal quantile plot.
 2. What is the correlation between `api99` and `meals`?
 3. Regress `api99` on `meals`. What does the output tell you?
@@ -1478,11 +1478,12 @@ histogram(elemapi2, lenroll,
 6. Look at the correlations among the variables `api99` `meals` `ell` `avg_ed` using `cor`. 
 7. Make a scatterplot matrix for these variables and relate the correlation results to the scatterplot matrix.
 8. Perform a regression predicting `api99` from `meals` and `ell`. Interpret the output.
-
+*** 
 
 # Data Visualization 
 
-# Tables for manuscript
+# Tables for publication
+*** 
 
 ## esttab 
 

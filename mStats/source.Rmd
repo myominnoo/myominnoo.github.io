@@ -37,3 +37,4 @@ library(mStats)
 ```
  
 
+### Model Diagnostics
