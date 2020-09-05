@@ -1,5 +1,6 @@
 ---
 title: "A Guide to Data Analysis using R"
+subtitle: "using mStats package"
 author: "by [Myo Minn Oo](https://myominnoo.github.io/) - last updated on `r format(Sys.time(), '%d %B %Y')`"
 # output:
 #   prettydoc::html_pretty:
@@ -189,15 +190,29 @@ Let us install the packages used in this book.
 ## install tidyverse will automatically include magrittr 
 install.packages("tidyverse", dependencies = TRUE)
 
-## install latest version of mStats
-devtools::install_github("myominnoo/mStats") 
-
-## note: you can download mStats version from CRAN
-# install.packages("mStats")
-
 ## install other packages:
 install.packages(c("readr", "readxl", "haven"))
 ```
+
+Below we install `mStats` package. Choose only one method. Method 1 can be a bit daunting for beginners should it needs installations of dependencies including `Rtools`.
+
+Method 3 is the easiest one.
+
+```{r packages installation 2, eval=FALSE}
+## Method 1: install latest version of mStats
+install.packages("devtools", dependencies = TRUE)
+library(devtools)
+install_github("myominnoo/mStats") 
+
+## Method 2: install mStats version from CRAN
+install.packages("mStats")
+
+## Method 3: direct installation from my webpage.
+install.packages("https://myominnoo.github.io/pages/r/mStats_3.3.1.tar.gz", repos = NULL, type = "source")
+```
+
+Check detail on previous versions on my webpage. https://myominnoo.github.io/pages/r_archives.html
+
 
 ## Functions in R  
 *** 
@@ -339,9 +354,11 @@ This book is intended to guide new R users to quickly get on with data managemen
 This chapter covers methods in R to prepare data for further analysis. At the end of this chapter, we will get a tidy data on which we can run further analyses. So what is a tidy data? 
 
     Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how rows, columns, and tables are matched up with observations, variables, and types. In tidy data:
+    
     1. Each variable forms a column.
     2. Each observation forms a row.
     3. Each type of observational unit forms a table.
+    
     - Hadley Wickham, R for Data Science
     
 If you are familiar with spreadsheet data, you already understand some of the data concepts. Like any spreadsheets, R also handles such a fairly similar data structure, which has rows and columns. Hence, they are called two-dimensional data. 
@@ -456,8 +473,12 @@ Check the version of `STATA` used to export `.dta`. Sometimes, older versions do
 Try importing the following dataset into R. First, use the link to input from online. Then also download the dataset and import it from your computer.
 
 * Downs Syndrome data from STATA: http://www.stata-press.com/data/r16/downs.dta
+
 * Diet data from STATA: https://www.stata-press.com/data/r16/diet.dta
+
 * Low Birth Weight data from STATA: http://www.stata-press.com/data/r16/lbw.dta
+
+* Try importing World Bank datasets in different format. https://data.worldbank.org/ 
 
 ## Viewing the dataset  
 *** 
@@ -1435,7 +1456,7 @@ elemapi2 %$%
 ## Normal quantile plot
 elemapi2 %$%
   qqnorm(enroll, 
-          main = "Boxplot of enroll", 
+          main = "Normal Quantile Plot of enroll", 
           xlab = "Number of students")
 ## Add a diagonal line 
 elemapi2 %$% 
@@ -1479,6 +1500,677 @@ histogram(elemapi2, lenroll,
 7. Make a scatterplot matrix for these variables and relate the correlation results to the scatterplot matrix.
 8. Perform a regression predicting `api99` from `meals` and `ell`. Interpret the output.
 *** 
+
+
+*** 
+### Model Diagnostics
+***
+
+So far, we have learned how to run linear regression in R, with some methods of checking the data. Unless we verify that our data meet the assumptions under linear regression, the results may be misleading. In this section, we will explore how we can use R to check whether our data satisfy the assumptions. This section was based on UCLA's `STATA` tutorial series.^[REGRESSION WITH STATA CHAPTER 2 – REGRESSION DIAGNOSTICS. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/webbooks/reg/chapter2/stata-webbooksregressionwith-statachapter-2-regression-diagnostics/ (accessed August 22, 2016)]
+
+We will focus on the following assumptions. 
+
+    - Linearity 
+          The relationships between the predictors and the outcome variable should be linear.
+    - Normality
+          The errors should be normally distributed – technically normality is necessary only for hypothesis tests to be valid, estimation of the coefficients only requires that the errors be identically and independently distributed
+    - Homogeneity of variance (homoscedasticity) 
+          The error variance should be constant
+    - Independence 
+          The errors associated with one observation are not correlated with the errors of any other observation.
+
+In this section, we use an example dataset called `crime`. This dataset is from Statistical Methods for Social Sciences, Third Edition by Alan Agresti, and Barbara Finlay (Prentice Hall, 1997). Detail can be read here.^[REGRESSION WITH STATA CHAPTER 2 – REGRESSION DIAGNOSTICS. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/webbooks/reg/chapter2/stata-webbooksregressionwith-statachapter-2-regression-diagnostics/ (accessed August 22, 2016)] 
+
+Variables
+    
+1. sid - id
+2. state - state name
+3. crime - violent crimes per 100,000 people 
+4. murder - murders per 1,000,000 
+5. pctmetro - the percentage of the population living in metropolitan areas
+6. pctwhite - the percentage of the white population 
+7. pcths - the percentage of the population with high school education and above
+8. poverty - the percentage of the population living under the poverty line
+9. single - the percentage of the population that are single parents
+    
+
+We want to predict `crime` based on `pctmetro`, `poverty`, and `single`. That is to say, we want to build a linear regression model between the response variable `crime` and the independent variables `pctmetro`, `poverty`, and `single`.
+
+First, let's import this dataset into R. 
+
+```{r import crime}
+## Import crime dataset
+crime <- haven::read_dta("https://stats.idre.ucla.edu/stat/stata/webbooks/reg/crime.dta")
+
+## Check the dataset
+codebook(crime)
+```
+
+
+*** 
+#### Influential data
+*** 
+
+Often you deal with a dataset where a single observation can make a huge difference in the regression output if it is substantially different from all other observations. In this case, you need to investigate this further. There are three ways that observations can be unusually different. 
+
+1. Outliers
+
+They are **large residuals** in linear regression. An outlier often represents data entry error. 
+
+2. Leverage points
+
+An extreme value in a predictor variable is called high leverage point. 
+
+3. Influential points
+
+If removing such extreme values or high leverage points substantially changes the coefficient estimates, such values are called influential points. 
+
+
+Let's create a scatter plot matrix on variables, `crime`, `pctmetro`, `poverty`, and `single`.
+
+```{r scatterplotmatrix crime }
+## Scatter plot matrices
+crime %>% 
+  select(crime, pctmetro, poverty, single) %>%
+  scatterPlotMatrix(main = "Scatter Plot Matrices of Crime Dataset")
+```
+
+We see a data point that is far away from the rest of the data in every plot. Let's make individual plots so that we can get a better view. We also add labels to these data points so that we know which state these data points come from. 
+
+**Scatter plots with data labels**
+
+Below we use `text` function from base R to add labels to the data points. Check the help page by running `?text`.
+
+```{r scatter plots with labels crime}
+## Set graphs parameter
+par(mfrow = c(2, 2))
+
+## Plot crime and pctmetro
+plot(crime ~ pctmetro, data = crime, main = "crime ~ pctmetro")
+crime %$% text(crime ~ pctmetro, labels = state, 
+               cex = 0.8, pos = 1, col = "blue")
+
+## Plot crime and poverty
+plot(crime ~ poverty, data = crime, main = "crime ~ poverty")
+crime %$% text(crime ~ poverty, labels = state,
+               cex = 0.8, pos = 1, col = "blue")
+
+## Plot crime and single
+plot(crime ~ single, data = crime, main = "crime ~ single")
+crime %$% text(crime ~ single, labels = state,
+               cex = 0.8, pos = 1, col = "blue")
+
+## Reset graphs parameter
+par(mfrow = c(1, 1))
+```
+
+We see the data point that is far away from the rest of the data comes from `DC` state. Since it stands out, we can say this is an outlier and leverage point. We keep this in mind while we continue fitting the linear model.
+
+**Fitting a linear model**
+
+Let's fit the model and run `regress`. 
+
+```{r regress crime 1}
+## Fit the model 
+fit <- lm(crime ~ pctmetro + poverty + single, data = crime)
+
+## Generate regression output
+## Set decimal point to 2 to make the output fit the page width
+reg <- regress(fit, rnd = 2)
+```
+
+
+Next, we are going to generate studentized residuals, leverage values, and Cook's distance values from the model to identify the potentially unusual or influential points. 
+
+Below we use `predict` function to generate the data with these statistics, and store the result to `rstd`.
+
+```{r predict crime}
+## Generate diagnostic statistics
+rstd <- predict(reg)
+
+## Check the dataset
+codebook(rstd)
+```
+
+The studentized residuals are stored under the variable, `std.resid`, leverage under `hat` and Cook's distance under `cooksd`. 
+
+**Boxplots for residuals**
+
+Let's check the studentized residuals with `boxplot`. 
+
+```{r boxplot crime rstud}
+## Set graphs parameter
+par(mfrow = c(1, 3))
+
+## Boxplot 
+rstd %$% boxplot(std.resid, main = "Studentized Residuals")
+rstd %$% boxplot(std.resid, main = "Leverage values")
+rstd %$% boxplot(std.resid, main = "Cook's Distance")
+
+## Set graphs parameter
+par(mfrow = c(1, 1))
+```
+
+**Studentized Residuals** 
+
+We want to see which state has studentized residuals over +2 or under -2. We do this by listing a few lines from the top and the bottom. We use `head` and `tail` functions from base R to get top and bottom rows.
+
+```{r list std.resid head and tail}
+## Check top rows
+rstd %>% 
+  arrange(std.resid) %>% 
+  select(sid, state, std.resid) %>% 
+  head
+
+## Check bottom rows
+rstd %>% 
+  arrange(std.resid) %>% 
+  select(sid, state, std.resid) %>% 
+  tail
+```
+
+
+We should pay attention to studentized residuals that exceed +2 or -2, and get even more concerned about residuals that exceed +2.5 or -2.5 and even yet more concerned about residuals that exceed +3 or -3.  These results show that DC and MS are the most worrisome observations followed by FL.
+
+Below we use `abs` function to get absolute values of studentized residuals that are greater than 2. 
+
+```{r list std.resid abs }
+rstd %>% 
+  filter(abs(std.resid) > 2) %>% 
+  select(sid, state, std.resid, crime, pctmetro, poverty, single)
+```
+
+We see the data for the three potential outliers we identified, namely Florida, Mississippi, and Washington D.C. Looking carefully at these three observations, we couldn’t find any data entry error, though we may want to do another regression analysis with the extreme point such as DC deleted. 
+
+**Leverage value** 
+
+Below we also list 6 largest values of leverage or hat values along with variables in the regression model.
+
+```{r list hat}
+## List 6 largest leverage values 
+rstd %>% 
+  arrange(hat) %>% 
+  select(sid, state, hat, crime, pctmetro, poverty, single) %>% 
+  tail
+```
+
+The state `DC` also has the largest leverage values.
+
+As a rule of thumb, a data point with leverage value greater than `(2k + 2) / n` should be carefully checked, where k is the number of predictors and n is the number of observations. In our case, we got 3 predictors and 51 observations, hence `(2 * 3 + 2) / 51 =` `r (2*3+2)/51`. 
+
+```{r list regression variables leverage}
+## List variables in the regression model if leverage > 0.156
+rstd %>% 
+  filter(hat > 0.156) %>% 
+  arrange(hat) %>% 
+  select(sid, state, hat, crime, pctmetro, poverty, single)
+```
+
+Similar to the studentized residuals, `DC` has the largest leverage value.  
+
+We can also plot the leverage by the studentized residuals to look for observations that are high on both measures. The points we would examine are values in the upper right or lower right corners, which are outside the red dashed Cook’s distance line. These are points that would be influential in the model and removing them would likely noticeably alter the regression results. This is a quick way of checking potential influential observations and outliers at the same time. Both types of points are of great concern to us.
+
+Below we create the graph by inputting `reg` into `plot` function.
+
+```{r plot leverage vs residuals}
+## Leverage versus residuals plot
+plot(reg)
+```
+
+We see two data points with row numbers 51 and 25 are outside the Cook's distance which is indicated by two red dashed lines. They need to be checked carefully. As it turns out, row 51 and 25 corresponds to the state, `DC` and `MS`.
+
+```{r list DC and MS}
+## List variables if state == dc or ms: note R is case-sensitive 
+rstd %>% 
+  filter(state == "dc" | state == "ms") %>% 
+  select(sid, state, std.resid, hat, crime, pctmetro, poverty, single)
+```
+
+**Cook's Distance**
+
+Let's move on to Cook's distance, which combines information on the residual and leverage. The lowest possible value is zero, and the higher the Cook'Distance is, the more influential the point is. The conventional cut-off point is `4 / n`. 
+
+Below we list all observations with the Cook's distance that is greater than `4 / 51`.
+
+```{r list cook d}
+## List all variables if Cook's D > 4 / 51 
+rstd %>% 
+  filter(cooksd > (4 / 51)) %>% 
+  select(sid, state, std.resid, cooksd, hat, crime, pctmetro, poverty, single)
+```
+
+The `DC`'s Cook's Distance is by far the largest. 
+
+**avPlots**
+
+Finally, we create added-variable plots to identify influential points. These are also called partial-regression plots since they help us to evaluate the residuals of a predictor variable while holding the other predictors constant. 
+
+Below we use `avPlots` from `car` package. 
+
+```{r install car, eval=FALSE}
+## Install car pacakage if you don't have it. 
+install.packages("car")
+```
+
+```{r avPlots car}
+## Create avPlots by inputting our model fit
+car::avPlots(fit)
+```
+
+In the last `avplot` for single, the graph shows `crime` by `single` after both `crime` and `single` has been adjusted for all other predictors in the model.   The line plotted has the same slope as the coefficient for `single`.   This plot shows how the observation for `DC` influences the coefficient.  You can see how the regression line is tugged upwards trying to fit through the extreme value of `DC` (51).  `Alaska` (1) and `West Virginia` (the lowest data point) may also exert substantial leverage on the coefficient of `single`.
+
+    DC has appeared as an outlier as well as an influential point in every analysis. Since DC is not a state, we can use this to justify omitting it from the analysis saying that we wish to just analyze states. 
+    
+    
+Let's run `regress` by removing the state `DC`.
+
+```{r regress crime remove dc}
+## Remove dc row
+crime2 <- crime %>%
+  filter(state != "dc")
+
+## Fit linear model using dataset with dc row removed
+fit <-  lm(crime ~ pctmetro + poverty + single, data = crime2)
+
+## Regression report with 2 decimal points
+regress(fit, rnd = 2)
+```
+
+***
+#### Normality
+***
+
+Normality of residuals is only required for the validity of hypothesis testing so that p-values for t-test and F-test will be valid. It is not required to get unbiased estimates of the regression coefficients.
+
+    OLS regression merely requires that the residuals (errors) be identically and independently distributed. Furthermore, there is no assumption or requirement that the predictor variables be normally distributed. If this were the case then we would not be able to use dummy coded variables in our models.
+    
+We use the `elemapi2` data we imported in the previous section on Simple Linear Regression. Let's fit a model for academic performance (`api00`) using three predictors: percentage of students receiving free meals (`meals`), percentage of English language learners (`ell`), and percentage of teachers with emergency credentials (`emer`). 
+
+```{r fit api00 2}
+## Fit the model 
+fit <- lm(api00 ~ meals + ell + emer, data = elemapi2)
+
+## Generate regression output
+reg <- regress(fit)
+```
+
+There are two ways to check the normality of residuals: Normal quantile plot and Shapiro-Wilk test of normality.
+
+Below we create a normal quantile plot by inputting `reg` into `plot` function.
+
+```{r normal quantile plot}
+## Plots for linear model diagnostics
+plot(reg)
+```
+
+We have seen this plot matrix when we discussed MLR. The second plot is the normal quantile plot. If the data points should fall nicely along the dashed line, we say the residuals are normally distributed. 
+
+Next, we run a numerical test on residual data by `summ` funtion. We generate residuals data by inputting `reg` into `predict` function. The residuals are stored in the variable `resid`.
+
+```{r predict api00 resid}
+## Generate residuals
+rstd <- predict(reg)
+
+## summary statistic on `resid` variable
+summ(rstd, resid)
+```
+
+Look at the p-value under the column `Normality`. Since the p-value is very large (0.51), we conclude that the residual is normally distributed. This is consistent with that from the normal quantile plot described above. 
+
+***
+#### Homoscedasticity
+***
+
+One of the main assumptions of the linear regression is the homoscedasticity of residuals. It means that the variances of residuals are constant across the data points. If the residuals are plotted against fitted values, they should not show any pattern. A commonly used graphical method is to plot the residuals versus fitted values (or predicted values). 
+
+We have already seen this plot in the plot matrix above. It is the first plot. 
+
+Below we create this plot from the raw data of `predict` function.
+
+```{r plot resid vs fitted}
+## plot residuals versus fitted values
+plot(resid ~ fitted, data = rstd, 
+     main = "Residuals versus Fitted values", 
+     xlab = "Fitted values",
+     ylab = "Residuals")
+## Add a horizontal red line to indicate 0 
+abline(h = 0, col = "red")
+```
+
+
+We see that the pattern of the data points is getting a little narrower towards the right end, which is an indication of heteroscedasticity.
+
+
+Now let's look at the Breusch-Pagan test for heteroskedasticity. 
+
+```{r hettest api00}
+## Perform  the Breusch-Pagan test
+hettest(reg)
+
+## Studentized version 
+hettest(reg, studentize = TRUE)
+```
+
+if the p-value is very small, we would have to reject the hypothesis and accept the alternative hypothesis that the variance is not homogenous. So in this case, the evidence is against the null hypothesis that the variance is homogeneous. These tests are very sensitive to model assumptions, such as the assumption of normality. Therefore it is a common practice to combine the tests with diagnostic plots to make a judgment on the severity of the heteroscedasticity and to decide if any correction is needed for heteroscedasticity. In our case, the plot above does not show too strong an evidence.
+
+***
+#### Multicollinearity
+*** 
+
+When there is a perfect linear relationship among the predictors, the estimates for a regression model cannot be uniquely computed. If two variables are near perfect linear combinations of one another and there are more than two variables involved, it is often called `multicollinearity`.
+
+As the degree of multicollinearity increases, the regression model estimates of the coefficients become unstable and the standard errors for the coefficients can get wildly inflated. It means the estimates for the regression coefficients are biased and the conclusion will be incorrect. 
+
+Below we use `vif` function from the `car` package by inputting the model fit to predict `api00` from `meals`, `ell`, and `emer`.
+
+The `vif` stands for variance inflation factor. As a rule of thumb, a variable whose `VIF` values are greater than 10 may merit further investigation. Tolerance, defined as `1/VIF`, is used by many researchers to check on the degree of collinearity. A tolerance value lower than 0.1 is comparable to a VIF of 10. It means that the variable could be considered as a linear combination of other independent variables. 
+
+```{r vif car}
+## vif for the model fit
+car::vif(fit)
+```
+
+The `VIF`s look fine here. 
+
+Here is an example where the `VIF`s are more worrisome.
+
+```{r vif example 2}
+## Fit another model
+fit <- lm(api00 ~ acs_k3 + avg_ed + grad_sch + col_grad + some_col, data = elemapi2)
+
+## regression report
+regress(fit)
+
+## Check vif 
+car::vif(fit)
+```
+
+In this example, the `VIF`values for `avg_ed`, `grad_sch` and `col_grad` are worrisome.  All of these variables measure the education of the parents and the very high `VIF` values indicate that these variables are possibly redundant.  For example, after you know `grad_sch` and `col_grad`, you probably can predict `avg_ed` very well.  In this example, multicollinearity arises because we have put in too many variables that measure the same thing, parent education.
+
+Let’s omit one of the parent education variables, `avg_ed`.
+
+```{r vif example 3}
+## Fit another model: omit avg_ed
+fit <- lm(api00 ~ acs_k3 + grad_sch + col_grad + some_col, data = elemapi2)
+
+## regression report
+regress(fit)
+
+## Check vif 
+car::vif(fit)
+```
+
+The `VIF` values in the analysis here appear much better.  Also, note how the standard errors are reduced for the parent education variables, `grad_sch` and `col_grad`. This is because of the high degree of collinearity caused the standard errors to be inflated. With the multicollinearity eliminated, the coefficient for `grad_sch`, which had been non-significant, is now significant.
+
+*** 
+#### Linearity
+*** 
+
+
+When we do linear regression, we assume that the relationship between the response variable and the predictors is linear. This is the assumption of linearity. If this assumption is violated, the linear regression will try to fit a straight line to data that does not follow a straight line. Checking the linear assumption in the case of simple regression is straightforward since we only have one predictor. All we have to do is a scatter plot between the response variable and the predictor to see if the nonlinearity is present, such as a curved band or a big wave-shaped curve. 
+
+```{r SLR example 2}
+## Fit the model for api00 and enroll
+fit <- lm(api00 ~ enroll, data = elemapi2)
+
+## regression report
+reg <- regress(fit)
+```
+
+Below we create a scatter plot with a regression line and a lowess smoother. 
+
+```{r scatterplot lowess}
+## Create scatter plot api00 ~ enroll
+plot(api00 ~ enroll, data = elemapi2, 
+     main = "Scatter plot with regression and lowess lines", 
+     xlab = "Number of students", 
+     ylab = "Academic Performance")
+
+## Add regression line
+abline(fit, col = "blue")
+
+## Add lowess smoother
+elemapi2 %$% lines(lowess(api00, enroll), col = "red")
+```
+
+
+Checking the linearity assumption is not so straightforward in the case of multiple regression. 
+
+The most straightforward thing to do is to plot the standardized residuals against each of the predictor variables in the regression model. If there is a clear nonlinear pattern, there is a problem of nonlinearity. Otherwise, we should see for each of the plots just a random scatter of points.
+
+
+**Component residual plots**
+
+They are an extension of `partial residual plots` to examine if the predictors have a linear relationship to the dependent variable. A partial residual plot essentially attempts to model the residuals of one predictor against the dependent variable. A component residual plot adds a line indicating where the line of best fit lies. A significant difference between the residual line and the component line indicates that the predictor does not have a linear relationship with the dependent variable. 
+
+Below we generate a component residual plot for the model fit by using `crPlots` function from `car` package.
+
+```{r crPlots 1}
+## Component residual plots
+car::crPlots(fit)
+```
+
+The plot shown above does not strongly indicate a clear departure from linearity.
+
+**nations data**
+
+Let’s look at a more interesting example. This example is taken from “Statistics with Stata 5” by Lawrence C. Hamilton (1997, Duxbery Press). The dataset we will use is called `nations`. 
+
+Let's import the dataset and fit a model that predicts birth rate (`birth`), from per capita gross national product (`gnpcap`), and urban population (`urban`). If this were a complete regression analysis, we would start by examining the variables, but to illustrate nonlinearity, we will jump directly to the regression and create component residual plots to identify the non-linearity problem.
+
+```{r fit MLR 2}
+## Import nations dataset
+nations <- haven::read_dta("https://stats.idre.ucla.edu/stat/stata/examples/sws5/nations.dta")
+
+## Check the dataset
+codebook(nations)
+
+## Fit a new model
+fit <- lm(birth ~ gnpcap + urban, data = nations)
+
+## Regression report
+regress(fit)
+
+## crPlots from car package
+car::crPlots(fit)
+```
+
+The `acprplot` plot for `gnpcap` shows a clear deviation from linearity and the one for urban does not show nearly as much deviation from linearity. 
+
+Below we create a scatter plot matrix to look at each variable closely. 
+
+```{r scatterPlotMatrix fit nation}
+## Scatter Plot Matrix for birth gnpcap urban
+nations %>%
+  select(birth, gnpcap, urban) %>% 
+  scatterPlotMatrix(main = "Scatter plot matrix for birth, gnpcap and urban")  
+```
+
+We see that the relation between birth rate and per capita gross national product is clearly nonlinear and the relationship between birth rate and urban population is not too far off from being linear. 
+
+Let's use `ladder` function to generate transformation powers to convert `gnpcap` to normal distribution.
+
+```{r ladder nations gnpcap}
+## Ladder transformation
+ladder(nations, gnpcap)
+```
+
+The `log` transformation shows the largest `W` and p-value. 
+
+Let's transform `gnpcap` to `log` scale.
+
+```{r log transform}
+## Tranform gnpcap to log scale
+nations <- generate(nations, lggnp, log(gnpcap))
+
+## make two histograms of the gnpcap and lggnp 
+par(mfrow = c(1, 2))
+histogram(nations, gnpcap, xlab = "GNP per capita")
+histogram(nations, lggnp, xlab = "GNP per capita log scale")
+par(mfrow = (c(1, 1)))
+```
+
+The transformation does seem to help correct the skewness greatly. Next, let’s do the regression again replacing gnpcap by lggnp.
+
+```{r MLR nations 2}
+## Fit the model by replacing gnpcap with lggnp
+fit <- lm(birth ~ lggnp + urban, data = nations)
+
+## Regression report
+regress(fit)
+
+## Component residual plots
+car::crPlots(fit)
+```
+
+The plot above shows less deviation from nonlinearity than before, though the problem of nonlinearity has not been completely solved yet.
+
+
+*** 
+#### Model Specification
+*** 
+
+
+A model specification error can occur when one or more relevant variables are omitted from the model or one or more irrelevant variables are included in the model. If relevant variables are omitted from the model, the common variance they share with the included variables may be wrongly attributed to those variables, and the error term is inflated. On the other hand, if irrelevant variables are included in the model, the common variance they share with the included variables may be wrongly attributed to them. Model specification errors can substantially affect the estimate of regression coefficients.
+
+Consider the model below. This regression suggests that as class size increases the academic performance increases. Before we publish results saying that increased class size is associated with higher academic performance, let’s check the model specification.
+
+```{r fit api00 acs_k3}
+## Fit the model api00 acs_k3
+fit <- lm(api00 ~ acs_k3, data = elemapi2)
+
+## Regression report
+regress(fit)
+
+```
+
+There are a couple of methods to detect specification errors. 
+
+Below, we perform `linkTest` which is a model specification link test for single-equation models. The `linkTest` is based on the idea that if a regression is properly specified, one should not be able to find any additional independent variables that are significant except by chance. `linkTest` creates two new variables, the variable of prediction, hat_, and the variable of squared prediction, `hatsq_`. The model is then refitted using these two variables as predictors. hat_ should be significant since it is the predicted value. On the other hand, `hatsq_` shouldn’t, because if our model is specified correctly, the squared predictions should not have much explanatory power. That is we would not expect  `hatsq_` to be a significant predictor if our model is specified correctly. So we will be looking at the p-value for `hatsq_`.
+
+```{r linkText api00 acs_k3}
+## Perform linkTest
+linkTest(fit, rnd = 2)
+```
+
+From the above `linkTest`, the test of `hatsq_` is not significant. This is to say that `linkTest` has failed to reject the assumption that the model is specified correctly. Therefore, it seems to us that we don’t have a specification error. 
+
+Let’s try adding the variable `full` to the model.
+
+```{r fit api00 acs_k3 full}
+## Fit the model api00 acs_k3 full 
+fit <- lm(api00 ~ acs_k3 + full, data = elemapi2)
+
+## Regression report
+regress(fit)
+
+## Perform linkTest
+linkTest(fit)
+```
+
+The p-value indicates that we have a specification problem.
+
+Next, we add `meals` to the model.
+
+
+```{r fit api00 acs_k3 full meals}
+## Fit the model api00 acs_k3 full meals
+fit <- lm(api00 ~ acs_k3 + full + meals, data = elemapi2)
+
+## Regression report
+regress(fit)
+
+## Perform linkTest
+linkTest(fit)
+```
+
+
+Note that after including meals and `full`, the coefficient for class size is no longer significant. While `acs_k3` does have a positive relationship with `api00` when no other variables are in the model, when we include, and hence control for, other important variables, `acs_k3` is no longer significantly related to `api00` and its relationship to `api00` is no longer positive. 
+
+***
+#### Independence
+*** 
+
+The statement of this assumption that the errors associated with one observation are not correlated with the errors of any other observation covers several different situations. Consider the case of collecting data from students in eight different elementary schools. The students within each school will likely tend to be more like one another than students from different schools, that is, their errors are not independent.
+
+
+Another way in which the assumption of independence can be broken is when data are collected on the same variables over time. Let’s say that we collect truancy data every semester for 12 years. In this situation, the errors for observation between adjacent semesters will likely be more highly correlated than for observations more separated in time. This is known as autocorrelation. 
+
+
+We don’t have any time-series data, so we will use the elemapi2 dataset and pretend that `snum` indicates the time at which the data were collected. 
+
+A simple visual check would be to plot the residuals versus the time variable.
+
+Below we fit the model for `api00` with `enroll`.
+```{r fit api00 enroll 2}
+## Fit the model api00 enroll 
+fit <- lm(api00 ~ enroll, data = elemapi2)
+
+## Regression report
+reg <- regress(fit)
+
+## Predict model diagnostic statistics
+rstd <- predict(reg)
+
+## Plots residuals versus time variable 'snum'
+plot(resid ~ snum, data = rstd, 
+     main = "Residuals across School Number, 'snum'",
+     xlab = "School number", 
+     ylab = "Residuals")
+```
+
+*** 
+#### Summary 
+*** 
+
+We have used several tools in R for determining whether our data meets the regression assumptions. Below, we list the functions we demonstrated according to the assumptions.
+
+**Detecting Influential Data**
+
+  - `scatterPlotMatrix` from `mStats` graphs scatter plot matrices. Input is dataset with desired variables.
+  
+  - `predict` from `mStats` is used to create predicted or fitted values, residuals, and measures of influence. Input is the output `reg` from `regress` function, although `reg` can be any name you set for the output.
+  
+  - `plot` from `mStats` graphs four plots for linear model diagnostics. We check the residual-versus-fitted plot (the first plot) and residual-versus-leverage plot (the fourth plot). 
+  
+  - ``avPlots` from `car` graphs an added-variable plot, a.k.a. partial regression plot.
+  
+**Tests for Normality of Residuals**
+
+  - `plot` from `mStats` graphs four plots for linear model diagnostics. We check the normal quantile plot (the second plot) 
+  
+  - `summ` from `mStats` to summarize residuals, `resid` from `rstd` which is obtained from `predict` function. We check the p-value from the Shapiro-Wilk test of normality shown as `Normality` in the output.
+
+**Tests for Heteroscedasticity**
+
+  - `plot` from `mStats` graphs four plots for linear model diagnostics. We check the residual-versus-fitted plot (the first plot). 
+  
+  - `hettest` from `mStats` performs the Breusch-Pagan test for heteroscedasticity.
+  
+**Test for Multicollinearity**
+
+  - `vif` from `car` calculates the variance inflation factor for the independent variables in the linear model.
+
+**Tests for Non-Linearity**
+
+  - `plot` from base R graphs a scatter plot with linear regression and lowess smoother lines. It requires additional functions, `abline` and `Lines`.
+  
+  - `crPlots` from `car` graphs a component residual plot.
+  
+**Tests for Model Specification**
+
+  - `linkTest` from `mStats` performs a link test for model specification.
+  
+  
+*** 
+#### Exercise 
+*** 
+
+For this section, go to UCLA's STATA web tutorial here: https://stats.idre.ucla.edu/stata/webbooks/reg/chapter2/stata-webbooksregressionwith-statachapter-2-regression-diagnostics/
+
+Although the terms may be a bit different since the web tutorial is for STATA, try as much as you can to answer them. 
+
+
 
 # Data Visualization 
 
