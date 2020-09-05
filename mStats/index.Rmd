@@ -1014,7 +1014,7 @@ is.Date
 ## Linear Regression
 *** 
 
-This chapter covers a variety of topics about using R for linear regression. We demonstrate how R can be used for linear regression analysis. This chapter is based on the `STATA` web tutorial from UCLA. ^[Chen, X., Ender, P., Mitchell, M. and Wells, C. (2003). Regression with Stata, from https://stats.idre.ucla.edu/stat/stata/webbooks/reg/default.htm]
+This chapter covers a variety of topics about using R for linear regression. We demonstrate how R can be used for linear regression analysis. This chapter is based on the UCLA's `STATA` web tutorial. ^[REGRESSION WITH STATA CHAPTER 1 – SIMPLE AND MULTIPLE REGRESSION. UCLA: Statistical Consulting Group. from https://stats.idre.ucla.edu/stata/webbooks/reg/chapter1/regressionwith-statachapter-1-simple-and-multiple-regression/ (accessed August 22, 2016)]
 
 In this chapter, we use a dataset that was created by random sampling of 400 elementary schools from `API 2000` dataset of the United States' California Department of Education. This is the same dataset from the tutorial.
 
