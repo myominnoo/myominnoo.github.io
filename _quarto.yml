@@ -13,7 +13,8 @@ website:
   title: "Myo Minn Oo"
   description: "Epidemiologist & R Data Scientist"
   image: assets/img/myo.png
-  favicon: assets/img/favicon.png
+  favicon: assets/img/m2o_logo_small.png
+  # favicon: assets/img/favicon.png
   site-url: https://myominnoo.com
   repo-url: https://github.com/myominnoo/myominnoo.github.io
   repo-actions:
