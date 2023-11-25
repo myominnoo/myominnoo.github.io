@@ -1,20 +1,93 @@
 project:
   type: website
-
-website:
-  title: "Myo Minn Oo's Personal Site"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
-format:
-  html:
-    theme: cosmo
-    css: styles.css
-    toc: true
+  preview:
+    port: 3434
+    browser: true
+    watch-inputs: true
+    timeout: 3600
 
 execute:
   freeze: auto
+
+website:
+  title: "Myo Minn Oo"
+  description: "Epidemiologist & R Data Scientist"
+  image: assets/img/myo.png
+  favicon: assets/img/favicon.png
+  site-url: https://myominnoo.com
+  repo-url: https://github.com/myominnoo/myominnoo.github.io
+  repo-actions:
+    - source
+    - issue
+  twitter-card:
+    creator: "@dr_myominnoo"
+    card-style: summary_large_image
+  open-graph:
+    locale: en_EN
+  page-navigation: true
+  search:
+    location: navbar
+    type: textbox
+  google-analytics:
+    tracking-id: "G-D94THC7RLW"
+    anonymize-ip: true
+  cookie-consent:
+    type: express
+    prefs-text: "Change cookies 🍪"
+  page-footer:
+    border: true
+    left: "&#169; 2023 Myo Minn Oo"
+    center:
+      - text: Code of conduct
+        href: coc.qmd
+      - text: Accessibility
+        href: accessibility.qmd
+      - text: License
+        href: license.qmd
+    right: "made with ︎♥️ & [Quarto](https://quarto.org)"
+
+  navbar:
+    pinned: true
+    # logo: assets/img/m2o_logo_small.png
+    # logo-alt: "M2O Analytics"
+    left:
+      - text: Blog
+        icon: pen-fill
+        href: blog.qmd
+      - text: Projects
+        icon: puzzle-fill
+        href: projects.qmd
+      - text: M2O Analytics
+        icon: diagram-3-fill
+        href: shop.qmd
+      - text: CV
+        icon: file-earmark-text-fill
+        href: cv.qmd
+    tools:
+      - icon: rss
+        aria-label: rss
+        href: blog.xml
+      - icon: github
+        aria-label: GitHub
+        href: https://github.com/myominnoo
+      - icon: linkedin
+        aria-label: LinkedIn
+        href: https://www.linkedin.com/in/myominnoo/
+
+
+
+
+format:
+  html:
+    # theme: flatly
+    theme: [flatly, assets/styling/theme.scss]
+    toc: true
+    toc-depth: 4
+    pagetitle: "Myo Minn Oo | {{< meta title >}}"
+    page-layout: article
+    smooth-scroll: true
+    link-external-newwindow: true
+    code-link: true
+    highlight-style: a11y
+    include-in-header: assets/html/fosstodon.html
 
