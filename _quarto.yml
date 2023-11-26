@@ -47,7 +47,7 @@ website:
       - text: Blog
         icon: bi-stars
         href: blog/index.qmd
-      - text: About Me
+      - text: About
         icon: file-earmark-text-fill
         href: about.qmd
     tools:
