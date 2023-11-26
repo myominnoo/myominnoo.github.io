@@ -1,0 +1,36 @@
+---
+title: "M2O Analytics"
+author: ""
+lightbox: false
+description-meta: "A blog for R code & health data science content."
+comments: false
+listing:
+  - id: blog
+    contents: "**/index.qmd"
+    type: default
+    image-align: left
+    fields: 
+      - title
+      - description
+      - date
+      - image
+      - categories
+      - reading-time
+    categories: numbered
+    sort: "date desc"
+    sort-ui: true
+    filter-ui: true
+    page-size: 5 
+    feed:
+      categories: 
+        - R
+---
+
+Welcome to my blog! I'm so happy you're here to learn with me. I'll be using this space to write about what I'm learning, working on, and am curious about.
+
+I welcome respectful feedback and discussions that adhere to the [Code of Conduct](../coc.qmd).
+
+---
+
+::: {#blog}
+:::

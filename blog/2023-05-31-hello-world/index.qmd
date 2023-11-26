@@ -1,0 +1,20 @@
+---
+title: "Hello World!"
+description: "Introducing my personal website!"
+date: "2023-05-31"
+image: hello-world-bg.jpg
+image-alt: "Hello World Picture."
+date-format: long
+categories: 
+  - News
+execute: 
+  eval: false
+---
+
+I am thrilled to announce the debut of my personal website, where I share my journey, research findings, and insights with the world. Previously, this website has been one pager with very minimal sharing outside my circle. With this new development, I intend to write more about what I am doing and what I learn along the way with everyone.
+
+I also open a comment session on the blog posts. So any constructive feedbacks are welcomed.
+
+Cheers, everyone! Stay tuned!
+
+Myo

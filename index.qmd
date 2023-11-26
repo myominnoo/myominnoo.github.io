@@ -1,7 +1,44 @@
 ---
-title: "Myo's Personal Website"
+pagetitle: "Myo Minn Oo | Epidemiologist" # What shows up in google search results
+title: "Myo Minn Oo" # Right under the photo on trestle template
+subtitle: "Epidemiologist" # smaller, under title
+image: assets/img/headshot-tall.png
+image-alt: "Myo in full smile living the best of his life."
+about:
+  id: hero-heading
+  template: trestles
+  image-width: 15em
+  image-shape: rounded
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      aria-label: LinkedIn
+      href: https://www.linkedin.com/in/myominnoo/
+    - icon: github
+      text: GitHub
+      aria-label: GitHub
+      href: https://github.com/myominnoo
+    - icon: envelope
+      text: Email
+      href: mailto:dr.myominnoo@gmail.com
+toc: false
+anchor-sections: false
+execute: 
+  freeze: true
 ---
 
-Under Development! Coming Soon!
+::: {#hero-heading}
 
-Cheers! 🍻🍻🍻
+**Hi, I am Myo.** 👋
+
+I'm an epidemiologist and health researcher dedicated to advancing equitable healthcare through reproducible data science and R.
+
+> Always coding. Passionate about data science. Worried about health inequity. Proud husband.
+
+Currently, I work for a health economic consulting firm based in Canada. I often contribute as an Academic Editor for PLoS ONE and engage in academic tasks such as peer reviews for select journals. 
+
+Whether you are navigating intricate research designs, decoding complex datasets, or crafting impactful health narratives, I'm here for a meaningful conversation.
+
+I'm thrilled to have you here! Let's embark on an exploration of the captivating world of global health research together!
+
+:::

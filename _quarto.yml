@@ -11,30 +11,56 @@ execute:
 
 website:
   title: "Myo Minn Oo"
-  description: "Epidemiologist & R Data Scientist"
-  image: assets/img/myo.png
-  favicon: assets/img/m2o_logo_small.png
-  # favicon: assets/img/favicon.png
+  description: "Health Research, R, Data Science"
   site-url: https://myominnoo.com
   repo-url: https://github.com/myominnoo/myominnoo.github.io
   repo-actions:
     - source
     - issue
+  favicon: assets/img/favicon.png
   twitter-card:
     creator: "@dr_myominnoo"
+  #   image: assets/img/JR-logo-white-bg.png
+  #   image-alt: "Cat with tail shaped as the letter J next to last name initial R"
     card-style: summary_large_image
   open-graph:
     locale: en_EN
+  #   image: assets/img/JR-logo-white-bg.png
+  #   image-alt: "Cat with tail shaped as the letter J next to last name initial R"
   page-navigation: true
-  search:
-    location: navbar
-    type: textbox
   google-analytics:
     tracking-id: "G-D94THC7RLW"
     anonymize-ip: true
   cookie-consent:
     type: express
     prefs-text: "Change cookies 🍪"
+
+  # search:
+  #   location: navbar
+  #   type: textbox
+
+  navbar:
+    pinned: true
+    logo: assets/img/m2o_logo_small.png
+    logo-alt: "M2O Analytics Logo"
+    left:
+      - text: Blog
+        icon: bi-stars
+        href: blog/index.qmd
+      - text: About Me
+        icon: file-earmark-text-fill
+        href: about.qmd
+    tools:
+      # - icon: rss
+      #   aria-label: rss
+      #   href: blog.xml
+      - icon: github
+        aria-label: GitHub
+        href: https://github.com/myominnoo
+      - icon: linkedin
+        aria-label: LinkedIn
+        href: https://www.linkedin.com/in/myominnoo/
+
   page-footer:
     border: true
     left: "&#169; 2023 Myo Minn Oo"
@@ -45,43 +71,15 @@ website:
         href: accessibility.qmd
       - text: License
         href: license.qmd
-    right: "made with ︎♥️ & [Quarto](https://quarto.org)"
-
-  navbar:
-    pinned: true
-    # logo: assets/img/m2o_logo_small.png
-    # logo-alt: "M2O Analytics"
-    left:
-      - text: Blog
-        icon: pen-fill
-        href: blog.qmd
-      - text: Projects
-        icon: puzzle-fill
-        href: projects.qmd
-      - text: M2O Analytics
-        icon: diagram-3-fill
-        href: shop.qmd
-      - text: CV
-        icon: file-earmark-text-fill
-        href: cv.qmd
-    tools:
-      - icon: rss
-        aria-label: rss
-        href: blog.xml
-      - icon: github
-        aria-label: GitHub
-        href: https://github.com/myominnoo
-      - icon: linkedin
-        aria-label: LinkedIn
-        href: https://www.linkedin.com/in/myominnoo/
-
-
-
+    right: "made with 🤗 & [Quarto](https://quarto.org)"
 
 format:
   html:
-    # theme: flatly
-    theme: [flatly, assets/styling/theme.scss]
+    theme: [flatly, assets/styling/theme.scss] # From Jadey
+    # theme:
+    #   light: [litera, assets/styling/styles.scss]
+    #   dark: [darkly, assets/styling/styles-dark.scss]
+    #   light: [flatly, assets/styling/styles.scss]
     toc: true
     toc-depth: 4
     pagetitle: "Myo Minn Oo | {{< meta title >}}"
