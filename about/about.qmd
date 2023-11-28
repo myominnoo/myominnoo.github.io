@@ -12,9 +12,13 @@ I am an <span style="color:#008080;">[epidemiologist](#sec-Epidemiologist)</span
 
 My decades-long journey is marked by a seamless integration of hypothesis-driven research, a [code-first approach](#sec-code-first-approach), [health data analysis](#sec-health-data-analysis), and [reproducible reporting](#sec-reproducible-reporting). This integrated approach ensures that my work not only meets the highest standards of scientific rigor but also contributes meaningfully to the broader landscape of public health and epidemiological research.
 
-   → [Data Visualization Gallery]()
+   → [Data Viz Gallery](gallery.qmd#sec-data-viz)
+   
+   → [Data Products & Shiny Apps](gallery.qmd#sec-shiny-apps)
+   
+   → [R Packages](gallery.qmd#sec-rpkg)
 
-   → [Health Research Projects]()
+   → [Research Projects](gallery.qmd#sec-research-projects)
    
    → [Read my publications](https://scholar.google.ca/citations?user=IWzz0rUAAAAJ&hl=en)
    
@@ -29,13 +33,13 @@ Whether you are navigating intricate research designs, decoding complex datasets
 
 ## Epidemiologist {#sec-Epidemiologist}
 
-I am working as a full-time <span style="color:#008080;">epidemiologist</span> at a health economic consulting firm based in Canada. I apply my broad expertise in epidemiology, my background in health research, analytic and mechanistic modeling approaches to answer questions related to the health inequity among underserved populations in Canada. Weaving engaging impactful health narratives, I bring meaning conversations to stakeholders for better health outcomes.  
+I am working as a full-time <span style="color:#008080;">epidemiologist</span> at a health economic consulting firm based in Canada. I apply my broad expertise in epidemiology, my background in health research, analytic and mechanistic modeling approaches to answer questions related to the health inequity among underserved populations in Canada and across the world. Weaving engaging impactful health narratives, I bring meaning conversations to stakeholders for better health outcomes.  
 
 ## Health Researcher (PostDoc) {#sec-PostDoc}
 
-In 2021, I was awarded a Ph.D. degree in Epidemiology at the Prince of Songkla University. My postdoctoral research career started when I joined Prof. Manuel Hatzel's health intervention group at the Swiss Tropical and Public Health (Universität Basel). During this appointment, I travelled to Papua New Guinea and led the implementation of a nation-wide survey as a senior research fellow at the Institute of Medical Research. This experience included the development of automated data products for streamlined monitoring and the creation of an R package designed for the calculation of under-five child mortality.
+In 2021, I was awarded a Ph.D. degree in Epidemiology at the Prince of Songkla University. My postdoctoral research career started when I joined [Prof. Manuel Hatzel's health intervention group](https://www.swisstph.ch/en/staff/profile/people/manuel-hetzel) at the Swiss Tropical and Public Health (Universität Basel). During this appointment, I travelled to Papua New Guinea and led the implementation of a nation-wide survey as a senior research fellow at the Institute of Medical Research. This experience included the development of automated data products for streamlined monitoring and the creation of an R package designed for the calculation of under-five child mortality.
 
-In 2022, I transitioned to Prof. Lyle's immunology lab, leveraging my epidemiological and bioinformatics expertise to contribute significantly to various basic science research projects in Kenya and Uganda. In this capacity, I have not only published a research paper but also presented my findings at multiple scientific meetings. Additionally, I collaborated as a co-author on a successful research grant, marking a continued progression in my postdoctoral research endeavors.
+In 2022, I transitioned to [Prof. Lyle's immunology lab](https://umanitoba.ca/medicine/faculty-staff/lyle-mckinnon), leveraging my epidemiological and bioinformatics expertise to contribute significantly to various basic science research projects in Kenya and Uganda. In this capacity, I have not only published a research paper but also presented my findings at multiple scientific meetings. Additionally, I collaborated as a co-author on a successful research grant, marking a continued progression in my postdoctoral research endeavors.
 
 ## Code–First Approach {#sec-code-first-approach}
 

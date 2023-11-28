@@ -44,12 +44,15 @@ website:
     logo: assets/img/m2o_logo_small.png
     logo-alt: "M2O Analytics Logo"
     left:
-      - text: Blog
+      - text: Gallery
         icon: bi-stars
+        href: about/gallery.qmd
+      - text: Blog
+        icon: pen-fill
         href: blog/index.qmd
       - text: About
         icon: file-earmark-text-fill
-        href: about.qmd
+        href: about/about.qmd
     tools:
       # - icon: rss
       #   aria-label: rss
