@@ -13,7 +13,7 @@ code-tools: true
 code-link: true
 code-line-numbers: true
 page-layout: article
-image: equiplot-featured.png
+image: featured.png
 ---
 
 This short code snippet demonstrates the process of creating an equiplot for visualizing health equity. Here's a summary and step-by-step description of what the code does:

@@ -13,7 +13,7 @@ code-tools: true
 code-link: true
 code-line-numbers: true
 page-layout: article
-image: duplicates-R-featured.jpeg
+image: featured.jpeg
 ---
 
 ## Replicate examples on UCLA's STATA tutorial in R

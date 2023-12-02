@@ -8,7 +8,7 @@ date-format: long
 categories: 
   - Resources
 toc-location: right
-image: awesome-featured.jpeg
+image: featured.jpeg
 ---
 
 I have curated my personal awesome collection of useful resources, which I find useful in my work and/or my daily life.
