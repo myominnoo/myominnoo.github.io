@@ -1,8 +1,8 @@
 ---
-title: "M2O Analytics"
+title: "M2O Data Analytics Blog"
 author: ""
-lightbox: false
-description-meta: "A blog for R code & health data science content."
+lightbox: true
+description-meta: "Where I share my thoughts and hold my ideas."
 comments: false
 listing:
   - id: blog
@@ -26,11 +26,22 @@ listing:
         - R
 ---
 
-Welcome to my blog! I'm so happy you're here to learn with me. I'll be using this space to write about what I'm learning, working on, and am curious about.
+:::: {.columns}
 
-I welcome respectful feedback and discussions that adhere to the [Code of Conduct](../coc.qmd).
+::: {.column width="10%"}
+![](../assets/img/m2o_logo.png){.lightbox}
+:::
 
+::: {.column width="90%"}
+Welcome to my blog where I share anything from half-formed opinions to STBBI research, data wrangling, and data viz. 
+:::
+
+::::
 ---
 
 ::: {#blog}
 :::
+
+--- 
+
+I welcome respectful feedback and discussions that adhere to the [Code of Conduct](../coc.qmd).

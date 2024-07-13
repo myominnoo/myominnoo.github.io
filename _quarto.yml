@@ -11,22 +11,18 @@ execute:
 
 website:
   title: "Myo Minn Oo"
-  description: "Health Research, R, Data Science"
+  description: "STBBI, Health Research, R, Data Science"
   site-url: https://myominnoo.com
   repo-url: https://github.com/myominnoo/myominnoo.github.io
   repo-actions:
     - source
-    - issue
+    # - issue
   favicon: assets/img/favicon.png
   twitter-card:
     creator: "@dr_myominnoo"
-  #   image: assets/img/JR-logo-white-bg.png
-  #   image-alt: "Cat with tail shaped as the letter J next to last name initial R"
     card-style: summary_large_image
   open-graph:
     locale: en_EN
-  #   image: assets/img/JR-logo-white-bg.png
-  #   image-alt: "Cat with tail shaped as the letter J next to last name initial R"
   page-navigation: true
   google-analytics:
     tracking-id: "G-D94THC7RLW"
@@ -35,28 +31,21 @@ website:
     type: express
     prefs-text: "Change cookies 🍪"
 
-  # search:
-  #   location: navbar
-  #   type: textbox
-
   navbar:
     pinned: true
-    logo: assets/img/m2o_logo_small.png
-    logo-alt: "M2O Analytics Logo"
-    left:
-      - text: Gallery
-        icon: bi-stars
-        href: about/gallery.qmd
+    logo: assets/img/m2o_logo.png
+    logo-alt: "M2O Data Analytics"
+    right:
       - text: Blog
         icon: pen-fill
         href: blog/index.qmd
-      - text: About
-        icon: file-earmark-text-fill
-        href: about/about.qmd
+      - text: Gallery
+        icon: bi-stars
+        href: gallery.qmd
+      - text: Résumé
+        icon: file-person
+        href: https://raw.githubusercontent.com/myominnoo/cv/main/cv_full.pdf
     tools:
-      # - icon: rss
-      #   aria-label: rss
-      #   href: blog.xml
       - icon: github
         aria-label: GitHub
         href: https://github.com/myominnoo
@@ -66,7 +55,7 @@ website:
 
   page-footer:
     border: true
-    left: "&#169; 2023 Myo Minn Oo"
+    left: "&#169; 2024 Myo Minn Oo"
     center:
       - text: Code of conduct
         href: coc.qmd
@@ -74,15 +63,13 @@ website:
         href: accessibility.qmd
       - text: License
         href: license.qmd
-    right: "made with 🤗 & [Quarto](https://quarto.org)"
+    right: "made with  & [Quarto](https://quarto.org)"
 
 format:
   html:
-    theme: [flatly, assets/styling/theme.scss] # From Jadey
-    # theme:
-    #   light: [litera, assets/styling/styles.scss]
-    #   dark: [darkly, assets/styling/styles-dark.scss]
-    #   light: [flatly, assets/styling/styles.scss]
+    # theme: flatly
+    theme: simplex
+    # theme: [flatly, assets/styling/theme.scss] # From Jadey
     toc: true
     toc-depth: 4
     pagetitle: "Myo Minn Oo | {{< meta title >}}"
@@ -91,5 +78,5 @@ format:
     link-external-newwindow: true
     code-link: true
     highlight-style: a11y
-    include-in-header: assets/html/fosstodon.html
+    # include-in-header: assets/html/fosstodon.html
 

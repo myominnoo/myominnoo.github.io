@@ -18,8 +18,9 @@ number-depth: 2
 
 # lightbox extension
 # https://github.com/quarto-ext/lightbox
-filters:
-  - lightbox
+# filters:
+#   - lightbox
+
 lightbox:
   desc-position: right  # position of description
   match: auto # give all images lightbox treatment
@@ -29,7 +30,7 @@ lightbox:
 # html format options
 format:
   html:
-    pagetitle: "M2O Analytics | {{< meta title >}}"
+    pagetitle: "M2O Data Analytics | {{< meta title >}}"
     include-after-body:
       - ../assets/html/buymecoffee.html
 

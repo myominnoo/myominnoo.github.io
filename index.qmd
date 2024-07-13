@@ -1,14 +1,25 @@
 ---
-pagetitle: "Myo Minn Oo | Epidemiologist" # What shows up in google search results
-title: "Myo Minn Oo" # Right under the photo on trestle template
-subtitle: "Epidemiologist" # smaller, under title
+# pagetitle: "Myo Minn Oo | Epidemiologist" # What shows up in google search results
+# title: "Myo Minn Oo" # Right under the photo on trestle template
+# subtitle: "Epidemiologist" # smaller, under title
+# image: assets/img/headshot-tall.png
+# image-alt: "Myo in full smile living the best of his life."
+# about:
+#   id: hero-heading
+#   template: trestles
+#   image-width: 15em
+#   image-shape: rounded
+#   links:
+# toc: false
+# anchor-sections: false
+# execute: 
+#   freeze: true
+## https://github.com/cynthiahqy/digital-garden/blob/main/index.qmd
+title: "About"
 image: assets/img/headshot-tall.png
-image-alt: "Myo in full smile living the best of his life."
+card-style: "summary"
 about:
-  id: hero-heading
-  template: trestles
-  image-width: 15em
-  image-shape: rounded
+  template: jolla
   links:
     - icon: linkedin
       text: LinkedIn
@@ -18,27 +29,15 @@ about:
       text: GitHub
       aria-label: GitHub
       href: https://github.com/myominnoo
-    - icon: envelope
+    - icon: envelope-at-fill
       text: Email
       href: mailto:dr.myominnoo@gmail.com
-toc: false
-anchor-sections: false
-execute: 
-  freeze: true
 ---
 
 ::: {#hero-heading}
-
-**Hi, I am Myo.** 👋
-
-I'm an epidemiologist and health researcher dedicated to advancing equitable healthcare through reproducible data science and R.
-
-> Always coding. Passionate about data science. Worried about health inequity. Proud husband.
-
-Currently, I work for a health economic consulting firm based in Canada. I often contribute as an Academic Editor for PLoS ONE and engage in academic tasks such as peer reviews for select journals. 
-
-Whether you are navigating intricate research designs, decoding complex datasets, or crafting impactful health narratives, I'm here for a meaningful conversation.
-
-I'm thrilled to have you here! Let's embark on an exploration of the captivating world of global health research together!
-
 :::
+
+**Hi!** 👋 I'm Myo, Sr. Research Associate at Options Lab, MAP Centre for Urban Health Solutions. I study why STBBIs and other health issues continue to be a problem and how we can best address them to improve health for underserved communities.  Outside of work, I enjoy biking, exploring, and discovering new interests.
+
+> Always coding. Passionate about data. Worried about health inequity. Proud husband.
+

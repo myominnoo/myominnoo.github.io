@@ -1,0 +1,56 @@
+---
+title: "About"
+---
+
+::: callout-important
+This page is still under development.
+:::
+
+## Hi, I am Myo.
+
+I am an <span style="color:#008080;">[epidemiologist](#sec-Epidemiologist)</span> (<span style="color:#008080;">also a medical doctor</span>) by 🎓 and a [data scientist](#sec-code-first-approach) by ❤️ . 
+
+My decades-long journey is marked by a seamless integration of hypothesis-driven research, a [code-first approach](#sec-code-first-approach), [health data analysis](#sec-health-data-analysis), and [reproducible reporting](#sec-reproducible-reporting). This integrated approach ensures that my work not only meets the highest standards of scientific rigor but also contributes meaningfully to the broader landscape of public health and epidemiological research.
+
+   → [Data Viz Gallery](gallery.qmd#sec-data-viz)
+   
+   → [Data Products & Shiny Apps](gallery.qmd#sec-shiny-apps)
+   
+   → [R Packages](gallery.qmd#sec-rpkg)
+
+   → [Research Projects](gallery.qmd#sec-research-projects)
+   
+   → [Read my publications](https://scholar.google.ca/citations?user=IWzz0rUAAAAJ&hl=en)
+   
+   → [Curriculum Vitae](https://raw.githubusercontent.com/myominnoo/cv/main/cv_full.pdf)
+
+
+::: callout-note
+If you're interested in my expertise in reproducible data analysis and dashboard creation, I'm available for a meaningful discussion. Don't hesitate to reach out to me at hello@myominnoo.com.
+:::
+
+---
+
+## Epidemiologist {#sec-Epidemiologist}
+
+I am working as a full-time <span style="color:#008080;">epidemiologist</span> at a health economic consulting firm based in Canada. I apply my broad expertise in epidemiology, my background in health research, analytic and mechanistic modeling approaches to answer questions related to the health inequity among underserved populations in Canada and across the world. Weaving engaging impactful health narratives, I bring meaning conversations to stakeholders for better health outcomes.  
+
+## Health Researcher (PostDoc) {#sec-PostDoc}
+
+In 2021, I was awarded a Ph.D. degree in Epidemiology at the Prince of Songkla University. My postdoctoral research career started when I joined [Prof. Manuel Hatzel's health intervention group](https://www.swisstph.ch/en/staff/profile/people/manuel-hetzel) at the Swiss Tropical and Public Health (Universität Basel). During this appointment, I travelled to Papua New Guinea and led the implementation of a nation-wide survey as a senior research fellow at the Institute of Medical Research. This experience included the development of automated data products for streamlined monitoring and the creation of an R package designed for the calculation of under-five child mortality.
+
+In 2022, I transitioned to [Prof. Lyle's immunology lab](https://umanitoba.ca/medicine/faculty-staff/lyle-mckinnon), leveraging my epidemiological and bioinformatics expertise to contribute significantly to various basic science research projects in Kenya and Uganda. In this capacity, I have not only published a research paper but also presented my findings at multiple scientific meetings. Additionally, I collaborated as a co-author on a successful research grant, marking a continued progression in my postdoctoral research endeavors.
+
+## Code–First Approach {#sec-code-first-approach}
+
+My primary tool for all data-related tasks, spanning data visualization, research, and analytics, is the R programming language. Renowned for its open-source nature and extensibility, R is a robust language for statistical computing and graphics. Embracing a code–first, script–based workflow, I prioritize reproducibility, transparency, and automation in my processes.
+
+While R remains my preferred choice, I also embrace a diverse toolkit that includes both coding and no-coding tools. Python, Julia, Power BI, and Figma have become recent additions, and I seamlessly integrate them into my code–first approach. Occasionally, I revert back to Stata and SAS to leverage their specific capabilities. 
+
+### Health Data Analysis {#sec-health-data-analysis}
+
+I bring extensive expertise in health data analysis, employing advanced statistical models such as Longitudinal Data Analysis (GEE, Mixed Models) and Causal Inference (SEM, DAG). These methodologies empower a nuanced comprehension of temporal trends and intricate relationships within health datasets, providing a foundation for evidence-based interventions.
+
+### Reproducible Reporting {#sec-reproducible-reporting}
+
+Advocating for transparent and accessible research, I prioritize reproducibility in my work. Utilizing tools such as RStudio and platforms like GitHub, I meticulously document each step of data analysis, reinforcing credibility. Furthermore, my expertise in R package development and utilization of RMarkdown and Quarto in reporting reflects a commitment to streamlined, reproducible workflows and transparent communication.
