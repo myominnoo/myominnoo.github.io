@@ -1,0 +1,51 @@
+project:
+  type: website
+  # pre-render: pre-render-listing-content.R
+  output-dir: docs
+  preview:
+    port: 4200
+  resources:
+    - CNAME
+
+profile:
+  default: english
+
+website:
+  page-navigation: true
+  title: "Myo Minn Oo"
+  site-url: "https://myominnoo.com/"
+  google-analytics: "G-LW606KXSWS"
+
+  navbar:
+    # logo: assets/img/profile.png
+    # left:
+    right:
+      - href: blog.qmd
+        text: Blog
+      - href: services.qmd
+        text: Services
+      - href: cv.qmd
+        text: CV
+      - icon: linkedin
+        href: https://www.linkedin.com/in/myominnoo/
+      - icon: github
+        href: https://github.com/myominnoo
+
+  #page-footer: "Developed with Quarto by Giandomenico Bisaccia — © 2024-2025"
+  reader-mode: false
+
+format:
+  html:
+    theme:
+      # light: [flatly, styles.css]
+      light: flatly
+      dark: darkly
+
+    # css: styles.css
+    respect-user-color-scheme: true
+    toc: true
+    toc-location: left
+
+csl: jacc-cvi.csl
+execute:
+  freeze: true
