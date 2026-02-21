@@ -1,9 +1,7 @@
 ---
 title: "Kickstart Your Project"
 subtitle: "Choose the path that works best for you"
-page-layout: full
-about:
-  template: jolla
+page-layout: article
 toc: false
 ---
 

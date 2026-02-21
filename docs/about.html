@@ -37,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-54c8f25464f32f8783bd446cee98020d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-565aa9a5c80db82c83d99bb1c14ad011.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a13dd3ea3307e0af86460b0f7817ab27.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-565aa9a5c80db82c83d99bb1c14ad011.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3305309b0384adbc3e4e006c4bd19324.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7981055faf3fff7184ecd965dfbb83e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,7 +103,7 @@ cookieconsent.run({
 
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -246,11 +245,9 @@ cookieconsent.run({
         changeGiscusTheme();
       }
     };
-    const authorPrefersDark = false;
+    const authorPrefersDark = true;
     const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     const darkModeDefault = queryPrefersDark.matches;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
     // Dark / light mode switch
     window.quartoToggleColorScheme = () => {
@@ -311,12 +308,17 @@ cookieconsent.run({
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/myominnoo/"> <i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/myominnoo/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/myominnoo"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=0000-0003-4089-016X"> <i class="bi bi-mortarboard" role="img" aria-label="Google Scholar">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/myominnoo"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -331,31 +333,46 @@ cookieconsent.run({
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
+   
   <ul>
   <li><a href="#epidemiology-implementation-science" id="toc-epidemiology-implementation-science" class="nav-link active" data-scroll-target="#epidemiology-implementation-science">🧬 Epidemiology &amp; Implementation Science</a></li>
   <li><a href="#data-science-automation" id="toc-data-science-automation" class="nav-link" data-scroll-target="#data-science-automation">💻 Data Science &amp; Automation</a></li>
   <li><a href="#strategic-research-leadership" id="toc-strategic-research-leadership" class="nav-link" data-scroll-target="#strategic-research-leadership">📈 Strategic Research Leadership</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<div class="quarto-about-jolla column-page-left">
- <header id="title-block-header" class="quarto-title-block default">
+<main class="content column-page-right" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Hi, I am Myo 👋</h1>
 <p class="subtitle lead">I help research teams, organizations, and policy-makers turn complex health data into actionable insights through rigorous epidemiology, data science, and strategic storytelling.</p>
 </div>
-<div class="quarto-title-meta column-page-left">
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
   </div>
-</header><main class="content column-page-left" id="quarto-document-content">
+  
 
 
-<div style="text-align: centre; max-width: 900px; margin: auto;">
+</header>
+
+
+<div class="text-center">
 <p><a href="https://calendly.com/dr-myominnoo" class="btn" style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"><strong>Schedule a Discovery Call</strong></a></p>
 </div>
 <hr>
@@ -367,47 +384,38 @@ cookieconsent.run({
 &nbsp; &nbsp; → &nbsp; &nbsp; <a href="assets/docs/cv_full.pdf"><strong>Curriculum Vitae</strong></a></p>
 <hr>
 <section id="epidemiology-implementation-science" class="level2">
-<h2 data-anchor-id="epidemiology-implementation-science">🧬 Epidemiology &amp; Implementation Science</h2>
+<h2 class="anchored" data-anchor-id="epidemiology-implementation-science">🧬 Epidemiology &amp; Implementation Science</h2>
 <p>Before transitioning into industry and independent consulting, I worked as an epidemiologist and held two postdoctoral fellowships in global health and infectious diseases as well as senior research positions at various organizations. My journey has taken me from clinical practice to leading nationwide surveys and evaluating complex health interventions. I specialize in identifying health equity gaps and designing strategies to improve access for underserved populations, including sex workers, gender-divser groups, immigrants and indigenous communities.</p>
 </section>
 <section id="data-science-automation" class="level2">
-<h2 data-anchor-id="data-science-automation">💻 Data Science &amp; Automation</h2>
+<h2 class="anchored" data-anchor-id="data-science-automation">💻 Data Science &amp; Automation</h2>
 <p>I am a firm believer in the power of “clean code for clean data.” My primary tool for all research tasks is the <strong>R programming language</strong>. I utilize the <code>{tidyverse}</code> and <code>{ggplot2}</code> ecosystems to move from raw, “messy” data to polished, publication-ready visualizations and automated reports. This script-based workflow ensures that my clients receive results that are not just accurate, but fully reproducible and scalable.</p>
 </section>
 <section id="strategic-research-leadership" class="level2">
-<h2 data-anchor-id="strategic-research-leadership">📈 Strategic Research Leadership</h2>
+<h2 class="anchored" data-anchor-id="strategic-research-leadership">📈 Strategic Research Leadership</h2>
 <p>Beyond the data, I provide high-level research leadership. Having managed transdisciplinary teams of over 15 researchers, I understand how to translate complex analytical findings into clear, actionable recommendations for governments and health system partners. I help organizations set research strategies that align with international standards and maximize real-world impact.</p>
-<hr>
-</section>
-<section id="contact" class="level2">
-<h2 data-anchor-id="contact">Contact</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Contact
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Myo Minn Oo, MBBS, PhD</strong> Epidemiologist | Research Director | Data Consultant<br>
 <a href="mailto:dr.myominnoo@gmail.com">dr.myominnoo@gmail.com</a></p>
+</div>
+</div>
+<div class="text-center">
+<p><a href="https://calendly.com/dr-myominnoo" class="btn" style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"><strong>Schedule a Discovery Call</strong></a></p>
+</div>
 
 
 </section>
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="mailto:dr.myominnoo@gmail.com" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Contact</span>
-  </a>
-  <a href="https://www.linkedin.com/in/myominnoo" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com/myominnoo" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-  <a href="https://scholar.google.com/citations?user=0000-0003-4089-016X" class="about-link" rel="" target="">
-    <i class="bi bi-mortarboard"></i>
-     <span class="about-link-text">Google Scholar</span>
-  </a>
-</div>
-</div>
- <!-- /main -->
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -423,6 +431,13 @@ cookieconsent.run({
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -487,7 +502,7 @@ cookieconsent.run({
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/myominnoo\.com");
+        var filterRegex = new RegExp("https:\/\/myominnoo\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

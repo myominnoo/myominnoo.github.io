@@ -24,10 +24,5 @@ listing:
         - R
 ---
 
-::: callout-important
-This page is still under development.
-:::
-
-
 ::: {#post}
 :::

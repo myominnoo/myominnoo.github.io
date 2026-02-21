@@ -21,7 +21,7 @@ website:
   page-navigation: true
   title: "Myo Minn Oo"
   description: "Epidemiology, Data Science, Consulting"
-  site-url: https://myominnoo.com
+  site-url: https://myominnoo.github.io
   repo-url: https://github.com/myominnoo/myominnoo.github.io
   google-analytics:
     tracking-id: "G-LW606KXSWS"
@@ -44,8 +44,13 @@ website:
       - href: blog/index.qmd
         text: Blog
       - icon: linkedin
+        aria-label: LinkedIn
         href: https://www.linkedin.com/in/myominnoo/
+      - icon: mortarboard
+        aria-label: Google Scholar
+        href: https://scholar.google.com/citations?user=0000-0003-4089-016X
       - icon: github
+        aria-label: GitHub
         href: https://github.com/myominnoo
 
   reader-mode: false
@@ -56,18 +61,23 @@ website:
 format:
   html:
     theme:
-      light: flatly
       dark: darkly
+      light: flatly
+    mainfont: Arial
     respect-user-color-scheme: true
     toc-depth: 4
     toc-location: left
     toc: true
     pagetitle: "Myo Minn Oo | {{< meta title >}}"
     page-layout: article
-    smooth-scroll: true
+    anchor-sections: true
     link-external-newwindow: true
+    smooth-scroll: true
+    code-line-numbers: true
     code-link: true
+    code-copy: true
     highlight-style: a11y
+    linkcolor: "cyan"
 
 execute:
   freeze: auto

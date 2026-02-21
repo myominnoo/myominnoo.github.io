@@ -2,28 +2,11 @@
 title: "Hi, I am Myo 👋"
 subtitle: "I help research teams, organizations, and policy-makers turn complex health data into actionable insights through rigorous epidemiology, data science, and strategic storytelling."
 page-layout: full
-about:
-  template: jolla
-  links:
-    - icon: envelope
-      text: Contact
-      href: mailto:dr.myominnoo@gmail.com
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/myominnoo
-    - icon: github
-      text: Github
-      href: https://github.com/myominnoo
-    - icon: mortarboard
-      text: Google Scholar
-      href: https://scholar.google.com/citations?user=0000-0003-4089-016X
 ---
 
-
-::: {style="text-align: centre; max-width: 900px; margin: auto;"}
+::: {.text-center}
 [**Schedule a Discovery Call**](https://calendly.com/dr-myominnoo){.btn style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
 :::
-
 
 --- 
 As an independent research consultant and epidemiologist, I bridge the gap between messy data and real-world health impact. I combine my clinical background as a medical doctor with a senior-level expertise in epidemiological research and data science to design research that is methodologically sound, equity-focused, and implementation-ready.
@@ -48,9 +31,17 @@ I am a firm believer in the power of "clean code for clean data." My primary too
 ## 📈 Strategic Research Leadership
 Beyond the data, I provide high-level research leadership. Having managed transdisciplinary teams of over 15 researchers, I understand how to translate complex analytical findings into clear, actionable recommendations for governments and health system partners. I help organizations set research strategies that align with international standards and maximize real-world impact.
 
-***
-
+::: {.callout-note}
 ## Contact
 **Myo Minn Oo, MBBS, PhD** 
 Epidemiologist | Research Director | Data Consultant  
 [dr.myominnoo@gmail.com](mailto:dr.myominnoo@gmail.com)
+:::
+
+
+
+
+
+::: {.text-center}
+[**Schedule a Discovery Call**](https://calendly.com/dr-myominnoo){.btn style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
+:::

@@ -3,6 +3,7 @@ title: "What’s New & Updated"
 subtitle: "Posts about papers, events, news, and more."
 lightbox: true
 description-meta: "Posts about papers, events, news, and more."
+# title-block-banner: true
 comments: false
 listing:
   - id: blog

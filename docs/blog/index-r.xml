@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Myo Minn Oo</title>
-<link>https://myominnoo.com/blog/#category=R</link>
-<atom:link href="https://myominnoo.com/blog/index-r.xml" rel="self" type="application/rss+xml"/>
+<link>https://myominnoo.github.io/blog/#category=R</link>
+<atom:link href="https://myominnoo.github.io/blog/index-r.xml" rel="self" type="application/rss+xml"/>
 <description>Epidemiology, Data Science, Consulting</description>
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Sat, 02 Dec 2023 06:00:00 GMT</lastBuildDate>
 <item>
   <title>Adding a Custom Email to Your Netlify-Hosted Quarto Website</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/</link>
+  <link>https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/</link>
   <description><![CDATA[ 
 
 
@@ -46,7 +46,7 @@
 <ol type="1">
 <li>Visit <a href="https://improvmx.com/">ImprovMX</a>.</li>
 </ol>
-<p><a href="01-setup-alias.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/01-setup-alias.png" class="img-fluid"></a></p>
+<p><a href="01-setup-alias.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/01-setup-alias.png" class="img-fluid"></a></p>
 <ol start="2" type="1">
 <li>Enter your domain (<strong><code>example.com</code></strong>) and the email address you want to forward to (e.g., <code>youraddress@gmail.com</code>).</li>
 <li>Click <code>Create a free alias</code>.</li>
@@ -56,20 +56,20 @@
 <section id="create-aliases" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="create-aliases"><span class="header-section-number">1.2</span> Create Aliases</h3>
 <p>Time to get creative! Begin adding aliases like <code>johnsmith@example.com</code>, <code>hello@example.com</code>, <code>sales@example.com</code>, <code>customer@example.com</code>, and the list goes on! 🌟 You can have up to 25 aliases with the free plan.</p>
-<p><a href="02-create-alias.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/02-create-alias.png" class="img-fluid"></a></p>
+<p><a href="02-create-alias.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/02-create-alias.png" class="img-fluid"></a></p>
 <p>Mission accomplished with your aliases? Sweet! Now, onto the next part—<strong><code>DNS Settings</code></strong>.</p>
 </section>
 <section id="set-up-dns-setting" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="set-up-dns-setting"><span class="header-section-number">1.3</span> Set up DNS setting</h3>
 <p>This section comprises two essential components: 1) MX entries and 2) SPF records. It’s crucial to configure them accurately to authorize ImprovMX for sending emails on your behalf and ensure ImprovMX can efficiently receive and forward your emails. 📧✨</p>
-<p><a href="03-DNS-Settings.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/03-DNS-Settings.png" class="img-fluid"></a></p>
+<p><a href="03-DNS-Settings.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/03-DNS-Settings.png" class="img-fluid"></a></p>
 <p>Let’s add these settings into the DNS configuration of your Netlify domain.</p>
 <p>To do this:</p>
 <ol type="1">
 <li><p>🌐 Log in to <a href="https://app.netlify.com/">your Netlify account</a>.</p></li>
 <li><p>🖱️ Go to <code>Domains</code> --&gt; Click <code>your domain name</code> --&gt; <code>Add a new record</code> under <code>DNS settings</code>.</p></li>
 </ol>
-<p><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/03-new-DNS.png" class="img-fluid"> Here is reiteration of what Suppor</p>
+<p><img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/03-new-DNS.png" class="img-fluid"> Here is reiteration of what Suppor</p>
 <p>Here is a reiteration of the recommended steps outlined in the Support Guide article:</p>
 <p>The settings for each record are as follows:</p>
 <ul>
@@ -80,7 +80,7 @@
 <li><p><strong>TTL (Time To Live):</strong> This will default to 3600 seconds, and the default setting is usually appropriate.</p></li>
 </ul>
 <p>For me, I input all three corresponding entries with their respective values. It’s a pretty straightforward process. Once you are set up, the message “Email forwarding needs setup” in red will change to “Email forwarding active” in green. 🟢📬</p>
-<p><a href="03-forwarding-active.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/03-forwarding-active.png" class="img-fluid"></a></p>
+<p><a href="03-forwarding-active.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/03-forwarding-active.png" class="img-fluid"></a></p>
 <p>You can verify its functionality by clicking on the test button. 🧪</p>
 <p>Now, you’re all set to receive emails addressed to your domain or custom email address. 📧✨</p>
 </section>
@@ -93,12 +93,12 @@
 <li><p>Generate an <strong>App Password</strong> by clicking <a href="https://security.google.com/settings/security/apppasswords">here</a>. You’ll need to re-enter your Gmail password for this.</p></li>
 <li><p>In the <code>App name</code>, enter <code>ImprovMX alias</code> and click <code>Create</code>. This will display your <code>app password</code> on a new screen. Keep this screen open in a separate tab; you’ll need the <code>app password</code> for Gmail setup. 🌐🔐</p></li>
 </ol>
-<p><a href="04-app-password.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/04-app-password.png" class="img-fluid"></a></p>
+<p><a href="04-app-password.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/04-app-password.png" class="img-fluid"></a></p>
 <p>Now you’re ready to proceed with the Gmail configuration.</p>
 <ol type="1">
 <li><p>Open your Gmail (preferably in a separate tab) and navigate to settings. You can do this by going to Settings &gt; See all settings or simply click <a href="https://mail.google.com/mail/u/0/#settings/general">here</a>.</p></li>
-<li><p>In the <code>Accounts and Import</code> tab, under <code>Send email as:</code>, click <code>Add another email address</code>.<img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/05-gmail-setup.png" class="img-fluid"></p></li>
-<li><p>Enter your <code>email alias</code> in the <code>Email Address</code> field and uncheck “Treat as an alias”. Click <code>Next Step</code>.<img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/smtp-sender-info-gmail.gif" class="img-fluid"></p></li>
+<li><p>In the <code>Accounts and Import</code> tab, under <code>Send email as:</code>, click <code>Add another email address</code>.<img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/05-gmail-setup.png" class="img-fluid"></p></li>
+<li><p>Enter your <code>email alias</code> in the <code>Email Address</code> field and uncheck “Treat as an alias”. Click <code>Next Step</code>.<img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/smtp-sender-info-gmail.gif" class="img-fluid"></p></li>
 <li><p>Enter <strong><code>smtp.gmail.com</code></strong> in the <code>SMTP Server</code>, your email address in the <code>Username</code>, and your <code>app password</code> in the <code>Password</code>. Leave the rest as it is. Click “Add Account”.</p></li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -114,7 +114,7 @@ Important
 <p>When you copy the code, be cautious as it may contain white spaces. The code should be 16 digits long.</p>
 </div>
 </div>
-<p><a href="smtp-gmail.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/smtp-gmail.gif" class="img-fluid"></a></p>
+<p><a href="smtp-gmail.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/smtp-gmail.gif" class="img-fluid"></a></p>
 <p>Gmail will send you an email requesting confirmation of ownership via a provided link. Simply click on the link to confirm, and you’re good to go!</p>
 <p>From now on, you can easily choose your alias from the list when composing a new message.</p>
 </section>
@@ -147,23 +147,23 @@ Important
   title = {Adding a {Custom} {Email} to {Your} {Netlify-Hosted} {Quarto}
     {Website}},
   date = {2023-12-02},
-  url = {https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/},
+  url = {https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas">
 Minn Oo, Myo. 2023. <span>“Adding a Custom Email to Your Netlify-Hosted
-Quarto Website.”</span> December 2, 2023. <a href="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/">https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/</a>.
+Quarto Website.”</span> December 2, 2023. <a href="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/">https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>Netlify</category>
-  <guid>https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/</guid>
+  <guid>https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/</guid>
   <pubDate>Sat, 02 Dec 2023 06:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/featured.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://myominnoo.github.io/blog/2023-12-01-email-custom-domain-netlify/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Creating Equiplot in R</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/blog/2023-06-30-equiplot/</link>
+  <link>https://myominnoo.github.io/blog/2023-06-30-equiplot/</link>
   <description><![CDATA[ <p>This short code snippet demonstrates the process of creating an equiplot for visualizing health equity. Here’s a summary and step-by-step description of what the code does:</p>
 <p>You need <strong><code>tidyverse</code></strong>, <strong><code>haven</code></strong>, and <strong><code>glue</code></strong> packages to run this session. To install them, run the following code in your R console:</p>
 <div class="cell">
@@ -523,7 +523,7 @@ background-color: null;
 font-style: inherit;">geom_point</span>()</span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -587,7 +587,7 @@ font-style: inherit;">7</span></span>
 <span id="cb5-12">    ) </span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -775,7 +775,7 @@ font-style: inherit;">"top"</span></span>
 <span id="cb6-39">p </span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -792,7 +792,7 @@ background-color: null;
 font-style: inherit;"># colors good for viewers with common forms of color blindness</span></span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -845,7 +845,7 @@ font-style: inherit;">"top"</span>))  </span>
 <span id="cb8-9">p </span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -1321,7 +1321,7 @@ background-color: null;
 font-style: inherit;">"Equiplot showing XX coverage in 1994"</span>)</span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -1357,7 +1357,7 @@ background-color: null;
 font-style: inherit;">~</span> year)</span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -1459,7 +1459,7 @@ font-style: inherit;">"top"</span></span>
 <span id="cb13-13">    ) </span></code></pre></div></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://myominnoo.github.io/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -1502,23 +1502,23 @@ font-style: inherit;">6</span>)</span></code></pre></div></div>
   author = {Minn Oo, Myo},
   title = {Creating {Equiplot} in {R}},
   date = {2023-06-30},
-  url = {https://myominnoo.com/blog/2023-06-30-equiplot/},
+  url = {https://myominnoo.github.io/blog/2023-06-30-equiplot/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas">
 Minn Oo, Myo. 2023. <span>“Creating Equiplot in R.”</span> June 30,
-2023. <a href="https://myominnoo.com/blog/2023-06-30-equiplot/">https://myominnoo.com/blog/2023-06-30-equiplot/</a>.
+2023. <a href="https://myominnoo.github.io/blog/2023-06-30-equiplot/">https://myominnoo.github.io/blog/2023-06-30-equiplot/</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>Health Equity</category>
-  <guid>https://myominnoo.com/blog/2023-06-30-equiplot/</guid>
+  <guid>https://myominnoo.github.io/blog/2023-06-30-equiplot/</guid>
   <pubDate>Fri, 30 Jun 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/blog/2023-06-30-equiplot/featured.png" medium="image" type="image/png" height="80" width="144"/>
+  <media:content url="https://myominnoo.github.io/blog/2023-06-30-equiplot/featured.png" medium="image" type="image/png" height="80" width="144"/>
 </item>
 <item>
   <title>Duplicates in R</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/blog/2023-06-15-duplicates-R/</link>
+  <link>https://myominnoo.github.io/blog/2023-06-15-duplicates-R/</link>
   <description><![CDATA[ <section id="replicating-examples-on-uclas-stata-tutorial-in-r" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="replicating-examples-on-uclas-stata-tutorial-in-r">
 <span class="header-section-number">1</span> Replicating examples on UCLA’s STATA tutorial in R</h2>
 <blockquote class="blockquote">
@@ -1752,18 +1752,18 @@ font-style: inherit;">tag_duplicates</span>(id))</span></code></pre></div></div>
   author = {Minn Oo, Myo},
   title = {Duplicates in {R}},
   date = {2023-06-15},
-  url = {https://myominnoo.com/blog/2023-06-15-duplicates-R/},
+  url = {https://myominnoo.github.io/blog/2023-06-15-duplicates-R/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas">
-Minn Oo, Myo. 2023. <span>“Duplicates in R.”</span> June 15, 2023. <a href="https://myominnoo.com/blog/2023-06-15-duplicates-R/">https://myominnoo.com/blog/2023-06-15-duplicates-R/</a>.
+Minn Oo, Myo. 2023. <span>“Duplicates in R.”</span> June 15, 2023. <a href="https://myominnoo.github.io/blog/2023-06-15-duplicates-R/">https://myominnoo.github.io/blog/2023-06-15-duplicates-R/</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>Data Wrangling</category>
   <category>mStats</category>
-  <guid>https://myominnoo.com/blog/2023-06-15-duplicates-R/</guid>
+  <guid>https://myominnoo.github.io/blog/2023-06-15-duplicates-R/</guid>
   <pubDate>Thu, 15 Jun 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/blog/2023-06-15-duplicates-R/featured.jpeg" medium="image" type="image/jpeg"/>
+  <media:content url="https://myominnoo.github.io/blog/2023-06-15-duplicates-R/featured.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

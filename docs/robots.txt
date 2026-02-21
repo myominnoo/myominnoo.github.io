@@ -1,1 +1,1 @@
-Sitemap: https://myominnoo.com/sitemap.xml
+Sitemap: https://myominnoo.github.io/sitemap.xml

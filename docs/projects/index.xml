@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Myo Minn Oo</title>
-<link>https://myominnoo.com/projects/</link>
-<atom:link href="https://myominnoo.com/projects/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://myominnoo.github.io/projects/</link>
+<atom:link href="https://myominnoo.github.io/projects/index.xml" rel="self" type="application/rss+xml"/>
 <description>Epidemiology, Data Science, Consulting</description>
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Sun, 31 Dec 2023 06:00:00 GMT</lastBuildDate>
 <item>
   <title>HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2023-hpv-prev/</link>
+  <link>https://myominnoo.github.io/projects/2023-hpv-prev/</link>
   <description><![CDATA[ 
 
 
@@ -22,7 +22,7 @@
 
 
 <p><a href="https://doi.org/10.1002/cam4.6033">View Publication (Cancer Medicine 2023)</a> | <a href="https://pubmed.ncbi.nlm.nih.gov/37140209/">PMID: 37140209</a></p>
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/projects/2023-hpv-prev/featured.png" class="img-fluid"></a></p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.github.io/projects/2023-hpv-prev/featured.png" class="img-fluid"></a></p>
 <p><strong>Role</strong>: Lead Epidemiologist &amp; First Author<br>
 <strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba<br>
 <strong>Domain</strong>: Infectious Disease, Global Health, Immunology</p>
@@ -56,14 +56,14 @@
   <category>Infectious Disease</category>
   <category>Global Health</category>
   <category>Immunology</category>
-  <guid>https://myominnoo.com/projects/2023-hpv-prev/</guid>
+  <guid>https://myominnoo.github.io/projects/2023-hpv-prev/</guid>
   <pubDate>Sun, 31 Dec 2023 06:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2023-hpv-prev/featured.png" medium="image" type="image/png" height="121" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2023-hpv-prev/featured.png" medium="image" type="image/png" height="121" width="144"/>
 </item>
 <item>
   <title>Xpert Magic: Automated Data Pipeline</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2023-xpert-magic/</link>
+  <link>https://myominnoo.github.io/projects/2023-xpert-magic/</link>
   <description><![CDATA[ 
 
 
@@ -71,7 +71,7 @@
 
 
 <p><a href="https://github.com/myominnoo/xpert_magic">View on GitHub</a> | <a href="https://myominnoo.shinyapps.io/app_demos/">View App</a></p>
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/projects/2023-xpert-magic/featured.png" class="img-fluid"></a></p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.github.io/projects/2023-xpert-magic/featured.png" class="img-fluid"></a></p>
 <p><strong>Role</strong>: Epidemiologist, Data Lead</p>
 <p><strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba</p>
 <p><strong>Domain</strong>: Health Informatics, Clinical Research</p>
@@ -104,14 +104,14 @@
   <category>Health Informatics</category>
   <category>Biomedical Research</category>
   <category>Shiny</category>
-  <guid>https://myominnoo.com/projects/2023-xpert-magic/</guid>
+  <guid>https://myominnoo.github.io/projects/2023-xpert-magic/</guid>
   <pubDate>Thu, 30 Nov 2023 06:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2023-xpert-magic/featured.png" medium="image" type="image/png" height="56" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2023-xpert-magic/featured.png" medium="image" type="image/png" height="56" width="144"/>
 </item>
 <item>
   <title>IIQ2 Phase 2: Clinical Trial Monitoring Dashboard</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2023-iiq2/</link>
+  <link>https://myominnoo.github.io/projects/2023-iiq2/</link>
   <description><![CDATA[ 
 
 
@@ -152,14 +152,14 @@
   <category>flexdashboard</category>
   <category>GitHub</category>
   <category>GitHub Action</category>
-  <guid>https://myominnoo.com/projects/2023-iiq2/</guid>
+  <guid>https://myominnoo.github.io/projects/2023-iiq2/</guid>
   <pubDate>Sun, 22 Oct 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2023-iiq2/featured.png" medium="image" type="image/png" height="83" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2023-iiq2/featured.png" medium="image" type="image/png" height="83" width="144"/>
 </item>
 <item>
   <title>IIQ2 Phase 2: Clinical Trial Monitoring Dashboard</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2025-colp-paper/</link>
+  <link>https://myominnoo.github.io/projects/2025-colp-paper/</link>
   <description><![CDATA[ 
 
 
@@ -202,14 +202,14 @@
   <category>Bioinformatics</category>
   <category>Epidemiology</category>
   <category>scRNA sequencing</category>
-  <guid>https://myominnoo.com/projects/2025-colp-paper/</guid>
+  <guid>https://myominnoo.github.io/projects/2025-colp-paper/</guid>
   <pubDate>Sun, 22 Oct 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2025-colp-paper/featured.png" medium="image" type="image/png" height="75" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2025-colp-paper/featured.png" medium="image" type="image/png" height="75" width="144"/>
 </item>
 <item>
   <title>SWOP HPV Study Monitoring Dashboard</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2023-hpv-dashboard/</link>
+  <link>https://myominnoo.github.io/projects/2023-hpv-dashboard/</link>
   <description><![CDATA[ 
 
 
@@ -254,14 +254,14 @@
   <category>Study Enrollment</category>
   <category>Project Management</category>
   <category>HPV</category>
-  <guid>https://myominnoo.com/projects/2023-hpv-dashboard/</guid>
+  <guid>https://myominnoo.github.io/projects/2023-hpv-dashboard/</guid>
   <pubDate>Tue, 04 Jul 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2023-hpv-dashboard/featured.png" medium="image" type="image/png" height="83" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2023-hpv-dashboard/featured.png" medium="image" type="image/png" height="83" width="144"/>
 </item>
 <item>
   <title>COVID-19 Longitudinal Antibody Trajectory Analysis</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2023-covidab/</link>
+  <link>https://myominnoo.github.io/projects/2023-covidab/</link>
   <description><![CDATA[ 
 
 
@@ -280,7 +280,7 @@
 <p>Tracking SARS-CoV-2 antibody durability across 3–5 booster doses generates high-dimensional, longitudinal datasets. With three types of serology antibodies and various neutralization responses to monitor, static reporting was insufficient. The research team needed a way to visualize complex immune decay patterns and “trajectories” to inform public health strategies and booster protocols in real-time.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="featured1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="A list of key research questions on the welcome page:"><img src="https://myominnoo.com/projects/2023-covidab/featured1.png" class="img-fluid figure-img" alt="A list of key research questions on the welcome page:"></a></p>
+<p><a href="featured1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="A list of key research questions on the welcome page:"><img src="https://myominnoo.github.io/projects/2023-covidab/featured1.png" class="img-fluid figure-img" alt="A list of key research questions on the welcome page:"></a></p>
 <figcaption>A list of key research questions on the welcome page:</figcaption>
 </figure>
 </div>
@@ -295,13 +295,13 @@
 </ul>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="featured2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Input parameters for data viz through slided datasets"><img src="https://myominnoo.com/projects/2023-covidab/featured2.png" class="img-fluid figure-img" alt="Input parameters for data viz through slided datasets"></a></p>
+<p><a href="featured2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Input parameters for data viz through slided datasets"><img src="https://myominnoo.github.io/projects/2023-covidab/featured2.png" class="img-fluid figure-img" alt="Input parameters for data viz through slided datasets"></a></p>
 <figcaption>Input parameters for data viz through slided datasets</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="featured3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Input parameters for data viz through slided datasets"><img src="https://myominnoo.com/projects/2023-covidab/featured3.png" class="img-fluid figure-img" alt="Input parameters for data viz through slided datasets"></a></p>
+<p><a href="featured3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Input parameters for data viz through slided datasets"><img src="https://myominnoo.github.io/projects/2023-covidab/featured3.png" class="img-fluid figure-img" alt="Input parameters for data viz through slided datasets"></a></p>
 <figcaption>Input parameters for data viz through slided datasets</figcaption>
 </figure>
 </div>
@@ -315,7 +315,7 @@
 </ul>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="featured4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Input parameters and modelling outputs on the fly:"><img src="https://myominnoo.com/projects/2023-covidab/featured4.png" class="img-fluid figure-img" alt="Input parameters and modelling outputs on the fly:"></a></p>
+<p><a href="featured4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Input parameters and modelling outputs on the fly:"><img src="https://myominnoo.github.io/projects/2023-covidab/featured4.png" class="img-fluid figure-img" alt="Input parameters and modelling outputs on the fly:"></a></p>
 <figcaption>Input parameters and modelling outputs on the fly:</figcaption>
 </figure>
 </div>
@@ -329,14 +329,14 @@
   <category>COVID-19</category>
   <category>Longitudinal Data Analysis</category>
   <category>Modelling</category>
-  <guid>https://myominnoo.com/projects/2023-covidab/</guid>
+  <guid>https://myominnoo.github.io/projects/2023-covidab/</guid>
   <pubDate>Fri, 02 Jun 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2023-covidab/featured.png" medium="image" type="image/png" height="74" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2023-covidab/featured.png" medium="image" type="image/png" height="74" width="144"/>
 </item>
 <item>
   <title>MalCon: Malaria Health Facility Survey Monitoring Dashboard</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2021-malcon/</link>
+  <link>https://myominnoo.github.io/projects/2021-malcon/</link>
   <description><![CDATA[ 
 
 
@@ -381,21 +381,21 @@
   <category>Surveillance</category>
   <category>Survey</category>
   <category>Dashboard</category>
-  <guid>https://myominnoo.com/projects/2021-malcon/</guid>
+  <guid>https://myominnoo.github.io/projects/2021-malcon/</guid>
   <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2021-malcon/featured.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2021-malcon/featured.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>Feasibility of U5MR Estimation via Serial MIS Data</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/2021-u5mr-mis/</link>
+  <link>https://myominnoo.github.io/projects/2021-u5mr-mis/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/projects/2021-u5mr-mis/featured.png" class="img-fluid"></a></p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.github.io/projects/2021-u5mr-mis/featured.png" class="img-fluid"></a></p>
 <p><strong>Role</strong>: Senior Research Fellow | Postdoctoral Scientific Collaborator<br>
 <strong>Organization</strong>: Swiss TPH | PNG Institute of Medical Research (PNGIMR)<br>
 <strong>Domain</strong>: Demography, Maternal &amp; Child Health, Data Validation</p>
@@ -434,14 +434,14 @@
   <category>Demography</category>
   <category>Maternal &amp; Child Health</category>
   <category>Data Validation</category>
-  <guid>https://myominnoo.com/projects/2021-u5mr-mis/</guid>
+  <guid>https://myominnoo.github.io/projects/2021-u5mr-mis/</guid>
   <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/2021-u5mr-mis/featured.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/2021-u5mr-mis/featured.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>R Packages</title>
   <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.com/projects/r-packages/</link>
+  <link>https://myominnoo.github.io/projects/r-packages/</link>
   <description><![CDATA[ 
 
 
@@ -450,7 +450,7 @@
 
 <section id="sec-rpkg-mStats" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="sec-rpkg-mStats"><span class="header-section-number">1</span> mStats</h2>
-<p><img src="https://myominnoo.com/projects/assets/img/mStats-logo.png" align="right" height="120"></p>
+<p><img src="https://myominnoo.github.io/projects/assets/img/mStats-logo.png" align="right" height="120"></p>
 <!-- badges: start -->
 <p><a href="https://CRAN.R-project.org/package=mStats"><img src="https://www.r-pkg.org/badges/version/mStats.png" class="img-fluid" alt="CRAN status"></a> <a href="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/mStats?branch=main"><img src="https://codecov.io/gh/myominnoo/mStats/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
 <!-- badges: end -->
@@ -461,7 +461,7 @@
 </section>
 <section id="sec-rpkg-shinyAuthX" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="sec-rpkg-shinyAuthX"><span class="header-section-number">2</span> shinyAuthX</h2>
-<p><img src="https://myominnoo.com/projects/assets/img/shinyAuthX-logo.png" align="right" height="138"></p>
+<p><img src="https://myominnoo.github.io/projects/assets/img/shinyAuthX-logo.png" align="right" height="138"></p>
 <!-- badges: start -->
 <p><a href="https://CRAN.R-project.org/package=shinyAuthX"><img src="https://www.r-pkg.org/badges/version/shinyAuthX.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a> <a href="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/shinyAuthX?branch=main"><img src="https://codecov.io/gh/myominnoo/shinyAuthX/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a></p>
 <!-- badges: end -->
@@ -486,9 +486,9 @@
  ]]></description>
   <category>R</category>
   <category>Package</category>
-  <guid>https://myominnoo.com/projects/r-packages/</guid>
+  <guid>https://myominnoo.github.io/projects/r-packages/</guid>
   <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.com/projects/r-packages/featured.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="https://myominnoo.github.io/projects/r-packages/featured.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 </channel>
 </rss>
