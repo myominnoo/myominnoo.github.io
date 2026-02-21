@@ -6,3 +6,4 @@
 /.quarto/
 /_site/
 /docs/
+**/*.quarto_ipynb

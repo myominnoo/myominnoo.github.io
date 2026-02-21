@@ -1,0 +1,47 @@
+
+# options specified here will apply to all posts in this folder
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true
+
+# Default author
+author: Myo Minn Oo
+citation: false
+
+# align figures to left
+fig-align: "left"
+
+# number sections
+number-sections: true
+number-depth: 4
+
+# lightbox extension
+# https://github.com/quarto-ext/lightbox
+# filters:
+#   - lightbox
+
+lightbox:
+  desc-position: right  # position of description
+  match: auto # give all images lightbox treatment
+  effect: zoom # how lightbox opens/closes
+  loop: false # doesn't loop to first image in gallery
+
+# html format options
+format:
+  html:
+    pagetitle: "Myo Minn Oo | {{< meta title >}}"
+
+# giscus comments https://giscus.app/
+comments:
+    giscus:
+      repo: myominnoo/myominnoo.github.io
+      category: Announcements
+      mapping: pathname
+      reactions-enabled: true
+      loading: lazy
+      input-position: top
+      theme: light
+      language: en
+
+

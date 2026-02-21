@@ -6,7 +6,7 @@
 freeze: true
 
 # Default author
-author: Myo Minn Oo
+author: MyoMinn Oo
 citation: true
 
 # align figures to left
@@ -14,7 +14,7 @@ fig-align: "left"
 
 # number sections
 number-sections: true
-number-depth: 2
+number-depth: 4
 
 # lightbox extension
 # https://github.com/quarto-ext/lightbox
@@ -30,9 +30,7 @@ lightbox:
 # html format options
 format:
   html:
-    pagetitle: "M2O Data Analytics | {{< meta title >}}"
-    include-after-body:
-      - ../assets/html/buymecoffee.html
+    pagetitle: "Myo Minn Oo | {{< meta title >}}"
 
 # giscus comments https://giscus.app/
 comments:

@@ -1,0 +1,43 @@
+---
+title: "HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations"
+author: "Myo Minn Oo"
+date: 2023-12-31
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - Infectious Disease
+  - Global Health
+  - Immunology
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+
+[View Publication (Cancer Medicine 2023)](https://doi.org/10.1002/cam4.6033) | [PMID: 37140209](https://pubmed.ncbi.nlm.nih.gov/37140209/)
+
+![](featured.png)
+
+**Role**: Lead Epidemiologist & First Author  
+**Position**: Postdoctoral Fellowship @ University of Manitoba  
+**Domain**: Infectious Disease, Global Health, Immunology
+
+## The Challenge
+Gay, bisexual, and men who have sex with men (gbMSM) in sub-Saharan Africa face a disproportionate burden of HIV and HPV-related cancers. However, baseline data on specific HPV genotype distributions—essential for determining the potential impact of 4-valent vs. 9-valent vaccines—was critically lacking in the Kenyan context.
+
+## The Solution
+I led the epidemiological analysis of a cross-sectional study among gbMSM in Nairobi. By leveraging multiple logistic regression and genotype-specific modeling, I quantified the overlap between HIV status and vaccine-preventable HPV types.
+
+- **Risk Factor Identification**: Conducted multivariate analysis revealing that HIV status was the strongest predictor of HR-HPV infection (aOR: 8.9), while being married to a woman was a significant social risk factor (aOR: 8.1).
+- **Vaccine Efficacy Assessment (Proxy)**: Evaluated the potential coverage of current vaccines, determining that the 9-valent Gardasil vaccine would cover 61% of the HPV types circulating in this specific cohort.
+- **Policy Advocacy**: Translated complex genotype data into a clear public health mandate, calling for targeted HPV vaccination campaigns for Kenyan gbMSM.
+
+## Technical Deep-Dive
+- **Statistical Modeling**: Utilized R for multiple logistic regression and odds ratio calculations with 95% confidence intervals.
+- **Data Visualization**: Created prevalence plots and genotype distribution charts to communicate the "preventable burden" to stakeholders.
+- **Tech Stack**: `R`, `tidyverse`, `gtsummary`, `officeverse`.
+- **Impact**: Provided the first comprehensive evidence for targeted HPV vaccination in this population, directly informing regional cancer prevention strategies.

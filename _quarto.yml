@@ -1,31 +1,30 @@
 project:
   type: website
+  # pre-render: pre-render-listing-content.R
+  output-dir: docs
   preview:
-    port: 3434
+    port: 4200
     browser: true
     watch-inputs: true
     timeout: 3600
+  resources:
+    - CNAME
 
-execute:
-  freeze: auto
+profile:
+  default: english
 
 website:
+  favicon: assets/img/favicon.ico
+  search:
+    location: navbar
+    type: overlay
+  page-navigation: true
   title: "Myo Minn Oo"
-  description: "STBBI, Health Research, R, Data Science"
+  description: "Epidemiology, Data Science, Consulting"
   site-url: https://myominnoo.com
   repo-url: https://github.com/myominnoo/myominnoo.github.io
-  repo-actions:
-    - source
-    # - issue
-  favicon: assets/img/favicon.png
-  twitter-card:
-    creator: "@dr_myominnoo"
-    card-style: summary_large_image
-  open-graph:
-    locale: en_EN
-  page-navigation: true
   google-analytics:
-    tracking-id: "G-D94THC7RLW"
+    tracking-id: "G-LW606KXSWS"
     anonymize-ip: true
   cookie-consent:
     type: express
@@ -33,50 +32,42 @@ website:
 
   navbar:
     pinned: true
-    logo: assets/img/m2o_logo.png
-    logo-alt: "M2O Data Analytics"
+    # logo: assets/img/profile.png
+    # left:
     right:
-      - text: Blog
-        icon: pen-fill
-        href: blog/index.qmd
-      - text: Gallery
-        icon: bi-stars
-        href: gallery.qmd
-      - text: Résumé
-        icon: file-person
-        href: https://raw.githubusercontent.com/myominnoo/cv/main/cv_full.pdf
-    tools:
-      - icon: github
-        aria-label: GitHub
-        href: https://github.com/myominnoo
+      - href: projects/index.qmd
+        text: Projects
+      - href: about.qmd
+        text: About Me
+      - href: contact.qmd
+        text: Contact
+      - href: blog/index.qmd
+        text: Blog
       - icon: linkedin
-        aria-label: LinkedIn
         href: https://www.linkedin.com/in/myominnoo/
+      - icon: github
+        href: https://github.com/myominnoo
 
+  reader-mode: false
   page-footer:
     border: true
-    left: "&#169; 2024 Myo Minn Oo"
-    center:
-      - text: Code of conduct
-        href: coc.qmd
-      - text: Accessibility
-        href: accessibility.qmd
-      - text: License
-        href: license.qmd
-    right: "made with  & [Quarto](https://quarto.org)"
+    center: "&#169; 2021-2026 Myo Minn Oo"
 
 format:
   html:
-    # theme: flatly
-    theme: simplex
-    # theme: [flatly, assets/styling/theme.scss] # From Jadey
-    toc: true
+    theme:
+      light: flatly
+      dark: darkly
+    respect-user-color-scheme: true
     toc-depth: 4
+    toc-location: left
+    toc: true
     pagetitle: "Myo Minn Oo | {{< meta title >}}"
     page-layout: article
     smooth-scroll: true
     link-external-newwindow: true
     code-link: true
     highlight-style: a11y
-    # include-in-header: assets/html/fosstodon.html
 
+execute:
+  freeze: auto

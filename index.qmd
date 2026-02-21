@@ -1,43 +1,22 @@
 ---
-# pagetitle: "Myo Minn Oo | Epidemiologist" # What shows up in google search results
-# title: "Myo Minn Oo" # Right under the photo on trestle template
-# subtitle: "Epidemiologist" # smaller, under title
-# image: assets/img/headshot-tall.png
-# image-alt: "Myo in full smile living the best of his life."
-# about:
-#   id: hero-heading
-#   template: trestles
-#   image-width: 15em
-#   image-shape: rounded
-#   links:
-# toc: false
-# anchor-sections: false
-# execute: 
-#   freeze: true
-## https://github.com/cynthiahqy/digital-garden/blob/main/index.qmd
-title: "About"
-image: assets/img/headshot-tall.png
-card-style: "summary"
+title: "Myo Minn Oo"
+subtitle: "Epidemiology, Data Science, and Design"
+page-layout: full
+lightbox: true
+toc: false
 about:
   template: jolla
-  links:
-    - icon: linkedin
-      text: LinkedIn
-      aria-label: LinkedIn
-      href: https://www.linkedin.com/in/myominnoo/
-    - icon: github
-      text: GitHub
-      aria-label: GitHub
-      href: https://github.com/myominnoo
-    - icon: envelope-at-fill
-      text: Email
-      href: mailto:dr.myominnoo@gmail.com
+  image: assets/img/profile-casual.png
 ---
 
-::: {#hero-heading}
+## Turning Messy Data to Real-World Impact
+
+::: {style="max-width: 850px; margin: auto; text-align: center; font-size: 1.2em; color: #415A77;"}
+Hi! 👋 I’m Myo. As an epidemiologist, research director, and data consultant, I specialize in the intersection of epidemiology, data science, and health equity. With a PhD, two postdocs, and over 10 years of experience of leading complex research projects, I help research teams and clients transform messy data into actionable insights.
 :::
 
-**Hi!** 👋 I'm Myo, Sr. Research Associate at Options Lab, MAP Centre for Urban Health Solutions. I study why STBBIs and other health issues continue to be a problem and how we can best address them to improve health for underserved communities.  Outside of work, I enjoy biking, exploring, and discovering new interests.
+::: {style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 50px 0;"}
+[**Read more about me**](about.qmd){.btn style="background-color: #1B263B; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
 
-> Always coding. Passionate about data. Worried about health inequity. Proud husband.
-
+[**Schedule a Discovery Call**](https://calendly.com/dr-myominnoo){.btn style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
+:::

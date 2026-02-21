@@ -1,0 +1,33 @@
+---
+title: "Research and Data Science Projects"
+lightbox: true
+description-meta: "Posts about research projects, data science projects, data tools, r packages, and so on"
+comments: false
+listing:
+  - id: post
+    contents: "**/index.qmd"
+    type: default
+    image-align: left
+    page-size: 20
+    fields:
+      - title
+      - date
+      - image
+      - description
+      - categories
+    categories: numbered
+    sort: "date desc"
+    sort-ui: true
+    filter-ui: true
+    feed:
+      categories:
+        - R
+---
+
+::: callout-important
+This page is still under development.
+:::
+
+
+::: {#post}
+:::
