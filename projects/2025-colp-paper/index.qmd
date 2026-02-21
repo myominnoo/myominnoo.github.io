@@ -1,0 +1,44 @@
+---
+title: "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard"
+author: "Myo Minn Oo"
+date: 2023-10-22
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - flexdashboard
+  - GitHub
+  - GitHub Action
+  - Bioinformatics 
+  - Epidemiology
+  - scRNA sequencing
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+[Accepted for Publication: American Journal of Reproductive Immunology (Feb 2026)]
+
+
+
+**Role**: Bioinformatics Lead & Epidemiologist  
+**Position**: Postdoctoral Fellowship @ University of Manitoba  
+**Domain**: Mucosal Immunology, Transcriptomics, Reproductive Health
+
+## The Challenge
+Understanding the spatial and molecular composition of Tissue-Resident Memory (TRM) T cells in the female reproductive tract is critical for developing mucosal vaccines and HIV prevention strategies. However, the interplay between these cells in the ectocervix vs. the endocervix required high-resolution analysis that traditional bulk sequencing cannot provide.
+
+## The Solution
+I integrated flow cytometry phenotyping with **single-cell RNA sequencing (scRNA-seq)** to map the molecular landscape of the cervical mucosa. This multi-modal approach allowed the research team to move beyond broad cell categories to identify unique, niche-specific T cell clusters.
+
+- **High-Resolution Mapping**: Leveraged scRNA-seq to generate a molecular data matrix at the individual cell level, uncovering distinct molecular signatures for TRM subsets.
+- **Cross-Platform Integration**: Coupled flow cytometry data with transcriptomic profiles to validate the presence and composition of established T cell subsets.
+- **Clinical Association Analysis**: Investigated how these cellular compositions correlate with clinical findings from patients at a colposcopy clinic in Nairobi.
+
+## Technical Deep-Dive
+- **Bioinformatics Pipeline**: Developed custom R workflows for scRNA-seq processing, including quality control, normalization, dimensional reduction (UMAP/t-SNE), and cluster annotation.
+- **Tech Stack**: `R`, `Seurat`, `Bioconductor`, `SingleCellExperiment`, `ggplot2`.
+- **Impact**: Resulted in the manuscript *“Enumeration, phenotyping, and clinical associations of tissue-resident T cells in the ecto- and endocervix of women attending a colposcopy clinic”*, accepted in the **American Journal of Reproductive Immunology (2026)**.

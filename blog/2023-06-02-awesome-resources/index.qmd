@@ -1,0 +1,133 @@
+---
+title: "Awesome Resources"
+subtitle: "My personal collection of useful resources"
+author: "Myo Minn Oo"
+date: 2023-06-02
+date-modified: last-modified
+date-format: long
+categories: 
+  - Resources
+toc-location: right
+image: featured.jpeg
+---
+
+I have curated my personal awesome collection of useful resources, which I find useful in my work and/or my daily life.
+
+## R
+
+### Data Viz
+
+-   [R Graph Gallery](https://r-graph-gallery.com/index.html)
+-   [CÉDRIC SCHERER](https://www.cedricscherer.com/)
+-   [Graphic Design with ggplot2](https://rstudio-conf-2022.github.io/ggplot2-graphic-design/)
+
+### Data science
+
+-   [R for Data Science](https://r4ds.hadley.nz/)
+
+-   [Hands-on Programming with R](https://rstudio-education.github.io/hopr/)
+
+-   [Tidy modelling with R](https://www.tmwr.org/)
+
+-   [Tidy models](https://www.tidymodels.org/)
+
+-   [A modern dive into R and the tidyverse](https://moderndive.com/)
+
+-   [Feature engineering and selection](http://www.feat.engineering/)
+
+-   [Exploring Modeling with Data and Differential Equations Using R](https://jmzobitz.github.io/ModelingWithR/)
+
+-   [Deep Learning MIT](https://www.deeplearningbook.org/)
+
+-   [Applied Predictive Modelling By Max Kuhn and Kjell Johnson](http://appliedpredictivemodeling.com/)
+
+### Shiny
+
+-   [Awesome shiny extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+
+-   [Mastering Shiny](https://mastering-shiny.org/)
+
+-   [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/index.html)
+
+-   [Outstanding User Interfaces with Shiny](https://unleash-shiny.rinterface.com/index.html)
+
+-   [JavaScript for R](https://book.javascript-for-r.com/)
+
+-   [Refactoring UI](https://www.refactoringui.com/)
+
+-   [The Shiny AWS Book](https://business-science.github.io/shiny-production-with-aws-book/)
+
+-   [JavaScript 4 Shiny - Field Notes](https://connect.thinkr.fr/js4shinyfieldnotes/)
+
+-   [Shiny Dev Series](https://shinydevseries.com/)
+
+-   [RStudio's Shiny Tutorials](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html)
+
+### Git
+
+-   [Happy Git with R](https://happygitwithr.com/)
+
+### Programming
+
+-   [Efficient R programming](https://csgillespie.github.io/efficientR/)
+
+## Statistics
+
+-   [Data Science in A Box](https://datasciencebox.org/)
+
+-   [Intro to Modern Statistics](https://openintro-ims.netlify.app/)
+
+-   [OpenIntro Project](https://www.openintro.org/)
+
+-   [Stat 545](https://stat545.com/)
+
+-   [Improving Your Statistical Inferences](https://lakens.github.io/statistical_inferences/)
+
+-   [Statistical Rethinking](https://github.com/rmcelreath/stat_rethinking_2023) \[[YouTube](https://youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus)\]
+
+-   [Statistical tools for high-throughput data analysis](http://www.sthda.com/english/)
+
+-   [Datanovia](https://www.datanovia.com/en/)
+
+-   [Awesome statistics](https://github.com/erikgahner/awesome-statistics)
+
+-   [Awesome data science](https://github.com/academic/awesome-datascience)
+
+-   [PyData Global Bayesian Decision Analysis](https://github.com/mhoehle/BayesianDecisionAnalysis)
+
+-   [Think Bayes 2 by Allen B. Downey](http://allendowney.github.io/ThinkBayes2/)
+
+-   [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/)
+
+## Epidemiology
+
+-   [Epidemiologist R handbook](https://epirhandbook.com/en/)
+
+-   [R for Epidemiology](https://www.r4epi.com/)
+
+-   [Population Health Data Science with R](https://bookdown.org/taragonmd/phds/)
+
+-   [Epidemiology with R](https://global.oup.com/academic/product/epidemiology-with-r-9780198841333?cc=us&lang=en&#)
+
+-   [STA427_SM4IDE Statistical Methods in Infectious Disease Epidemiology](https://github.com/mhoehle/STA427_SM4IDE)
+
+-   [Research Design in the Social Sciences](https://book.declaredesign.org/)
+
+## Others
+
+-   [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/)
+-   [An R Companion for the Handbook of Biological Statistics](https://rcompanion.org/handbook/)
+
+## Platforms
+
+-   [BOOKDOWN](https://bookdown.org/)
+
+-   [Quarto Gallery](https://quarto.org/docs/gallery/)
+
+-   [Leanpub](https://leanpub.com/)
+
+-   [Data Carpentry](https://datacarpentry.org/)
+
+## Credits:
+
+-   Featured photo from Pexels: Portrait Photo of Excited Man in Blue T-shirt Standing In Front of White Background by [**Andrea Piacquadio**](https://www.pexels.com/@olly/)

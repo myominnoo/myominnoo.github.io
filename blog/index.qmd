@@ -1,0 +1,32 @@
+---
+title: "What’s New & Updated"
+subtitle: "Posts about papers, events, news, and more."
+lightbox: true
+description-meta: "Posts about papers, events, news, and more."
+comments: false
+listing:
+  - id: blog
+    contents: "**/index.qmd"
+    type: default
+    image-align: left
+    fields: 
+      - title
+      - description
+      - date
+      - image
+      - categories
+      - reading-time
+    categories: numbered
+    sort: "date desc"
+    sort-ui: true
+    filter-ui: true
+    page-size: 5 
+    feed:
+      categories: 
+        - R
+---
+
+
+
+::: {#blog}
+:::

@@ -1,0 +1,50 @@
+---
+title: "Feasibility of U5MR Estimation via Serial MIS Data"
+author: "Myo Minn Oo"
+date: 2021-10-22
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - Package
+  - Demography 
+  - Maternal & Child Health
+  - Data Validation
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+![](featured.png)
+
+
+
+**Role**: Senior Research Fellow | Postdoctoral Scientific Collaborator  
+**Organization**: Swiss TPH | PNG Institute of Medical Research (PNGIMR)  
+**Domain**: Demography, Maternal & Child Health, Data Validation
+
+## The Challenge
+Estimating the Under-Five Mortality Rate (U5MR) is critical for evaluating health interventions. In resource-limited settings like Papua New Guinea, researchers often attempt to use **Malaria Indicator Surveys (MIS)** as a proxy for Demographic and Health Surveys (DHS). The challenge was to determine if serial MIS data (2013–2020) could provide reliable, sub-national U5MR estimates using indirect estimation methods.
+
+## The Solution: A Methodological Deep-Dive
+I applied advanced demographic modeling to three consecutive MIS datasets to test the feasibility of U5MR tracking. Rather than accepting the outputs at face value, I conducted a rigorous validation of the internal and external consistency of the results.
+
+- **Comparative Modeling**: Applied both Maternal Age Cohort-derived (MAC) and Maternal Age Period-derived (MAP) variants of the Rajaratnam et al. (2010) method.
+- **Uncertainty Quantification**: Executed a **1,000-iteration bootstrap simulation** combined with LOESS regression to generate point estimates and 95% confidence intervals, adjusting standard errors to account for design-driven deflation.
+- **Data Quality Audit**: Identified significant discrepancies between the three survey waves, specifically noting "implausible" outcomes, including negative mortality values at the provincial level.
+
+## Technical Deep-Dive
+- **Indirect Estimation**: Utilized regression-based models where $U_{ij}$ (country random effects) and parity ratios were used to predict mortality up to 25 years prior to the survey. 
+- **R Pacakge**: Given the package's status in the [CRAN Archive](https://cran.r-project.org/src/contrib/Archive/u5mr/), I managed version-specific dependencies to ensure the reproducibility of the maternal age cohort (MAC) and maternal age period (MAP) models
+- **Statistical Refinement**: Corrected standard errors by a factor of 4.0 to account for artificial deflation in the simulation.
+- **Tech Stack**: `R`, `tidyverse`, `loess`, `boot` (Bootstrapping), `ggplot2`.
+
+## Critical Findings & Lessons
+This project served as a vital "proof-of-concept" that revealed the limitations of using MIS data for mortality surveillance in this context:
+1. **Unreliability of Small Samples**: Negative U5MR values at the provincial level highlighted the sensitivity of indirect methods to small sample sizes and potential maternal survival bias.
+2. **Survey Heterogeneity**: Large gaps between estimates from different survey years suggested possible variations in interview methods or data quality between 2013 and 2019.
+3. **Strategic Recommendation**: Provided evidence that while MIS data is excellent for malaria indicators, it may require significant methodological adjustment or larger sample sizes to be a viable substitute for full DHS mortality modules.
+

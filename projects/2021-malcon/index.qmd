@@ -1,0 +1,50 @@
+---
+title: "MalCon: Malaria Health Facility Survey Monitoring Dashboard"
+author: "Myo Minn Oo"
+date: 2021-10-22
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - flexdashboard
+  - GitHub
+  - GitHub Action
+  - Surveillance 
+  - Survey
+  - Dashboard
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+[View Dashboard](https://malcon-pngimr.github.io/malcon-dash/) | [View Project Repository](https://github.com/malcon-pngimr/malcon-dash)
+
+
+
+**Role**: Senior Research Fellow | Postdoctoral Scientific Collaborator  
+**Organization**: Swiss TPH | PNG Institute of Medical Research (PNGIMR)  
+**Domain**: Malaria Control, Surveillance, Global Health
+
+## The Challenge
+Monitoring a nationwide malaria control program requires the integration of diverse data streams, from clinical reporting rates to regional incidence trends. For the **Malaria Control (MalCon)** project in Papua New Guinea, stakeholders needed a centralized, interactive platform to visualize these indicators in real-time, enabling rapid response to outbreaks and effective resource allocation.
+
+## The Solution
+I developed the **MalCon Dashboard**, a comprehensive, responsive static analytics platform that serves as the primary tool for monitoring malaria indicators across PNG. The dashboard transforms raw surveillance data into actionable geospatial and temporal insights.
+
+- **Geospatial aspect**: Integrated interactive maps to visualize survey data collection performance and operational issues at the provincial and district levels.
+- **Data Governance**: Built a robust automated pipeline to aggregate and clean surveillance data from multiple sources, ensuring the dashboard remains current with minimal manual intervention.
+
+## Technical Deep-Dive
+- **Modular Dashboard Architecture**: Utilized a modular R/flexdashboard structure to ensure the platform remains scalable as new indicators or data sources are added.
+- **Interactive Visualizations**: Leveraged high-performance R packages to create responsive charts and maps that allow users to drill down into specific regions or timeframes.
+- **Tech Stack**: `R`, `leaflet` (mapping), `plotly`, `tidyverse`, `flexdashboard`, `GitHub Actions`.
+- **Impact**: Provided the PNG National Malaria Control Program and global partners with a unified "source of truth," significantly improving the speed and transparency in monitoring of national survey progress.
+
+
+[Read the Final Report](https://malcon-pngimr.github.io/malcon-dash/)
+
+As part of the survey, I completed a draft for an automated report, streamlining the reporting process and enhancing efficiency. Recognizing the need for advanced data collection methods, I conceptualized a QR linkage system to be implemented in the upcoming malaria indicator survey. In addition, I contributed technical consultations to both the Institute and the National Technical Working Group for Malaria. We also attempted to assess the accuracy, reliability, and viability of using repeated malaria surveys to calculate under-five mortality as an effective intervention.
+

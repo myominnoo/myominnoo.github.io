@@ -1,0 +1,44 @@
+---
+title: "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard"
+author: "Myo Minn Oo"
+date: 2023-10-22
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - flexdashboard
+  - GitHub
+  - GitHub Action
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+
+[Read about IIQ study | ClinicalTrials.gov (NCT02079077)](https://clinicaltrials.gov/study/NCT02079077) | [Fowke Lab](https://umanitoba.ca/medicine/department-medical-microbiology-and-infectious-diseases/faculty-staff/keith-fowke)
+
+[View Dasboard](https://fowkelab.github.io/IIQ2-PHASE2/)
+
+<iframe src="https://fowkelab.github.io/IIQ2-PHASE2/" style="border: none; width: 100%; height: 600px" frameborder="0"></iframe>
+
+**Role**: Additional Support - Dashboard Developer  
+
+## The Challenge
+The **IIQ2 Phase 2 study** in Nairobi, Kenya, investigates whether low-dose aspirin can induce an "Immune Quiescent" (IIQ) phenotype to reduce HIV susceptibility. Managing a Phase 2 trial involves tracking complex enrollment targets, participant retention, and specimen collection across multiple clinical sites. Prof. Keith Fowke’s lab required a quick dashboard to monitor study progress and ensure data quality in real-time.
+
+## The Solution
+I developed a specialized monitoring dashboard within two weeks to serve as the "mission control" for the study. This tool provides the leadership team with an immediate snapshot of trial health, moving away from static weekly reports to dynamic, live data exploration.
+
+- **Enrollment Tracking**: Automated the visualization of recruitment vs. targets, allowing for rapid adjustments to clinical outreach strategies.
+- **Retention Analytics**: Built modules to identify drop-out patterns and monitor participant follow-up schedules across the longitudinal study design.
+- **Specimen Governance**: Integrated tracking for biological samples to ensure alignment between clinical visits and lab processing.
+
+## Technical Deep-Dive
+- **Automated Data Pipeline**: Established a workflow to pull and clean data from clinical databases, ensuring the dashboard reflects the most current study status.
+- **Tech Stack**: `R`, `flexdashboard`, `ggplot2`, `dplyr`, `lubridate`.
+- **Impact**: Improved administrative efficiency and provided the team with data-driven insights to maintain the trial’s rigorous timeline and high retention rates.
+
+

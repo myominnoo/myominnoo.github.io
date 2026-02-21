@@ -1,9 +1,56 @@
 ---
-title: "About"
+title: "Hi, I am Myo 👋"
+subtitle: "I help research teams, organizations, and policy-makers turn complex health data into actionable insights through rigorous epidemiology, data science, and strategic storytelling."
+page-layout: full
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      text: Contact
+      href: mailto:dr.myominnoo@gmail.com
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/myominnoo
+    - icon: github
+      text: Github
+      href: https://github.com/myominnoo
+    - icon: mortarboard
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=0000-0003-4089-016X
 ---
 
-About this site
 
-```{r}
-1 + 1
-```
+::: {style="text-align: centre; max-width: 900px; margin: auto;"}
+[**Schedule a Discovery Call**](https://calendly.com/dr-myominnoo){.btn style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
+:::
+
+
+--- 
+As an independent research consultant and epidemiologist, I bridge the gap between messy data and real-world health impact. I combine my clinical background as a medical doctor with a senior-level expertise in epidemiological research and data science to design research that is methodologically sound, equity-focused, and implementation-ready.
+
+With over a decade of experience across academic, clinical, and policy-facing settings, I have led multiple complex research projects globally and published 35+ peer-reviewed papers. My work ranges from advanced statistical modelling of large-scale electronic health records to the development of automated report pipelines and interactive dashboards.
+
+By applying a **code-first approach in R**, I ensure that every analysis is reproducible, transparent, and efficient—whether I am building interactive dashboards, generating dynamic reports, or conducting complex meta-analyses.
+
+I also frequently engage as a peer reviewer, a mentor, a technical lead, and a data consultant, helping teams strengthen their internal capacity for data wrangling, statistical analysis, pipeline development, and evidence synthesis.
+
+    →     [**Research Portfolio**](projects/index.qmd)  
+    →     [**Curriculum Vitae**](assets/docs/cv_full.pdf)
+
+***
+
+## 🧬 Epidemiology & Implementation Science
+Before transitioning into industry and independent consulting, I worked as an epidemiologist and held two postdoctoral fellowships in global health and infectious diseases as well as senior research positions at various organizations. My journey has taken me from clinical practice to leading nationwide surveys and evaluating complex health interventions. I specialize in identifying health equity gaps and designing strategies to improve access for underserved populations, including sex workers, gender-divser groups, immigrants and indigenous communities.
+
+## 💻 Data Science & Automation
+I am a firm believer in the power of "clean code for clean data." My primary tool for all research tasks is the **R programming language**. I utilize the `{tidyverse}` and `{ggplot2}` ecosystems to move from raw, "messy" data to polished, publication-ready visualizations and automated reports. This script-based workflow ensures that my clients receive results that are not just accurate, but fully reproducible and scalable.
+
+## 📈 Strategic Research Leadership
+Beyond the data, I provide high-level research leadership. Having managed transdisciplinary teams of over 15 researchers, I understand how to translate complex analytical findings into clear, actionable recommendations for governments and health system partners. I help organizations set research strategies that align with international standards and maximize real-world impact.
+
+***
+
+## Contact
+**Myo Minn Oo, MBBS, PhD** 
+Epidemiologist | Research Director | Data Consultant  
+[dr.myominnoo@gmail.com](mailto:dr.myominnoo@gmail.com)

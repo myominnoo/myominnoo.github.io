@@ -4,6 +4,9 @@ project:
   output-dir: docs
   preview:
     port: 4200
+    browser: true
+    watch-inputs: true
+    timeout: 3600
   resources:
     - CNAME
 
@@ -11,41 +14,60 @@ profile:
   default: english
 
 website:
+  favicon: assets/img/favicon.ico
+  search:
+    location: navbar
+    type: overlay
   page-navigation: true
   title: "Myo Minn Oo"
-  site-url: "https://myominnoo.com/"
-  google-analytics: "G-LW606KXSWS"
+  description: "Epidemiology, Data Science, Consulting"
+  site-url: https://myominnoo.com
+  repo-url: https://github.com/myominnoo/myominnoo.github.io
+  google-analytics:
+    tracking-id: "G-LW606KXSWS"
+    anonymize-ip: true
+  cookie-consent:
+    type: express
+    prefs-text: "Change cookies 🍪"
 
   navbar:
+    pinned: true
     # logo: assets/img/profile.png
     # left:
     right:
-      - href: blog.qmd
+      - href: projects/index.qmd
+        text: Projects
+      - href: about.qmd
+        text: About Me
+      - href: contact.qmd
+        text: Contact
+      - href: blog/index.qmd
         text: Blog
-      - href: services.qmd
-        text: Services
-      - href: cv.qmd
-        text: CV
       - icon: linkedin
         href: https://www.linkedin.com/in/myominnoo/
       - icon: github
         href: https://github.com/myominnoo
 
-  #page-footer: "Developed with Quarto by Giandomenico Bisaccia — © 2024-2025"
   reader-mode: false
+  page-footer:
+    border: true
+    center: "&#169; 2021-2026 Myo Minn Oo"
 
 format:
   html:
     theme:
-      # light: [flatly, styles.css]
       light: flatly
       dark: darkly
-
-    # css: styles.css
     respect-user-color-scheme: true
-    toc: true
+    toc-depth: 4
     toc-location: left
+    toc: true
+    pagetitle: "Myo Minn Oo | {{< meta title >}}"
+    page-layout: article
+    smooth-scroll: true
+    link-external-newwindow: true
+    code-link: true
+    highlight-style: a11y
 
-csl: jacc-cvi.csl
 execute:
-  freeze: true
+  freeze: auto

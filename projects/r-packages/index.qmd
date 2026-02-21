@@ -1,0 +1,118 @@
+---
+title: "R Packages"
+author: "Myo Minn Oo"
+date: 2021-10-22
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - Package
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+## mStats {#sec-rpkg-mStats}
+
+<img src="../assets/img/mStats-logo.png" align="right" height="120"/>
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/mStats)](https://CRAN.R-project.org/package=mStats)
+[![R-CMD-check](https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/myominnoo/mStats/branch/main/graph/badge.svg)](https://app.codecov.io/gh/myominnoo/mStats?branch=main)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+<!-- badges: end -->
+
+mStats is a versatile and efficient collection of functions that I have
+curated and developed to enhance my work in various domains. This
+collection encompasses a range of statistical tools and utilities that
+have proven invaluable in my research and analysis endeavors.
+
+As an avid user of mStats, I am delighted to share this valuable
+resource with the broader community. Together, we can leverage the power
+of mStats to overcome statistical challenges, drive impactful insights,
+and advance the frontiers of knowledge in our respective fields.
+
+Stay tuned for updates and enhancements to mStats as I continue to
+refine and expand its capabilities to meet the evolving needs of the
+research community.
+
+<a href="https://myominnoo.github.io/mStats/" target="_blank">Documentation</a>
+\| <a href="https://github.com/myominnoo/mStats/" target="_blank">Source
+Code</a> \|
+<a href="https://cran.r-project.org/package=mStats" target="_blank">CRAN</a><br>
+
+## shinyAuthX {#sec-rpkg-shinyAuthX}
+
+<img src="../assets/img/shinyAuthX-logo.png" align="right" height="138"/>
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/shinyAuthX)](https://CRAN.R-project.org/package=shinyAuthX)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R-CMD-check](https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/myominnoo/shinyAuthX/branch/main/graph/badge.svg)](https://app.codecov.io/gh/myominnoo/shinyAuthX?branch=main)
+
+<!-- badges: end -->
+
+ShinyAuthX is a powerful R package specifically designed for user
+authentication within Shiny apps. It provides a comprehensive suite of
+authentication features including user sign-in, sign-up, sign-out, and
+password recovery, seamlessly integrating user-friendly UI and Server
+components. It empowers shiny app developers to create secure and
+user-friendly authentication systems.
+
+[Open in New Window.](https://myominnoo.shinyapps.io/shinyAuthX/)
+
+
+```{=html}
+ <iframe src="https://myominnoo.shinyapps.io/shinyAuthX/" style="border: none; width: 100%; height: 510px" frameborder="0"></iframe>
+```
+
+
+<a href="https://myominnoo.github.io/shinyAuthX/" target="_blank">Documentation</a>
+\|
+<a href="https://github.com/myominnoo/shinyAuthX/" target="_blank">Source
+Code</a> \|
+<a href="" target="https://github.com/myominnoo/shinyAuthX/">CRAN</a><br>
+
+## u5mr {#sec-rpkg-u5mr}
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/u5mr)](https://CRAN.R-project.org/package=u5mr)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+<!-- badges: end -->
+
+Introducing u5mr, an open-source R package designed for estimating child
+mortality rates. This package includes the implementation of various
+methods to estimate child mortality.
+
+One notable feature of u5mr is its incorporation of the maternal age
+cohort-derived (MAC) and period-derived (MAP) methods proposed by
+Rajaratnam et al. These methods provide additional flexibility and
+accuracy in estimating child mortality rates, enhancing the reliability
+of the results.
+
+To learn more about the MAC and MAP methods, refer to the publication by
+Rajaratnam et al. available at [Rajaratnam et
+al](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1000253).
+
+<a href="https://myominnoo.github.io/u5mr/" target="_blank">Documentation</a>
+\| <a href="https://github.com/myominnoo/u5mr/" target="_blank">Source
+Code</a> \|
+<a href="https://cran.r-project.org/package=u5mr" target="_blank">CRAN</a><br>

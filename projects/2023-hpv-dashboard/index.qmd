@@ -1,0 +1,47 @@
+---
+title: "SWOP HPV Study Monitoring Dashboard"
+author: "Myo Minn Oo"
+date: 2023-07-04
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - flexdashboard
+  - GitHub
+  - GitHub Action
+  - Study Enrollment
+  - Project Management
+  - HPV
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+
+[View on GitHub](https://github.com/myominnoo/hpvstudy) | [View Dasboard](https://myominnoo.github.io/hpvstudy/)
+
+<iframe src="https://myominnoo.github.io/hpvstudy/" style="border: none; width: 100%; height: 600px" frameborder="0"></iframe>
+
+**Role**: Epidemiologist & Study Data Lead  
+
+**Position**: Postdoctoral Fellowship @ University of Manitoba  
+
+**Domain**: HPV, Project Management, Study Enrollment
+
+## The Challenge
+The **SWOP HPV Study** in Nairobi tracks high-risk populations (FSW and MSM) over a one-year period to understand HPV genotype transmission and immunological clearance. Managing longitudinal data for such a study is notoriously difficult; researchers need to monitor "loss to follow-up," identify patterns in viral persistence across multiple visits, and correlate these with mucosal characteristics in real-time.
+
+## The Solution
+I designed and implemented a centralized data infrastructure and monitoring dashboard for the study. This system shifted the project from reactive data management to proactive epidemiological surveillance.
+
+- **Cohort Study Tracking**: Built specialized visualizations to monitor participant retention and follow-up success over the one-year study window.
+- **mini-LMS**: Tracked logistics and testing of blood samples across sequential clinical visits.
+- **Integrated Analytics**: Preliminary analytics on combined epidemiological metadata with mucosal/immunological characteristics to guide student enrollment.
+
+## Technical Deep-Dive
+- **Workflow Automation**: Created a reproducible R pipeline to clean and merge data from multiple clinic visits into a longitudinal "long-format" structure.
+- **Tech Stack**: `R`, `flexdashboard`, `tidyverse`, `ggplot2`, `plotly`, `GitHub Actions`.
+- **Impact**: Substantial efficient in study monitoring and influenced biweekly meetings and decisions.

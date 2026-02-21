@@ -6,7 +6,7 @@ lightbox: true
 toc: false
 about:
   template: jolla
-  image: assets/img/profile.png
+  image: assets/img/profile-casual.png
 ---
 
 ## Turning Messy Data to Real-World Impact
@@ -15,12 +15,8 @@ about:
 Hi! 👋 I’m Myo. As an epidemiologist, research director, and data consultant, I specialize in the intersection of epidemiology, data science, and health equity. With a PhD, two postdocs, and over 10 years of experience of leading complex research projects, I help research teams and clients transform messy data into actionable insights.
 :::
 
-
 ::: {style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 50px 0;"}
-[**Research Portfolio**](about.qmd){.btn style="background-color: #1B263B; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
+[**Read more about me**](about.qmd){.btn style="background-color: #1B263B; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
 
-[**Consulting & Collaboration**](https://calendly.com/dr-myominnoo){.btn style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
+[**Schedule a Discovery Call**](https://calendly.com/dr-myominnoo){.btn style="background-color: #E63946; color: white; padding: 14px 30px; font-size: 1.1em; border-radius: 0; font-weight: bold; border: none; min-width: 280px;"}
 :::
-
-
-

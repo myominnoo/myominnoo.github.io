@@ -1,0 +1,54 @@
+---
+title: "COVID-19 Longitudinal Antibody Trajectory Analysis"
+author: "Myo Minn Oo"
+date: 2023-06-02
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - Shiny
+  - COVID-19
+  - Longitudinal Data Analysis
+  - Modelling
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+
+## Longitudinal Antibody Trajectory Dashboard
+
+[View Wireframe](featured.png) | [View App Demos](https://myominnoo.shinyapps.io/covidab/)
+
+
+
+**Role**: Lead Epidemiologist, Shiny Developer  
+**Position**: Postdoctoral Fellowship @ University of Manitoba  
+**Domain**: Immunology, Public Health, Infectious Disease
+
+## The Challenge
+Tracking SARS-CoV-2 antibody durability across 3–5 booster doses generates high-dimensional, longitudinal datasets. With three types of serology antibodies and various neutralization responses to monitor, static reporting was insufficient. The research team needed a way to visualize complex immune decay patterns and "trajectories" to inform public health strategies and booster protocols in real-time.
+
+![A list of key research questions on the welcome page:](featured1.png)
+
+## The Solution
+I developed a comprehensive Shiny application designed as a communication and analysis hub for cohort surveillance. This platform streamlines the transition from raw serological data to interactive longitudinal insights.
+
+- **Dynamic Trajectory Mapping**: Built interactive visualizations that allow researchers to isolate specific cohorts and booster groups to observe immune trends.
+- **Multi-Dimensional Analysis**: Integrated disparate outcomes (serology vs. neutralization) into a single, unified interface for comparative study.
+- **Engagement-Focused UI & Data Viz**: Developed a user-friendly "wireframe-to-production" interface that simplifies statistical exploration for non-data scientists.
+
+![Input parameters for data viz through slided datasets](featured2.png)
+
+![Input parameters for data viz through slided datasets](featured3.png)
+
+## Technical Deep-Dive
+- **Longitudinal and Mixed-Effects Modeling**: Leveraged R to calculate statistics across multiple time points and booster intervals.
+- **Tech Stack**: `R`, `Shiny`, `ggplot2`, `plotly`, `tidyverse`, `lme4`.
+- **Impact**: Served as the "comprehensive platform" for the study, enabling deep-dive collaborations with research partners and accelerating the dissemination of findings on long-term vaccine effectiveness.
+
+![Input parameters and modelling outputs on the fly:](featured4.png)
+
