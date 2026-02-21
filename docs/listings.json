@@ -1,0 +1,26 @@
+[
+  {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/2023-12-01-email-custom-domain-netlify/index.html",
+      "/blog/2023-06-30-equiplot/index.html",
+      "/blog/2023-06-15-duplicates-R/index.html",
+      "/blog/2023-06-02-awesome-resources/index.html",
+      "/blog/2023-05-31-hello-world/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/2023-hpv-prev/index.html",
+      "/projects/2023-xpert-magic/index.html",
+      "/projects/2023-iiq2/index.html",
+      "/projects/2025-colp-paper/index.html",
+      "/projects/2023-hpv-dashboard/index.html",
+      "/projects/2023-covidab/index.html",
+      "/projects/2021-malcon/index.html",
+      "/projects/2021-u5mr-mis/index.html",
+      "/projects/r-packages/index.html"
+    ]
+  }
+]

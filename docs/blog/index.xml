@@ -1,0 +1,1933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Myo Minn Oo</title>
+<link>https://myominnoo.com/blog/</link>
+<atom:link href="https://myominnoo.com/blog/index.xml" rel="self" type="application/rss+xml"/>
+<description>Epidemiology, Data Science, Consulting</description>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Sat, 02 Dec 2023 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Adding a Custom Email to Your Netlify-Hosted Quarto Website</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>If you’ve successfully followed <a href="https://jadeyryan.com/blog/2023-11-19_publish-quarto-website/">Jadey Ryan’s blog</a> to publish a Quarto website on Netlify, congrats! Your site might already be awesome with a custom domain like <strong><code>example.com</code></strong>. However, if you’re yearning for that professional touch with a custom email address like <code>johnsmith\@example.com</code>, fear not—I’m here to guide you through the process. Let’s jazz your site. 🚀</p>
+<section id="netlify-limitations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="netlify-limitations">Netlify <strong>Limitations</strong></h2>
+<p>Netlify doesn’t provide email services<sup>1</sup>, so you’ll need to choose your own provider.</p>
+<p>Just a heads-up, this tutorial is designed for those using Netlify’s DNS Hosting services<sup>2</sup>. Forget about paid options like Zoho Mail; we’re opting for the free wonders of ImprovMX and Gmail—more than sufficient for the job!</p>
+<p>Once your Quarto website is set up with a custom domain on Netlify<sup>3</sup>, follow these steps:</p>
+</section>
+<section id="email-forwarding-with-improvmx" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="email-forwarding-with-improvmx"><span class="header-section-number">1</span> Email Forwarding with ImprovMX</h2>
+<p><a href="https://improvmx.com/">ImprovMX</a> promises email forwarding in seconds, and the best part—it’s absolutely free forever!</p>
+<p>Now, let’s look at the free plan perks:</p>
+<ul>
+<li><p>1 domain</p></li>
+<li><p>25 aliases per domain</p></li>
+<li><p>500 incoming emails per day</p></li>
+<li><p>10Mb attachment limit</p></li>
+<li><p>Normal forwarding speed</p></li>
+<li><p>Email support only</p></li>
+</ul>
+<p>Sure, it might not come with all the bells and whistles, but hey, it’s free, and it’s more than good enough for the task at hand! 🌈</p>
+<section id="create-an-improvmx-account" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="create-an-improvmx-account"><span class="header-section-number">1.1</span> Create an ImprovMX account</h3>
+<ol type="1">
+<li>Visit <a href="https://improvmx.com/">ImprovMX</a>.</li>
+</ol>
+<p><a href="01-setup-alias.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/01-setup-alias.png" class="img-fluid"></a></p>
+<ol start="2" type="1">
+<li>Enter your domain (<strong><code>example.com</code></strong>) and the email address you want to forward to (e.g., <code>youraddress@gmail.com</code>).</li>
+<li>Click <code>Create a free alias</code>.</li>
+</ol>
+<p>It will bring you to a new page with some required information to fill in, like your full name and location.</p>
+</section>
+<section id="create-aliases" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="create-aliases"><span class="header-section-number">1.2</span> Create Aliases</h3>
+<p>Time to get creative! Begin adding aliases like <code>johnsmith@example.com</code>, <code>hello@example.com</code>, <code>sales@example.com</code>, <code>customer@example.com</code>, and the list goes on! 🌟 You can have up to 25 aliases with the free plan.</p>
+<p><a href="02-create-alias.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/02-create-alias.png" class="img-fluid"></a></p>
+<p>Mission accomplished with your aliases? Sweet! Now, onto the next part—<strong><code>DNS Settings</code></strong>.</p>
+</section>
+<section id="set-up-dns-setting" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="set-up-dns-setting"><span class="header-section-number">1.3</span> Set up DNS setting</h3>
+<p>This section comprises two essential components: 1) MX entries and 2) SPF records. It’s crucial to configure them accurately to authorize ImprovMX for sending emails on your behalf and ensure ImprovMX can efficiently receive and forward your emails. 📧✨</p>
+<p><a href="03-DNS-Settings.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/03-DNS-Settings.png" class="img-fluid"></a></p>
+<p>Let’s add these settings into the DNS configuration of your Netlify domain.</p>
+<p>To do this:</p>
+<ol type="1">
+<li><p>🌐 Log in to <a href="https://app.netlify.com/">your Netlify account</a>.</p></li>
+<li><p>🖱️ Go to <code>Domains</code> --&gt; Click <code>your domain name</code> --&gt; <code>Add a new record</code> under <code>DNS settings</code>.</p></li>
+</ol>
+<p><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/03-new-DNS.png" class="img-fluid"> Here is reiteration of what Suppor</p>
+<p>Here is a reiteration of the recommended steps outlined in the Support Guide article:</p>
+<p>The settings for each record are as follows:</p>
+<ul>
+<li><p><strong>Record type:</strong> Select MX.</p></li>
+<li><p><strong>Name:</strong> Use just the @ symbol; no additional information is needed.</p></li>
+<li><p><strong>Priority:</strong> An integer; lower numbers indicate higher priority. Set it to the recommended value from your email service provider.</p></li>
+<li><p><strong>Value:</strong> This should be the server path provided by your email service.</p></li>
+<li><p><strong>TTL (Time To Live):</strong> This will default to 3600 seconds, and the default setting is usually appropriate.</p></li>
+</ul>
+<p>For me, I input all three corresponding entries with their respective values. It’s a pretty straightforward process. Once you are set up, the message “Email forwarding needs setup” in red will change to “Email forwarding active” in green. 🟢📬</p>
+<p><a href="03-forwarding-active.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/03-forwarding-active.png" class="img-fluid"></a></p>
+<p>You can verify its functionality by clicking on the test button. 🧪</p>
+<p>Now, you’re all set to receive emails addressed to your domain or custom email address. 📧✨</p>
+</section>
+</section>
+<section id="set-up-in-gmail" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="set-up-in-gmail"><span class="header-section-number">2</span> Set up in Gmail</h2>
+<p>ImprovMX has a <a href="https://improvmx.com/guides/send-emails-using-gmail/">helpful guide for this process</a>. Check it out if you like. Here, I’ll walk you through my experience:</p>
+<ol type="1">
+<li><p>Ensure your Gmail account has <strong>Two-Factor Authentication (2FA) enabled</strong>. If not, you can set it up <a href="https://www.google.com/landing/2step/">here</a>.</p></li>
+<li><p>Generate an <strong>App Password</strong> by clicking <a href="https://security.google.com/settings/security/apppasswords">here</a>. You’ll need to re-enter your Gmail password for this.</p></li>
+<li><p>In the <code>App name</code>, enter <code>ImprovMX alias</code> and click <code>Create</code>. This will display your <code>app password</code> on a new screen. Keep this screen open in a separate tab; you’ll need the <code>app password</code> for Gmail setup. 🌐🔐</p></li>
+</ol>
+<p><a href="04-app-password.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/04-app-password.png" class="img-fluid"></a></p>
+<p>Now you’re ready to proceed with the Gmail configuration.</p>
+<ol type="1">
+<li><p>Open your Gmail (preferably in a separate tab) and navigate to settings. You can do this by going to Settings &gt; See all settings or simply click <a href="https://mail.google.com/mail/u/0/#settings/general">here</a>.</p></li>
+<li><p>In the <code>Accounts and Import</code> tab, under <code>Send email as:</code>, click <code>Add another email address</code>.<img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/05-gmail-setup.png" class="img-fluid"></p></li>
+<li><p>Enter your <code>email alias</code> in the <code>Email Address</code> field and uncheck “Treat as an alias”. Click <code>Next Step</code>.<img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/smtp-sender-info-gmail.gif" class="img-fluid"></p></li>
+<li><p>Enter <strong><code>smtp.gmail.com</code></strong> in the <code>SMTP Server</code>, your email address in the <code>Username</code>, and your <code>app password</code> in the <code>Password</code>. Leave the rest as it is. Click “Add Account”.</p></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you copy the code, be cautious as it may contain white spaces. The code should be 16 digits long.</p>
+</div>
+</div>
+<p><a href="smtp-gmail.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/smtp-gmail.gif" class="img-fluid"></a></p>
+<p>Gmail will send you an email requesting confirmation of ownership via a provided link. Simply click on the link to confirm, and you’re good to go!</p>
+<p>From now on, you can easily choose your alias from the list when composing a new message.</p>
+</section>
+<section id="in-a-nutshell" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="in-a-nutshell">In a nutshell</h2>
+<p>You’ve just given your Quarto website on Netlify a major upgrade with a cool custom domain and professional email address. Test out the workflow and let me know. If you face any issues or have more questions, feel free to reach out at <a href="mailto:hello@myominnoo.com">hello@myominnoo.com</a>.</p>
+<p>Happy customizing, and best of luck with your improved online presence!</p>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><p><a href="https://improvmx.com/guides/send-emails-using-gmail/">Sending emails using Gmail SMTP</a></p></li>
+<li><p><a href="https://docs.netlify.com/domains-https/netlify-dns/">Netlify DNS</a></p></li>
+<li><p><a href="https://answers.netlify.com/t/support-guide-how-can-i-receive-emails-on-my-domain/178">Netlify’s Support Guide</a></p></li>
+</ul>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://docs.netlify.com/domains-https/netlify-dns/#set-up-emails-on-your-domain">Set up emails on your domain</a>↩︎</p></li>
+<li id="fn2"><p><a href="https://answers.netlify.com/t/support-guide-how-can-i-receive-emails-on-my-domain/178">[Support Guide] How can I receive emails on my domain?</a>↩︎</p></li>
+<li id="fn3"><p><a href="https://jadeyryan.com/blog/2023-11-19_publish-quarto-website/">Create a Quarto website, connect it to GitHub, deploy &amp; publish it with Netlify.</a>↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{minn_oo2023,
+  author = {Minn Oo, Myo},
+  title = {Adding a {Custom} {Email} to {Your} {Netlify-Hosted} {Quarto}
+    {Website}},
+  date = {2023-12-02},
+  url = {https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas">
+Minn Oo, Myo. 2023. <span>“Adding a Custom Email to Your Netlify-Hosted
+Quarto Website.”</span> December 2, 2023. <a href="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/">https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>Netlify</category>
+  <guid>https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/</guid>
+  <pubDate>Sat, 02 Dec 2023 06:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/blog/2023-12-01-email-custom-domain-netlify/featured.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Creating Equiplot in R</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/blog/2023-06-30-equiplot/</link>
+  <description><![CDATA[ <p>This short code snippet demonstrates the process of creating an equiplot for visualizing health equity. Here’s a summary and step-by-step description of what the code does:</p>
+<p>You need <strong><code>tidyverse</code></strong>, <strong><code>haven</code></strong>, and <strong><code>glue</code></strong> packages to run this session. To install them, run the following code in your R console:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install.packages</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tidyverse"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"haven"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"glue"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ggprism"</span>))</span></code></pre></div></div>
+</details>
+</div>
+<section id="getting-data" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="getting-data">
+<span class="header-section-number">1</span> Getting data</h2>
+<p>Next, we will do the following to get the data into R.</p>
+<ol type="1">
+<li><p>Load the necessary packages: <strong><code>tidyverse</code></strong>. For <strong><code>haven</code></strong> and <strong><code>glue</code></strong>, we will not load them but use this, <strong><code>package::function()</code></strong>.</p></li>
+<li><p>Create a temporary directory to store the downloaded zip file.</p></li>
+<li><p>Download the zip file from the Equidade website.</p></li>
+<li><p>Extract the contents of the downloaded zip file.</p></li>
+<li><p>Read the extracted data file, “example_dataset_structure.dta”, into R.</p></li>
+</ol>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create a temporary file to save zipped file</span></span>
+<span id="cb2-4">temp <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tempdir</span>()</span>
+<span id="cb2-5">zip_file <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> here<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">here</span>(temp, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"equiplot-guide.zip"</span>)</span>
+<span id="cb2-6"></span>
+<span id="cb2-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># download zip file from equidade website</span></span>
+<span id="cb2-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">download.file</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">url =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://www.equidade.org/files/equiplot-guide.zip"</span>, </span>
+<span id="cb2-9">                            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">destfile =</span> zip_file)</span>
+<span id="cb2-10"></span>
+<span id="cb2-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># import data</span></span>
+<span id="cb2-12">raw <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unz</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">description =</span> zip_file, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">filename =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"example_dataset_structure.dta"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-13">    haven<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_dta</span>()</span></code></pre></div></div>
+</details>
+</div>
+<p>Let’s check the data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 11%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: left;">source</th>
+<th style="text-align: right;">rQ1</th>
+<th style="text-align: right;">rQ2</th>
+<th style="text-align: right;">rQ3</th>
+<th style="text-align: right;">rQ4</th>
+<th style="text-align: right;">rQ5</th>
+<th style="text-align: right;">sii</th>
+<th style="text-align: right;">countryn</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">1.22636</td>
+<td style="text-align: right;">4.83719</td>
+<td style="text-align: right;">11.88177</td>
+<td style="text-align: right;">12.71847</td>
+<td style="text-align: right;">9.88325</td>
+<td style="text-align: right;">14.4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">5.91252</td>
+<td style="text-align: right;">12.20895</td>
+<td style="text-align: right;">16.38398</td>
+<td style="text-align: right;">19.08344</td>
+<td style="text-align: right;">17.54643</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">5.68750</td>
+<td style="text-align: right;">10.30164</td>
+<td style="text-align: right;">11.48771</td>
+<td style="text-align: right;">12.43650</td>
+<td style="text-align: right;">10.01661</td>
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">14.74925</td>
+<td style="text-align: right;">17.41648</td>
+<td style="text-align: right;">17.58095</td>
+<td style="text-align: right;">19.09717</td>
+<td style="text-align: right;">12.96915</td>
+<td style="text-align: right;">-4.3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Colombia</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">6.82985</td>
+<td style="text-align: right;">12.25396</td>
+<td style="text-align: right;">8.66815</td>
+<td style="text-align: right;">7.98813</td>
+<td style="text-align: right;">11.02944</td>
+<td style="text-align: right;">1.6</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Colombia</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">9.66284</td>
+<td style="text-align: right;">11.34591</td>
+<td style="text-align: right;">12.16200</td>
+<td style="text-align: right;">12.51274</td>
+<td style="text-align: right;">11.31543</td>
+<td style="text-align: right;">-3.4</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Haiti</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">1.12229</td>
+<td style="text-align: right;">0.57025</td>
+<td style="text-align: right;">0.61240</td>
+<td style="text-align: right;">2.09852</td>
+<td style="text-align: right;">10.52705</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Haiti</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">0.69455</td>
+<td style="text-align: right;">1.81220</td>
+<td style="text-align: right;">2.97682</td>
+<td style="text-align: right;">7.12898</td>
+<td style="text-align: right;">12.97554</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Peru</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">3.04027</td>
+<td style="text-align: right;">7.29176</td>
+<td style="text-align: right;">11.33096</td>
+<td style="text-align: right;">13.07306</td>
+<td style="text-align: right;">15.77069</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peru</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">3.35353</td>
+<td style="text-align: right;">9.16911</td>
+<td style="text-align: right;">16.07169</td>
+<td style="text-align: right;">17.62576</td>
+<td style="text-align: right;">15.82903</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="reshaping-data-from-wide-to-long-format" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="reshaping-data-from-wide-to-long-format">
+<span class="header-section-number">1.1</span> Reshaping data from wide to long format</h3>
+<p>Let’s change the data format so that it is much easier to create plots in ggplot2.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1">ex <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb3-2">    raw <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_longer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cols =</span> rQ1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>rQ5, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"level"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"coverage"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb3-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">level =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_remove</span>(level, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"r"</span>), </span>
+<span id="cb3-6">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">level =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">case_when</span>(</span>
+<span id="cb3-7">            level <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Q1"</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Q1 (Poorest)"</span>, </span>
+<span id="cb3-8">            level <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Q5"</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Q5 (Richest)"</span>, </span>
+<span id="cb3-9">            <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> level</span>
+<span id="cb3-10">        )</span>
+<span id="cb3-11">    )</span></code></pre></div></div>
+</details>
+</div>
+<p>In the provided code above, the data frame “raw” is being processed using the pipe operator (<strong><code>|&gt;</code></strong>).</p>
+<p>First, the code uses the <strong><code>pivot_longer()</code></strong> function from the “tidyr” package to reshape the data. The columns “rQ1” to “rQ5” are transformed into two new columns: “level” and “coverage”. The values in the original columns are gathered into the “coverage” column, and the column names are extracted and placed in the “level” column.</p>
+<p>Next, the code uses the <strong><code>mutate()</code></strong> function from the “dplyr” package to modify the “level” column. The <strong><code>str_remove()</code></strong> function from the “stringr” package removes the letter “r” from the beginning of each level. The <strong><code>case_when()</code></strong> function is then used to assign new labels to the levels based on specific conditions. For example, if the level is “Q1”, it is renamed to “Q1 (Poorest)”. Similarly, if the level is “Q5”, it is renamed to “Q5 (Richest)”. If none of the conditions match, the original level value is retained.</p>
+<p>The resulting data frame “ex” now has the “level” column modified with new labels, representing different quantiles of coverage.</p>
+</section><section id="how-pipe-works" class="level3" data-number="1.2"><h3 data-number="1.2" class="anchored" data-anchor-id="how-pipe-works">
+<span class="header-section-number">1.2</span> How pipe |&gt; works</h3>
+<p>Imagine you have a set of instructions that you need to follow in a specific order. The pipe <strong><code>|&gt;</code></strong> symbol is like a magic wand that helps you pass the results from one instruction to the next, without having to write everything down again.</p>
+<p>For example, let’s say you have a toy car and you want to make it go faster. You have different steps to follow: first, you need to attach a turbo engine, then add bigger wheels, and finally, give it a fresh coat of paint.</p>
+<p>Using the magic wand, you can say “Take the car and attach a turbo engine” (car |&gt; attach_turbo_engine), then you can say “Take the result from the previous step and add bigger wheels” (previous_result |&gt; add_bigger_wheels), and finally, you can say “Take the result from the previous step and give it a fresh coat of paint” (previous_result |&gt; give_fresh_coat_of_paint).</p>
+<p>The magic wand (<strong><code>|&gt;</code></strong>) helps you pass the car from one step to the next, making it faster and more exciting without repeating the same instructions every time.</p>
+<p>In programming, the pipe symbol works similarly. It allows you to take the output of one operation and pass it directly as input to the next operation, simplifying the code and making it easier to understand and follow the flow of data.</p>
+</section></section><section id="equiplot" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="equiplot">
+<span class="header-section-number">2</span> Equiplot</h2>
+<p>We will filter the data points for the year <strong><code>1994</code></strong> and create our boilerplate for equiplot.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1">ex <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1994</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ggplot boilerplate defining x and y axis</span></span>
+<span id="cb4-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coverage, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-5">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create circles </span></span>
+<span id="cb4-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>()</span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This looks very rough.</p>
+<p>Next, we will add more aesthetics to it.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1">ex <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb5-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1994</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb5-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coverage, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-4">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add line to connect values in each country</span></span>
+<span id="cb5-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(</span>
+<span id="cb5-6">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> country) </span>
+<span id="cb5-7">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb5-8">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create circles with colors based on wealth level</span></span>
+<span id="cb5-9">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb5-10">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> level), </span>
+<span id="cb5-11">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span></span>
+<span id="cb5-12">    ) </span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We want to make the plot more visually appealing so adding more looks.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1">p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb6-2">    ex <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb6-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1994</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb6-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coverage, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(</span>
+<span id="cb6-6">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> country) </span>
+<span id="cb6-7">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb6-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb6-9">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> level), </span>
+<span id="cb6-10">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span></span>
+<span id="cb6-11">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-12">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># limit x axis' min &amp; max values</span></span>
+<span id="cb6-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># make the axis label look good</span></span>
+<span id="cb6-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(</span>
+<span id="cb6-15">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>), </span>
+<span id="cb6-16">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> \(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%"</span>)</span>
+<span id="cb6-17">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-18">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add more descriptive labels</span></span>
+<span id="cb6-19">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb6-20">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Coverage (%)"</span>, </span>
+<span id="cb6-21">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, </span>
+<span id="cb6-22">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Wealth Quintiles"</span>, </span>
+<span id="cb6-23">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data source: Int'l Center for Equity in Health | Pelotas"</span></span>
+<span id="cb6-24">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-25">    <span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## add title</span></span>
+<span id="cb6-26">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggtitle</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Equiplot of XX coverage in 1994"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-27">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change the appearance of the whole graph</span></span>
+<span id="cb6-28">    ggprism<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_prism</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb6-29">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb6-30">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add horizontal grey line</span></span>
+<span id="cb6-31">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey90"</span>), </span>
+<span id="cb6-32">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># italicize plot caption</span></span>
+<span id="cb6-33">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"italic"</span>), </span>
+<span id="cb6-34">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># show legend title </span></span>
+<span id="cb6-35">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(), </span>
+<span id="cb6-36">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change legend to the top position</span></span>
+<span id="cb6-37">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span></span>
+<span id="cb6-38">    )</span>
+<span id="cb6-39">p </span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Refining more. change to custom colors.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1">p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb7-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_viridis_d</span>() <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># colors good for viewers with common forms of color blindness</span></span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1">p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb8-2">    p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change the color scale to custom colors</span></span>
+<span id="cb8-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(</span>
+<span id="cb8-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#15353b"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#005766"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#46929e"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffdb83"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffb403"</span>)</span>
+<span id="cb8-6">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb8-7">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># put legend title to the top over the labels</span></span>
+<span id="cb8-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guides</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guide_legend</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span>))  </span>
+<span id="cb8-9">p </span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="complete-code" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="complete-code">
+<span class="header-section-number">2.1</span> Complete code</h3>
+<p>Here is the complete code snippet.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1">ex <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb9-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1994</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb9-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coverage, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(</span>
+<span id="cb9-5">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> country) </span>
+<span id="cb9-6">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb9-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb9-8">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> level), </span>
+<span id="cb9-9">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span></span>
+<span id="cb9-10">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-11">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># limit x axis' min &amp; max values</span></span>
+<span id="cb9-12">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># make the axis label look good</span></span>
+<span id="cb9-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(</span>
+<span id="cb9-14">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>), </span>
+<span id="cb9-15">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> \(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%"</span>)</span>
+<span id="cb9-16">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-17">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change the color scale to custom colors</span></span>
+<span id="cb9-18">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(</span>
+<span id="cb9-19">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#15353b"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#005766"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#46929e"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffdb83"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffb403"</span>)</span>
+<span id="cb9-20">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb9-21">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># put legend title to the top over the labels</span></span>
+<span id="cb9-22">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guides</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guide_legend</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-23">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add more descriptive labels</span></span>
+<span id="cb9-24">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb9-25">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Coverage (%)"</span>, </span>
+<span id="cb9-26">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, </span>
+<span id="cb9-27">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Wealth Quintiles"</span>, </span>
+<span id="cb9-28">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data source: Int'l Center for Equity in Health | Pelotas"</span></span>
+<span id="cb9-29">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-30">    <span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## add title</span></span>
+<span id="cb9-31">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggtitle</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Equiplot of XX coverage in 1994"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-32">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change the appearance of the whole graph</span></span>
+<span id="cb9-33">    ggprism<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_prism</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb9-34">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb9-35">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add horizontal grey line</span></span>
+<span id="cb9-36">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey90"</span>), </span>
+<span id="cb9-37">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># italicize plot caption </span></span>
+<span id="cb9-38">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"italic"</span>), </span>
+<span id="cb9-39">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># show legend title </span></span>
+<span id="cb9-40">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(), </span>
+<span id="cb9-41">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change legend to the top position</span></span>
+<span id="cb9-42">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span></span>
+<span id="cb9-43">    ) </span></code></pre></div></div>
+</details>
+</div>
+</section><section id="reusable-function" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="reusable-function">
+<span class="header-section-number">2.2</span> Reusable function</h3>
+<p>Writing the same code repeatedly is not efficient. To avoid this, let’s create a function that allows us to reuse the boilerplate code as much as we need. This will help us save time and effort. We can modify the code snippet according to our requirements and then encapsulate it within a function. By doing so, we can easily reuse the code with different datasets or variables.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1">create_equiplot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(</span>
+<span id="cb10-2">        data, x, y, color,</span>
+<span id="cb10-3">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xlab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Coverage (%)"</span>, </span>
+<span id="cb10-4">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ylab =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, </span>
+<span id="cb10-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Equiplot of XX coverage in 1994"</span>,</span>
+<span id="cb10-6">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data source: Int'l Center for Equity in Health | Pelotas"</span>,</span>
+<span id="cb10-7">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Wealth Quintiles"</span>, </span>
+<span id="cb10-8">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color_pal =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#15353b"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#005766"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#46929e"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffdb83"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffb403"</span>)) {</span>
+<span id="cb10-9">    data <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-10">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> {{ x }}, </span>
+<span id="cb10-11">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> {{ y }}, </span>
+<span id="cb10-12">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> {{ color }}) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(</span>
+<span id="cb10-15">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> y) </span>
+<span id="cb10-16">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb10-17">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb10-18">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> color), </span>
+<span id="cb10-19">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span></span>
+<span id="cb10-20">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-21">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change the color scale to custom colors</span></span>
+<span id="cb10-22">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(</span>
+<span id="cb10-23">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> color_pal</span>
+<span id="cb10-24">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb10-25">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># put legend title to the top over the labels</span></span>
+<span id="cb10-26">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guides</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guide_legend</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-27">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add more descriptive labels</span></span>
+<span id="cb10-28">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb10-29">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> xlab, </span>
+<span id="cb10-30">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> ylab, </span>
+<span id="cb10-31">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> legend.title, </span>
+<span id="cb10-32">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> caption</span>
+<span id="cb10-33">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-34">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggtitle</span>(title) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb10-35">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change the appearance of the whole graph</span></span>
+<span id="cb10-36">    ggprism<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_prism</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb10-37">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb10-38">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add horizontal grey line</span></span>
+<span id="cb10-39">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey90"</span>), </span>
+<span id="cb10-40">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># italicize plot caption </span></span>
+<span id="cb10-41">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"italic"</span>), </span>
+<span id="cb10-42">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># show legend title </span></span>
+<span id="cb10-43">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(), </span>
+<span id="cb10-44">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># change legend to the top position</span></span>
+<span id="cb10-45">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span></span>
+<span id="cb10-46">    ) </span>
+<span id="cb10-47">}</span></code></pre></div></div>
+</details>
+</div>
+<p>Let’s create the same plot for the year <strong><code>1994</code></strong>.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1">ex <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb11-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1994</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb11-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">create_equiplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coverage, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> country, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> level, </span>
+<span id="cb11-4">                                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Equiplot showing XX coverage in 1994"</span>)</span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Adding faceted components based on the year variable can provide additional insights in our visualizations. Here are the updated codes that include faceting:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1">ex <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb12-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">create_equiplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coverage, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> country, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> level, </span>
+<span id="cb12-3">                                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Equiplot showing XX coverages: 1994-2006"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb12-4">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># stratified by year </span></span>
+<span id="cb12-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> year)</span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can customize the theme and labels to improve the appearance and clarity of the faceted graph. Here’s an updated version of the code snippet with a different theme and modified labels:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1">ex <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb13-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">create_equiplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coverage, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> country, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> level) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> year) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb13-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb13-6">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey90"</span>), </span>
+<span id="cb13-7">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>), </span>
+<span id="cb13-8">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>), </span>
+<span id="cb13-9">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>), </span>
+<span id="cb13-10">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"italic"</span>), </span>
+<span id="cb13-11">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>), </span>
+<span id="cb13-12">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span></span>
+<span id="cb13-13">    ) </span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://myominnoo.com/blog/2023-06-30-equiplot/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="saving-plots" class="level3" data-number="2.3"><h3 data-number="2.3" class="anchored" data-anchor-id="saving-plots">
+<span class="header-section-number">2.3</span> Saving plots</h3>
+<p><strong><code>ggsave()</code></strong> is a useful function in the ggplot2 package that allows you to save plots in various formats. Here’s an example code snippet demonstrating the usage of <strong><code>ggsave()</code></strong>:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggsave</span>(here<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">here</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plots"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"equiplot.png"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">height =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>)</span></code></pre></div></div>
+</details>
+</div>
+</section></section><section id="credits" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="credits">
+<span class="header-section-number">3</span> Credits</h2>
+<p>Thank you, <a href="https://www.countdown2030.org/staff/fernando-c-wehrmeister">Fernando C Wehrmeister</a> &amp; <a href="https://www.countdown2030.org/staff/dr-andrea-blanchard">Andrea Blanchard</a>, for introducing me to the field of health equity and for facilitating the interactive and thought-provoking health equity workshop at the University of Manitoba on 27-30 July 2023.</p>
+<p>Featured photo: <strong>Equity Dashboard</strong> by <a href="https://equidade.org/dashboard">Int’l Center for Equity in Health | Pelotas</a></p>
+<p>Example data &amp; color scheme: <strong>Equiplot</strong> by <a href="https://equidade.org/equiplot">Int’l Center for Equity in Health | Pelotas</a></p>
+
+
+<!-- -->
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{minn_oo2023,
+  author = {Minn Oo, Myo},
+  title = {Creating {Equiplot} in {R}},
+  date = {2023-06-30},
+  url = {https://myominnoo.com/blog/2023-06-30-equiplot/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas">
+Minn Oo, Myo. 2023. <span>“Creating Equiplot in R.”</span> June 30,
+2023. <a href="https://myominnoo.com/blog/2023-06-30-equiplot/">https://myominnoo.com/blog/2023-06-30-equiplot/</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>Health Equity</category>
+  <guid>https://myominnoo.com/blog/2023-06-30-equiplot/</guid>
+  <pubDate>Fri, 30 Jun 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/blog/2023-06-30-equiplot/featured.png" medium="image" type="image/png" height="80" width="144"/>
+</item>
+<item>
+  <title>Duplicates in R</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/blog/2023-06-15-duplicates-R/</link>
+  <description><![CDATA[ <section id="replicating-examples-on-uclas-stata-tutorial-in-r" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="replicating-examples-on-uclas-stata-tutorial-in-r">
+<span class="header-section-number">1</span> Replicating examples on UCLA’s STATA tutorial in R</h2>
+<blockquote class="blockquote">
+<p><strong>Citation</strong>: HOW CAN I DETECT DUPLICATE OBSERVATIONS? | STATA FAQ. UCLA: Statistical Consulting Group. from <a href="https://stats.oarc.ucla.edu/stata/faq/how-can-i-detect-duplicate-observations-3/" class="uri">https://stats.oarc.ucla.edu/stata/faq/how-can-i-detect-duplicate-observations-3/</a> (accessed June 15, 2023).</p>
+</blockquote>
+<p>The tutorial on the website used the High School and Beyond dataset. Here are the steps taken to introduce duplicates to the dataset.</p>
+<section id="install-mstats" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="install-mstats">
+<span class="header-section-number">1.1</span> Install mStats</h3>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1">devtools<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"myominnoo/mStats"</span>)</span></code></pre></div></div>
+</details>
+</div>
+</section><section id="downloading-a-dummy-data" class="level3" data-number="1.2"><h3 data-number="1.2" class="anchored" data-anchor-id="downloading-a-dummy-data">
+<span class="header-section-number">1.2</span> Downloading a dummy data</h3>
+<p>Start with the High School and Beyond dataset, which initially has no duplicate observations.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb2-2">hsb2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span></span>
+<span id="cb2-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># load the dataset</span></span>
+<span id="cb2-4">  haven<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_dta</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://stats.idre.ucla.edu/stat/stata/notes/hsb2.dta"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb2-5">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># select variables of interest</span></span>
+<span id="cb2-6">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(id, female, ses, read, write, math) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb2-7">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># sort by id</span></span>
+<span id="cb2-8">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(id)</span></code></pre></div></div>
+</details>
+</div>
+</section><section id="creating-duplicates" class="level3" data-number="1.3"><h3 data-number="1.3" class="anchored" data-anchor-id="creating-duplicates">
+<span class="header-section-number">1.3</span> Creating duplicates</h3>
+<p>Add five duplicate observations to the dataset to create duplicates. Change a value in one of the duplicate observations.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1">hsb2_mod <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span></span>
+<span id="cb3-2">  hsb2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># take the first five observations</span></span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-5">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add duplicate observations</span></span>
+<span id="cb3-6">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_rows</span>(hsb2) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-7">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">math =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">row_number</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">84</span>, math))</span>
+<span id="cb3-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># display the first few rows</span></span>
+<span id="cb3-9">hsb2_mod</span></code></pre></div></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 205 × 6
+      id female     ses         read write  math
+   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     1 1 [female] 1 [low]       34    44    84
+ 2     2 1 [female] 2 [middle]    39    41    33
+ 3     3 0 [male]   1 [low]       63    65    48
+ 4     4 1 [female] 1 [low]       44    50    41
+ 5     5 0 [male]   1 [low]       47    40    43
+ 6     1 1 [female] 1 [low]       34    44    40
+ 7     2 1 [female] 2 [middle]    39    41    33
+ 8     3 0 [male]   1 [low]       63    65    48
+ 9     4 1 [female] 1 [low]       44    50    41
+10     5 0 [male]   1 [low]       47    40    43
+# ℹ 195 more rows</code></pre>
+</div>
+</div>
+</section><section id="checking-duplicates" class="level3" data-number="1.4"><h3 data-number="1.4" class="anchored" data-anchor-id="checking-duplicates">
+<span class="header-section-number">1.4</span> Checking duplicates</h3>
+<p>After adding the duplicate observations, you will have a total of 195 unique observations and 5 duplicated observations in the dataset. We can use the <code>tag_duplicates()</code> function from the <code>mStats</code> package.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1">hsb2_mod <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb5-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># check duplicate report and status using a mStats function</span></span>
+<span id="cb5-3">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(mStats<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tag_duplicates</span>(dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">everything</span>()))</span></code></pre></div></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>$ Report of duplicates
+  in terms of dplyr::everything()
+ copies observations surplus
+      1          197       0
+      2            8       4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 205 × 9
+      id female     ses         read write  math   .n_   .N_ .dup_
+   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;
+ 1     1 1 [female] 1 [low]       34    44    84     1     1 FALSE
+ 2     2 1 [female] 2 [middle]    39    41    33     1     2 FALSE
+ 3     3 0 [male]   1 [low]       63    65    48     1     2 FALSE
+ 4     4 1 [female] 1 [low]       44    50    41     1     2 FALSE
+ 5     5 0 [male]   1 [low]       47    40    43     1     2 FALSE
+ 6     1 1 [female] 1 [low]       34    44    40     1     1 FALSE
+ 7     2 1 [female] 2 [middle]    39    41    33     2     2 TRUE 
+ 8     3 0 [male]   1 [low]       63    65    48     2     2 TRUE 
+ 9     4 1 [female] 1 [low]       44    50    41     2     2 TRUE 
+10     5 0 [male]   1 [low]       47    40    43     2     2 TRUE 
+# ℹ 195 more rows</code></pre>
+</div>
+</div>
+<p>Let’s check duplicates by <code>id</code>.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1">hsb2_mod <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># check duplicates by id</span></span>
+<span id="cb8-3">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(mStats<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tag_duplicates</span>(id))</span></code></pre></div></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>$ Report of duplicates
+  in terms of id
+ copies observations surplus
+      1          195       0
+      2           10       5</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 205 × 9
+      id female     ses         read write  math   .n_   .N_ .dup_
+   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;
+ 1     1 1 [female] 1 [low]       34    44    84     1     2 FALSE
+ 2     2 1 [female] 2 [middle]    39    41    33     1     2 FALSE
+ 3     3 0 [male]   1 [low]       63    65    48     1     2 FALSE
+ 4     4 1 [female] 1 [low]       44    50    41     1     2 FALSE
+ 5     5 0 [male]   1 [low]       47    40    43     1     2 FALSE
+ 6     1 1 [female] 1 [low]       34    44    40     2     2 TRUE 
+ 7     2 1 [female] 2 [middle]    39    41    33     2     2 TRUE 
+ 8     3 0 [male]   1 [low]       63    65    48     2     2 TRUE 
+ 9     4 1 [female] 1 [low]       44    50    41     2     2 TRUE 
+10     5 0 [male]   1 [low]       47    40    43     2     2 TRUE 
+# ℹ 195 more rows</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Photo credit</strong>: <a href="https://www.pexels.com/photo/mysterious-woman-with-greasepaint-on-face-5782237/">Photo by Dids from Pexels</a></p>
+</blockquote>
+
+
+<!-- -->
+
+</section></section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{minn_oo2023,
+  author = {Minn Oo, Myo},
+  title = {Duplicates in {R}},
+  date = {2023-06-15},
+  url = {https://myominnoo.com/blog/2023-06-15-duplicates-R/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas">
+Minn Oo, Myo. 2023. <span>“Duplicates in R.”</span> June 15, 2023. <a href="https://myominnoo.com/blog/2023-06-15-duplicates-R/">https://myominnoo.com/blog/2023-06-15-duplicates-R/</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>Data Wrangling</category>
+  <category>mStats</category>
+  <guid>https://myominnoo.com/blog/2023-06-15-duplicates-R/</guid>
+  <pubDate>Thu, 15 Jun 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/blog/2023-06-15-duplicates-R/featured.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Awesome Resources</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/blog/2023-06-02-awesome-resources/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>I have curated my personal awesome collection of useful resources, which I find useful in my work and/or my daily life.</p>
+<section id="r" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="r"><span class="header-section-number">1</span> R</h2>
+<section id="data-viz" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="data-viz"><span class="header-section-number">1.1</span> Data Viz</h3>
+<ul>
+<li><a href="https://r-graph-gallery.com/index.html">R Graph Gallery</a></li>
+<li><a href="https://www.cedricscherer.com/">CÉDRIC SCHERER</a></li>
+<li><a href="https://rstudio-conf-2022.github.io/ggplot2-graphic-design/">Graphic Design with ggplot2</a></li>
+</ul>
+</section>
+<section id="data-science" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="data-science"><span class="header-section-number">1.2</span> Data science</h3>
+<ul>
+<li><p><a href="https://r4ds.hadley.nz/">R for Data Science</a></p></li>
+<li><p><a href="https://rstudio-education.github.io/hopr/">Hands-on Programming with R</a></p></li>
+<li><p><a href="https://www.tmwr.org/">Tidy modelling with R</a></p></li>
+<li><p><a href="https://www.tidymodels.org/">Tidy models</a></p></li>
+<li><p><a href="https://moderndive.com/">A modern dive into R and the tidyverse</a></p></li>
+<li><p><a href="http://www.feat.engineering/">Feature engineering and selection</a></p></li>
+<li><p><a href="https://jmzobitz.github.io/ModelingWithR/">Exploring Modeling with Data and Differential Equations Using R</a></p></li>
+<li><p><a href="https://www.deeplearningbook.org/">Deep Learning MIT</a></p></li>
+<li><p><a href="http://appliedpredictivemodeling.com/">Applied Predictive Modelling By Max Kuhn and Kjell Johnson</a></p></li>
+</ul>
+</section>
+<section id="shiny" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="shiny"><span class="header-section-number">1.3</span> Shiny</h3>
+<ul>
+<li><p><a href="https://github.com/nanxstats/awesome-shiny-extensions">Awesome shiny extensions</a></p></li>
+<li><p><a href="https://mastering-shiny.org/">Mastering Shiny</a></p></li>
+<li><p><a href="https://engineering-shiny.org/index.html">Engineering Production-Grade Shiny Apps</a></p></li>
+<li><p><a href="https://unleash-shiny.rinterface.com/index.html">Outstanding User Interfaces with Shiny</a></p></li>
+<li><p><a href="https://book.javascript-for-r.com/">JavaScript for R</a></p></li>
+<li><p><a href="https://www.refactoringui.com/">Refactoring UI</a></p></li>
+<li><p><a href="https://business-science.github.io/shiny-production-with-aws-book/">The Shiny AWS Book</a></p></li>
+<li><p><a href="https://connect.thinkr.fr/js4shinyfieldnotes/">JavaScript 4 Shiny - Field Notes</a></p></li>
+<li><p><a href="https://shinydevseries.com/">Shiny Dev Series</a></p></li>
+<li><p><a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html">RStudio’s Shiny Tutorials</a></p></li>
+</ul>
+</section>
+<section id="git" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="git"><span class="header-section-number">1.4</span> Git</h3>
+<ul>
+<li><a href="https://happygitwithr.com/">Happy Git with R</a></li>
+</ul>
+</section>
+<section id="programming" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="programming"><span class="header-section-number">1.5</span> Programming</h3>
+<ul>
+<li><a href="https://csgillespie.github.io/efficientR/">Efficient R programming</a></li>
+</ul>
+</section>
+</section>
+<section id="statistics" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="statistics"><span class="header-section-number">2</span> Statistics</h2>
+<ul>
+<li><p><a href="https://datasciencebox.org/">Data Science in A Box</a></p></li>
+<li><p><a href="https://openintro-ims.netlify.app/">Intro to Modern Statistics</a></p></li>
+<li><p><a href="https://www.openintro.org/">OpenIntro Project</a></p></li>
+<li><p><a href="https://stat545.com/">Stat 545</a></p></li>
+<li><p><a href="https://lakens.github.io/statistical_inferences/">Improving Your Statistical Inferences</a></p></li>
+<li><p><a href="https://github.com/rmcelreath/stat_rethinking_2023">Statistical Rethinking</a> [<a href="https://youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus">YouTube</a>]</p></li>
+<li><p><a href="http://www.sthda.com/english/">Statistical tools for high-throughput data analysis</a></p></li>
+<li><p><a href="https://www.datanovia.com/en/">Datanovia</a></p></li>
+<li><p><a href="https://github.com/erikgahner/awesome-statistics">Awesome statistics</a></p></li>
+<li><p><a href="https://github.com/academic/awesome-datascience">Awesome data science</a></p></li>
+<li><p><a href="https://github.com/mhoehle/BayesianDecisionAnalysis">PyData Global Bayesian Decision Analysis</a></p></li>
+<li><p><a href="http://allendowney.github.io/ThinkBayes2/">Think Bayes 2 by Allen B. Downey</a></p></li>
+<li><p><a href="https://algs4.cs.princeton.edu/home/">Algorithms, 4th Edition</a></p></li>
+</ul>
+</section>
+<section id="epidemiology" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="epidemiology"><span class="header-section-number">3</span> Epidemiology</h2>
+<ul>
+<li><p><a href="https://epirhandbook.com/en/">Epidemiologist R handbook</a></p></li>
+<li><p><a href="https://www.r4epi.com/">R for Epidemiology</a></p></li>
+<li><p><a href="https://bookdown.org/taragonmd/phds/">Population Health Data Science with R</a></p></li>
+<li><p><a href="https://global.oup.com/academic/product/epidemiology-with-r-9780198841333?cc=us&amp;lang=en&amp;#">Epidemiology with R</a></p></li>
+<li><p><a href="https://github.com/mhoehle/STA427_SM4IDE">STA427_SM4IDE Statistical Methods in Infectious Disease Epidemiology</a></p></li>
+<li><p><a href="https://book.declaredesign.org/">Research Design in the Social Sciences</a></p></li>
+</ul>
+</section>
+<section id="others" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="others"><span class="header-section-number">4</span> Others</h2>
+<ul>
+<li><a href="https://web.stanford.edu/class/bios221/book/">Modern Statistics for Modern Biology</a></li>
+<li><a href="https://rcompanion.org/handbook/">An R Companion for the Handbook of Biological Statistics</a></li>
+</ul>
+</section>
+<section id="platforms" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="platforms"><span class="header-section-number">5</span> Platforms</h2>
+<ul>
+<li><p><a href="https://bookdown.org/">BOOKDOWN</a></p></li>
+<li><p><a href="https://quarto.org/docs/gallery/">Quarto Gallery</a></p></li>
+<li><p><a href="https://leanpub.com/">Leanpub</a></p></li>
+<li><p><a href="https://datacarpentry.org/">Data Carpentry</a></p></li>
+</ul>
+</section>
+<section id="credits" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="credits"><span class="header-section-number">6</span> Credits:</h2>
+<ul>
+<li>Featured photo from Pexels: Portrait Photo of Excited Man in Blue T-shirt Standing In Front of White Background by <a href="https://www.pexels.com/@olly/"><strong>Andrea Piacquadio</strong></a></li>
+</ul>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{minn_oo2023,
+  author = {Minn Oo, Myo},
+  title = {Awesome {Resources}},
+  date = {2023-06-02},
+  url = {https://myominnoo.com/blog/2023-06-02-awesome-resources/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas">
+Minn Oo, Myo. 2023. <span>“Awesome Resources.”</span> June 2, 2023. <a href="https://myominnoo.com/blog/2023-06-02-awesome-resources/">https://myominnoo.com/blog/2023-06-02-awesome-resources/</a>.
+</div></div></section></div> ]]></description>
+  <category>Resources</category>
+  <guid>https://myominnoo.com/blog/2023-06-02-awesome-resources/</guid>
+  <pubDate>Fri, 02 Jun 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/blog/2023-06-02-awesome-resources/featured.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Hello World!</title>
+  <dc:creator>MyoMinn Oo</dc:creator>
+  <link>https://myominnoo.com/blog/2023-05-31-hello-world/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>I am thrilled to announce the debut of my personal website, where I share my journey, research findings, and insights with the world. Previously, this website has been one pager with very minimal sharing outside my circle. With this new development, I intend to write more about what I am doing and what I learn along the way with everyone.</p>
+<p>I also open a comment session on the blog posts. So any constructive feedbacks are welcomed.</p>
+<p>Cheers, everyone! Stay tuned!</p>
+<p>Myo</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{oo2023,
+  author = {Oo, MyoMinn},
+  title = {Hello {World!}},
+  date = {2023-05-31},
+  url = {https://myominnoo.com/blog/2023-05-31-hello-world/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-oo2023" class="csl-entry quarto-appendix-citeas">
+Oo, MyoMinn. 2023. <span>“Hello World!”</span> May 31, 2023. <a href="https://myominnoo.com/blog/2023-05-31-hello-world/">https://myominnoo.com/blog/2023-05-31-hello-world/</a>.
+</div></div></section></div> ]]></description>
+  <category>News</category>
+  <guid>https://myominnoo.com/blog/2023-05-31-hello-world/</guid>
+  <pubDate>Wed, 31 May 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/blog/2023-05-31-hello-world/featured.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>

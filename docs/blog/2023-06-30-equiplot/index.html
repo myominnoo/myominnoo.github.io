@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Myo Minn Oo">
+<meta name="dcterms.date" content="2023-06-30">
+<title>Myo Minn Oo | Creating Equiplot in R – Myo Minn Oo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/img/favicon.ico" rel="icon">
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-54c8f25464f32f8783bd446cee98020d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-565aa9a5c80db82c83d99bb1c14ad011.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a13dd3ea3307e0af86460b0f7817ab27.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-565aa9a5c80db82c83d99bb1c14ad011.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LW606KXSWS"></script><script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LW606KXSWS', { 'anonymize_ip': true});
+</script><script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script><style>html{ scroll-behavior: smooth; }</style>
+</head>
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Myo Minn Oo</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/myominnoo/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/myominnoo"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#getting-data" id="toc-getting-data" class="nav-link active" data-scroll-target="#getting-data"><span class="header-section-number">1</span> Getting data</a>
+  <ul>
+<li><a href="#reshaping-data-from-wide-to-long-format" id="toc-reshaping-data-from-wide-to-long-format" class="nav-link" data-scroll-target="#reshaping-data-from-wide-to-long-format"><span class="header-section-number">1.1</span> Reshaping data from wide to long format</a></li>
+  <li><a href="#how-pipe-works" id="toc-how-pipe-works" class="nav-link" data-scroll-target="#how-pipe-works"><span class="header-section-number">1.2</span> How pipe |&gt; works</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#equiplot" id="toc-equiplot" class="nav-link" data-scroll-target="#equiplot"><span class="header-section-number">2</span> Equiplot</a>
+  <ul>
+<li><a href="#complete-code" id="toc-complete-code" class="nav-link" data-scroll-target="#complete-code"><span class="header-section-number">2.1</span> Complete code</a></li>
+  <li><a href="#reusable-function" id="toc-reusable-function" class="nav-link" data-scroll-target="#reusable-function"><span class="header-section-number">2.2</span> Reusable function</a></li>
+  <li><a href="#saving-plots" id="toc-saving-plots" class="nav-link" data-scroll-target="#saving-plots"><span class="header-section-number">2.3</span> Saving plots</a></li>
+  </ul>
+</li>
+  <li><a href="#credits" id="toc-credits" class="nav-link" data-scroll-target="#credits"><span class="header-section-number">3</span> Credits</a></li>
+  </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Creating Equiplot in R</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">R version of Equiplot.ado by Int’l Center for Equity in Health | Pelotas</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Health Equity</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Myo Minn Oo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 30, 2023</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">July 13, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header><p>This short code snippet demonstrates the process of creating an equiplot for visualizing health equity. Here’s a summary and step-by-step description of what the code does:</p>
+<p>You need <strong><code>tidyverse</code></strong>, <strong><code>haven</code></strong>, and <strong><code>glue</code></strong> packages to run this session. To install them, run the following code in your R console:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"haven"</span>, <span class="st">"glue"</span>, <span class="st">"ggprism"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="getting-data" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="getting-data">
+<span class="header-section-number">1</span> Getting data</h2>
+<p>Next, we will do the following to get the data into R.</p>
+<ol type="1">
+<li><p>Load the necessary packages: <strong><code>tidyverse</code></strong>. For <strong><code>haven</code></strong> and <strong><code>glue</code></strong>, we will not load them but use this, <strong><code>package::function()</code></strong>.</p></li>
+<li><p>Create a temporary directory to store the downloaded zip file.</p></li>
+<li><p>Download the zip file from the Equidade website.</p></li>
+<li><p>Extract the contents of the downloaded zip file.</p></li>
+<li><p>Read the extracted data file, “example_dataset_structure.dta”, into R.</p></li>
+</ol>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># create a temporary file to save zipped file</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
+<span id="cb2-5"><a href="#cb2-5"></a>zip_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(temp, <span class="st">"equiplot-guide.zip"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># download zip file from equidade website</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"https://www.equidade.org/files/equiplot-guide.zip"</span>, </span>
+<span id="cb2-9"><a href="#cb2-9"></a>                            <span class="at">destfile =</span> zip_file)</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># import data</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>raw <span class="ot">&lt;-</span> <span class="fu">unz</span>(<span class="at">description =</span> zip_file, <span class="at">filename =</span> <span class="st">"example_dataset_structure.dta"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-13"><a href="#cb2-13"></a>    haven<span class="sc">::</span><span class="fu">read_dta</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Let’s check the data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 11%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: left;">source</th>
+<th style="text-align: right;">rQ1</th>
+<th style="text-align: right;">rQ2</th>
+<th style="text-align: right;">rQ3</th>
+<th style="text-align: right;">rQ4</th>
+<th style="text-align: right;">rQ5</th>
+<th style="text-align: right;">sii</th>
+<th style="text-align: right;">countryn</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">1.22636</td>
+<td style="text-align: right;">4.83719</td>
+<td style="text-align: right;">11.88177</td>
+<td style="text-align: right;">12.71847</td>
+<td style="text-align: right;">9.88325</td>
+<td style="text-align: right;">14.4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">5.91252</td>
+<td style="text-align: right;">12.20895</td>
+<td style="text-align: right;">16.38398</td>
+<td style="text-align: right;">19.08344</td>
+<td style="text-align: right;">17.54643</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">5.68750</td>
+<td style="text-align: right;">10.30164</td>
+<td style="text-align: right;">11.48771</td>
+<td style="text-align: right;">12.43650</td>
+<td style="text-align: right;">10.01661</td>
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">14.74925</td>
+<td style="text-align: right;">17.41648</td>
+<td style="text-align: right;">17.58095</td>
+<td style="text-align: right;">19.09717</td>
+<td style="text-align: right;">12.96915</td>
+<td style="text-align: right;">-4.3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Colombia</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">6.82985</td>
+<td style="text-align: right;">12.25396</td>
+<td style="text-align: right;">8.66815</td>
+<td style="text-align: right;">7.98813</td>
+<td style="text-align: right;">11.02944</td>
+<td style="text-align: right;">1.6</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Colombia</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">9.66284</td>
+<td style="text-align: right;">11.34591</td>
+<td style="text-align: right;">12.16200</td>
+<td style="text-align: right;">12.51274</td>
+<td style="text-align: right;">11.31543</td>
+<td style="text-align: right;">-3.4</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Haiti</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">1.12229</td>
+<td style="text-align: right;">0.57025</td>
+<td style="text-align: right;">0.61240</td>
+<td style="text-align: right;">2.09852</td>
+<td style="text-align: right;">10.52705</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Haiti</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">0.69455</td>
+<td style="text-align: right;">1.81220</td>
+<td style="text-align: right;">2.97682</td>
+<td style="text-align: right;">7.12898</td>
+<td style="text-align: right;">12.97554</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Peru</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">3.04027</td>
+<td style="text-align: right;">7.29176</td>
+<td style="text-align: right;">11.33096</td>
+<td style="text-align: right;">13.07306</td>
+<td style="text-align: right;">15.77069</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peru</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: left;">DHS</td>
+<td style="text-align: right;">3.35353</td>
+<td style="text-align: right;">9.16911</td>
+<td style="text-align: right;">16.07169</td>
+<td style="text-align: right;">17.62576</td>
+<td style="text-align: right;">15.82903</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="reshaping-data-from-wide-to-long-format" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="reshaping-data-from-wide-to-long-format">
+<span class="header-section-number">1.1</span> Reshaping data from wide to long format</h3>
+<p>Let’s change the data format so that it is much easier to create plots in ggplot2.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ex <span class="ot">&lt;-</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>    raw <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> rQ1<span class="sc">:</span>rQ5, <span class="at">names_to =</span> <span class="st">"level"</span>, <span class="at">values_to =</span> <span class="st">"coverage"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="at">level =</span> <span class="fu">str_remove</span>(level, <span class="st">"r"</span>), </span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="at">level =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-7"><a href="#cb3-7"></a>            level <span class="sc">==</span> <span class="st">"Q1"</span> <span class="sc">~</span> <span class="st">"Q1 (Poorest)"</span>, </span>
+<span id="cb3-8"><a href="#cb3-8"></a>            level <span class="sc">==</span> <span class="st">"Q5"</span> <span class="sc">~</span> <span class="st">"Q5 (Richest)"</span>, </span>
+<span id="cb3-9"><a href="#cb3-9"></a>            <span class="cn">TRUE</span> <span class="sc">~</span> level</span>
+<span id="cb3-10"><a href="#cb3-10"></a>        )</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>In the provided code above, the data frame “raw” is being processed using the pipe operator (<strong><code>|&gt;</code></strong>).</p>
+<p>First, the code uses the <strong><code>pivot_longer()</code></strong> function from the “tidyr” package to reshape the data. The columns “rQ1” to “rQ5” are transformed into two new columns: “level” and “coverage”. The values in the original columns are gathered into the “coverage” column, and the column names are extracted and placed in the “level” column.</p>
+<p>Next, the code uses the <strong><code>mutate()</code></strong> function from the “dplyr” package to modify the “level” column. The <strong><code>str_remove()</code></strong> function from the “stringr” package removes the letter “r” from the beginning of each level. The <strong><code>case_when()</code></strong> function is then used to assign new labels to the levels based on specific conditions. For example, if the level is “Q1”, it is renamed to “Q1 (Poorest)”. Similarly, if the level is “Q5”, it is renamed to “Q5 (Richest)”. If none of the conditions match, the original level value is retained.</p>
+<p>The resulting data frame “ex” now has the “level” column modified with new labels, representing different quantiles of coverage.</p>
+</section><section id="how-pipe-works" class="level3" data-number="1.2"><h3 data-number="1.2" class="anchored" data-anchor-id="how-pipe-works">
+<span class="header-section-number">1.2</span> How pipe |&gt; works</h3>
+<p>Imagine you have a set of instructions that you need to follow in a specific order. The pipe <strong><code>|&gt;</code></strong> symbol is like a magic wand that helps you pass the results from one instruction to the next, without having to write everything down again.</p>
+<p>For example, let’s say you have a toy car and you want to make it go faster. You have different steps to follow: first, you need to attach a turbo engine, then add bigger wheels, and finally, give it a fresh coat of paint.</p>
+<p>Using the magic wand, you can say “Take the car and attach a turbo engine” (car |&gt; attach_turbo_engine), then you can say “Take the result from the previous step and add bigger wheels” (previous_result |&gt; add_bigger_wheels), and finally, you can say “Take the result from the previous step and give it a fresh coat of paint” (previous_result |&gt; give_fresh_coat_of_paint).</p>
+<p>The magic wand (<strong><code>|&gt;</code></strong>) helps you pass the car from one step to the next, making it faster and more exciting without repeating the same instructions every time.</p>
+<p>In programming, the pipe symbol works similarly. It allows you to take the output of one operation and pass it directly as input to the next operation, simplifying the code and making it easier to understand and follow the flow of data.</p>
+</section></section><section id="equiplot" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="equiplot">
+<span class="header-section-number">2</span> Equiplot</h2>
+<p>We will filter the data points for the year <strong><code>1994</code></strong> and create our boilerplate for equiplot.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="co"># ggplot boilerplate defining x and y axis</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="co"># create circles </span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This looks very rough.</p>
+<p>Next, we will add more aesthetics to it.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="co"># add line to connect values in each country</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb5-6"><a href="#cb5-6"></a>        <span class="fu">aes</span>(<span class="at">group =</span> country) </span>
+<span id="cb5-7"><a href="#cb5-7"></a>    ) <span class="sc">+</span> </span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="co"># create circles with colors based on wealth level</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb5-10"><a href="#cb5-10"></a>        <span class="fu">aes</span>(<span class="at">color =</span> level), </span>
+<span id="cb5-11"><a href="#cb5-11"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We want to make the plot more visually appealing so adding more looks.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>    ex <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="fu">aes</span>(<span class="at">group =</span> country) </span>
+<span id="cb6-7"><a href="#cb6-7"></a>    ) <span class="sc">+</span> </span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        <span class="fu">aes</span>(<span class="at">color =</span> level), </span>
+<span id="cb6-10"><a href="#cb6-10"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    ) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="co"># limit x axis' min &amp; max values</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>    <span class="co"># make the axis label look good</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb6-15"><a href="#cb6-15"></a>        <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>), </span>
+<span id="cb6-16"><a href="#cb6-16"></a>        <span class="at">labels =</span> \(x) <span class="fu">paste0</span>(x, <span class="st">"%"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>    ) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>    <span class="co"># add more descriptive labels</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>    <span class="fu">labs</span>(</span>
+<span id="cb6-20"><a href="#cb6-20"></a>        <span class="at">x =</span> <span class="st">"Coverage (%)"</span>, </span>
+<span id="cb6-21"><a href="#cb6-21"></a>        <span class="at">y =</span> <span class="cn">NULL</span>, </span>
+<span id="cb6-22"><a href="#cb6-22"></a>        <span class="at">color =</span> <span class="st">"Wealth Quintiles"</span>, </span>
+<span id="cb6-23"><a href="#cb6-23"></a>        <span class="at">caption =</span> <span class="st">"Data source: Int'l Center for Equity in Health | Pelotas"</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>    ) <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a>    <span class="do">## add title</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a>    <span class="fu">ggtitle</span>(<span class="st">"Equiplot of XX coverage in 1994"</span>) <span class="sc">+</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a>    <span class="co"># change the appearance of the whole graph</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>    ggprism<span class="sc">::</span><span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb6-29"><a href="#cb6-29"></a>    <span class="fu">theme</span>(</span>
+<span id="cb6-30"><a href="#cb6-30"></a>        <span class="co"># add horizontal grey line</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb6-32"><a href="#cb6-32"></a>        <span class="co"># italicize plot caption</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb6-34"><a href="#cb6-34"></a>        <span class="co"># show legend title </span></span>
+<span id="cb6-35"><a href="#cb6-35"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(), </span>
+<span id="cb6-36"><a href="#cb6-36"></a>        <span class="co"># change legend to the top position</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a>    )</span>
+<span id="cb6-39"><a href="#cb6-39"></a>p </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Refining more. change to custom colors.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>p <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="co"># colors good for viewers with common forms of color blindness</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>    p <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="co"># change the color scale to custom colors</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb8-5"><a href="#cb8-5"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#15353b"</span>, <span class="st">"#005766"</span>, <span class="st">"#46929e"</span>, <span class="st">"#ffdb83"</span>, <span class="st">"#ffb403"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    ) <span class="sc">+</span> </span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="co"># put legend title to the top over the labels</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span> <span class="st">"top"</span>))  </span>
+<span id="cb8-9"><a href="#cb8-9"></a>p </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="complete-code" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="complete-code">
+<span class="header-section-number">2.1</span> Complete code</h3>
+<p>Here is the complete code snippet.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb9-5"><a href="#cb9-5"></a>        <span class="fu">aes</span>(<span class="at">group =</span> country) </span>
+<span id="cb9-6"><a href="#cb9-6"></a>    ) <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb9-8"><a href="#cb9-8"></a>        <span class="fu">aes</span>(<span class="at">color =</span> level), </span>
+<span id="cb9-9"><a href="#cb9-9"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="co"># limit x axis' min &amp; max values</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="co"># make the axis label look good</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb9-14"><a href="#cb9-14"></a>        <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>), </span>
+<span id="cb9-15"><a href="#cb9-15"></a>        <span class="at">labels =</span> \(x) <span class="fu">paste0</span>(x, <span class="st">"%"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>    <span class="co"># change the color scale to custom colors</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb9-19"><a href="#cb9-19"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#15353b"</span>, <span class="st">"#005766"</span>, <span class="st">"#46929e"</span>, <span class="st">"#ffdb83"</span>, <span class="st">"#ffb403"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    ) <span class="sc">+</span> </span>
+<span id="cb9-21"><a href="#cb9-21"></a>    <span class="co"># put legend title to the top over the labels</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span> <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a>    <span class="co"># add more descriptive labels</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>    <span class="fu">labs</span>(</span>
+<span id="cb9-25"><a href="#cb9-25"></a>        <span class="at">x =</span> <span class="st">"Coverage (%)"</span>, </span>
+<span id="cb9-26"><a href="#cb9-26"></a>        <span class="at">y =</span> <span class="cn">NULL</span>, </span>
+<span id="cb9-27"><a href="#cb9-27"></a>        <span class="at">color =</span> <span class="st">"Wealth Quintiles"</span>, </span>
+<span id="cb9-28"><a href="#cb9-28"></a>        <span class="at">caption =</span> <span class="st">"Data source: Int'l Center for Equity in Health | Pelotas"</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a>    <span class="do">## add title</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a>    <span class="fu">ggtitle</span>(<span class="st">"Equiplot of XX coverage in 1994"</span>) <span class="sc">+</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a>    <span class="co"># change the appearance of the whole graph</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a>    ggprism<span class="sc">::</span><span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb9-34"><a href="#cb9-34"></a>    <span class="fu">theme</span>(</span>
+<span id="cb9-35"><a href="#cb9-35"></a>        <span class="co"># add horizontal grey line</span></span>
+<span id="cb9-36"><a href="#cb9-36"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb9-37"><a href="#cb9-37"></a>        <span class="co"># italicize plot caption </span></span>
+<span id="cb9-38"><a href="#cb9-38"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb9-39"><a href="#cb9-39"></a>        <span class="co"># show legend title </span></span>
+<span id="cb9-40"><a href="#cb9-40"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(), </span>
+<span id="cb9-41"><a href="#cb9-41"></a>        <span class="co"># change legend to the top position</span></span>
+<span id="cb9-42"><a href="#cb9-42"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="reusable-function" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="reusable-function">
+<span class="header-section-number">2.2</span> Reusable function</h3>
+<p>Writing the same code repeatedly is not efficient. To avoid this, let’s create a function that allows us to reuse the boilerplate code as much as we need. This will help us save time and effort. We can modify the code snippet according to our requirements and then encapsulate it within a function. By doing so, we can easily reuse the code with different datasets or variables.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>create_equiplot <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb10-2"><a href="#cb10-2"></a>        data, x, y, color,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>        <span class="at">xlab =</span> <span class="st">"Coverage (%)"</span>, </span>
+<span id="cb10-4"><a href="#cb10-4"></a>        <span class="at">ylab =</span> <span class="cn">NULL</span>, </span>
+<span id="cb10-5"><a href="#cb10-5"></a>        <span class="at">title =</span> <span class="st">"Equiplot of XX coverage in 1994"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>        <span class="at">caption =</span> <span class="st">"Data source: Int'l Center for Equity in Health | Pelotas"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>        <span class="at">legend.title =</span> <span class="st">"Wealth Quintiles"</span>, </span>
+<span id="cb10-8"><a href="#cb10-8"></a>        <span class="at">color_pal =</span> <span class="fu">c</span>(<span class="st">"#15353b"</span>, <span class="st">"#005766"</span>, <span class="st">"#46929e"</span>, <span class="st">"#ffdb83"</span>, <span class="st">"#ffb403"</span>)) {</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    data <span class="sc">|&gt;</span> </span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="fu">mutate</span>(<span class="at">x =</span> {{ x }}, </span>
+<span id="cb10-11"><a href="#cb10-11"></a>                 <span class="at">y =</span> {{ y }}, </span>
+<span id="cb10-12"><a href="#cb10-12"></a>                 <span class="at">color =</span> {{ color }}) <span class="sc">|&gt;</span> </span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb10-15"><a href="#cb10-15"></a>        <span class="fu">aes</span>(<span class="at">group =</span> y) </span>
+<span id="cb10-16"><a href="#cb10-16"></a>    ) <span class="sc">+</span> </span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb10-18"><a href="#cb10-18"></a>        <span class="fu">aes</span>(<span class="at">color =</span> color), </span>
+<span id="cb10-19"><a href="#cb10-19"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>    <span class="co"># change the color scale to custom colors</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb10-23"><a href="#cb10-23"></a>        <span class="at">values =</span> color_pal</span>
+<span id="cb10-24"><a href="#cb10-24"></a>    ) <span class="sc">+</span> </span>
+<span id="cb10-25"><a href="#cb10-25"></a>    <span class="co"># put legend title to the top over the labels</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span> <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a>    <span class="co"># add more descriptive labels</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>    <span class="fu">labs</span>(</span>
+<span id="cb10-29"><a href="#cb10-29"></a>        <span class="at">x =</span> xlab, </span>
+<span id="cb10-30"><a href="#cb10-30"></a>        <span class="at">y =</span> ylab, </span>
+<span id="cb10-31"><a href="#cb10-31"></a>        <span class="at">color =</span> legend.title, </span>
+<span id="cb10-32"><a href="#cb10-32"></a>        <span class="at">caption =</span> caption</span>
+<span id="cb10-33"><a href="#cb10-33"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-34"><a href="#cb10-34"></a>    <span class="fu">ggtitle</span>(title) <span class="sc">+</span> </span>
+<span id="cb10-35"><a href="#cb10-35"></a>    <span class="co"># change the appearance of the whole graph</span></span>
+<span id="cb10-36"><a href="#cb10-36"></a>    ggprism<span class="sc">::</span><span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb10-37"><a href="#cb10-37"></a>    <span class="fu">theme</span>(</span>
+<span id="cb10-38"><a href="#cb10-38"></a>        <span class="co"># add horizontal grey line</span></span>
+<span id="cb10-39"><a href="#cb10-39"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb10-40"><a href="#cb10-40"></a>        <span class="co"># italicize plot caption </span></span>
+<span id="cb10-41"><a href="#cb10-41"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb10-42"><a href="#cb10-42"></a>        <span class="co"># show legend title </span></span>
+<span id="cb10-43"><a href="#cb10-43"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(), </span>
+<span id="cb10-44"><a href="#cb10-44"></a>        <span class="co"># change legend to the top position</span></span>
+<span id="cb10-45"><a href="#cb10-45"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb10-46"><a href="#cb10-46"></a>    ) </span>
+<span id="cb10-47"><a href="#cb10-47"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Let’s create the same plot for the year <strong><code>1994</code></strong>.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">create_equiplot</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country, <span class="at">color =</span> level, </span>
+<span id="cb11-4"><a href="#cb11-4"></a>                                    <span class="at">title =</span> <span class="st">"Equiplot showing XX coverage in 1994"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Adding faceted components based on the year variable can provide additional insights in our visualizations. Here are the updated codes that include faceting:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="fu">create_equiplot</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country, <span class="at">color =</span> level, </span>
+<span id="cb12-3"><a href="#cb12-3"></a>                                    <span class="at">title =</span> <span class="st">"Equiplot showing XX coverages: 1994-2006"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="co"># stratified by year </span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can customize the theme and labels to improve the appearance and clarity of the faceted graph. Here’s an updated version of the code snippet with a different theme and modified labels:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="fu">create_equiplot</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country, <span class="at">color =</span> level) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> year) <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="fu">theme</span>(</span>
+<span id="cb13-6"><a href="#cb13-6"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb13-7"><a href="#cb13-7"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb13-8"><a href="#cb13-8"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb13-9"><a href="#cb13-9"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>), </span>
+<span id="cb13-10"><a href="#cb13-10"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb13-11"><a href="#cb13-11"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb13-12"><a href="#cb13-12"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="saving-plots" class="level3" data-number="2.3"><h3 data-number="2.3" class="anchored" data-anchor-id="saving-plots">
+<span class="header-section-number">2.3</span> Saving plots</h3>
+<p><strong><code>ggsave()</code></strong> is a useful function in the ggplot2 package that allows you to save plots in various formats. Here’s an example code snippet demonstrating the usage of <strong><code>ggsave()</code></strong>:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggsave</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"plots"</span>, <span class="st">"equiplot.png"</span>), <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section></section><section id="credits" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="credits">
+<span class="header-section-number">3</span> Credits</h2>
+<p>Thank you, <a href="https://www.countdown2030.org/staff/fernando-c-wehrmeister">Fernando C Wehrmeister</a> &amp; <a href="https://www.countdown2030.org/staff/dr-andrea-blanchard">Andrea Blanchard</a>, for introducing me to the field of health equity and for facilitating the interactive and thought-provoking health equity workshop at the University of Manitoba on 27-30 July 2023.</p>
+<p>Featured photo: <strong>Equity Dashboard</strong> by <a href="https://equidade.org/dashboard">Int’l Center for Equity in Health | Pelotas</a></p>
+<p>Example data &amp; color scheme: <strong>Equiplot</strong> by <a href="https://equidade.org/equiplot">Int’l Center for Equity in Health | Pelotas</a></p>
+
+
+<!-- -->
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{minn_oo2023,
+  author = {Minn Oo, Myo},
+  title = {Creating {Equiplot} in {R}},
+  date = {2023-06-30},
+  url = {https://myominnoo.com/blog/2023-06-30-equiplot/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+Minn Oo, Myo. 2023. <span>“Creating Equiplot in R.”</span> June 30,
+2023. <a href="https://myominnoo.com/blog/2023-06-30-equiplot/">https://myominnoo.com/blog/2023-06-30-equiplot/</a>.
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/myominnoo\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="light"><script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "myominnoo/myominnoo.github.io";
+    script.dataset.repoId = "R_kgDOKxsXWA";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOKxsXWM4CbQdw";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">---</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="an">title:</span><span class="co"> "Creating Equiplot in R"</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="an">subtitle:</span><span class="co"> "R version of Equiplot.ado by Int'l Center for Equity in Health | Pelotas"</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="an">author:</span><span class="co"> "Myo Minn Oo"</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="an">date:</span><span class="co"> 2023-06-30</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="an">date-format:</span><span class="co"> long</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="an">categories:</span><span class="co"> </span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co">  - R</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">  - Health Equity</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="an">code-link:</span><span class="co"> true</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="an">code-line-numbers:</span><span class="co"> true</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="an">page-layout:</span><span class="co"> article</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="an">image:</span><span class="co"> featured.png</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="co">---</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a></span>
+<span id="cb15-19"><a href="#cb15-19"></a>This short code snippet demonstrates the process of creating an equiplot for visualizing health equity. Here's a summary and step-by-step description of what the code does:</span>
+<span id="cb15-20"><a href="#cb15-20"></a></span>
+<span id="cb15-21"><a href="#cb15-21"></a>You need **`tidyverse`**, **`haven`**, and **`glue`** packages to run this session. To install them, run the following code in your R console:</span>
+<span id="cb15-22"><a href="#cb15-22"></a></span>
+<span id="cb15-25"><a href="#cb15-25"></a><span class="in">```{r}</span></span>
+<span id="cb15-26"><a href="#cb15-26"></a><span class="co">#| eval: false</span></span>
+<span id="cb15-27"><a href="#cb15-27"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"haven"</span>, <span class="st">"glue"</span>, <span class="st">"ggprism"</span>))</span>
+<span id="cb15-28"><a href="#cb15-28"></a><span class="in">```</span></span>
+<span id="cb15-29"><a href="#cb15-29"></a></span>
+<span id="cb15-30"><a href="#cb15-30"></a><span class="fu">## Getting data</span></span>
+<span id="cb15-31"><a href="#cb15-31"></a></span>
+<span id="cb15-32"><a href="#cb15-32"></a>Next, we will do the following to get the data into R.</span>
+<span id="cb15-33"><a href="#cb15-33"></a></span>
+<span id="cb15-34"><a href="#cb15-34"></a><span class="ss">1.  </span>Load the necessary packages: **`tidyverse`**. For **`haven`** and **`glue`**, we will not load them but use this, **`package::function()`**.</span>
+<span id="cb15-35"><a href="#cb15-35"></a></span>
+<span id="cb15-36"><a href="#cb15-36"></a><span class="ss">2.  </span>Create a temporary directory to store the downloaded zip file.</span>
+<span id="cb15-37"><a href="#cb15-37"></a></span>
+<span id="cb15-38"><a href="#cb15-38"></a><span class="ss">3.  </span>Download the zip file from the Equidade website.</span>
+<span id="cb15-39"><a href="#cb15-39"></a></span>
+<span id="cb15-40"><a href="#cb15-40"></a><span class="ss">4.  </span>Extract the contents of the downloaded zip file.</span>
+<span id="cb15-41"><a href="#cb15-41"></a></span>
+<span id="cb15-42"><a href="#cb15-42"></a><span class="ss">5.  </span>Read the extracted data file, "example_dataset_structure.dta", into R.</span>
+<span id="cb15-43"><a href="#cb15-43"></a></span>
+<span id="cb15-46"><a href="#cb15-46"></a><span class="in">```{r}</span></span>
+<span id="cb15-47"><a href="#cb15-47"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-48"><a href="#cb15-48"></a><span class="co">#| message: false</span></span>
+<span id="cb15-49"><a href="#cb15-49"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-50"><a href="#cb15-50"></a></span>
+<span id="cb15-51"><a href="#cb15-51"></a><span class="co"># create a temporary file to save zipped file</span></span>
+<span id="cb15-52"><a href="#cb15-52"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
+<span id="cb15-53"><a href="#cb15-53"></a>zip_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(temp, <span class="st">"equiplot-guide.zip"</span>)</span>
+<span id="cb15-54"><a href="#cb15-54"></a></span>
+<span id="cb15-55"><a href="#cb15-55"></a><span class="co"># download zip file from equidade website</span></span>
+<span id="cb15-56"><a href="#cb15-56"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"https://www.equidade.org/files/equiplot-guide.zip"</span>, </span>
+<span id="cb15-57"><a href="#cb15-57"></a>                            <span class="at">destfile =</span> zip_file)</span>
+<span id="cb15-58"><a href="#cb15-58"></a></span>
+<span id="cb15-59"><a href="#cb15-59"></a><span class="co"># import data</span></span>
+<span id="cb15-60"><a href="#cb15-60"></a>raw <span class="ot">&lt;-</span> <span class="fu">unz</span>(<span class="at">description =</span> zip_file, <span class="at">filename =</span> <span class="st">"example_dataset_structure.dta"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-61"><a href="#cb15-61"></a>    haven<span class="sc">::</span><span class="fu">read_dta</span>()</span>
+<span id="cb15-62"><a href="#cb15-62"></a><span class="in">```</span></span>
+<span id="cb15-63"><a href="#cb15-63"></a></span>
+<span id="cb15-64"><a href="#cb15-64"></a>Let's check the data.</span>
+<span id="cb15-65"><a href="#cb15-65"></a></span>
+<span id="cb15-68"><a href="#cb15-68"></a><span class="in">```{r}</span></span>
+<span id="cb15-69"><a href="#cb15-69"></a><span class="co">#| echo: false</span></span>
+<span id="cb15-70"><a href="#cb15-70"></a>raw <span class="sc">|&gt;</span> kableExtra<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb15-71"><a href="#cb15-71"></a><span class="in">```</span></span>
+<span id="cb15-72"><a href="#cb15-72"></a></span>
+<span id="cb15-73"><a href="#cb15-73"></a><span class="fu">### Reshaping data from wide to long format</span></span>
+<span id="cb15-74"><a href="#cb15-74"></a></span>
+<span id="cb15-75"><a href="#cb15-75"></a>Let's change the data format so that it is much easier to create plots in ggplot2.</span>
+<span id="cb15-76"><a href="#cb15-76"></a></span>
+<span id="cb15-79"><a href="#cb15-79"></a><span class="in">```{r}</span></span>
+<span id="cb15-80"><a href="#cb15-80"></a>ex <span class="ot">&lt;-</span> </span>
+<span id="cb15-81"><a href="#cb15-81"></a>    raw <span class="sc">|&gt;</span> </span>
+<span id="cb15-82"><a href="#cb15-82"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> rQ1<span class="sc">:</span>rQ5, <span class="at">names_to =</span> <span class="st">"level"</span>, <span class="at">values_to =</span> <span class="st">"coverage"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-83"><a href="#cb15-83"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb15-84"><a href="#cb15-84"></a>        <span class="at">level =</span> <span class="fu">str_remove</span>(level, <span class="st">"r"</span>), </span>
+<span id="cb15-85"><a href="#cb15-85"></a>        <span class="at">level =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-86"><a href="#cb15-86"></a>            level <span class="sc">==</span> <span class="st">"Q1"</span> <span class="sc">~</span> <span class="st">"Q1 (Poorest)"</span>, </span>
+<span id="cb15-87"><a href="#cb15-87"></a>            level <span class="sc">==</span> <span class="st">"Q5"</span> <span class="sc">~</span> <span class="st">"Q5 (Richest)"</span>, </span>
+<span id="cb15-88"><a href="#cb15-88"></a>            <span class="cn">TRUE</span> <span class="sc">~</span> level</span>
+<span id="cb15-89"><a href="#cb15-89"></a>        )</span>
+<span id="cb15-90"><a href="#cb15-90"></a>    )</span>
+<span id="cb15-91"><a href="#cb15-91"></a><span class="in">```</span></span>
+<span id="cb15-92"><a href="#cb15-92"></a></span>
+<span id="cb15-93"><a href="#cb15-93"></a>In the provided code above, the data frame "raw" is being processed using the pipe operator (**`|&gt;`**).</span>
+<span id="cb15-94"><a href="#cb15-94"></a></span>
+<span id="cb15-95"><a href="#cb15-95"></a>First, the code uses the **`pivot_longer()`** function from the "tidyr" package to reshape the data. The columns "rQ1" to "rQ5" are transformed into two new columns: "level" and "coverage". The values in the original columns are gathered into the "coverage" column, and the column names are extracted and placed in the "level" column.</span>
+<span id="cb15-96"><a href="#cb15-96"></a></span>
+<span id="cb15-97"><a href="#cb15-97"></a>Next, the code uses the **`mutate()`** function from the "dplyr" package to modify the "level" column. The **`str_remove()`** function from the "stringr" package removes the letter "r" from the beginning of each level. The **`case_when()`** function is then used to assign new labels to the levels based on specific conditions. For example, if the level is "Q1", it is renamed to "Q1 (Poorest)". Similarly, if the level is "Q5", it is renamed to "Q5 (Richest)". If none of the conditions match, the original level value is retained.</span>
+<span id="cb15-98"><a href="#cb15-98"></a></span>
+<span id="cb15-99"><a href="#cb15-99"></a>The resulting data frame "ex" now has the "level" column modified with new labels, representing different quantiles of coverage.</span>
+<span id="cb15-100"><a href="#cb15-100"></a></span>
+<span id="cb15-101"><a href="#cb15-101"></a><span class="fu">### How pipe \|\&gt; works</span></span>
+<span id="cb15-102"><a href="#cb15-102"></a></span>
+<span id="cb15-103"><a href="#cb15-103"></a>Imagine you have a set of instructions that you need to follow in a specific order. The pipe **`|&gt;`** symbol is like a magic wand that helps you pass the results from one instruction to the next, without having to write everything down again.</span>
+<span id="cb15-104"><a href="#cb15-104"></a></span>
+<span id="cb15-105"><a href="#cb15-105"></a>For example, let's say you have a toy car and you want to make it go faster. You have different steps to follow: first, you need to attach a turbo engine, then add bigger wheels, and finally, give it a fresh coat of paint.</span>
+<span id="cb15-106"><a href="#cb15-106"></a></span>
+<span id="cb15-107"><a href="#cb15-107"></a>Using the magic wand, you can say "Take the car and attach a turbo engine" (car <span class="sc">\|\&gt;</span> attach_turbo_engine), then you can say "Take the result from the previous step and add bigger wheels" (previous_result <span class="sc">\|\&gt;</span> add_bigger_wheels), and finally, you can say "Take the result from the previous step and give it a fresh coat of paint" (previous_result <span class="sc">\|\&gt;</span> give_fresh_coat_of_paint).</span>
+<span id="cb15-108"><a href="#cb15-108"></a></span>
+<span id="cb15-109"><a href="#cb15-109"></a>The magic wand (**`|&gt;`**) helps you pass the car from one step to the next, making it faster and more exciting without repeating the same instructions every time.</span>
+<span id="cb15-110"><a href="#cb15-110"></a></span>
+<span id="cb15-111"><a href="#cb15-111"></a>In programming, the pipe symbol works similarly. It allows you to take the output of one operation and pass it directly as input to the next operation, simplifying the code and making it easier to understand and follow the flow of data.</span>
+<span id="cb15-112"><a href="#cb15-112"></a></span>
+<span id="cb15-113"><a href="#cb15-113"></a><span class="fu">## Equiplot</span></span>
+<span id="cb15-114"><a href="#cb15-114"></a></span>
+<span id="cb15-115"><a href="#cb15-115"></a>We will filter the data points for the year **`1994`** and create our boilerplate for equiplot.</span>
+<span id="cb15-116"><a href="#cb15-116"></a></span>
+<span id="cb15-119"><a href="#cb15-119"></a><span class="in">```{r}</span></span>
+<span id="cb15-120"><a href="#cb15-120"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-121"><a href="#cb15-121"></a><span class="co">#| message: false</span></span>
+<span id="cb15-122"><a href="#cb15-122"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-123"><a href="#cb15-123"></a><span class="co">#| fig-height: 3</span></span>
+<span id="cb15-124"><a href="#cb15-124"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb15-125"><a href="#cb15-125"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-126"><a href="#cb15-126"></a>    <span class="co"># ggplot boilerplate defining x and y axis</span></span>
+<span id="cb15-127"><a href="#cb15-127"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb15-128"><a href="#cb15-128"></a>    <span class="co"># create circles </span></span>
+<span id="cb15-129"><a href="#cb15-129"></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb15-130"><a href="#cb15-130"></a><span class="in">```</span></span>
+<span id="cb15-131"><a href="#cb15-131"></a></span>
+<span id="cb15-132"><a href="#cb15-132"></a>This looks very rough.</span>
+<span id="cb15-133"><a href="#cb15-133"></a></span>
+<span id="cb15-134"><a href="#cb15-134"></a>Next, we will add more aesthetics to it.</span>
+<span id="cb15-135"><a href="#cb15-135"></a></span>
+<span id="cb15-138"><a href="#cb15-138"></a><span class="in">```{r}</span></span>
+<span id="cb15-139"><a href="#cb15-139"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-140"><a href="#cb15-140"></a><span class="co">#| message: false</span></span>
+<span id="cb15-141"><a href="#cb15-141"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-142"><a href="#cb15-142"></a><span class="co">#| fig-height: 3</span></span>
+<span id="cb15-143"><a href="#cb15-143"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb15-144"><a href="#cb15-144"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-145"><a href="#cb15-145"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb15-146"><a href="#cb15-146"></a>    <span class="co"># add line to connect values in each country</span></span>
+<span id="cb15-147"><a href="#cb15-147"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb15-148"><a href="#cb15-148"></a>        <span class="fu">aes</span>(<span class="at">group =</span> country) </span>
+<span id="cb15-149"><a href="#cb15-149"></a>    ) <span class="sc">+</span> </span>
+<span id="cb15-150"><a href="#cb15-150"></a>    <span class="co"># create circles with colors based on wealth level</span></span>
+<span id="cb15-151"><a href="#cb15-151"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb15-152"><a href="#cb15-152"></a>        <span class="fu">aes</span>(<span class="at">color =</span> level), </span>
+<span id="cb15-153"><a href="#cb15-153"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb15-154"><a href="#cb15-154"></a>    ) </span>
+<span id="cb15-155"><a href="#cb15-155"></a><span class="in">```</span></span>
+<span id="cb15-156"><a href="#cb15-156"></a></span>
+<span id="cb15-157"><a href="#cb15-157"></a>We want to make the plot more visually appealing so adding more looks.</span>
+<span id="cb15-158"><a href="#cb15-158"></a></span>
+<span id="cb15-161"><a href="#cb15-161"></a><span class="in">```{r}</span></span>
+<span id="cb15-162"><a href="#cb15-162"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-163"><a href="#cb15-163"></a><span class="co">#| message: false</span></span>
+<span id="cb15-164"><a href="#cb15-164"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-165"><a href="#cb15-165"></a><span class="co">#| fig-height: 3</span></span>
+<span id="cb15-166"><a href="#cb15-166"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb15-167"><a href="#cb15-167"></a>    ex <span class="sc">|&gt;</span> </span>
+<span id="cb15-168"><a href="#cb15-168"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-169"><a href="#cb15-169"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb15-170"><a href="#cb15-170"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb15-171"><a href="#cb15-171"></a>        <span class="fu">aes</span>(<span class="at">group =</span> country) </span>
+<span id="cb15-172"><a href="#cb15-172"></a>    ) <span class="sc">+</span> </span>
+<span id="cb15-173"><a href="#cb15-173"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb15-174"><a href="#cb15-174"></a>        <span class="fu">aes</span>(<span class="at">color =</span> level), </span>
+<span id="cb15-175"><a href="#cb15-175"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb15-176"><a href="#cb15-176"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-177"><a href="#cb15-177"></a>    <span class="co"># limit x axis' min &amp; max values</span></span>
+<span id="cb15-178"><a href="#cb15-178"></a>    <span class="co"># make the axis label look good</span></span>
+<span id="cb15-179"><a href="#cb15-179"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb15-180"><a href="#cb15-180"></a>        <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>), </span>
+<span id="cb15-181"><a href="#cb15-181"></a>        <span class="at">labels =</span> \(x) <span class="fu">paste0</span>(x, <span class="st">"%"</span>)</span>
+<span id="cb15-182"><a href="#cb15-182"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-183"><a href="#cb15-183"></a>    <span class="co"># add more descriptive labels</span></span>
+<span id="cb15-184"><a href="#cb15-184"></a>    <span class="fu">labs</span>(</span>
+<span id="cb15-185"><a href="#cb15-185"></a>        <span class="at">x =</span> <span class="st">"Coverage (%)"</span>, </span>
+<span id="cb15-186"><a href="#cb15-186"></a>        <span class="at">y =</span> <span class="cn">NULL</span>, </span>
+<span id="cb15-187"><a href="#cb15-187"></a>        <span class="at">color =</span> <span class="st">"Wealth Quintiles"</span>, </span>
+<span id="cb15-188"><a href="#cb15-188"></a>        <span class="at">caption =</span> <span class="st">"Data source: Int'l Center for Equity in Health | Pelotas"</span></span>
+<span id="cb15-189"><a href="#cb15-189"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-190"><a href="#cb15-190"></a>    <span class="do">## add title</span></span>
+<span id="cb15-191"><a href="#cb15-191"></a>    <span class="fu">ggtitle</span>(<span class="st">"Equiplot of XX coverage in 1994"</span>) <span class="sc">+</span></span>
+<span id="cb15-192"><a href="#cb15-192"></a>    <span class="co"># change the appearance of the whole graph</span></span>
+<span id="cb15-193"><a href="#cb15-193"></a>    ggprism<span class="sc">::</span><span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb15-194"><a href="#cb15-194"></a>    <span class="fu">theme</span>(</span>
+<span id="cb15-195"><a href="#cb15-195"></a>        <span class="co"># add horizontal grey line</span></span>
+<span id="cb15-196"><a href="#cb15-196"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb15-197"><a href="#cb15-197"></a>        <span class="co"># italicize plot caption</span></span>
+<span id="cb15-198"><a href="#cb15-198"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb15-199"><a href="#cb15-199"></a>        <span class="co"># show legend title </span></span>
+<span id="cb15-200"><a href="#cb15-200"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(), </span>
+<span id="cb15-201"><a href="#cb15-201"></a>        <span class="co"># change legend to the top position</span></span>
+<span id="cb15-202"><a href="#cb15-202"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb15-203"><a href="#cb15-203"></a>    )</span>
+<span id="cb15-204"><a href="#cb15-204"></a>p </span>
+<span id="cb15-205"><a href="#cb15-205"></a><span class="in">```</span></span>
+<span id="cb15-206"><a href="#cb15-206"></a></span>
+<span id="cb15-207"><a href="#cb15-207"></a>Refining more. change to custom colors.</span>
+<span id="cb15-208"><a href="#cb15-208"></a></span>
+<span id="cb15-211"><a href="#cb15-211"></a><span class="in">```{r}</span></span>
+<span id="cb15-212"><a href="#cb15-212"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-213"><a href="#cb15-213"></a><span class="co">#| message: false</span></span>
+<span id="cb15-214"><a href="#cb15-214"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-215"><a href="#cb15-215"></a><span class="co">#| fig-height: 3</span></span>
+<span id="cb15-216"><a href="#cb15-216"></a>p <span class="sc">+</span> </span>
+<span id="cb15-217"><a href="#cb15-217"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="co"># colors good for viewers with common forms of color blindness</span></span>
+<span id="cb15-218"><a href="#cb15-218"></a><span class="in">```</span></span>
+<span id="cb15-219"><a href="#cb15-219"></a></span>
+<span id="cb15-222"><a href="#cb15-222"></a><span class="in">```{r}</span></span>
+<span id="cb15-223"><a href="#cb15-223"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-224"><a href="#cb15-224"></a><span class="co">#| message: false</span></span>
+<span id="cb15-225"><a href="#cb15-225"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-226"><a href="#cb15-226"></a><span class="co">#| fig-height: 3</span></span>
+<span id="cb15-227"><a href="#cb15-227"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb15-228"><a href="#cb15-228"></a>    p <span class="sc">+</span></span>
+<span id="cb15-229"><a href="#cb15-229"></a>    <span class="co"># change the color scale to custom colors</span></span>
+<span id="cb15-230"><a href="#cb15-230"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb15-231"><a href="#cb15-231"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#15353b"</span>, <span class="st">"#005766"</span>, <span class="st">"#46929e"</span>, <span class="st">"#ffdb83"</span>, <span class="st">"#ffb403"</span>)</span>
+<span id="cb15-232"><a href="#cb15-232"></a>    ) <span class="sc">+</span> </span>
+<span id="cb15-233"><a href="#cb15-233"></a>    <span class="co"># put legend title to the top over the labels</span></span>
+<span id="cb15-234"><a href="#cb15-234"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span> <span class="st">"top"</span>))  </span>
+<span id="cb15-235"><a href="#cb15-235"></a>p </span>
+<span id="cb15-236"><a href="#cb15-236"></a><span class="in">```</span></span>
+<span id="cb15-237"><a href="#cb15-237"></a></span>
+<span id="cb15-238"><a href="#cb15-238"></a><span class="fu">### Complete code</span></span>
+<span id="cb15-239"><a href="#cb15-239"></a></span>
+<span id="cb15-240"><a href="#cb15-240"></a>Here is the complete code snippet.</span>
+<span id="cb15-241"><a href="#cb15-241"></a></span>
+<span id="cb15-244"><a href="#cb15-244"></a><span class="in">```{r}</span></span>
+<span id="cb15-245"><a href="#cb15-245"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-246"><a href="#cb15-246"></a><span class="co">#| message: false</span></span>
+<span id="cb15-247"><a href="#cb15-247"></a><span class="co">#| eval: false</span></span>
+<span id="cb15-248"><a href="#cb15-248"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb15-249"><a href="#cb15-249"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-250"><a href="#cb15-250"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country)) <span class="sc">+</span></span>
+<span id="cb15-251"><a href="#cb15-251"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb15-252"><a href="#cb15-252"></a>        <span class="fu">aes</span>(<span class="at">group =</span> country) </span>
+<span id="cb15-253"><a href="#cb15-253"></a>    ) <span class="sc">+</span> </span>
+<span id="cb15-254"><a href="#cb15-254"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb15-255"><a href="#cb15-255"></a>        <span class="fu">aes</span>(<span class="at">color =</span> level), </span>
+<span id="cb15-256"><a href="#cb15-256"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb15-257"><a href="#cb15-257"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-258"><a href="#cb15-258"></a>    <span class="co"># limit x axis' min &amp; max values</span></span>
+<span id="cb15-259"><a href="#cb15-259"></a>    <span class="co"># make the axis label look good</span></span>
+<span id="cb15-260"><a href="#cb15-260"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb15-261"><a href="#cb15-261"></a>        <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>), </span>
+<span id="cb15-262"><a href="#cb15-262"></a>        <span class="at">labels =</span> \(x) <span class="fu">paste0</span>(x, <span class="st">"%"</span>)</span>
+<span id="cb15-263"><a href="#cb15-263"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-264"><a href="#cb15-264"></a>    <span class="co"># change the color scale to custom colors</span></span>
+<span id="cb15-265"><a href="#cb15-265"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb15-266"><a href="#cb15-266"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#15353b"</span>, <span class="st">"#005766"</span>, <span class="st">"#46929e"</span>, <span class="st">"#ffdb83"</span>, <span class="st">"#ffb403"</span>)</span>
+<span id="cb15-267"><a href="#cb15-267"></a>    ) <span class="sc">+</span> </span>
+<span id="cb15-268"><a href="#cb15-268"></a>    <span class="co"># put legend title to the top over the labels</span></span>
+<span id="cb15-269"><a href="#cb15-269"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span> <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb15-270"><a href="#cb15-270"></a>    <span class="co"># add more descriptive labels</span></span>
+<span id="cb15-271"><a href="#cb15-271"></a>    <span class="fu">labs</span>(</span>
+<span id="cb15-272"><a href="#cb15-272"></a>        <span class="at">x =</span> <span class="st">"Coverage (%)"</span>, </span>
+<span id="cb15-273"><a href="#cb15-273"></a>        <span class="at">y =</span> <span class="cn">NULL</span>, </span>
+<span id="cb15-274"><a href="#cb15-274"></a>        <span class="at">color =</span> <span class="st">"Wealth Quintiles"</span>, </span>
+<span id="cb15-275"><a href="#cb15-275"></a>        <span class="at">caption =</span> <span class="st">"Data source: Int'l Center for Equity in Health | Pelotas"</span></span>
+<span id="cb15-276"><a href="#cb15-276"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-277"><a href="#cb15-277"></a>    <span class="do">## add title</span></span>
+<span id="cb15-278"><a href="#cb15-278"></a>    <span class="fu">ggtitle</span>(<span class="st">"Equiplot of XX coverage in 1994"</span>) <span class="sc">+</span></span>
+<span id="cb15-279"><a href="#cb15-279"></a>    <span class="co"># change the appearance of the whole graph</span></span>
+<span id="cb15-280"><a href="#cb15-280"></a>    ggprism<span class="sc">::</span><span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb15-281"><a href="#cb15-281"></a>    <span class="fu">theme</span>(</span>
+<span id="cb15-282"><a href="#cb15-282"></a>        <span class="co"># add horizontal grey line</span></span>
+<span id="cb15-283"><a href="#cb15-283"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb15-284"><a href="#cb15-284"></a>        <span class="co"># italicize plot caption </span></span>
+<span id="cb15-285"><a href="#cb15-285"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb15-286"><a href="#cb15-286"></a>        <span class="co"># show legend title </span></span>
+<span id="cb15-287"><a href="#cb15-287"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(), </span>
+<span id="cb15-288"><a href="#cb15-288"></a>        <span class="co"># change legend to the top position</span></span>
+<span id="cb15-289"><a href="#cb15-289"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb15-290"><a href="#cb15-290"></a>    ) </span>
+<span id="cb15-291"><a href="#cb15-291"></a><span class="in">```</span></span>
+<span id="cb15-292"><a href="#cb15-292"></a></span>
+<span id="cb15-293"><a href="#cb15-293"></a><span class="fu">### Reusable function</span></span>
+<span id="cb15-294"><a href="#cb15-294"></a></span>
+<span id="cb15-295"><a href="#cb15-295"></a>Writing the same code repeatedly is not efficient. To avoid this, let's create a function that allows us to reuse the boilerplate code as much as we need. This will help us save time and effort. We can modify the code snippet according to our requirements and then encapsulate it within a function. By doing so, we can easily reuse the code with different datasets or variables.</span>
+<span id="cb15-296"><a href="#cb15-296"></a></span>
+<span id="cb15-299"><a href="#cb15-299"></a><span class="in">```{r}</span></span>
+<span id="cb15-300"><a href="#cb15-300"></a>create_equiplot <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb15-301"><a href="#cb15-301"></a>        data, x, y, color,</span>
+<span id="cb15-302"><a href="#cb15-302"></a>        <span class="at">xlab =</span> <span class="st">"Coverage (%)"</span>, </span>
+<span id="cb15-303"><a href="#cb15-303"></a>        <span class="at">ylab =</span> <span class="cn">NULL</span>, </span>
+<span id="cb15-304"><a href="#cb15-304"></a>        <span class="at">title =</span> <span class="st">"Equiplot of XX coverage in 1994"</span>,</span>
+<span id="cb15-305"><a href="#cb15-305"></a>        <span class="at">caption =</span> <span class="st">"Data source: Int'l Center for Equity in Health | Pelotas"</span>,</span>
+<span id="cb15-306"><a href="#cb15-306"></a>        <span class="at">legend.title =</span> <span class="st">"Wealth Quintiles"</span>, </span>
+<span id="cb15-307"><a href="#cb15-307"></a>        <span class="at">color_pal =</span> <span class="fu">c</span>(<span class="st">"#15353b"</span>, <span class="st">"#005766"</span>, <span class="st">"#46929e"</span>, <span class="st">"#ffdb83"</span>, <span class="st">"#ffb403"</span>)) {</span>
+<span id="cb15-308"><a href="#cb15-308"></a>    data <span class="sc">|&gt;</span> </span>
+<span id="cb15-309"><a href="#cb15-309"></a>    <span class="fu">mutate</span>(<span class="at">x =</span> {{ x }}, </span>
+<span id="cb15-310"><a href="#cb15-310"></a>                 <span class="at">y =</span> {{ y }}, </span>
+<span id="cb15-311"><a href="#cb15-311"></a>                 <span class="at">color =</span> {{ color }}) <span class="sc">|&gt;</span> </span>
+<span id="cb15-312"><a href="#cb15-312"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb15-313"><a href="#cb15-313"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb15-314"><a href="#cb15-314"></a>        <span class="fu">aes</span>(<span class="at">group =</span> y) </span>
+<span id="cb15-315"><a href="#cb15-315"></a>    ) <span class="sc">+</span> </span>
+<span id="cb15-316"><a href="#cb15-316"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb15-317"><a href="#cb15-317"></a>        <span class="fu">aes</span>(<span class="at">color =</span> color), </span>
+<span id="cb15-318"><a href="#cb15-318"></a>        <span class="at">size =</span> <span class="dv">7</span></span>
+<span id="cb15-319"><a href="#cb15-319"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-320"><a href="#cb15-320"></a>    <span class="co"># change the color scale to custom colors</span></span>
+<span id="cb15-321"><a href="#cb15-321"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb15-322"><a href="#cb15-322"></a>        <span class="at">values =</span> color_pal</span>
+<span id="cb15-323"><a href="#cb15-323"></a>    ) <span class="sc">+</span> </span>
+<span id="cb15-324"><a href="#cb15-324"></a>    <span class="co"># put legend title to the top over the labels</span></span>
+<span id="cb15-325"><a href="#cb15-325"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span> <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb15-326"><a href="#cb15-326"></a>    <span class="co"># add more descriptive labels</span></span>
+<span id="cb15-327"><a href="#cb15-327"></a>    <span class="fu">labs</span>(</span>
+<span id="cb15-328"><a href="#cb15-328"></a>        <span class="at">x =</span> xlab, </span>
+<span id="cb15-329"><a href="#cb15-329"></a>        <span class="at">y =</span> ylab, </span>
+<span id="cb15-330"><a href="#cb15-330"></a>        <span class="at">color =</span> legend.title, </span>
+<span id="cb15-331"><a href="#cb15-331"></a>        <span class="at">caption =</span> caption</span>
+<span id="cb15-332"><a href="#cb15-332"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-333"><a href="#cb15-333"></a>    <span class="fu">ggtitle</span>(title) <span class="sc">+</span> </span>
+<span id="cb15-334"><a href="#cb15-334"></a>    <span class="co"># change the appearance of the whole graph</span></span>
+<span id="cb15-335"><a href="#cb15-335"></a>    ggprism<span class="sc">::</span><span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb15-336"><a href="#cb15-336"></a>    <span class="fu">theme</span>(</span>
+<span id="cb15-337"><a href="#cb15-337"></a>        <span class="co"># add horizontal grey line</span></span>
+<span id="cb15-338"><a href="#cb15-338"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb15-339"><a href="#cb15-339"></a>        <span class="co"># italicize plot caption </span></span>
+<span id="cb15-340"><a href="#cb15-340"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb15-341"><a href="#cb15-341"></a>        <span class="co"># show legend title </span></span>
+<span id="cb15-342"><a href="#cb15-342"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(), </span>
+<span id="cb15-343"><a href="#cb15-343"></a>        <span class="co"># change legend to the top position</span></span>
+<span id="cb15-344"><a href="#cb15-344"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb15-345"><a href="#cb15-345"></a>    ) </span>
+<span id="cb15-346"><a href="#cb15-346"></a>}</span>
+<span id="cb15-347"><a href="#cb15-347"></a><span class="in">```</span></span>
+<span id="cb15-348"><a href="#cb15-348"></a></span>
+<span id="cb15-349"><a href="#cb15-349"></a>Let's create the same plot for the year **`1994`**.</span>
+<span id="cb15-350"><a href="#cb15-350"></a></span>
+<span id="cb15-353"><a href="#cb15-353"></a><span class="in">```{r}</span></span>
+<span id="cb15-354"><a href="#cb15-354"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-355"><a href="#cb15-355"></a><span class="co">#| message: false</span></span>
+<span id="cb15-356"><a href="#cb15-356"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-357"><a href="#cb15-357"></a><span class="co">#| fig-height: 3</span></span>
+<span id="cb15-358"><a href="#cb15-358"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb15-359"><a href="#cb15-359"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-360"><a href="#cb15-360"></a>    <span class="fu">create_equiplot</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country, <span class="at">color =</span> level, </span>
+<span id="cb15-361"><a href="#cb15-361"></a>                                    <span class="at">title =</span> <span class="st">"Equiplot showing XX coverage in 1994"</span>)</span>
+<span id="cb15-362"><a href="#cb15-362"></a><span class="in">```</span></span>
+<span id="cb15-363"><a href="#cb15-363"></a></span>
+<span id="cb15-364"><a href="#cb15-364"></a>Adding faceted components based on the year variable can provide additional insights in our visualizations. Here are the updated codes that include faceting:</span>
+<span id="cb15-365"><a href="#cb15-365"></a></span>
+<span id="cb15-368"><a href="#cb15-368"></a><span class="in">```{r}</span></span>
+<span id="cb15-369"><a href="#cb15-369"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-370"><a href="#cb15-370"></a><span class="co">#| message: false</span></span>
+<span id="cb15-371"><a href="#cb15-371"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-372"><a href="#cb15-372"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb15-373"><a href="#cb15-373"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb15-374"><a href="#cb15-374"></a>    <span class="fu">create_equiplot</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country, <span class="at">color =</span> level, </span>
+<span id="cb15-375"><a href="#cb15-375"></a>                                    <span class="at">title =</span> <span class="st">"Equiplot showing XX coverages: 1994-2006"</span>) <span class="sc">+</span></span>
+<span id="cb15-376"><a href="#cb15-376"></a>    <span class="co"># stratified by year </span></span>
+<span id="cb15-377"><a href="#cb15-377"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> year)</span>
+<span id="cb15-378"><a href="#cb15-378"></a><span class="in">```</span></span>
+<span id="cb15-379"><a href="#cb15-379"></a></span>
+<span id="cb15-380"><a href="#cb15-380"></a>We can customize the theme and labels to improve the appearance and clarity of the faceted graph. Here's an updated version of the code snippet with a different theme and modified labels:</span>
+<span id="cb15-381"><a href="#cb15-381"></a></span>
+<span id="cb15-384"><a href="#cb15-384"></a><span class="in">```{r}</span></span>
+<span id="cb15-385"><a href="#cb15-385"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-386"><a href="#cb15-386"></a><span class="co">#| message: false</span></span>
+<span id="cb15-387"><a href="#cb15-387"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb15-388"><a href="#cb15-388"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb15-389"><a href="#cb15-389"></a>ex <span class="sc">|&gt;</span> </span>
+<span id="cb15-390"><a href="#cb15-390"></a>    <span class="fu">create_equiplot</span>(<span class="at">x =</span> coverage, <span class="at">y =</span> country, <span class="at">color =</span> level) <span class="sc">+</span></span>
+<span id="cb15-391"><a href="#cb15-391"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> year) <span class="sc">+</span> </span>
+<span id="cb15-392"><a href="#cb15-392"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb15-393"><a href="#cb15-393"></a>    <span class="fu">theme</span>(</span>
+<span id="cb15-394"><a href="#cb15-394"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>), </span>
+<span id="cb15-395"><a href="#cb15-395"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb15-396"><a href="#cb15-396"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb15-397"><a href="#cb15-397"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>), </span>
+<span id="cb15-398"><a href="#cb15-398"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>), </span>
+<span id="cb15-399"><a href="#cb15-399"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb15-400"><a href="#cb15-400"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb15-401"><a href="#cb15-401"></a>    ) </span>
+<span id="cb15-402"><a href="#cb15-402"></a><span class="in">```</span></span>
+<span id="cb15-403"><a href="#cb15-403"></a></span>
+<span id="cb15-404"><a href="#cb15-404"></a><span class="fu">### Saving plots</span></span>
+<span id="cb15-405"><a href="#cb15-405"></a></span>
+<span id="cb15-406"><a href="#cb15-406"></a>**`ggsave()`** is a useful function in the ggplot2 package that allows you to save plots in various formats. Here's an example code snippet demonstrating the usage of **`ggsave()`**:</span>
+<span id="cb15-407"><a href="#cb15-407"></a></span>
+<span id="cb15-410"><a href="#cb15-410"></a><span class="in">```{r}</span></span>
+<span id="cb15-411"><a href="#cb15-411"></a><span class="co">#| eval: false</span></span>
+<span id="cb15-412"><a href="#cb15-412"></a><span class="fu">ggsave</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"plots"</span>, <span class="st">"equiplot.png"</span>), <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb15-413"><a href="#cb15-413"></a><span class="in">```</span></span>
+<span id="cb15-414"><a href="#cb15-414"></a></span>
+<span id="cb15-415"><a href="#cb15-415"></a><span class="fu">## Credits</span></span>
+<span id="cb15-416"><a href="#cb15-416"></a></span>
+<span id="cb15-417"><a href="#cb15-417"></a>Thank you, <span class="co">[</span><span class="ot">Fernando C Wehrmeister</span><span class="co">](https://www.countdown2030.org/staff/fernando-c-wehrmeister)</span> &amp; <span class="co">[</span><span class="ot">Andrea Blanchard</span><span class="co">](https://www.countdown2030.org/staff/dr-andrea-blanchard)</span>, for introducing me to the field of health equity and for facilitating the interactive and thought-provoking health equity workshop at the University of Manitoba on 27-30 July 2023.</span>
+<span id="cb15-418"><a href="#cb15-418"></a></span>
+<span id="cb15-419"><a href="#cb15-419"></a>Featured photo: **Equity Dashboard** by <span class="co">[</span><span class="ot">Int'l Center for Equity in Health \| Pelotas</span><span class="co">](https://equidade.org/dashboard)</span></span>
+<span id="cb15-420"><a href="#cb15-420"></a></span>
+<span id="cb15-421"><a href="#cb15-421"></a>Example data &amp; color scheme: **Equiplot** by <span class="co">[</span><span class="ot">Int'l Center for Equity in Health \| Pelotas</span><span class="co">](https://equidade.org/equiplot)</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2021-2026 Myo Minn Oo</p>
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Change cookies 🍪</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"right","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

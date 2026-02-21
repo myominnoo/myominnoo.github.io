@@ -1,0 +1,499 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Hi, I am Myo 👋",
+    "section": "",
+    "text": "Schedule a Discovery Call\nAs an independent research consultant and epidemiologist, I bridge the gap between messy data and real-world health impact. I combine my clinical background as a medical doctor with a senior-level expertise in epidemiological research and data science to design research that is methodologically sound, equity-focused, and implementation-ready.\nWith over a decade of experience across academic, clinical, and policy-facing settings, I have led multiple complex research projects globally and published 35+ peer-reviewed papers. My work ranges from advanced statistical modelling of large-scale electronic health records to the development of automated report pipelines and interactive dashboards.\nBy applying a code-first approach in R, I ensure that every analysis is reproducible, transparent, and efficient—whether I am building interactive dashboards, generating dynamic reports, or conducting complex meta-analyses.\nI also frequently engage as a peer reviewer, a mentor, a technical lead, and a data consultant, helping teams strengthen their internal capacity for data wrangling, statistical analysis, pipeline development, and evidence synthesis.\n→     Research Portfolio\n    →     Curriculum Vitae"
+  },
+  {
+    "objectID": "about.html#epidemiology-implementation-science",
+    "href": "about.html#epidemiology-implementation-science",
+    "title": "Hi, I am Myo 👋",
+    "section": "🧬 Epidemiology & Implementation Science",
+    "text": "🧬 Epidemiology & Implementation Science\nBefore transitioning into industry and independent consulting, I worked as an epidemiologist and held two postdoctoral fellowships in global health and infectious diseases as well as senior research positions at various organizations. My journey has taken me from clinical practice to leading nationwide surveys and evaluating complex health interventions. I specialize in identifying health equity gaps and designing strategies to improve access for underserved populations, including sex workers, gender-divser groups, immigrants and indigenous communities."
+  },
+  {
+    "objectID": "about.html#data-science-automation",
+    "href": "about.html#data-science-automation",
+    "title": "Hi, I am Myo 👋",
+    "section": "💻 Data Science & Automation",
+    "text": "💻 Data Science & Automation\nI am a firm believer in the power of “clean code for clean data.” My primary tool for all research tasks is the R programming language. I utilize the {tidyverse} and {ggplot2} ecosystems to move from raw, “messy” data to polished, publication-ready visualizations and automated reports. This script-based workflow ensures that my clients receive results that are not just accurate, but fully reproducible and scalable."
+  },
+  {
+    "objectID": "about.html#strategic-research-leadership",
+    "href": "about.html#strategic-research-leadership",
+    "title": "Hi, I am Myo 👋",
+    "section": "📈 Strategic Research Leadership",
+    "text": "📈 Strategic Research Leadership\nBeyond the data, I provide high-level research leadership. Having managed transdisciplinary teams of over 15 researchers, I understand how to translate complex analytical findings into clear, actionable recommendations for governments and health system partners. I help organizations set research strategies that align with international standards and maximize real-world impact."
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "Hi, I am Myo 👋",
+    "section": "Contact",
+    "text": "Contact\nMyo Minn Oo, MBBS, PhD Epidemiologist | Research Director | Data Consultant\ndr.myominnoo@gmail.com"
+  },
+  {
+    "objectID": "blog/2023-06-15-duplicates-R/index.html",
+    "href": "blog/2023-06-15-duplicates-R/index.html",
+    "title": "Duplicates in R",
+    "section": "",
+    "text": "Citation: HOW CAN I DETECT DUPLICATE OBSERVATIONS? | STATA FAQ. UCLA: Statistical Consulting Group. from https://stats.oarc.ucla.edu/stata/faq/how-can-i-detect-duplicate-observations-3/ (accessed June 15, 2023).\n\nThe tutorial on the website used the High School and Beyond dataset. Here are the steps taken to introduce duplicates to the dataset.\n\n\nCodedevtools::install_github(\"myominnoo/mStats\")\n\n\n\nStart with the High School and Beyond dataset, which initially has no duplicate observations.\n\nCodelibrary(tidyverse)\nhsb2 &lt;-\n  # load the dataset\n  haven::read_dta(\"https://stats.idre.ucla.edu/stat/stata/notes/hsb2.dta\") |&gt;\n  # select variables of interest\n  dplyr::select(id, female, ses, read, write, math) |&gt;\n  # sort by id\n  dplyr::arrange(id)\n\n\n\nAdd five duplicate observations to the dataset to create duplicates. Change a value in one of the duplicate observations.\n\nCodehsb2_mod &lt;-\n  hsb2 |&gt;\n  # take the first five observations\n  slice(1:5) |&gt;\n  # add duplicate observations\n  dplyr::bind_rows(hsb2) |&gt;\n  dplyr::mutate(math = ifelse(dplyr::row_number() == 1, 84, math))\n# display the first few rows\nhsb2_mod\n\n# A tibble: 205 × 6\n      id female     ses         read write  math\n   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1     1 1 [female] 1 [low]       34    44    84\n 2     2 1 [female] 2 [middle]    39    41    33\n 3     3 0 [male]   1 [low]       63    65    48\n 4     4 1 [female] 1 [low]       44    50    41\n 5     5 0 [male]   1 [low]       47    40    43\n 6     1 1 [female] 1 [low]       34    44    40\n 7     2 1 [female] 2 [middle]    39    41    33\n 8     3 0 [male]   1 [low]       63    65    48\n 9     4 1 [female] 1 [low]       44    50    41\n10     5 0 [male]   1 [low]       47    40    43\n# ℹ 195 more rows\n\n\n\nAfter adding the duplicate observations, you will have a total of 195 unique observations and 5 duplicated observations in the dataset. We can use the tag_duplicates() function from the mStats package.\n\nCodehsb2_mod |&gt;\n  # check duplicate report and status using a mStats function\n  dplyr::mutate(mStats::tag_duplicates(dplyr::everything()))\n\n$ Report of duplicates\n  in terms of dplyr::everything()\n copies observations surplus\n      1          197       0\n      2            8       4\n\n\n# A tibble: 205 × 9\n      id female     ses         read write  math   .n_   .N_ .dup_\n   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;\n 1     1 1 [female] 1 [low]       34    44    84     1     1 FALSE\n 2     2 1 [female] 2 [middle]    39    41    33     1     2 FALSE\n 3     3 0 [male]   1 [low]       63    65    48     1     2 FALSE\n 4     4 1 [female] 1 [low]       44    50    41     1     2 FALSE\n 5     5 0 [male]   1 [low]       47    40    43     1     2 FALSE\n 6     1 1 [female] 1 [low]       34    44    40     1     1 FALSE\n 7     2 1 [female] 2 [middle]    39    41    33     2     2 TRUE \n 8     3 0 [male]   1 [low]       63    65    48     2     2 TRUE \n 9     4 1 [female] 1 [low]       44    50    41     2     2 TRUE \n10     5 0 [male]   1 [low]       47    40    43     2     2 TRUE \n# ℹ 195 more rows\n\n\nLet’s check duplicates by id.\n\nCodehsb2_mod |&gt;\n  # check duplicates by id\n  dplyr::mutate(mStats::tag_duplicates(id))\n\n$ Report of duplicates\n  in terms of id\n copies observations surplus\n      1          195       0\n      2           10       5\n\n\n# A tibble: 205 × 9\n      id female     ses         read write  math   .n_   .N_ .dup_\n   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;\n 1     1 1 [female] 1 [low]       34    44    84     1     2 FALSE\n 2     2 1 [female] 2 [middle]    39    41    33     1     2 FALSE\n 3     3 0 [male]   1 [low]       63    65    48     1     2 FALSE\n 4     4 1 [female] 1 [low]       44    50    41     1     2 FALSE\n 5     5 0 [male]   1 [low]       47    40    43     1     2 FALSE\n 6     1 1 [female] 1 [low]       34    44    40     2     2 TRUE \n 7     2 1 [female] 2 [middle]    39    41    33     2     2 TRUE \n 8     3 0 [male]   1 [low]       63    65    48     2     2 TRUE \n 9     4 1 [female] 1 [low]       44    50    41     2     2 TRUE \n10     5 0 [male]   1 [low]       47    40    43     2     2 TRUE \n# ℹ 195 more rows\n\n\n\nPhoto credit: Photo by Dids from Pexels"
+  },
+  {
+    "objectID": "blog/2023-06-15-duplicates-R/index.html#replicating-examples-on-uclas-stata-tutorial-in-r",
+    "href": "blog/2023-06-15-duplicates-R/index.html#replicating-examples-on-uclas-stata-tutorial-in-r",
+    "title": "Duplicates in R",
+    "section": "",
+    "text": "Citation: HOW CAN I DETECT DUPLICATE OBSERVATIONS? | STATA FAQ. UCLA: Statistical Consulting Group. from https://stats.oarc.ucla.edu/stata/faq/how-can-i-detect-duplicate-observations-3/ (accessed June 15, 2023).\n\nThe tutorial on the website used the High School and Beyond dataset. Here are the steps taken to introduce duplicates to the dataset.\n\n\nCodedevtools::install_github(\"myominnoo/mStats\")\n\n\n\nStart with the High School and Beyond dataset, which initially has no duplicate observations.\n\nCodelibrary(tidyverse)\nhsb2 &lt;-\n  # load the dataset\n  haven::read_dta(\"https://stats.idre.ucla.edu/stat/stata/notes/hsb2.dta\") |&gt;\n  # select variables of interest\n  dplyr::select(id, female, ses, read, write, math) |&gt;\n  # sort by id\n  dplyr::arrange(id)\n\n\n\nAdd five duplicate observations to the dataset to create duplicates. Change a value in one of the duplicate observations.\n\nCodehsb2_mod &lt;-\n  hsb2 |&gt;\n  # take the first five observations\n  slice(1:5) |&gt;\n  # add duplicate observations\n  dplyr::bind_rows(hsb2) |&gt;\n  dplyr::mutate(math = ifelse(dplyr::row_number() == 1, 84, math))\n# display the first few rows\nhsb2_mod\n\n# A tibble: 205 × 6\n      id female     ses         read write  math\n   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1     1 1 [female] 1 [low]       34    44    84\n 2     2 1 [female] 2 [middle]    39    41    33\n 3     3 0 [male]   1 [low]       63    65    48\n 4     4 1 [female] 1 [low]       44    50    41\n 5     5 0 [male]   1 [low]       47    40    43\n 6     1 1 [female] 1 [low]       34    44    40\n 7     2 1 [female] 2 [middle]    39    41    33\n 8     3 0 [male]   1 [low]       63    65    48\n 9     4 1 [female] 1 [low]       44    50    41\n10     5 0 [male]   1 [low]       47    40    43\n# ℹ 195 more rows\n\n\n\nAfter adding the duplicate observations, you will have a total of 195 unique observations and 5 duplicated observations in the dataset. We can use the tag_duplicates() function from the mStats package.\n\nCodehsb2_mod |&gt;\n  # check duplicate report and status using a mStats function\n  dplyr::mutate(mStats::tag_duplicates(dplyr::everything()))\n\n$ Report of duplicates\n  in terms of dplyr::everything()\n copies observations surplus\n      1          197       0\n      2            8       4\n\n\n# A tibble: 205 × 9\n      id female     ses         read write  math   .n_   .N_ .dup_\n   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;\n 1     1 1 [female] 1 [low]       34    44    84     1     1 FALSE\n 2     2 1 [female] 2 [middle]    39    41    33     1     2 FALSE\n 3     3 0 [male]   1 [low]       63    65    48     1     2 FALSE\n 4     4 1 [female] 1 [low]       44    50    41     1     2 FALSE\n 5     5 0 [male]   1 [low]       47    40    43     1     2 FALSE\n 6     1 1 [female] 1 [low]       34    44    40     1     1 FALSE\n 7     2 1 [female] 2 [middle]    39    41    33     2     2 TRUE \n 8     3 0 [male]   1 [low]       63    65    48     2     2 TRUE \n 9     4 1 [female] 1 [low]       44    50    41     2     2 TRUE \n10     5 0 [male]   1 [low]       47    40    43     2     2 TRUE \n# ℹ 195 more rows\n\n\nLet’s check duplicates by id.\n\nCodehsb2_mod |&gt;\n  # check duplicates by id\n  dplyr::mutate(mStats::tag_duplicates(id))\n\n$ Report of duplicates\n  in terms of id\n copies observations surplus\n      1          195       0\n      2           10       5\n\n\n# A tibble: 205 × 9\n      id female     ses         read write  math   .n_   .N_ .dup_\n   &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;\n 1     1 1 [female] 1 [low]       34    44    84     1     2 FALSE\n 2     2 1 [female] 2 [middle]    39    41    33     1     2 FALSE\n 3     3 0 [male]   1 [low]       63    65    48     1     2 FALSE\n 4     4 1 [female] 1 [low]       44    50    41     1     2 FALSE\n 5     5 0 [male]   1 [low]       47    40    43     1     2 FALSE\n 6     1 1 [female] 1 [low]       34    44    40     2     2 TRUE \n 7     2 1 [female] 2 [middle]    39    41    33     2     2 TRUE \n 8     3 0 [male]   1 [low]       63    65    48     2     2 TRUE \n 9     4 1 [female] 1 [low]       44    50    41     2     2 TRUE \n10     5 0 [male]   1 [low]       47    40    43     2     2 TRUE \n# ℹ 195 more rows\n\n\n\nPhoto credit: Photo by Dids from Pexels"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "What’s New & Updated",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nAdding a Custom Email to Your Netlify-Hosted Quarto Website\n\n\n\nR\n\nNetlify\n\n\n\n\n\n\n\n\n\nDec 2, 2023\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nCreating Equiplot in R\n\n\n\nR\n\nHealth Equity\n\n\n\n\n\n\n\n\n\nJun 30, 2023\n\n9 min\n\n\n\n\n\n\n\n\n\n\n\nDuplicates in R\n\n\n\nR\n\nData Wrangling\n\nmStats\n\n\n\n\n\n\n\n\n\nJun 15, 2023\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nAwesome Resources\n\n\n\nResources\n\n\n\n\n\n\n\n\n\nJun 2, 2023\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nHello World!\n\n\n\nNews\n\n\n\nIntroducing my personal website!\n\n\n\n\n\nMay 31, 2023\n\n1 min\n\n\n\n\nNo matching items\n\n\n\n\n\nCitationBibTeX citation:@online{oo,\n  author = {Oo, MyoMinn},\n  title = {What’s {New} \\& {Updated}},\n  url = {https://myominnoo.com/blog/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nOo, MyoMinn. n.d. “What’s New & Updated.” https://myominnoo.com/blog/."
+  },
+  {
+    "objectID": "blog/2023-05-31-hello-world/index.html",
+    "href": "blog/2023-05-31-hello-world/index.html",
+    "title": "Hello World!",
+    "section": "",
+    "text": "I am thrilled to announce the debut of my personal website, where I share my journey, research findings, and insights with the world. Previously, this website has been one pager with very minimal sharing outside my circle. With this new development, I intend to write more about what I am doing and what I learn along the way with everyone.\nI also open a comment session on the blog posts. So any constructive feedbacks are welcomed.\nCheers, everyone! Stay tuned!\nMyo\n\n\n\nCitationBibTeX citation:@online{oo2023,\n  author = {Oo, MyoMinn},\n  title = {Hello {World!}},\n  date = {2023-05-31},\n  url = {https://myominnoo.com/blog/2023-05-31-hello-world/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nOo, MyoMinn. 2023. “Hello World!” May 31, 2023. https://myominnoo.com/blog/2023-05-31-hello-world/."
+  },
+  {
+    "objectID": "projects/2021-u5mr-mis/index.html",
+    "href": "projects/2021-u5mr-mis/index.html",
+    "title": "Feasibility of U5MR Estimation via Serial MIS Data",
+    "section": "",
+    "text": "Role: Senior Research Fellow | Postdoctoral Scientific Collaborator\nOrganization: Swiss TPH | PNG Institute of Medical Research (PNGIMR)\nDomain: Demography, Maternal & Child Health, Data Validation"
+  },
+  {
+    "objectID": "projects/2021-u5mr-mis/index.html#the-challenge",
+    "href": "projects/2021-u5mr-mis/index.html#the-challenge",
+    "title": "Feasibility of U5MR Estimation via Serial MIS Data",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nEstimating the Under-Five Mortality Rate (U5MR) is critical for evaluating health interventions. In resource-limited settings like Papua New Guinea, researchers often attempt to use Malaria Indicator Surveys (MIS) as a proxy for Demographic and Health Surveys (DHS). The challenge was to determine if serial MIS data (2013–2020) could provide reliable, sub-national U5MR estimates using indirect estimation methods."
+  },
+  {
+    "objectID": "projects/2021-u5mr-mis/index.html#the-solution-a-methodological-deep-dive",
+    "href": "projects/2021-u5mr-mis/index.html#the-solution-a-methodological-deep-dive",
+    "title": "Feasibility of U5MR Estimation via Serial MIS Data",
+    "section": "2 The Solution: A Methodological Deep-Dive",
+    "text": "2 The Solution: A Methodological Deep-Dive\nI applied advanced demographic modeling to three consecutive MIS datasets to test the feasibility of U5MR tracking. Rather than accepting the outputs at face value, I conducted a rigorous validation of the internal and external consistency of the results.\n\nComparative Modeling: Applied both Maternal Age Cohort-derived (MAC) and Maternal Age Period-derived (MAP) variants of the Rajaratnam et al. (2010) method.\nUncertainty Quantification: Executed a 1,000-iteration bootstrap simulation combined with LOESS regression to generate point estimates and 95% confidence intervals, adjusting standard errors to account for design-driven deflation.\nData Quality Audit: Identified significant discrepancies between the three survey waves, specifically noting “implausible” outcomes, including negative mortality values at the provincial level."
+  },
+  {
+    "objectID": "projects/2021-u5mr-mis/index.html#technical-deep-dive",
+    "href": "projects/2021-u5mr-mis/index.html#technical-deep-dive",
+    "title": "Feasibility of U5MR Estimation via Serial MIS Data",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nIndirect Estimation: Utilized regression-based models where \\(U_{ij}\\) (country random effects) and parity ratios were used to predict mortality up to 25 years prior to the survey.\nR Pacakge: Given the package’s status in the CRAN Archive, I managed version-specific dependencies to ensure the reproducibility of the maternal age cohort (MAC) and maternal age period (MAP) models\nStatistical Refinement: Corrected standard errors by a factor of 4.0 to account for artificial deflation in the simulation.\nTech Stack: R, tidyverse, loess, boot (Bootstrapping), ggplot2."
+  },
+  {
+    "objectID": "projects/2021-u5mr-mis/index.html#critical-findings-lessons",
+    "href": "projects/2021-u5mr-mis/index.html#critical-findings-lessons",
+    "title": "Feasibility of U5MR Estimation via Serial MIS Data",
+    "section": "4 Critical Findings & Lessons",
+    "text": "4 Critical Findings & Lessons\nThis project served as a vital “proof-of-concept” that revealed the limitations of using MIS data for mortality surveillance in this context: 1. Unreliability of Small Samples: Negative U5MR values at the provincial level highlighted the sensitivity of indirect methods to small sample sizes and potential maternal survival bias. 2. Survey Heterogeneity: Large gaps between estimates from different survey years suggested possible variations in interview methods or data quality between 2013 and 2019. 3. Strategic Recommendation: Provided evidence that while MIS data is excellent for malaria indicators, it may require significant methodological adjustment or larger sample sizes to be a viable substitute for full DHS mortality modules."
+  },
+  {
+    "objectID": "projects/2023-hpv-prev/index.html",
+    "href": "projects/2023-hpv-prev/index.html",
+    "title": "HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations",
+    "section": "",
+    "text": "View Publication (Cancer Medicine 2023) | PMID: 37140209\nRole: Lead Epidemiologist & First Author\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Infectious Disease, Global Health, Immunology"
+  },
+  {
+    "objectID": "projects/2023-hpv-prev/index.html#the-challenge",
+    "href": "projects/2023-hpv-prev/index.html#the-challenge",
+    "title": "HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nGay, bisexual, and men who have sex with men (gbMSM) in sub-Saharan Africa face a disproportionate burden of HIV and HPV-related cancers. However, baseline data on specific HPV genotype distributions—essential for determining the potential impact of 4-valent vs. 9-valent vaccines—was critically lacking in the Kenyan context."
+  },
+  {
+    "objectID": "projects/2023-hpv-prev/index.html#the-solution",
+    "href": "projects/2023-hpv-prev/index.html#the-solution",
+    "title": "HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI led the epidemiological analysis of a cross-sectional study among gbMSM in Nairobi. By leveraging multiple logistic regression and genotype-specific modeling, I quantified the overlap between HIV status and vaccine-preventable HPV types.\n\nRisk Factor Identification: Conducted multivariate analysis revealing that HIV status was the strongest predictor of HR-HPV infection (aOR: 8.9), while being married to a woman was a significant social risk factor (aOR: 8.1).\nVaccine Efficacy Assessment (Proxy): Evaluated the potential coverage of current vaccines, determining that the 9-valent Gardasil vaccine would cover 61% of the HPV types circulating in this specific cohort.\nPolicy Advocacy: Translated complex genotype data into a clear public health mandate, calling for targeted HPV vaccination campaigns for Kenyan gbMSM."
+  },
+  {
+    "objectID": "projects/2023-hpv-prev/index.html#technical-deep-dive",
+    "href": "projects/2023-hpv-prev/index.html#technical-deep-dive",
+    "title": "HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nStatistical Modeling: Utilized R for multiple logistic regression and odds ratio calculations with 95% confidence intervals.\nData Visualization: Created prevalence plots and genotype distribution charts to communicate the “preventable burden” to stakeholders.\nTech Stack: R, tidyverse, gtsummary, officeverse.\nImpact: Provided the first comprehensive evidence for targeted HPV vaccination in this population, directly informing regional cancer prevention strategies."
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html",
+    "href": "projects/2025-colp-paper/index.html",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "",
+    "text": "[Accepted for Publication: American Journal of Reproductive Immunology (Feb 2026)]\nRole: Bioinformatics Lead & Epidemiologist\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Mucosal Immunology, Transcriptomics, Reproductive Health"
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html#the-challenge",
+    "href": "projects/2025-colp-paper/index.html#the-challenge",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nUnderstanding the spatial and molecular composition of Tissue-Resident Memory (TRM) T cells in the female reproductive tract is critical for developing mucosal vaccines and HIV prevention strategies. However, the interplay between these cells in the ectocervix vs. the endocervix required high-resolution analysis that traditional bulk sequencing cannot provide."
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html#the-solution",
+    "href": "projects/2025-colp-paper/index.html#the-solution",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI integrated flow cytometry phenotyping with single-cell RNA sequencing (scRNA-seq) to map the molecular landscape of the cervical mucosa. This multi-modal approach allowed the research team to move beyond broad cell categories to identify unique, niche-specific T cell clusters.\n\nHigh-Resolution Mapping: Leveraged scRNA-seq to generate a molecular data matrix at the individual cell level, uncovering distinct molecular signatures for TRM subsets.\nCross-Platform Integration: Coupled flow cytometry data with transcriptomic profiles to validate the presence and composition of established T cell subsets.\nClinical Association Analysis: Investigated how these cellular compositions correlate with clinical findings from patients at a colposcopy clinic in Nairobi."
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html#technical-deep-dive",
+    "href": "projects/2025-colp-paper/index.html#technical-deep-dive",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nBioinformatics Pipeline: Developed custom R workflows for scRNA-seq processing, including quality control, normalization, dimensional reduction (UMAP/t-SNE), and cluster annotation.\nTech Stack: R, Seurat, Bioconductor, SingleCellExperiment, ggplot2.\nImpact: Resulted in the manuscript “Enumeration, phenotyping, and clinical associations of tissue-resident T cells in the ecto- and endocervix of women attending a colposcopy clinic”, accepted in the American Journal of Reproductive Immunology (2026)."
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html",
+    "href": "projects/2021-malcon/index.html",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "",
+    "text": "View Dashboard | View Project Repository\nRole: Senior Research Fellow | Postdoctoral Scientific Collaborator\nOrganization: Swiss TPH | PNG Institute of Medical Research (PNGIMR)\nDomain: Malaria Control, Surveillance, Global Health"
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html#the-challenge",
+    "href": "projects/2021-malcon/index.html#the-challenge",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nMonitoring a nationwide malaria control program requires the integration of diverse data streams, from clinical reporting rates to regional incidence trends. For the Malaria Control (MalCon) project in Papua New Guinea, stakeholders needed a centralized, interactive platform to visualize these indicators in real-time, enabling rapid response to outbreaks and effective resource allocation."
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html#the-solution",
+    "href": "projects/2021-malcon/index.html#the-solution",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI developed the MalCon Dashboard, a comprehensive, responsive static analytics platform that serves as the primary tool for monitoring malaria indicators across PNG. The dashboard transforms raw surveillance data into actionable geospatial and temporal insights.\n\nGeospatial aspect: Integrated interactive maps to visualize survey data collection performance and operational issues at the provincial and district levels.\nData Governance: Built a robust automated pipeline to aggregate and clean surveillance data from multiple sources, ensuring the dashboard remains current with minimal manual intervention."
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html#technical-deep-dive",
+    "href": "projects/2021-malcon/index.html#technical-deep-dive",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nModular Dashboard Architecture: Utilized a modular R/flexdashboard structure to ensure the platform remains scalable as new indicators or data sources are added.\nInteractive Visualizations: Leveraged high-performance R packages to create responsive charts and maps that allow users to drill down into specific regions or timeframes.\nTech Stack: R, leaflet (mapping), plotly, tidyverse, flexdashboard, GitHub Actions.\nImpact: Provided the PNG National Malaria Control Program and global partners with a unified “source of truth,” significantly improving the speed and transparency in monitoring of national survey progress.\n\nRead the Final Report\nAs part of the survey, I completed a draft for an automated report, streamlining the reporting process and enhancing efficiency. Recognizing the need for advanced data collection methods, I conceptualized a QR linkage system to be implemented in the upcoming malaria indicator survey. In addition, I contributed technical consultations to both the Institute and the National Technical Working Group for Malaria. We also attempted to assess the accuracy, reliability, and viability of using repeated malaria surveys to calculate under-five mortality as an effective intervention."
+  },
+  {
+    "objectID": "projects/2023-iiq2/index.html",
+    "href": "projects/2023-iiq2/index.html",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "",
+    "text": "Read about IIQ study | ClinicalTrials.gov (NCT02079077) | Fowke Lab\nView Dasboard\nRole: Additional Support - Dashboard Developer"
+  },
+  {
+    "objectID": "projects/2023-iiq2/index.html#the-challenge",
+    "href": "projects/2023-iiq2/index.html#the-challenge",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nThe IIQ2 Phase 2 study in Nairobi, Kenya, investigates whether low-dose aspirin can induce an “Immune Quiescent” (IIQ) phenotype to reduce HIV susceptibility. Managing a Phase 2 trial involves tracking complex enrollment targets, participant retention, and specimen collection across multiple clinical sites. Prof. Keith Fowke’s lab required a quick dashboard to monitor study progress and ensure data quality in real-time."
+  },
+  {
+    "objectID": "projects/2023-iiq2/index.html#the-solution",
+    "href": "projects/2023-iiq2/index.html#the-solution",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI developed a specialized monitoring dashboard within two weeks to serve as the “mission control” for the study. This tool provides the leadership team with an immediate snapshot of trial health, moving away from static weekly reports to dynamic, live data exploration.\n\nEnrollment Tracking: Automated the visualization of recruitment vs. targets, allowing for rapid adjustments to clinical outreach strategies.\nRetention Analytics: Built modules to identify drop-out patterns and monitor participant follow-up schedules across the longitudinal study design.\nSpecimen Governance: Integrated tracking for biological samples to ensure alignment between clinical visits and lab processing."
+  },
+  {
+    "objectID": "projects/2023-iiq2/index.html#technical-deep-dive",
+    "href": "projects/2023-iiq2/index.html#technical-deep-dive",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nAutomated Data Pipeline: Established a workflow to pull and clean data from clinical databases, ensuring the dashboard reflects the most current study status.\nTech Stack: R, flexdashboard, ggplot2, dplyr, lubridate.\nImpact: Improved administrative efficiency and provided the team with data-driven insights to maintain the trial’s rigorous timeline and high retention rates."
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Kickstart Your Project",
+    "section": "",
+    "text": "Need immediate clarity on a complex dataset or research design? Book a free 30-minute discovery call. We’ll discuss your specific objectives and explore how clinical research, evidence synthesis, or health economics frameworks can strengthen your project’s outcomes.\nSchedule a Discovery Call"
+  },
+  {
+    "objectID": "contact.html#book-a-free-30-minute-consultation",
+    "href": "contact.html#book-a-free-30-minute-consultation",
+    "title": "Kickstart Your Project",
+    "section": "",
+    "text": "Need immediate clarity on a complex dataset or research design? Book a free 30-minute discovery call. We’ll discuss your specific objectives and explore how clinical research, evidence synthesis, or health economics frameworks can strengthen your project’s outcomes.\nSchedule a Discovery Call"
+  },
+  {
+    "objectID": "contact.html#tell-me-about-your-project",
+    "href": "contact.html#tell-me-about-your-project",
+    "title": "Kickstart Your Project",
+    "section": "Tell me about your project!",
+    "text": "Tell me about your project!\nHave a specific research idea, a “messy” database, or a consulting need in mind? Complete the brief form below. Whether it’s a long-term academic collaboration or a targeted data science task, share your vision and I will get back to you within 24 hours to discuss next steps."
+  },
+  {
+    "objectID": "projects/2023-covidab/index.html",
+    "href": "projects/2023-covidab/index.html",
+    "title": "COVID-19 Longitudinal Antibody Trajectory Analysis",
+    "section": "",
+    "text": "View Wireframe | View App Demos\nRole: Lead Epidemiologist, Shiny Developer\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Immunology, Public Health, Infectious Disease"
+  },
+  {
+    "objectID": "projects/2023-covidab/index.html#longitudinal-antibody-trajectory-dashboard",
+    "href": "projects/2023-covidab/index.html#longitudinal-antibody-trajectory-dashboard",
+    "title": "COVID-19 Longitudinal Antibody Trajectory Analysis",
+    "section": "",
+    "text": "View Wireframe | View App Demos\nRole: Lead Epidemiologist, Shiny Developer\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Immunology, Public Health, Infectious Disease"
+  },
+  {
+    "objectID": "projects/2023-covidab/index.html#the-challenge",
+    "href": "projects/2023-covidab/index.html#the-challenge",
+    "title": "COVID-19 Longitudinal Antibody Trajectory Analysis",
+    "section": "2 The Challenge",
+    "text": "2 The Challenge\nTracking SARS-CoV-2 antibody durability across 3–5 booster doses generates high-dimensional, longitudinal datasets. With three types of serology antibodies and various neutralization responses to monitor, static reporting was insufficient. The research team needed a way to visualize complex immune decay patterns and “trajectories” to inform public health strategies and booster protocols in real-time.\n\n\n\nA list of key research questions on the welcome page:"
+  },
+  {
+    "objectID": "projects/2023-covidab/index.html#the-solution",
+    "href": "projects/2023-covidab/index.html#the-solution",
+    "title": "COVID-19 Longitudinal Antibody Trajectory Analysis",
+    "section": "3 The Solution",
+    "text": "3 The Solution\nI developed a comprehensive Shiny application designed as a communication and analysis hub for cohort surveillance. This platform streamlines the transition from raw serological data to interactive longitudinal insights.\n\nDynamic Trajectory Mapping: Built interactive visualizations that allow researchers to isolate specific cohorts and booster groups to observe immune trends.\nMulti-Dimensional Analysis: Integrated disparate outcomes (serology vs. neutralization) into a single, unified interface for comparative study.\nEngagement-Focused UI & Data Viz: Developed a user-friendly “wireframe-to-production” interface that simplifies statistical exploration for non-data scientists.\n\n\n\n\nInput parameters for data viz through slided datasets\n\n\n\n\n\nInput parameters for data viz through slided datasets"
+  },
+  {
+    "objectID": "projects/2023-covidab/index.html#technical-deep-dive",
+    "href": "projects/2023-covidab/index.html#technical-deep-dive",
+    "title": "COVID-19 Longitudinal Antibody Trajectory Analysis",
+    "section": "4 Technical Deep-Dive",
+    "text": "4 Technical Deep-Dive\n\nLongitudinal and Mixed-Effects Modeling: Leveraged R to calculate statistics across multiple time points and booster intervals.\nTech Stack: R, Shiny, ggplot2, plotly, tidyverse, lme4.\nImpact: Served as the “comprehensive platform” for the study, enabling deep-dive collaborations with research partners and accelerating the dissemination of findings on long-term vaccine effectiveness.\n\n\n\n\nInput parameters and modelling outputs on the fly:"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Research and Data Science Projects",
+    "section": "",
+    "text": "Important\n\n\n\nThis page is still under development.\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nHPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations\n\n\n\nR\n\nInfectious Disease\n\nGlobal Health\n\nImmunology\n\n\n\n\n\n\n\n\n\nDec 31, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nXpert Magic: Automated Data Pipeline\n\n\n\nR\n\nHealth Informatics\n\nBiomedical Research\n\nShiny\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIIQ2 Phase 2: Clinical Trial Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIIQ2 Phase 2: Clinical Trial Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nBioinformatics\n\nEpidemiology\n\nscRNA sequencing\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nSWOP HPV Study Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nStudy Enrollment\n\nProject Management\n\nHPV\n\n\n\n\n\n\n\n\n\nJul 4, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nCOVID-19 Longitudinal Antibody Trajectory Analysis\n\n\n\nR\n\nShiny\n\nCOVID-19\n\nLongitudinal Data Analysis\n\nModelling\n\n\n\n\n\n\n\n\n\nJun 2, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nMalCon: Malaria Health Facility Survey Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nSurveillance\n\nSurvey\n\nDashboard\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nFeasibility of U5MR Estimation via Serial MIS Data\n\n\n\nR\n\nPackage\n\nDemography\n\nMaternal & Child Health\n\nData Validation\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nR Packages\n\n\n\nR\n\nPackage\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/r-packages/index.html",
+    "href": "projects/r-packages/index.html",
+    "title": "R Packages",
+    "section": "",
+    "text": "mStats is a versatile and efficient collection of functions that I have curated and developed to enhance my work in various domains. This collection encompasses a range of statistical tools and utilities that have proven invaluable in my research and analysis endeavors.\nAs an avid user of mStats, I am delighted to share this valuable resource with the broader community. Together, we can leverage the power of mStats to overcome statistical challenges, drive impactful insights, and advance the frontiers of knowledge in our respective fields.\nStay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.\nDocumentation | Source Code | CRAN"
+  },
+  {
+    "objectID": "projects/r-packages/index.html#sec-rpkg-mStats",
+    "href": "projects/r-packages/index.html#sec-rpkg-mStats",
+    "title": "R Packages",
+    "section": "",
+    "text": "mStats is a versatile and efficient collection of functions that I have curated and developed to enhance my work in various domains. This collection encompasses a range of statistical tools and utilities that have proven invaluable in my research and analysis endeavors.\nAs an avid user of mStats, I am delighted to share this valuable resource with the broader community. Together, we can leverage the power of mStats to overcome statistical challenges, drive impactful insights, and advance the frontiers of knowledge in our respective fields.\nStay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.\nDocumentation | Source Code | CRAN"
+  },
+  {
+    "objectID": "projects/r-packages/index.html#sec-rpkg-shinyAuthX",
+    "href": "projects/r-packages/index.html#sec-rpkg-shinyAuthX",
+    "title": "R Packages",
+    "section": "2 shinyAuthX",
+    "text": "2 shinyAuthX\n\n\n   \n\nShinyAuthX is a powerful R package specifically designed for user authentication within Shiny apps. It provides a comprehensive suite of authentication features including user sign-in, sign-up, sign-out, and password recovery, seamlessly integrating user-friendly UI and Server components. It empowers shiny app developers to create secure and user-friendly authentication systems.\nOpen in New Window.\n \nDocumentation | Source Code | CRAN"
+  },
+  {
+    "objectID": "projects/r-packages/index.html#sec-rpkg-u5mr",
+    "href": "projects/r-packages/index.html#sec-rpkg-u5mr",
+    "title": "R Packages",
+    "section": "3 u5mr",
+    "text": "3 u5mr\n\n \n\nIntroducing u5mr, an open-source R package designed for estimating child mortality rates. This package includes the implementation of various methods to estimate child mortality.\nOne notable feature of u5mr is its incorporation of the maternal age cohort-derived (MAC) and period-derived (MAP) methods proposed by Rajaratnam et al. These methods provide additional flexibility and accuracy in estimating child mortality rates, enhancing the reliability of the results.\nTo learn more about the MAC and MAP methods, refer to the publication by Rajaratnam et al. available at Rajaratnam et al.\nDocumentation | Source Code | CRAN"
+  },
+  {
+    "objectID": "projects/2023-xpert-magic/index.html",
+    "href": "projects/2023-xpert-magic/index.html",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "",
+    "text": "View on GitHub | View App\nRole: Epidemiologist, Data Lead\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Health Informatics, Clinical Research"
+  },
+  {
+    "objectID": "projects/2023-xpert-magic/index.html#the-challenge",
+    "href": "projects/2023-xpert-magic/index.html#the-challenge",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nIn the SWOP HPV Study in Nairobi, GeneXpert machines provided critical diagnostic data for HPV and CTNG. However, the raw output was semi-structured and difficult to aggregate, creating a bottleneck for longitudinal epidemiological analysis. Manual data cleaning was unsustainable for a high-volume clinical setting."
+  },
+  {
+    "objectID": "projects/2023-xpert-magic/index.html#the-solution",
+    "href": "projects/2023-xpert-magic/index.html#the-solution",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI developed Xpert Magic, a production-grade Shiny application that automates the transformation of GeneXpert raw outputs into tidy, analysis-ready datasets.\n\nAutomated Parsing: Built custom R logic to extract diagnostic results from heterogeneous machine files.\nData Integrity: Implemented real-time validation checks to ensure consistency between HPV and CTNG results.\nUser-Centric Design: Designed a simple “Upload and Export” interface tailored for lab staff without R experience."
+  },
+  {
+    "objectID": "projects/2023-xpert-magic/index.html#technical-deep-dive",
+    "href": "projects/2023-xpert-magic/index.html#technical-deep-dive",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nModular R Code: Organized using a clean directory structure for scalability and maintenance.\nTech Stack: R, Shiny, tidyverse, readxl, DT, bs4Dash, route.\nImpact: Eliminated manual data entry errors and reduced the clinical data-to-analysis lead time by over 90%."
+  },
+  {
+    "objectID": "projects/2023-hpv-dashboard/index.html",
+    "href": "projects/2023-hpv-dashboard/index.html",
+    "title": "SWOP HPV Study Monitoring Dashboard",
+    "section": "",
+    "text": "View on GitHub | View Dasboard\nRole: Epidemiologist & Study Data Lead\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: HPV, Project Management, Study Enrollment"
+  },
+  {
+    "objectID": "projects/2023-hpv-dashboard/index.html#the-challenge",
+    "href": "projects/2023-hpv-dashboard/index.html#the-challenge",
+    "title": "SWOP HPV Study Monitoring Dashboard",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nThe SWOP HPV Study in Nairobi tracks high-risk populations (FSW and MSM) over a one-year period to understand HPV genotype transmission and immunological clearance. Managing longitudinal data for such a study is notoriously difficult; researchers need to monitor “loss to follow-up,” identify patterns in viral persistence across multiple visits, and correlate these with mucosal characteristics in real-time."
+  },
+  {
+    "objectID": "projects/2023-hpv-dashboard/index.html#the-solution",
+    "href": "projects/2023-hpv-dashboard/index.html#the-solution",
+    "title": "SWOP HPV Study Monitoring Dashboard",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI designed and implemented a centralized data infrastructure and monitoring dashboard for the study. This system shifted the project from reactive data management to proactive epidemiological surveillance.\n\nCohort Study Tracking: Built specialized visualizations to monitor participant retention and follow-up success over the one-year study window.\nmini-LMS: Tracked logistics and testing of blood samples across sequential clinical visits.\nIntegrated Analytics: Preliminary analytics on combined epidemiological metadata with mucosal/immunological characteristics to guide student enrollment."
+  },
+  {
+    "objectID": "projects/2023-hpv-dashboard/index.html#technical-deep-dive",
+    "href": "projects/2023-hpv-dashboard/index.html#technical-deep-dive",
+    "title": "SWOP HPV Study Monitoring Dashboard",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nWorkflow Automation: Created a reproducible R pipeline to clean and merge data from multiple clinic visits into a longitudinal “long-format” structure.\nTech Stack: R, flexdashboard, tidyverse, ggplot2, plotly, GitHub Actions.\nImpact: Substantial efficient in study monitoring and influenced biweekly meetings and decisions."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Myo Minn Oo",
+    "section": "",
+    "text": "Hi! 👋 I’m Myo. As an epidemiologist, research director, and data consultant, I specialize in the intersection of epidemiology, data science, and health equity. With a PhD, two postdocs, and over 10 years of experience of leading complex research projects, I help research teams and clients transform messy data into actionable insights.\n\n\nRead more about me\nSchedule a Discovery Call"
+  },
+  {
+    "objectID": "index.html#turning-messy-data-to-real-world-impact",
+    "href": "index.html#turning-messy-data-to-real-world-impact",
+    "title": "Myo Minn Oo",
+    "section": "",
+    "text": "Hi! 👋 I’m Myo. As an epidemiologist, research director, and data consultant, I specialize in the intersection of epidemiology, data science, and health equity. With a PhD, two postdocs, and over 10 years of experience of leading complex research projects, I help research teams and clients transform messy data into actionable insights.\n\n\nRead more about me\nSchedule a Discovery Call"
+  },
+  {
+    "objectID": "blog/2023-06-02-awesome-resources/index.html",
+    "href": "blog/2023-06-02-awesome-resources/index.html",
+    "title": "Awesome Resources",
+    "section": "",
+    "text": "I have curated my personal awesome collection of useful resources, which I find useful in my work and/or my daily life."
+  },
+  {
+    "objectID": "blog/2023-06-02-awesome-resources/index.html#r",
+    "href": "blog/2023-06-02-awesome-resources/index.html#r",
+    "title": "Awesome Resources",
+    "section": "1 R",
+    "text": "1 R\n\n1.1 Data Viz\n\nR Graph Gallery\nCÉDRIC SCHERER\nGraphic Design with ggplot2\n\n\n\n1.2 Data science\n\nR for Data Science\nHands-on Programming with R\nTidy modelling with R\nTidy models\nA modern dive into R and the tidyverse\nFeature engineering and selection\nExploring Modeling with Data and Differential Equations Using R\nDeep Learning MIT\nApplied Predictive Modelling By Max Kuhn and Kjell Johnson\n\n\n\n1.3 Shiny\n\nAwesome shiny extensions\nMastering Shiny\nEngineering Production-Grade Shiny Apps\nOutstanding User Interfaces with Shiny\nJavaScript for R\nRefactoring UI\nThe Shiny AWS Book\nJavaScript 4 Shiny - Field Notes\nShiny Dev Series\nRStudio’s Shiny Tutorials\n\n\n\n1.4 Git\n\nHappy Git with R\n\n\n\n1.5 Programming\n\nEfficient R programming"
+  },
+  {
+    "objectID": "blog/2023-06-02-awesome-resources/index.html#statistics",
+    "href": "blog/2023-06-02-awesome-resources/index.html#statistics",
+    "title": "Awesome Resources",
+    "section": "2 Statistics",
+    "text": "2 Statistics\n\nData Science in A Box\nIntro to Modern Statistics\nOpenIntro Project\nStat 545\nImproving Your Statistical Inferences\nStatistical Rethinking [YouTube]\nStatistical tools for high-throughput data analysis\nDatanovia\nAwesome statistics\nAwesome data science\nPyData Global Bayesian Decision Analysis\nThink Bayes 2 by Allen B. Downey\nAlgorithms, 4th Edition"
+  },
+  {
+    "objectID": "blog/2023-06-02-awesome-resources/index.html#epidemiology",
+    "href": "blog/2023-06-02-awesome-resources/index.html#epidemiology",
+    "title": "Awesome Resources",
+    "section": "3 Epidemiology",
+    "text": "3 Epidemiology\n\nEpidemiologist R handbook\nR for Epidemiology\nPopulation Health Data Science with R\nEpidemiology with R\nSTA427_SM4IDE Statistical Methods in Infectious Disease Epidemiology\nResearch Design in the Social Sciences"
+  },
+  {
+    "objectID": "blog/2023-06-02-awesome-resources/index.html#others",
+    "href": "blog/2023-06-02-awesome-resources/index.html#others",
+    "title": "Awesome Resources",
+    "section": "4 Others",
+    "text": "4 Others\n\nModern Statistics for Modern Biology\nAn R Companion for the Handbook of Biological Statistics"
+  },
+  {
+    "objectID": "blog/2023-06-02-awesome-resources/index.html#platforms",
+    "href": "blog/2023-06-02-awesome-resources/index.html#platforms",
+    "title": "Awesome Resources",
+    "section": "5 Platforms",
+    "text": "5 Platforms\n\nBOOKDOWN\nQuarto Gallery\nLeanpub\nData Carpentry"
+  },
+  {
+    "objectID": "blog/2023-06-02-awesome-resources/index.html#credits",
+    "href": "blog/2023-06-02-awesome-resources/index.html#credits",
+    "title": "Awesome Resources",
+    "section": "6 Credits:",
+    "text": "6 Credits:\n\nFeatured photo from Pexels: Portrait Photo of Excited Man in Blue T-shirt Standing In Front of White Background by Andrea Piacquadio"
+  },
+  {
+    "objectID": "blog/2023-06-30-equiplot/index.html",
+    "href": "blog/2023-06-30-equiplot/index.html",
+    "title": "Creating Equiplot in R",
+    "section": "",
+    "text": "This short code snippet demonstrates the process of creating an equiplot for visualizing health equity. Here’s a summary and step-by-step description of what the code does:\nYou need tidyverse, haven, and glue packages to run this session. To install them, run the following code in your R console:\nCodeinstall.packages(c(\"tidyverse\", \"haven\", \"glue\", \"ggprism\"))"
+  },
+  {
+    "objectID": "blog/2023-06-30-equiplot/index.html#getting-data",
+    "href": "blog/2023-06-30-equiplot/index.html#getting-data",
+    "title": "Creating Equiplot in R",
+    "section": "\n1 Getting data",
+    "text": "1 Getting data\nNext, we will do the following to get the data into R.\n\nLoad the necessary packages: tidyverse. For haven and glue, we will not load them but use this, package::function().\nCreate a temporary directory to store the downloaded zip file.\nDownload the zip file from the Equidade website.\nExtract the contents of the downloaded zip file.\nRead the extracted data file, “example_dataset_structure.dta”, into R.\n\n\nCodelibrary(tidyverse)\n\n# create a temporary file to save zipped file\ntemp &lt;- tempdir()\nzip_file &lt;- here::here(temp, \"equiplot-guide.zip\")\n\n# download zip file from equidade website\ndownload.file(url = \"https://www.equidade.org/files/equiplot-guide.zip\", \n                            destfile = zip_file)\n\n# import data\nraw &lt;- unz(description = zip_file, filename = \"example_dataset_structure.dta\") |&gt; \n    haven::read_dta()\n\n\nLet’s check the data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncountry\nyear\nsource\nrQ1\nrQ2\nrQ3\nrQ4\nrQ5\nsii\ncountryn\n\n\n\nBolivia\n1994\nDHS\n1.22636\n4.83719\n11.88177\n12.71847\n9.88325\n14.4\n1\n\n\nBolivia\n2003\nDHS\n5.91252\n12.20895\n16.38398\n19.08344\n17.54643\n9.4\n2\n\n\nBrazil\n1996\nDHS\n5.68750\n10.30164\n11.48771\n12.43650\n10.01661\n6.2\n3\n\n\nBrazil\n2006\nDHS\n14.74925\n17.41648\n17.58095\n19.09717\n12.96915\n-4.3\n4\n\n\nColombia\n1995\nDHS\n6.82985\n12.25396\n8.66815\n7.98813\n11.02944\n1.6\n5\n\n\nColombia\n2005\nDHS\n9.66284\n11.34591\n12.16200\n12.51274\n11.31543\n-3.4\n6\n\n\nHaiti\n1994\nDHS\n1.12229\n0.57025\n0.61240\n2.09852\n10.52705\n11.3\n7\n\n\nHaiti\n2005\nDHS\n0.69455\n1.81220\n2.97682\n7.12898\n12.97554\n19.5\n8\n\n\nPeru\n1996\nDHS\n3.04027\n7.29176\n11.33096\n13.07306\n15.77069\n15.5\n9\n\n\nPeru\n2004\nDHS\n3.35353\n9.16911\n16.07169\n17.62576\n15.82903\n10.8\n10\n\n\n\n\n\n\n1.1 Reshaping data from wide to long format\nLet’s change the data format so that it is much easier to create plots in ggplot2.\n\nCodeex &lt;- \n    raw |&gt; \n    pivot_longer(cols = rQ1:rQ5, names_to = \"level\", values_to = \"coverage\") |&gt; \n    mutate(\n        level = str_remove(level, \"r\"), \n        level = case_when(\n            level == \"Q1\" ~ \"Q1 (Poorest)\", \n            level == \"Q5\" ~ \"Q5 (Richest)\", \n            TRUE ~ level\n        )\n    )\n\n\nIn the provided code above, the data frame “raw” is being processed using the pipe operator (|&gt;).\nFirst, the code uses the pivot_longer() function from the “tidyr” package to reshape the data. The columns “rQ1” to “rQ5” are transformed into two new columns: “level” and “coverage”. The values in the original columns are gathered into the “coverage” column, and the column names are extracted and placed in the “level” column.\nNext, the code uses the mutate() function from the “dplyr” package to modify the “level” column. The str_remove() function from the “stringr” package removes the letter “r” from the beginning of each level. The case_when() function is then used to assign new labels to the levels based on specific conditions. For example, if the level is “Q1”, it is renamed to “Q1 (Poorest)”. Similarly, if the level is “Q5”, it is renamed to “Q5 (Richest)”. If none of the conditions match, the original level value is retained.\nThe resulting data frame “ex” now has the “level” column modified with new labels, representing different quantiles of coverage.\n\n1.2 How pipe |&gt; works\nImagine you have a set of instructions that you need to follow in a specific order. The pipe |&gt; symbol is like a magic wand that helps you pass the results from one instruction to the next, without having to write everything down again.\nFor example, let’s say you have a toy car and you want to make it go faster. You have different steps to follow: first, you need to attach a turbo engine, then add bigger wheels, and finally, give it a fresh coat of paint.\nUsing the magic wand, you can say “Take the car and attach a turbo engine” (car |&gt; attach_turbo_engine), then you can say “Take the result from the previous step and add bigger wheels” (previous_result |&gt; add_bigger_wheels), and finally, you can say “Take the result from the previous step and give it a fresh coat of paint” (previous_result |&gt; give_fresh_coat_of_paint).\nThe magic wand (|&gt;) helps you pass the car from one step to the next, making it faster and more exciting without repeating the same instructions every time.\nIn programming, the pipe symbol works similarly. It allows you to take the output of one operation and pass it directly as input to the next operation, simplifying the code and making it easier to understand and follow the flow of data."
+  },
+  {
+    "objectID": "blog/2023-06-30-equiplot/index.html#equiplot",
+    "href": "blog/2023-06-30-equiplot/index.html#equiplot",
+    "title": "Creating Equiplot in R",
+    "section": "\n2 Equiplot",
+    "text": "2 Equiplot\nWe will filter the data points for the year 1994 and create our boilerplate for equiplot.\n\nCodeex |&gt; \n    filter(year == 1994) |&gt;\n    # ggplot boilerplate defining x and y axis\n    ggplot(aes(x = coverage, y = country)) +\n    # create circles \n    geom_point()\n\n\n\n\n\n\n\nThis looks very rough.\nNext, we will add more aesthetics to it.\n\nCodeex |&gt; \n    filter(year == 1994) |&gt; \n    ggplot(aes(x = coverage, y = country)) +\n    # add line to connect values in each country\n    geom_line(\n        aes(group = country) \n    ) + \n    # create circles with colors based on wealth level\n    geom_point(\n        aes(color = level), \n        size = 7\n    ) \n\n\n\n\n\n\n\nWe want to make the plot more visually appealing so adding more looks.\n\nCodep &lt;- \n    ex |&gt; \n    filter(year == 1994) |&gt; \n    ggplot(aes(x = coverage, y = country)) +\n    geom_line(\n        aes(group = country) \n    ) + \n    geom_point(\n        aes(color = level), \n        size = 7\n    ) +\n    # limit x axis' min & max values\n    # make the axis label look good\n    scale_x_continuous(\n        limits = c(0, 15), \n        labels = \\(x) paste0(x, \"%\")\n    ) +\n    # add more descriptive labels\n    labs(\n        x = \"Coverage (%)\", \n        y = NULL, \n        color = \"Wealth Quintiles\", \n        caption = \"Data source: Int'l Center for Equity in Health | Pelotas\"\n    ) +\n    ## add title\n    ggtitle(\"Equiplot of XX coverage in 1994\") +\n    # change the appearance of the whole graph\n    ggprism::theme_prism(base_size = 10) + \n    theme(\n        # add horizontal grey line\n        panel.grid.major.y = element_line(color = \"grey90\"), \n        # italicize plot caption\n        plot.caption = element_text(face = \"italic\"), \n        # show legend title \n        legend.title = element_text(), \n        # change legend to the top position\n        legend.position = \"top\"\n    )\np \n\n\n\n\n\n\n\nRefining more. change to custom colors.\n\nCodep + \n    scale_color_viridis_d() # colors good for viewers with common forms of color blindness\n\n\n\n\n\n\n\n\nCodep &lt;- \n    p +\n    # change the color scale to custom colors\n    scale_color_manual(\n        values = c(\"#15353b\", \"#005766\", \"#46929e\", \"#ffdb83\", \"#ffb403\")\n    ) + \n    # put legend title to the top over the labels\n    guides(color = guide_legend(title.position = \"top\"))  \np \n\n\n\n\n\n\n\n\n2.1 Complete code\nHere is the complete code snippet.\n\nCodeex |&gt; \n    filter(year == 1994) |&gt; \n    ggplot(aes(x = coverage, y = country)) +\n    geom_line(\n        aes(group = country) \n    ) + \n    geom_point(\n        aes(color = level), \n        size = 7\n    ) +\n    # limit x axis' min & max values\n    # make the axis label look good\n    scale_x_continuous(\n        limits = c(0, 15), \n        labels = \\(x) paste0(x, \"%\")\n    ) +\n    # change the color scale to custom colors\n    scale_color_manual(\n        values = c(\"#15353b\", \"#005766\", \"#46929e\", \"#ffdb83\", \"#ffb403\")\n    ) + \n    # put legend title to the top over the labels\n    guides(color = guide_legend(title.position = \"top\")) +\n    # add more descriptive labels\n    labs(\n        x = \"Coverage (%)\", \n        y = NULL, \n        color = \"Wealth Quintiles\", \n        caption = \"Data source: Int'l Center for Equity in Health | Pelotas\"\n    ) +\n    ## add title\n    ggtitle(\"Equiplot of XX coverage in 1994\") +\n    # change the appearance of the whole graph\n    ggprism::theme_prism(base_size = 10) + \n    theme(\n        # add horizontal grey line\n        panel.grid.major.y = element_line(color = \"grey90\"), \n        # italicize plot caption \n        plot.caption = element_text(face = \"italic\"), \n        # show legend title \n        legend.title = element_text(), \n        # change legend to the top position\n        legend.position = \"top\"\n    ) \n\n\n\n2.2 Reusable function\nWriting the same code repeatedly is not efficient. To avoid this, let’s create a function that allows us to reuse the boilerplate code as much as we need. This will help us save time and effort. We can modify the code snippet according to our requirements and then encapsulate it within a function. By doing so, we can easily reuse the code with different datasets or variables.\n\nCodecreate_equiplot &lt;- function(\n        data, x, y, color,\n        xlab = \"Coverage (%)\", \n        ylab = NULL, \n        title = \"Equiplot of XX coverage in 1994\",\n        caption = \"Data source: Int'l Center for Equity in Health | Pelotas\",\n        legend.title = \"Wealth Quintiles\", \n        color_pal = c(\"#15353b\", \"#005766\", \"#46929e\", \"#ffdb83\", \"#ffb403\")) {\n    data |&gt; \n    mutate(x = {{ x }}, \n                 y = {{ y }}, \n                 color = {{ color }}) |&gt; \n    ggplot(aes(x = x, y = y)) +\n    geom_line(\n        aes(group = y) \n    ) + \n    geom_point(\n        aes(color = color), \n        size = 7\n    ) +\n    # change the color scale to custom colors\n    scale_color_manual(\n        values = color_pal\n    ) + \n    # put legend title to the top over the labels\n    guides(color = guide_legend(title.position = \"top\")) +\n    # add more descriptive labels\n    labs(\n        x = xlab, \n        y = ylab, \n        color = legend.title, \n        caption = caption\n    ) +\n    ggtitle(title) + \n    # change the appearance of the whole graph\n    ggprism::theme_prism(base_size = 10) + \n    theme(\n        # add horizontal grey line\n        panel.grid.major.y = element_line(color = \"grey90\"), \n        # italicize plot caption \n        plot.caption = element_text(face = \"italic\"), \n        # show legend title \n        legend.title = element_text(), \n        # change legend to the top position\n        legend.position = \"top\"\n    ) \n}\n\n\nLet’s create the same plot for the year 1994.\n\nCodeex |&gt; \n    filter(year == 1994) |&gt; \n    create_equiplot(x = coverage, y = country, color = level, \n                                    title = \"Equiplot showing XX coverage in 1994\")\n\n\n\n\n\n\n\nAdding faceted components based on the year variable can provide additional insights in our visualizations. Here are the updated codes that include faceting:\n\nCodeex |&gt; \n    create_equiplot(x = coverage, y = country, color = level, \n                                    title = \"Equiplot showing XX coverages: 1994-2006\") +\n    # stratified by year \n    facet_wrap(~ year)\n\n\n\n\n\n\n\nWe can customize the theme and labels to improve the appearance and clarity of the faceted graph. Here’s an updated version of the code snippet with a different theme and modified labels:\n\nCodeex |&gt; \n    create_equiplot(x = coverage, y = country, color = level) +\n    facet_wrap(~ year) + \n    theme_classic() +\n    theme(\n        panel.grid.major.y = element_line(color = \"grey90\"), \n        axis.text = element_text(face = \"bold\"), \n        axis.title = element_text(face = \"bold\"), \n        plot.title = element_text(face = \"bold\", size = 16), \n        plot.caption = element_text(face = \"italic\"), \n        legend.title = element_text(face = \"bold\"), \n        legend.position = \"top\"\n    ) \n\n\n\n\n\n\n\n\n2.3 Saving plots\nggsave() is a useful function in the ggplot2 package that allows you to save plots in various formats. Here’s an example code snippet demonstrating the usage of ggsave():\n\nCodeggsave(here::here(\"plots\", \"equiplot.png\"), width = 8, height = 6)"
+  },
+  {
+    "objectID": "blog/2023-06-30-equiplot/index.html#credits",
+    "href": "blog/2023-06-30-equiplot/index.html#credits",
+    "title": "Creating Equiplot in R",
+    "section": "\n3 Credits",
+    "text": "3 Credits\nThank you, Fernando C Wehrmeister & Andrea Blanchard, for introducing me to the field of health equity and for facilitating the interactive and thought-provoking health equity workshop at the University of Manitoba on 27-30 July 2023.\nFeatured photo: Equity Dashboard by Int’l Center for Equity in Health | Pelotas\nExample data & color scheme: Equiplot by Int’l Center for Equity in Health | Pelotas"
+  },
+  {
+    "objectID": "blog/2023-12-01-email-custom-domain-netlify/index.html",
+    "href": "blog/2023-12-01-email-custom-domain-netlify/index.html",
+    "title": "Adding a Custom Email to Your Netlify-Hosted Quarto Website",
+    "section": "",
+    "text": "If you’ve successfully followed Jadey Ryan’s blog to publish a Quarto website on Netlify, congrats! Your site might already be awesome with a custom domain like example.com. However, if you’re yearning for that professional touch with a custom email address like johnsmith\\@example.com, fear not—I’m here to guide you through the process. Let’s jazz your site. 🚀"
+  },
+  {
+    "objectID": "blog/2023-12-01-email-custom-domain-netlify/index.html#netlify-limitations",
+    "href": "blog/2023-12-01-email-custom-domain-netlify/index.html#netlify-limitations",
+    "title": "Adding a Custom Email to Your Netlify-Hosted Quarto Website",
+    "section": "Netlify Limitations",
+    "text": "Netlify Limitations\nNetlify doesn’t provide email services1, so you’ll need to choose your own provider.\nJust a heads-up, this tutorial is designed for those using Netlify’s DNS Hosting services2. Forget about paid options like Zoho Mail; we’re opting for the free wonders of ImprovMX and Gmail—more than sufficient for the job!\nOnce your Quarto website is set up with a custom domain on Netlify3, follow these steps:"
+  },
+  {
+    "objectID": "blog/2023-12-01-email-custom-domain-netlify/index.html#email-forwarding-with-improvmx",
+    "href": "blog/2023-12-01-email-custom-domain-netlify/index.html#email-forwarding-with-improvmx",
+    "title": "Adding a Custom Email to Your Netlify-Hosted Quarto Website",
+    "section": "1 Email Forwarding with ImprovMX",
+    "text": "1 Email Forwarding with ImprovMX\nImprovMX promises email forwarding in seconds, and the best part—it’s absolutely free forever!\nNow, let’s look at the free plan perks:\n\n1 domain\n25 aliases per domain\n500 incoming emails per day\n10Mb attachment limit\nNormal forwarding speed\nEmail support only\n\nSure, it might not come with all the bells and whistles, but hey, it’s free, and it’s more than good enough for the task at hand! 🌈\n\n1.1 Create an ImprovMX account\n\nVisit ImprovMX.\n\n\n\nEnter your domain (example.com) and the email address you want to forward to (e.g., youraddress@gmail.com).\nClick Create a free alias.\n\nIt will bring you to a new page with some required information to fill in, like your full name and location.\n\n\n1.2 Create Aliases\nTime to get creative! Begin adding aliases like johnsmith@example.com, hello@example.com, sales@example.com, customer@example.com, and the list goes on! 🌟 You can have up to 25 aliases with the free plan.\n\nMission accomplished with your aliases? Sweet! Now, onto the next part—DNS Settings.\n\n\n1.3 Set up DNS setting\nThis section comprises two essential components: 1) MX entries and 2) SPF records. It’s crucial to configure them accurately to authorize ImprovMX for sending emails on your behalf and ensure ImprovMX can efficiently receive and forward your emails. 📧✨\n\nLet’s add these settings into the DNS configuration of your Netlify domain.\nTo do this:\n\n🌐 Log in to your Netlify account.\n🖱️ Go to Domains --&gt; Click your domain name --&gt; Add a new record under DNS settings.\n\n Here is reiteration of what Suppor\nHere is a reiteration of the recommended steps outlined in the Support Guide article:\nThe settings for each record are as follows:\n\nRecord type: Select MX.\nName: Use just the @ symbol; no additional information is needed.\nPriority: An integer; lower numbers indicate higher priority. Set it to the recommended value from your email service provider.\nValue: This should be the server path provided by your email service.\nTTL (Time To Live): This will default to 3600 seconds, and the default setting is usually appropriate.\n\nFor me, I input all three corresponding entries with their respective values. It’s a pretty straightforward process. Once you are set up, the message “Email forwarding needs setup” in red will change to “Email forwarding active” in green. 🟢📬\n\nYou can verify its functionality by clicking on the test button. 🧪\nNow, you’re all set to receive emails addressed to your domain or custom email address. 📧✨"
+  },
+  {
+    "objectID": "blog/2023-12-01-email-custom-domain-netlify/index.html#set-up-in-gmail",
+    "href": "blog/2023-12-01-email-custom-domain-netlify/index.html#set-up-in-gmail",
+    "title": "Adding a Custom Email to Your Netlify-Hosted Quarto Website",
+    "section": "2 Set up in Gmail",
+    "text": "2 Set up in Gmail\nImprovMX has a helpful guide for this process. Check it out if you like. Here, I’ll walk you through my experience:\n\nEnsure your Gmail account has Two-Factor Authentication (2FA) enabled. If not, you can set it up here.\nGenerate an App Password by clicking here. You’ll need to re-enter your Gmail password for this.\nIn the App name, enter ImprovMX alias and click Create. This will display your app password on a new screen. Keep this screen open in a separate tab; you’ll need the app password for Gmail setup. 🌐🔐\n\n\nNow you’re ready to proceed with the Gmail configuration.\n\nOpen your Gmail (preferably in a separate tab) and navigate to settings. You can do this by going to Settings &gt; See all settings or simply click here.\nIn the Accounts and Import tab, under Send email as:, click Add another email address.\nEnter your email alias in the Email Address field and uncheck “Treat as an alias”. Click Next Step.\nEnter smtp.gmail.com in the SMTP Server, your email address in the Username, and your app password in the Password. Leave the rest as it is. Click “Add Account”.\n\n\n\n\n\n\n\nImportant\n\n\n\nWhen you copy the code, be cautious as it may contain white spaces. The code should be 16 digits long.\n\n\n\nGmail will send you an email requesting confirmation of ownership via a provided link. Simply click on the link to confirm, and you’re good to go!\nFrom now on, you can easily choose your alias from the list when composing a new message."
+  },
+  {
+    "objectID": "blog/2023-12-01-email-custom-domain-netlify/index.html#in-a-nutshell",
+    "href": "blog/2023-12-01-email-custom-domain-netlify/index.html#in-a-nutshell",
+    "title": "Adding a Custom Email to Your Netlify-Hosted Quarto Website",
+    "section": "In a nutshell",
+    "text": "In a nutshell\nYou’ve just given your Quarto website on Netlify a major upgrade with a cool custom domain and professional email address. Test out the workflow and let me know. If you face any issues or have more questions, feel free to reach out at hello@myominnoo.com.\nHappy customizing, and best of luck with your improved online presence!"
+  },
+  {
+    "objectID": "blog/2023-12-01-email-custom-domain-netlify/index.html#references",
+    "href": "blog/2023-12-01-email-custom-domain-netlify/index.html#references",
+    "title": "Adding a Custom Email to Your Netlify-Hosted Quarto Website",
+    "section": "References",
+    "text": "References\n\nSending emails using Gmail SMTP\nNetlify DNS\nNetlify’s Support Guide"
+  },
+  {
+    "objectID": "blog/2023-12-01-email-custom-domain-netlify/index.html#footnotes",
+    "href": "blog/2023-12-01-email-custom-domain-netlify/index.html#footnotes",
+    "title": "Adding a Custom Email to Your Netlify-Hosted Quarto Website",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nSet up emails on your domain↩︎\n[Support Guide] How can I receive emails on my domain?↩︎\nCreate a Quarto website, connect it to GitHub, deploy & publish it with Netlify.↩︎"
+  }
+]

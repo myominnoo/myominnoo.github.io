@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Myo Minn Oo</title>
+<link>https://myominnoo.com/projects/#category=R</link>
+<atom:link href="https://myominnoo.com/projects/index-r.xml" rel="self" type="application/rss+xml"/>
+<description>Epidemiology, Data Science, Consulting</description>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Sun, 31 Dec 2023 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2023-hpv-prev/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="https://doi.org/10.1002/cam4.6033">View Publication (Cancer Medicine 2023)</a> | <a href="https://pubmed.ncbi.nlm.nih.gov/37140209/">PMID: 37140209</a></p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/projects/2023-hpv-prev/featured.png" class="img-fluid"></a></p>
+<p><strong>Role</strong>: Lead Epidemiologist &amp; First Author<br>
+<strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba<br>
+<strong>Domain</strong>: Infectious Disease, Global Health, Immunology</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>Gay, bisexual, and men who have sex with men (gbMSM) in sub-Saharan Africa face a disproportionate burden of HIV and HPV-related cancers. However, baseline data on specific HPV genotype distributions—essential for determining the potential impact of 4-valent vs.&nbsp;9-valent vaccines—was critically lacking in the Kenyan context.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I led the epidemiological analysis of a cross-sectional study among gbMSM in Nairobi. By leveraging multiple logistic regression and genotype-specific modeling, I quantified the overlap between HIV status and vaccine-preventable HPV types.</p>
+<ul>
+<li><strong>Risk Factor Identification</strong>: Conducted multivariate analysis revealing that HIV status was the strongest predictor of HR-HPV infection (aOR: 8.9), while being married to a woman was a significant social risk factor (aOR: 8.1).</li>
+<li><strong>Vaccine Efficacy Assessment (Proxy)</strong>: Evaluated the potential coverage of current vaccines, determining that the 9-valent Gardasil vaccine would cover 61% of the HPV types circulating in this specific cohort.</li>
+<li><strong>Policy Advocacy</strong>: Translated complex genotype data into a clear public health mandate, calling for targeted HPV vaccination campaigns for Kenyan gbMSM.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Statistical Modeling</strong>: Utilized R for multiple logistic regression and odds ratio calculations with 95% confidence intervals.</li>
+<li><strong>Data Visualization</strong>: Created prevalence plots and genotype distribution charts to communicate the “preventable burden” to stakeholders.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>tidyverse</code>, <code>gtsummary</code>, <code>officeverse</code>.</li>
+<li><strong>Impact</strong>: Provided the first comprehensive evidence for targeted HPV vaccination in this population, directly informing regional cancer prevention strategies.</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>Infectious Disease</category>
+  <category>Global Health</category>
+  <category>Immunology</category>
+  <guid>https://myominnoo.com/projects/2023-hpv-prev/</guid>
+  <pubDate>Sun, 31 Dec 2023 06:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2023-hpv-prev/featured.png" medium="image" type="image/png" height="121" width="144"/>
+</item>
+<item>
+  <title>Xpert Magic: Automated Data Pipeline</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2023-xpert-magic/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="https://github.com/myominnoo/xpert_magic">View on GitHub</a> | <a href="https://myominnoo.shinyapps.io/app_demos/">View App</a></p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/projects/2023-xpert-magic/featured.png" class="img-fluid"></a></p>
+<p><strong>Role</strong>: Epidemiologist, Data Lead</p>
+<p><strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba</p>
+<p><strong>Domain</strong>: Health Informatics, Clinical Research</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>In the <a href="https://webapps.cihr-irsc.gc.ca/decisions/p/project_details.html?applId=483352&amp;lang=en">SWOP HPV Study</a> in Nairobi, GeneXpert machines provided critical diagnostic data for HPV and CTNG. However, the raw output was semi-structured and difficult to aggregate, creating a bottleneck for longitudinal epidemiological analysis. Manual data cleaning was unsustainable for a high-volume clinical setting.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I developed Xpert Magic, a production-grade Shiny application that automates the transformation of GeneXpert raw outputs into tidy, analysis-ready datasets.</p>
+<ul>
+<li><strong>Automated Parsing</strong>: Built custom R logic to extract diagnostic results from heterogeneous machine files.</li>
+<li><strong>Data Integrity</strong>: Implemented real-time validation checks to ensure consistency between HPV and CTNG results.</li>
+<li><strong>User-Centric Design</strong>: Designed a simple “Upload and Export” interface tailored for lab staff without R experience.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Modular R Code</strong>: Organized using a clean directory structure for scalability and maintenance.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>Shiny</code>, <code>tidyverse</code>, <code>readxl</code>, <code>DT</code>, <code>bs4Dash</code>, <code>route</code>.</li>
+<li><strong>Impact</strong>: Eliminated manual data entry errors and reduced the clinical data-to-analysis lead time by over 90%.</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>Health Informatics</category>
+  <category>Biomedical Research</category>
+  <category>Shiny</category>
+  <guid>https://myominnoo.com/projects/2023-xpert-magic/</guid>
+  <pubDate>Thu, 30 Nov 2023 06:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2023-xpert-magic/featured.png" medium="image" type="image/png" height="56" width="144"/>
+</item>
+<item>
+  <title>IIQ2 Phase 2: Clinical Trial Monitoring Dashboard</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2023-iiq2/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="https://clinicaltrials.gov/study/NCT02079077">Read about IIQ study | ClinicalTrials.gov (NCT02079077)</a> | <a href="https://umanitoba.ca/medicine/department-medical-microbiology-and-infectious-diseases/faculty-staff/keith-fowke">Fowke Lab</a></p>
+<p><a href="https://fowkelab.github.io/IIQ2-PHASE2/">View Dasboard</a></p>
+<iframe src="https://fowkelab.github.io/IIQ2-PHASE2/" style="border: none; width: 100%; height: 600px" frameborder="0">
+</iframe>
+<p><strong>Role</strong>: Additional Support - Dashboard Developer</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>The <strong>IIQ2 Phase 2 study</strong> in Nairobi, Kenya, investigates whether low-dose aspirin can induce an “Immune Quiescent” (IIQ) phenotype to reduce HIV susceptibility. Managing a Phase 2 trial involves tracking complex enrollment targets, participant retention, and specimen collection across multiple clinical sites. Prof.&nbsp;Keith Fowke’s lab required a quick dashboard to monitor study progress and ensure data quality in real-time.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I developed a specialized monitoring dashboard within two weeks to serve as the “mission control” for the study. This tool provides the leadership team with an immediate snapshot of trial health, moving away from static weekly reports to dynamic, live data exploration.</p>
+<ul>
+<li><strong>Enrollment Tracking</strong>: Automated the visualization of recruitment vs.&nbsp;targets, allowing for rapid adjustments to clinical outreach strategies.</li>
+<li><strong>Retention Analytics</strong>: Built modules to identify drop-out patterns and monitor participant follow-up schedules across the longitudinal study design.</li>
+<li><strong>Specimen Governance</strong>: Integrated tracking for biological samples to ensure alignment between clinical visits and lab processing.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Automated Data Pipeline</strong>: Established a workflow to pull and clean data from clinical databases, ensuring the dashboard reflects the most current study status.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>flexdashboard</code>, <code>ggplot2</code>, <code>dplyr</code>, <code>lubridate</code>.</li>
+<li><strong>Impact</strong>: Improved administrative efficiency and provided the team with data-driven insights to maintain the trial’s rigorous timeline and high retention rates.</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>flexdashboard</category>
+  <category>GitHub</category>
+  <category>GitHub Action</category>
+  <guid>https://myominnoo.com/projects/2023-iiq2/</guid>
+  <pubDate>Sun, 22 Oct 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2023-iiq2/featured.png" medium="image" type="image/png" height="83" width="144"/>
+</item>
+<item>
+  <title>IIQ2 Phase 2: Clinical Trial Monitoring Dashboard</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2025-colp-paper/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>[Accepted for Publication: American Journal of Reproductive Immunology (Feb 2026)]</p>
+<p><strong>Role</strong>: Bioinformatics Lead &amp; Epidemiologist<br>
+<strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba<br>
+<strong>Domain</strong>: Mucosal Immunology, Transcriptomics, Reproductive Health</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>Understanding the spatial and molecular composition of Tissue-Resident Memory (TRM) T cells in the female reproductive tract is critical for developing mucosal vaccines and HIV prevention strategies. However, the interplay between these cells in the ectocervix vs.&nbsp;the endocervix required high-resolution analysis that traditional bulk sequencing cannot provide.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I integrated flow cytometry phenotyping with <strong>single-cell RNA sequencing (scRNA-seq)</strong> to map the molecular landscape of the cervical mucosa. This multi-modal approach allowed the research team to move beyond broad cell categories to identify unique, niche-specific T cell clusters.</p>
+<ul>
+<li><strong>High-Resolution Mapping</strong>: Leveraged scRNA-seq to generate a molecular data matrix at the individual cell level, uncovering distinct molecular signatures for TRM subsets.</li>
+<li><strong>Cross-Platform Integration</strong>: Coupled flow cytometry data with transcriptomic profiles to validate the presence and composition of established T cell subsets.</li>
+<li><strong>Clinical Association Analysis</strong>: Investigated how these cellular compositions correlate with clinical findings from patients at a colposcopy clinic in Nairobi.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Bioinformatics Pipeline</strong>: Developed custom R workflows for scRNA-seq processing, including quality control, normalization, dimensional reduction (UMAP/t-SNE), and cluster annotation.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>Seurat</code>, <code>Bioconductor</code>, <code>SingleCellExperiment</code>, <code>ggplot2</code>.</li>
+<li><strong>Impact</strong>: Resulted in the manuscript <em>“Enumeration, phenotyping, and clinical associations of tissue-resident T cells in the ecto- and endocervix of women attending a colposcopy clinic”</em>, accepted in the <strong>American Journal of Reproductive Immunology (2026)</strong>.</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>flexdashboard</category>
+  <category>GitHub</category>
+  <category>GitHub Action</category>
+  <category>Bioinformatics</category>
+  <category>Epidemiology</category>
+  <category>scRNA sequencing</category>
+  <guid>https://myominnoo.com/projects/2025-colp-paper/</guid>
+  <pubDate>Sun, 22 Oct 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2025-colp-paper/featured.png" medium="image" type="image/png" height="75" width="144"/>
+</item>
+<item>
+  <title>SWOP HPV Study Monitoring Dashboard</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2023-hpv-dashboard/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="https://github.com/myominnoo/hpvstudy">View on GitHub</a> | <a href="https://myominnoo.github.io/hpvstudy/">View Dasboard</a></p>
+<iframe src="https://myominnoo.github.io/hpvstudy/" style="border: none; width: 100%; height: 600px" frameborder="0">
+</iframe>
+<p><strong>Role</strong>: Epidemiologist &amp; Study Data Lead</p>
+<p><strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba</p>
+<p><strong>Domain</strong>: HPV, Project Management, Study Enrollment</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>The <strong>SWOP HPV Study</strong> in Nairobi tracks high-risk populations (FSW and MSM) over a one-year period to understand HPV genotype transmission and immunological clearance. Managing longitudinal data for such a study is notoriously difficult; researchers need to monitor “loss to follow-up,” identify patterns in viral persistence across multiple visits, and correlate these with mucosal characteristics in real-time.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I designed and implemented a centralized data infrastructure and monitoring dashboard for the study. This system shifted the project from reactive data management to proactive epidemiological surveillance.</p>
+<ul>
+<li><strong>Cohort Study Tracking</strong>: Built specialized visualizations to monitor participant retention and follow-up success over the one-year study window.</li>
+<li><strong>mini-LMS</strong>: Tracked logistics and testing of blood samples across sequential clinical visits.</li>
+<li><strong>Integrated Analytics</strong>: Preliminary analytics on combined epidemiological metadata with mucosal/immunological characteristics to guide student enrollment.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Workflow Automation</strong>: Created a reproducible R pipeline to clean and merge data from multiple clinic visits into a longitudinal “long-format” structure.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>flexdashboard</code>, <code>tidyverse</code>, <code>ggplot2</code>, <code>plotly</code>, <code>GitHub Actions</code>.</li>
+<li><strong>Impact</strong>: Substantial efficient in study monitoring and influenced biweekly meetings and decisions.</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>flexdashboard</category>
+  <category>GitHub</category>
+  <category>GitHub Action</category>
+  <category>Study Enrollment</category>
+  <category>Project Management</category>
+  <category>HPV</category>
+  <guid>https://myominnoo.com/projects/2023-hpv-dashboard/</guid>
+  <pubDate>Tue, 04 Jul 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2023-hpv-dashboard/featured.png" medium="image" type="image/png" height="83" width="144"/>
+</item>
+<item>
+  <title>COVID-19 Longitudinal Antibody Trajectory Analysis</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2023-covidab/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="longitudinal-antibody-trajectory-dashboard" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="longitudinal-antibody-trajectory-dashboard"><span class="header-section-number">1</span> Longitudinal Antibody Trajectory Dashboard</h2>
+<p><a href="featured.png">View Wireframe</a> | <a href="https://myominnoo.shinyapps.io/covidab/">View App Demos</a></p>
+<p><strong>Role</strong>: Lead Epidemiologist, Shiny Developer<br>
+<strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba<br>
+<strong>Domain</strong>: Immunology, Public Health, Infectious Disease</p>
+</section>
+<section id="the-challenge" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">2</span> The Challenge</h2>
+<p>Tracking SARS-CoV-2 antibody durability across 3–5 booster doses generates high-dimensional, longitudinal datasets. With three types of serology antibodies and various neutralization responses to monitor, static reporting was insufficient. The research team needed a way to visualize complex immune decay patterns and “trajectories” to inform public health strategies and booster protocols in real-time.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="featured1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="A list of key research questions on the welcome page:"><img src="https://myominnoo.com/projects/2023-covidab/featured1.png" class="img-fluid figure-img" alt="A list of key research questions on the welcome page:"></a></p>
+<figcaption>A list of key research questions on the welcome page:</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-solution" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">3</span> The Solution</h2>
+<p>I developed a comprehensive Shiny application designed as a communication and analysis hub for cohort surveillance. This platform streamlines the transition from raw serological data to interactive longitudinal insights.</p>
+<ul>
+<li><strong>Dynamic Trajectory Mapping</strong>: Built interactive visualizations that allow researchers to isolate specific cohorts and booster groups to observe immune trends.</li>
+<li><strong>Multi-Dimensional Analysis</strong>: Integrated disparate outcomes (serology vs.&nbsp;neutralization) into a single, unified interface for comparative study.</li>
+<li><strong>Engagement-Focused UI &amp; Data Viz</strong>: Developed a user-friendly “wireframe-to-production” interface that simplifies statistical exploration for non-data scientists.</li>
+</ul>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="featured2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Input parameters for data viz through slided datasets"><img src="https://myominnoo.com/projects/2023-covidab/featured2.png" class="img-fluid figure-img" alt="Input parameters for data viz through slided datasets"></a></p>
+<figcaption>Input parameters for data viz through slided datasets</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="featured3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Input parameters for data viz through slided datasets"><img src="https://myominnoo.com/projects/2023-covidab/featured3.png" class="img-fluid figure-img" alt="Input parameters for data viz through slided datasets"></a></p>
+<figcaption>Input parameters for data viz through slided datasets</figcaption>
+</figure>
+</div>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">4</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Longitudinal and Mixed-Effects Modeling</strong>: Leveraged R to calculate statistics across multiple time points and booster intervals.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>Shiny</code>, <code>ggplot2</code>, <code>plotly</code>, <code>tidyverse</code>, <code>lme4</code>.</li>
+<li><strong>Impact</strong>: Served as the “comprehensive platform” for the study, enabling deep-dive collaborations with research partners and accelerating the dissemination of findings on long-term vaccine effectiveness.</li>
+</ul>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="featured4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Input parameters and modelling outputs on the fly:"><img src="https://myominnoo.com/projects/2023-covidab/featured4.png" class="img-fluid figure-img" alt="Input parameters and modelling outputs on the fly:"></a></p>
+<figcaption>Input parameters and modelling outputs on the fly:</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>Shiny</category>
+  <category>COVID-19</category>
+  <category>Longitudinal Data Analysis</category>
+  <category>Modelling</category>
+  <guid>https://myominnoo.com/projects/2023-covidab/</guid>
+  <pubDate>Fri, 02 Jun 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2023-covidab/featured.png" medium="image" type="image/png" height="74" width="144"/>
+</item>
+<item>
+  <title>MalCon: Malaria Health Facility Survey Monitoring Dashboard</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2021-malcon/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="https://malcon-pngimr.github.io/malcon-dash/">View Dashboard</a> | <a href="https://github.com/malcon-pngimr/malcon-dash">View Project Repository</a></p>
+<p><strong>Role</strong>: Senior Research Fellow | Postdoctoral Scientific Collaborator<br>
+<strong>Organization</strong>: Swiss TPH | PNG Institute of Medical Research (PNGIMR)<br>
+<strong>Domain</strong>: Malaria Control, Surveillance, Global Health</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>Monitoring a nationwide malaria control program requires the integration of diverse data streams, from clinical reporting rates to regional incidence trends. For the <strong>Malaria Control (MalCon)</strong> project in Papua New Guinea, stakeholders needed a centralized, interactive platform to visualize these indicators in real-time, enabling rapid response to outbreaks and effective resource allocation.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I developed the <strong>MalCon Dashboard</strong>, a comprehensive, responsive static analytics platform that serves as the primary tool for monitoring malaria indicators across PNG. The dashboard transforms raw surveillance data into actionable geospatial and temporal insights.</p>
+<ul>
+<li><strong>Geospatial aspect</strong>: Integrated interactive maps to visualize survey data collection performance and operational issues at the provincial and district levels.</li>
+<li><strong>Data Governance</strong>: Built a robust automated pipeline to aggregate and clean surveillance data from multiple sources, ensuring the dashboard remains current with minimal manual intervention.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Modular Dashboard Architecture</strong>: Utilized a modular R/flexdashboard structure to ensure the platform remains scalable as new indicators or data sources are added.</li>
+<li><strong>Interactive Visualizations</strong>: Leveraged high-performance R packages to create responsive charts and maps that allow users to drill down into specific regions or timeframes.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>leaflet</code> (mapping), <code>plotly</code>, <code>tidyverse</code>, <code>flexdashboard</code>, <code>GitHub Actions</code>.</li>
+<li><strong>Impact</strong>: Provided the PNG National Malaria Control Program and global partners with a unified “source of truth,” significantly improving the speed and transparency in monitoring of national survey progress.</li>
+</ul>
+<p><a href="https://malcon-pngimr.github.io/malcon-dash/">Read the Final Report</a></p>
+<p>As part of the survey, I completed a draft for an automated report, streamlining the reporting process and enhancing efficiency. Recognizing the need for advanced data collection methods, I conceptualized a QR linkage system to be implemented in the upcoming malaria indicator survey. In addition, I contributed technical consultations to both the Institute and the National Technical Working Group for Malaria. We also attempted to assess the accuracy, reliability, and viability of using repeated malaria surveys to calculate under-five mortality as an effective intervention.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>flexdashboard</category>
+  <category>GitHub</category>
+  <category>GitHub Action</category>
+  <category>Surveillance</category>
+  <category>Survey</category>
+  <category>Dashboard</category>
+  <guid>https://myominnoo.com/projects/2021-malcon/</guid>
+  <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2021-malcon/featured.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>Feasibility of U5MR Estimation via Serial MIS Data</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/2021-u5mr-mis/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.com/projects/2021-u5mr-mis/featured.png" class="img-fluid"></a></p>
+<p><strong>Role</strong>: Senior Research Fellow | Postdoctoral Scientific Collaborator<br>
+<strong>Organization</strong>: Swiss TPH | PNG Institute of Medical Research (PNGIMR)<br>
+<strong>Domain</strong>: Demography, Maternal &amp; Child Health, Data Validation</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>Estimating the Under-Five Mortality Rate (U5MR) is critical for evaluating health interventions. In resource-limited settings like Papua New Guinea, researchers often attempt to use <strong>Malaria Indicator Surveys (MIS)</strong> as a proxy for Demographic and Health Surveys (DHS). The challenge was to determine if serial MIS data (2013–2020) could provide reliable, sub-national U5MR estimates using indirect estimation methods.</p>
+</section>
+<section id="the-solution-a-methodological-deep-dive" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution-a-methodological-deep-dive"><span class="header-section-number">2</span> The Solution: A Methodological Deep-Dive</h2>
+<p>I applied advanced demographic modeling to three consecutive MIS datasets to test the feasibility of U5MR tracking. Rather than accepting the outputs at face value, I conducted a rigorous validation of the internal and external consistency of the results.</p>
+<ul>
+<li><strong>Comparative Modeling</strong>: Applied both Maternal Age Cohort-derived (MAC) and Maternal Age Period-derived (MAP) variants of the Rajaratnam et al.&nbsp;(2010) method.</li>
+<li><strong>Uncertainty Quantification</strong>: Executed a <strong>1,000-iteration bootstrap simulation</strong> combined with LOESS regression to generate point estimates and 95% confidence intervals, adjusting standard errors to account for design-driven deflation.</li>
+<li><strong>Data Quality Audit</strong>: Identified significant discrepancies between the three survey waves, specifically noting “implausible” outcomes, including negative mortality values at the provincial level.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Indirect Estimation</strong>: Utilized regression-based models where <img src="https://latex.codecogs.com/png.latex?U_%7Bij%7D"> (country random effects) and parity ratios were used to predict mortality up to 25 years prior to the survey.</li>
+<li><strong>R Pacakge</strong>: Given the package’s status in the <a href="https://cran.r-project.org/src/contrib/Archive/u5mr/">CRAN Archive</a>, I managed version-specific dependencies to ensure the reproducibility of the maternal age cohort (MAC) and maternal age period (MAP) models</li>
+<li><strong>Statistical Refinement</strong>: Corrected standard errors by a factor of 4.0 to account for artificial deflation in the simulation.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>tidyverse</code>, <code>loess</code>, <code>boot</code> (Bootstrapping), <code>ggplot2</code>.</li>
+</ul>
+</section>
+<section id="critical-findings-lessons" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="critical-findings-lessons"><span class="header-section-number">4</span> Critical Findings &amp; Lessons</h2>
+<p>This project served as a vital “proof-of-concept” that revealed the limitations of using MIS data for mortality surveillance in this context: 1. <strong>Unreliability of Small Samples</strong>: Negative U5MR values at the provincial level highlighted the sensitivity of indirect methods to small sample sizes and potential maternal survival bias. 2. <strong>Survey Heterogeneity</strong>: Large gaps between estimates from different survey years suggested possible variations in interview methods or data quality between 2013 and 2019. 3. <strong>Strategic Recommendation</strong>: Provided evidence that while MIS data is excellent for malaria indicators, it may require significant methodological adjustment or larger sample sizes to be a viable substitute for full DHS mortality modules.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>Package</category>
+  <category>Demography</category>
+  <category>Maternal &amp; Child Health</category>
+  <category>Data Validation</category>
+  <guid>https://myominnoo.com/projects/2021-u5mr-mis/</guid>
+  <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/2021-u5mr-mis/featured.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>R Packages</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.com/projects/r-packages/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="sec-rpkg-mStats" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-rpkg-mStats"><span class="header-section-number">1</span> mStats</h2>
+<p><img src="https://myominnoo.com/projects/assets/img/mStats-logo.png" align="right" height="120"></p>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=mStats"><img src="https://www.r-pkg.org/badges/version/mStats.png" class="img-fluid" alt="CRAN status"></a> <a href="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/mStats?branch=main"><img src="https://codecov.io/gh/myominnoo/mStats/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
+<!-- badges: end -->
+<p>mStats is a versatile and efficient collection of functions that I have curated and developed to enhance my work in various domains. This collection encompasses a range of statistical tools and utilities that have proven invaluable in my research and analysis endeavors.</p>
+<p>As an avid user of mStats, I am delighted to share this valuable resource with the broader community. Together, we can leverage the power of mStats to overcome statistical challenges, drive impactful insights, and advance the frontiers of knowledge in our respective fields.</p>
+<p>Stay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.</p>
+<p><a href="https://myominnoo.github.io/mStats/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/mStats/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=mStats" target="_blank">CRAN</a><br></p>
+</section>
+<section id="sec-rpkg-shinyAuthX" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-rpkg-shinyAuthX"><span class="header-section-number">2</span> shinyAuthX</h2>
+<p><img src="https://myominnoo.com/projects/assets/img/shinyAuthX-logo.png" align="right" height="138"></p>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=shinyAuthX"><img src="https://www.r-pkg.org/badges/version/shinyAuthX.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a> <a href="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/shinyAuthX?branch=main"><img src="https://codecov.io/gh/myominnoo/shinyAuthX/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a></p>
+<!-- badges: end -->
+<p>ShinyAuthX is a powerful R package specifically designed for user authentication within Shiny apps. It provides a comprehensive suite of authentication features including user sign-in, sign-up, sign-out, and password recovery, seamlessly integrating user-friendly UI and Server components. It empowers shiny app developers to create secure and user-friendly authentication systems.</p>
+<p><a href="https://myominnoo.shinyapps.io/shinyAuthX/">Open in New Window.</a></p>
+ <iframe src="https://myominnoo.shinyapps.io/shinyAuthX/" style="border: none; width: 100%; height: 510px" frameborder="0"></iframe>
+<p><a href="https://myominnoo.github.io/shinyAuthX/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/shinyAuthX/" target="_blank">Source Code</a> | <a href="" target="https://github.com/myominnoo/shinyAuthX/">CRAN</a><br></p>
+</section>
+<section id="sec-rpkg-u5mr" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-rpkg-u5mr"><span class="header-section-number">3</span> u5mr</h2>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=u5mr"><img src="https://www.r-pkg.org/badges/version/u5mr.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
+<!-- badges: end -->
+<p>Introducing u5mr, an open-source R package designed for estimating child mortality rates. This package includes the implementation of various methods to estimate child mortality.</p>
+<p>One notable feature of u5mr is its incorporation of the maternal age cohort-derived (MAC) and period-derived (MAP) methods proposed by Rajaratnam et al.&nbsp;These methods provide additional flexibility and accuracy in estimating child mortality rates, enhancing the reliability of the results.</p>
+<p>To learn more about the MAC and MAP methods, refer to the publication by Rajaratnam et al.&nbsp;available at <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1000253">Rajaratnam et al</a>.</p>
+<p><a href="https://myominnoo.github.io/u5mr/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/u5mr/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=u5mr" target="_blank">CRAN</a><br></p>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>Package</category>
+  <guid>https://myominnoo.com/projects/r-packages/</guid>
+  <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.com/projects/r-packages/featured.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+</channel>
+</rss>
