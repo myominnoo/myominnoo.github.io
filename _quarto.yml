@@ -77,7 +77,6 @@ format:
     code-link: true
     code-copy: true
     highlight-style: a11y
-    linkcolor: "cyan"
 
 execute:
   freeze: auto
