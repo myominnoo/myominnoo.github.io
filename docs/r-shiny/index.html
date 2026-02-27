@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Myo Minn Oo">
-<meta name="dcterms.date" content="2023-06-02">
+<meta name="description" content="Showcasing R Shiny Web Apps">
 
-<title>Myo Minn Oo | Awesome Resources – Myo Minn Oo</title>
+<title>Myo Minn Oo | R Shiny Gallery – Myo Minn Oo</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,28 +25,30 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../assets/img/favicon.ico" rel="icon">
-<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-54c8f25464f32f8783bd446cee98020d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e55abfcab0185cbbd1fae9a5b8ba5f92.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a6a58ce65f2645804a66e92b16afffd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/img/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-54c8f25464f32f8783bd446cee98020d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e55abfcab0185cbbd1fae9a5b8ba5f92.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a6a58ce65f2645804a66e92b16afffd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-post .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-post'] = new List('listing-post', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LW606KXSWS"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -102,10 +133,39 @@ cookieconsent.run({
   
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-</head>
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
-<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<link rel="alternate" type="application/rss+xml" title="Myo Minn Oo" href="index.xml" data-external="1"></head>
+
+<body class="floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -281,9 +341,9 @@ cookieconsent.run({
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Myo Minn Oo</span>
     </a>
   </div>
@@ -294,23 +354,23 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../projects/index.html"> 
+    <a class="nav-link" href="../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../r-shiny/index.html"> 
+    <a class="nav-link active" href="../r-shiny/index.html" aria-current="page"> 
 <span class="menu-text">Shiny Apps</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../contact.html"> 
+    <a class="nav-link" href="../contact.html"> 
 <span class="menu-text">Contact</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog/index.html"> 
+    <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
@@ -339,40 +399,21 @@ cookieconsent.run({
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r"><span class="header-section-number">1</span> R</a>
-  <ul>
-  <li><a href="#data-viz" id="toc-data-viz" class="nav-link" data-scroll-target="#data-viz"><span class="header-section-number">1.1</span> Data Viz</a></li>
-  <li><a href="#data-science" id="toc-data-science" class="nav-link" data-scroll-target="#data-science"><span class="header-section-number">1.2</span> Data science</a></li>
-  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny"><span class="header-section-number">1.3</span> Shiny</a></li>
-  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">1.4</span> Git</a></li>
-  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming"><span class="header-section-number">1.5</span> Programming</a></li>
-  </ul></li>
-  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics"><span class="header-section-number">2</span> Statistics</a></li>
-  <li><a href="#epidemiology" id="toc-epidemiology" class="nav-link" data-scroll-target="#epidemiology"><span class="header-section-number">3</span> Epidemiology</a></li>
-  <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others"><span class="header-section-number">4</span> Others</a></li>
-  <li><a href="#platforms" id="toc-platforms" class="nav-link" data-scroll-target="#platforms"><span class="header-section-number">5</span> Platforms</a></li>
-  <li><a href="#credits" id="toc-credits" class="nav-link" data-scroll-target="#credits"><span class="header-section-number">6</span> Credits:</a></li>
-  </ul>
-</nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmlvbWVkaWNhbCUyMFJlc2VhcmNo">Biomedical Research <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGVhbHRoJTIwSW5mb3JtYXRpY3M=">Health Informatics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2hpbnk=">Shiny <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Awesome Resources</h1>
-<p class="subtitle lead">My personal collection of useful resources</p>
-  <div class="quarto-categories">
-    <div class="quarto-category">Resources</div>
-  </div>
-  </div>
+<h1 class="title">R Shiny Gallery</h1>
+</div>
 
 
 
@@ -385,19 +426,7 @@ cookieconsent.run({
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 2, 2023</p>
-    </div>
-  </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 13, 2024</p>
-    </div>
-  </div>
     
   </div>
   
@@ -406,123 +435,71 @@ cookieconsent.run({
 </header>
 
 
-<p>I have curated my personal awesome collection of useful resources, which I find useful in my work and/or my daily life.</p>
-<section id="r" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="r"><span class="header-section-number">1</span> R</h2>
-<section id="data-viz" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="data-viz"><span class="header-section-number">1.1</span> Data Viz</h3>
-<ul>
-<li><a href="https://r-graph-gallery.com/index.html">R Graph Gallery</a></li>
-<li><a href="https://www.cedricscherer.com/">CÉDRIC SCHERER</a></li>
-<li><a href="https://rstudio-conf-2022.github.io/ggplot2-graphic-design/">Graphic Design with ggplot2</a></li>
-</ul>
-</section>
-<section id="data-science" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="data-science"><span class="header-section-number">1.2</span> Data science</h3>
-<ul>
-<li><p><a href="https://r4ds.hadley.nz/">R for Data Science</a></p></li>
-<li><p><a href="https://rstudio-education.github.io/hopr/">Hands-on Programming with R</a></p></li>
-<li><p><a href="https://www.tmwr.org/">Tidy modelling with R</a></p></li>
-<li><p><a href="https://www.tidymodels.org/">Tidy models</a></p></li>
-<li><p><a href="https://moderndive.com/">A modern dive into R and the tidyverse</a></p></li>
-<li><p><a href="http://www.feat.engineering/">Feature engineering and selection</a></p></li>
-<li><p><a href="https://jmzobitz.github.io/ModelingWithR/">Exploring Modeling with Data and Differential Equations Using R</a></p></li>
-<li><p><a href="https://www.deeplearningbook.org/">Deep Learning MIT</a></p></li>
-<li><p><a href="http://appliedpredictivemodeling.com/">Applied Predictive Modelling By Max Kuhn and Kjell Johnson</a></p></li>
-</ul>
-</section>
-<section id="shiny" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="shiny"><span class="header-section-number">1.3</span> Shiny</h3>
-<ul>
-<li><p><a href="https://github.com/nanxstats/awesome-shiny-extensions">Awesome shiny extensions</a></p></li>
-<li><p><a href="https://mastering-shiny.org/">Mastering Shiny</a></p></li>
-<li><p><a href="https://engineering-shiny.org/index.html">Engineering Production-Grade Shiny Apps</a></p></li>
-<li><p><a href="https://unleash-shiny.rinterface.com/index.html">Outstanding User Interfaces with Shiny</a></p></li>
-<li><p><a href="https://book.javascript-for-r.com/">JavaScript for R</a></p></li>
-<li><p><a href="https://www.refactoringui.com/">Refactoring UI</a></p></li>
-<li><p><a href="https://business-science.github.io/shiny-production-with-aws-book/">The Shiny AWS Book</a></p></li>
-<li><p><a href="https://connect.thinkr.fr/js4shinyfieldnotes/">JavaScript 4 Shiny - Field Notes</a></p></li>
-<li><p><a href="https://shinydevseries.com/">Shiny Dev Series</a></p></li>
-<li><p><a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html">RStudio’s Shiny Tutorials</a></p></li>
-</ul>
-</section>
-<section id="git" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="git"><span class="header-section-number">1.4</span> Git</h3>
-<ul>
-<li><a href="https://happygitwithr.com/">Happy Git with R</a></li>
-</ul>
-</section>
-<section id="programming" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="programming"><span class="header-section-number">1.5</span> Programming</h3>
-<ul>
-<li><a href="https://csgillespie.github.io/efficientR/">Efficient R programming</a></li>
-</ul>
-</section>
-</section>
-<section id="statistics" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="statistics"><span class="header-section-number">2</span> Statistics</h2>
-<ul>
-<li><p><a href="https://datasciencebox.org/">Data Science in A Box</a></p></li>
-<li><p><a href="https://openintro-ims.netlify.app/">Intro to Modern Statistics</a></p></li>
-<li><p><a href="https://www.openintro.org/">OpenIntro Project</a></p></li>
-<li><p><a href="https://stat545.com/">Stat 545</a></p></li>
-<li><p><a href="https://lakens.github.io/statistical_inferences/">Improving Your Statistical Inferences</a></p></li>
-<li><p><a href="https://github.com/rmcelreath/stat_rethinking_2023">Statistical Rethinking</a> [<a href="https://youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus">YouTube</a>]</p></li>
-<li><p><a href="http://www.sthda.com/english/">Statistical tools for high-throughput data analysis</a></p></li>
-<li><p><a href="https://www.datanovia.com/en/">Datanovia</a></p></li>
-<li><p><a href="https://github.com/erikgahner/awesome-statistics">Awesome statistics</a></p></li>
-<li><p><a href="https://github.com/academic/awesome-datascience">Awesome data science</a></p></li>
-<li><p><a href="https://github.com/mhoehle/BayesianDecisionAnalysis">PyData Global Bayesian Decision Analysis</a></p></li>
-<li><p><a href="http://allendowney.github.io/ThinkBayes2/">Think Bayes 2 by Allen B. Downey</a></p></li>
-<li><p><a href="https://algs4.cs.princeton.edu/home/">Algorithms, 4th Edition</a></p></li>
-</ul>
-</section>
-<section id="epidemiology" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="epidemiology"><span class="header-section-number">3</span> Epidemiology</h2>
-<ul>
-<li><p><a href="https://epirhandbook.com/en/">Epidemiologist R handbook</a></p></li>
-<li><p><a href="https://www.r4epi.com/">R for Epidemiology</a></p></li>
-<li><p><a href="https://bookdown.org/taragonmd/phds/">Population Health Data Science with R</a></p></li>
-<li><p><a href="https://global.oup.com/academic/product/epidemiology-with-r-9780198841333?cc=us&amp;lang=en&amp;#">Epidemiology with R</a></p></li>
-<li><p><a href="https://github.com/mhoehle/STA427_SM4IDE">STA427_SM4IDE Statistical Methods in Infectious Disease Epidemiology</a></p></li>
-<li><p><a href="https://book.declaredesign.org/">Research Design in the Social Sciences</a></p></li>
-</ul>
-</section>
-<section id="others" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="others"><span class="header-section-number">4</span> Others</h2>
-<ul>
-<li><a href="https://web.stanford.edu/class/bios221/book/">Modern Statistics for Modern Biology</a></li>
-<li><a href="https://rcompanion.org/handbook/">An R Companion for the Handbook of Biological Statistics</a></li>
-</ul>
-</section>
-<section id="platforms" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="platforms"><span class="header-section-number">5</span> Platforms</h2>
-<ul>
-<li><p><a href="https://bookdown.org/">BOOKDOWN</a></p></li>
-<li><p><a href="https://quarto.org/docs/gallery/">Quarto Gallery</a></p></li>
-<li><p><a href="https://leanpub.com/">Leanpub</a></p></li>
-<li><p><a href="https://datacarpentry.org/">Data Carpentry</a></p></li>
-</ul>
-</section>
-<section id="credits" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="credits"><span class="header-section-number">6</span> Credits:</h2>
-<ul>
-<li>Featured photo from Pexels: Portrait Photo of Excited Man in Blue T-shirt Standing In Front of White Background by <a href="https://www.pexels.com/@olly/"><strong>Andrea Piacquadio</strong></a></li>
-</ul>
+<div id="listing-post" class="quarto-listing quarto-listing-container-default">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-post-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-post'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-left" data-index="0" data-categories="UiUyQ0hlYWx0aCUyMEluZm9ybWF0aWNzJTJDQmlvbWVkaWNhbCUyMFJlc2VhcmNoJTJDU2hpbnk=" data-listing-date-sort="1701324000000" data-listing-file-modified-sort="1772201358307" data-listing-date-modified-sort="1772201358000" data-listing-reading-time-sort="1" data-listing-word-count-sort="168">
+<div class="thumbnail"><a href="../r-shiny/Untitled/index.html" class="no-external">
+
+<img loading="lazy" src="../r-shiny/Untitled/featured.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../r-shiny/Untitled/index.html" class="no-external">Xpert Magic: Automated Data Pipeline</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SGVhbHRoJTIwSW5mb3JtYXRpY3M='); return false;">Health Informatics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvbWVkaWNhbCUyMFJlc2VhcmNo'); return false;">Biomedical Research</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2hpbnk='); return false;">Shiny</div>
+
+</div>
+<div class="delink listing-description"><a href="../r-shiny/Untitled/index.html" class="no-external">
+View on GitHub | View App
+</a></div>
+</div>
+<div class="metadata">
+<a href="../r-shiny/Untitled/index.html" class="no-external">
+<div class="listing-date">
+Nov 30, 2023
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
 
 
-</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{minn_oo2023,
-  author = {Minn Oo, Myo},
-  title = {Awesome {Resources}},
-  date = {2023-06-02},
-  url = {https://myominnoo.github.io/blog/2023-06-02-awesome-resources/},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas" role="listitem">
-Minn Oo, Myo. 2023. <span>“Awesome Resources.”</span> June 2, 2023. <a href="https://myominnoo.github.io/blog/2023-06-02-awesome-resources/">https://myominnoo.github.io/blog/2023-06-02-awesome-resources/</a>.
-</div></div></section></div></main> <!-- /main -->
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -941,38 +918,6 @@ Minn Oo, Myo. 2023. <span>“Awesome Resources.”</span> June 2, 2023. <a href=
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="light">
-<script>
-  function loadGiscus() {
-    // Function to get the theme based on body class
-    const getTheme = () => {
-      let baseTheme = document.getElementById('giscus-base-theme').value;
-      let altTheme = document.getElementById('giscus-alt-theme').value;
-      if (authorPrefersDark) {
-          [baseTheme, altTheme] = [altTheme, baseTheme];
-      }
-      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
-    };
-    const script = document.createElement("script");
-    script.src = "https://giscus.app/client.js";
-    script.async = true;
-    script.dataset.repo = "myominnoo/myominnoo.github.io";
-    script.dataset.repoId = "R_kgDOKxsXWA";
-    script.dataset.category = "Announcements";
-    script.dataset.categoryId = "DIC_kwDOKxsXWM4CbQdw";
-    script.dataset.mapping = "pathname";
-    script.dataset.reactionsEnabled = "1";
-    script.dataset.emitMetadata = "0";
-    script.dataset.inputPosition = "top";
-    script.dataset.theme = getTheme();
-    script.dataset.lang = "en";
-    script.crossOrigin = "anonymous";
-    // Append the script to the desired div instead of at the end of the body
-    document.getElementById("quarto-content").appendChild(script);
-  }
-  loadGiscus();
-</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -991,5 +936,5 @@ Minn Oo, Myo. 2023. <span>“Awesome Resources.”</span> June 2, 2023. <a href=
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -56,6 +56,13 @@
     "text": "I am thrilled to announce the debut of my personal website, where I share my journey, research findings, and insights with the world. Previously, this website has been one pager with very minimal sharing outside my circle. With this new development, I intend to write more about what I am doing and what I learn along the way with everyone.\nI also open a comment session on the blog posts. So any constructive feedbacks are welcomed.\nCheers, everyone! Stay tuned!\nMyo\n\n\n\nCitationBibTeX citation:@online{oo2023,\n  author = {Oo, MyoMinn},\n  title = {Hello {World!}},\n  date = {2023-05-31},\n  url = {https://myominnoo.github.io/blog/2023-05-31-hello-world/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nOo, MyoMinn. 2023. “Hello World!” May 31, 2023. https://myominnoo.github.io/blog/2023-05-31-hello-world/."
   },
   {
+    "objectID": "r-shiny/index.html",
+    "href": "r-shiny/index.html",
+    "title": "R Shiny Gallery",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nXpert Magic: Automated Data Pipeline\n\n\n\nR\n\nHealth Informatics\n\nBiomedical Research\n\nShiny\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "projects/2021-u5mr-mis/index.html",
     "href": "projects/2021-u5mr-mis/index.html",
     "title": "Feasibility of U5MR Estimation via Serial MIS Data",
@@ -362,6 +369,34 @@
     "title": "Myo Minn Oo",
     "section": "",
     "text": "Hi! 👋 I’m Myo. As an epidemiologist, research director, and data consultant, I specialize in the intersection of epidemiology, data science, and health equity. With a PhD, two postdocs, and over 10 years of experience of leading complex research projects, I help research teams and clients transform messy data into actionable insights.\n\n\nRead more about me\nSchedule a Discovery Call"
+  },
+  {
+    "objectID": "r-shiny/Untitled/index.html",
+    "href": "r-shiny/Untitled/index.html",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "",
+    "text": "View on GitHub | View App\nRole: Epidemiologist, Data Lead\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Health Informatics, Clinical Research"
+  },
+  {
+    "objectID": "r-shiny/Untitled/index.html#the-challenge",
+    "href": "r-shiny/Untitled/index.html#the-challenge",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nIn the SWOP HPV Study in Nairobi, GeneXpert machines provided critical diagnostic data for HPV and CTNG. However, the raw output was semi-structured and difficult to aggregate, creating a bottleneck for longitudinal epidemiological analysis. Manual data cleaning was unsustainable for a high-volume clinical setting."
+  },
+  {
+    "objectID": "r-shiny/Untitled/index.html#the-solution",
+    "href": "r-shiny/Untitled/index.html#the-solution",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI developed Xpert Magic, a production-grade Shiny application that automates the transformation of GeneXpert raw outputs into tidy, analysis-ready datasets.\n\nAutomated Parsing: Built custom R logic to extract diagnostic results from heterogeneous machine files.\nData Integrity: Implemented real-time validation checks to ensure consistency between HPV and CTNG results.\nUser-Centric Design: Designed a simple “Upload and Export” interface tailored for lab staff without R experience."
+  },
+  {
+    "objectID": "r-shiny/Untitled/index.html#technical-deep-dive",
+    "href": "r-shiny/Untitled/index.html#technical-deep-dive",
+    "title": "Xpert Magic: Automated Data Pipeline",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nModular R Code: Organized using a clean directory structure for scalability and maintenance.\nTech Stack: R, Shiny, tidyverse, readxl, DT, bs4Dash, route.\nImpact: Eliminated manual data entry errors and reduced the clinical data-to-analysis lead time by over 90%."
   },
   {
     "objectID": "blog/2023-06-02-awesome-resources/index.html",

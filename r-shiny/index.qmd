@@ -1,0 +1,28 @@
+---
+title: "R Shiny Gallery"
+lightbox: true
+description-meta: "Showcasing R Shiny Web Apps "
+comments: false
+listing:
+  - id: post
+    contents: "**/index.qmd"
+    type: default
+    image-align: left
+    page-size: 20
+    fields:
+      - title
+      - date
+      - image
+      - description
+      - categories
+    categories: numbered
+    sort: "date desc"
+    sort-ui: true
+    filter-ui: true
+    feed:
+      categories:
+        - R
+---
+
+::: {#post}
+:::

@@ -1,0 +1,48 @@
+---
+title: "Xpert Magic: Automated Data Pipeline"
+author: "Myo Minn Oo"
+date: 2023-11-30
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - Health Informatics
+  - Biomedical Research
+  - Shiny
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+
+[View on GitHub](https://github.com/myominnoo/xpert_magic) | [View App](https://myominnoo.shinyapps.io/app_demos/)
+
+![](featured.png)
+
+**Role**: Epidemiologist, Data Lead 
+
+**Position**: Postdoctoral Fellowship @ University of Manitoba
+
+**Domain**: Health Informatics, Clinical Research
+
+## The Challenge
+In the [SWOP HPV Study](https://webapps.cihr-irsc.gc.ca/decisions/p/project_details.html?applId=483352&lang=en) in Nairobi, GeneXpert machines provided critical diagnostic data for HPV and CTNG. However, the raw output was semi-structured and difficult to aggregate, creating a bottleneck for longitudinal epidemiological analysis. Manual data cleaning was unsustainable for a high-volume clinical setting.
+
+
+## The Solution
+I developed Xpert Magic, a production-grade Shiny application that automates the transformation of GeneXpert raw outputs into tidy, analysis-ready datasets.
+
+- **Automated Parsing**: Built custom R logic to extract diagnostic results from heterogeneous machine files.
+- **Data Integrity**: Implemented real-time validation checks to ensure consistency between HPV and CTNG results.
+- **User-Centric Design**: Designed a simple "Upload and Export" interface tailored for lab staff without R experience.
+
+## Technical Deep-Dive
+- **Modular R Code**: Organized using a clean directory structure for scalability and maintenance.
+- **Tech Stack**: `R`, `Shiny`, `tidyverse`, `readxl`, `DT`, `bs4Dash`, `route`.
+- **Impact**: Eliminated manual data entry errors and reduced the clinical data-to-analysis lead time by over 90%.
+
+
+

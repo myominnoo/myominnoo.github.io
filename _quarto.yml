@@ -37,6 +37,8 @@ website:
     right:
       - href: projects/index.qmd
         text: Projects
+      - href: r-shiny/index.qmd
+        text: Shiny Apps
       - href: about.qmd
         text: About Me
       - href: contact.qmd

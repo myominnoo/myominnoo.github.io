@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Myo Minn Oo</title>
+<link>https://myominnoo.github.io/r-shiny/#category=R</link>
+<atom:link href="https://myominnoo.github.io/r-shiny/index-r.xml" rel="self" type="application/rss+xml"/>
+<description>Epidemiology, Data Science, Consulting</description>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Thu, 30 Nov 2023 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Xpert Magic: Automated Data Pipeline</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.github.io/r-shiny/Untitled/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="https://github.com/myominnoo/xpert_magic">View on GitHub</a> | <a href="https://myominnoo.shinyapps.io/app_demos/">View App</a></p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://myominnoo.github.io/r-shiny/Untitled/featured.png" class="img-fluid"></a></p>
+<p><strong>Role</strong>: Epidemiologist, Data Lead</p>
+<p><strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba</p>
+<p><strong>Domain</strong>: Health Informatics, Clinical Research</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>In the <a href="https://webapps.cihr-irsc.gc.ca/decisions/p/project_details.html?applId=483352&amp;lang=en">SWOP HPV Study</a> in Nairobi, GeneXpert machines provided critical diagnostic data for HPV and CTNG. However, the raw output was semi-structured and difficult to aggregate, creating a bottleneck for longitudinal epidemiological analysis. Manual data cleaning was unsustainable for a high-volume clinical setting.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I developed Xpert Magic, a production-grade Shiny application that automates the transformation of GeneXpert raw outputs into tidy, analysis-ready datasets.</p>
+<ul>
+<li><strong>Automated Parsing</strong>: Built custom R logic to extract diagnostic results from heterogeneous machine files.</li>
+<li><strong>Data Integrity</strong>: Implemented real-time validation checks to ensure consistency between HPV and CTNG results.</li>
+<li><strong>User-Centric Design</strong>: Designed a simple “Upload and Export” interface tailored for lab staff without R experience.</li>
+</ul>
+</section>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
+<ul>
+<li><strong>Modular R Code</strong>: Organized using a clean directory structure for scalability and maintenance.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>Shiny</code>, <code>tidyverse</code>, <code>readxl</code>, <code>DT</code>, <code>bs4Dash</code>, <code>route</code>.</li>
+<li><strong>Impact</strong>: Eliminated manual data entry errors and reduced the clinical data-to-analysis lead time by over 90%.</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>Health Informatics</category>
+  <category>Biomedical Research</category>
+  <category>Shiny</category>
+  <guid>https://myominnoo.github.io/r-shiny/Untitled/</guid>
+  <pubDate>Thu, 30 Nov 2023 06:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.github.io/r-shiny/Untitled/featured.png" medium="image" type="image/png" height="56" width="144"/>
+</item>
+</channel>
+</rss>

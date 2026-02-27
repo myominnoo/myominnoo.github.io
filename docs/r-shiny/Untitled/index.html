@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Myo Minn Oo">
-<meta name="dcterms.date" content="2023-06-02">
+<meta name="dcterms.date" content="2023-11-30">
 
-<title>Myo Minn Oo | Awesome Resources – Myo Minn Oo</title>
+<title>Myo Minn Oo | Xpert Magic: Automated Data Pipeline – Myo Minn Oo</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,6 +47,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-e55abfcab0185cbbd1fae9a5b8ba5f92.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-a6a58ce65f2645804a66e92b16afffd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,7 +108,7 @@ cookieconsent.run({
 
 </head>
 
-<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -339,27 +342,20 @@ cookieconsent.run({
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r"><span class="header-section-number">1</span> R</a>
-  <ul>
-  <li><a href="#data-viz" id="toc-data-viz" class="nav-link" data-scroll-target="#data-viz"><span class="header-section-number">1.1</span> Data Viz</a></li>
-  <li><a href="#data-science" id="toc-data-science" class="nav-link" data-scroll-target="#data-science"><span class="header-section-number">1.2</span> Data science</a></li>
-  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny"><span class="header-section-number">1.3</span> Shiny</a></li>
-  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">1.4</span> Git</a></li>
-  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming"><span class="header-section-number">1.5</span> Programming</a></li>
-  </ul></li>
-  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics"><span class="header-section-number">2</span> Statistics</a></li>
-  <li><a href="#epidemiology" id="toc-epidemiology" class="nav-link" data-scroll-target="#epidemiology"><span class="header-section-number">3</span> Epidemiology</a></li>
-  <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others"><span class="header-section-number">4</span> Others</a></li>
-  <li><a href="#platforms" id="toc-platforms" class="nav-link" data-scroll-target="#platforms"><span class="header-section-number">5</span> Platforms</a></li>
-  <li><a href="#credits" id="toc-credits" class="nav-link" data-scroll-target="#credits"><span class="header-section-number">6</span> Credits:</a></li>
+  <li><a href="#the-challenge" id="toc-the-challenge" class="nav-link active" data-scroll-target="#the-challenge"><span class="header-section-number">1</span> The Challenge</a></li>
+  <li><a href="#the-solution" id="toc-the-solution" class="nav-link" data-scroll-target="#the-solution"><span class="header-section-number">2</span> The Solution</a></li>
+  <li><a href="#technical-deep-dive" id="toc-technical-deep-dive" class="nav-link" data-scroll-target="#technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -367,10 +363,12 @@ cookieconsent.run({
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Awesome Resources</h1>
-<p class="subtitle lead">My personal collection of useful resources</p>
+<h1 class="title">Xpert Magic: Automated Data Pipeline</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Resources</div>
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Health Informatics</div>
+    <div class="quarto-category">Biomedical Research</div>
+    <div class="quarto-category">Shiny</div>
   </div>
   </div>
 
@@ -388,14 +386,14 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 2, 2023</p>
+      <p class="date">November 30, 2023</p>
     </div>
   </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 13, 2024</p>
+      <p class="date-modified">February 27, 2026</p>
     </div>
   </div>
     
@@ -406,123 +404,36 @@ cookieconsent.run({
 </header>
 
 
-<p>I have curated my personal awesome collection of useful resources, which I find useful in my work and/or my daily life.</p>
-<section id="r" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="r"><span class="header-section-number">1</span> R</h2>
-<section id="data-viz" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="data-viz"><span class="header-section-number">1.1</span> Data Viz</h3>
+<p><a href="https://github.com/myominnoo/xpert_magic">View on GitHub</a> | <a href="https://myominnoo.shinyapps.io/app_demos/">View App</a></p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
+<p><strong>Role</strong>: Epidemiologist, Data Lead</p>
+<p><strong>Position</strong>: Postdoctoral Fellowship @ University of Manitoba</p>
+<p><strong>Domain</strong>: Health Informatics, Clinical Research</p>
+<section id="the-challenge" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-challenge"><span class="header-section-number">1</span> The Challenge</h2>
+<p>In the <a href="https://webapps.cihr-irsc.gc.ca/decisions/p/project_details.html?applId=483352&amp;lang=en">SWOP HPV Study</a> in Nairobi, GeneXpert machines provided critical diagnostic data for HPV and CTNG. However, the raw output was semi-structured and difficult to aggregate, creating a bottleneck for longitudinal epidemiological analysis. Manual data cleaning was unsustainable for a high-volume clinical setting.</p>
+</section>
+<section id="the-solution" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-solution"><span class="header-section-number">2</span> The Solution</h2>
+<p>I developed Xpert Magic, a production-grade Shiny application that automates the transformation of GeneXpert raw outputs into tidy, analysis-ready datasets.</p>
 <ul>
-<li><a href="https://r-graph-gallery.com/index.html">R Graph Gallery</a></li>
-<li><a href="https://www.cedricscherer.com/">CÉDRIC SCHERER</a></li>
-<li><a href="https://rstudio-conf-2022.github.io/ggplot2-graphic-design/">Graphic Design with ggplot2</a></li>
+<li><strong>Automated Parsing</strong>: Built custom R logic to extract diagnostic results from heterogeneous machine files.</li>
+<li><strong>Data Integrity</strong>: Implemented real-time validation checks to ensure consistency between HPV and CTNG results.</li>
+<li><strong>User-Centric Design</strong>: Designed a simple “Upload and Export” interface tailored for lab staff without R experience.</li>
 </ul>
 </section>
-<section id="data-science" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="data-science"><span class="header-section-number">1.2</span> Data science</h3>
+<section id="technical-deep-dive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="technical-deep-dive"><span class="header-section-number">3</span> Technical Deep-Dive</h2>
 <ul>
-<li><p><a href="https://r4ds.hadley.nz/">R for Data Science</a></p></li>
-<li><p><a href="https://rstudio-education.github.io/hopr/">Hands-on Programming with R</a></p></li>
-<li><p><a href="https://www.tmwr.org/">Tidy modelling with R</a></p></li>
-<li><p><a href="https://www.tidymodels.org/">Tidy models</a></p></li>
-<li><p><a href="https://moderndive.com/">A modern dive into R and the tidyverse</a></p></li>
-<li><p><a href="http://www.feat.engineering/">Feature engineering and selection</a></p></li>
-<li><p><a href="https://jmzobitz.github.io/ModelingWithR/">Exploring Modeling with Data and Differential Equations Using R</a></p></li>
-<li><p><a href="https://www.deeplearningbook.org/">Deep Learning MIT</a></p></li>
-<li><p><a href="http://appliedpredictivemodeling.com/">Applied Predictive Modelling By Max Kuhn and Kjell Johnson</a></p></li>
-</ul>
-</section>
-<section id="shiny" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="shiny"><span class="header-section-number">1.3</span> Shiny</h3>
-<ul>
-<li><p><a href="https://github.com/nanxstats/awesome-shiny-extensions">Awesome shiny extensions</a></p></li>
-<li><p><a href="https://mastering-shiny.org/">Mastering Shiny</a></p></li>
-<li><p><a href="https://engineering-shiny.org/index.html">Engineering Production-Grade Shiny Apps</a></p></li>
-<li><p><a href="https://unleash-shiny.rinterface.com/index.html">Outstanding User Interfaces with Shiny</a></p></li>
-<li><p><a href="https://book.javascript-for-r.com/">JavaScript for R</a></p></li>
-<li><p><a href="https://www.refactoringui.com/">Refactoring UI</a></p></li>
-<li><p><a href="https://business-science.github.io/shiny-production-with-aws-book/">The Shiny AWS Book</a></p></li>
-<li><p><a href="https://connect.thinkr.fr/js4shinyfieldnotes/">JavaScript 4 Shiny - Field Notes</a></p></li>
-<li><p><a href="https://shinydevseries.com/">Shiny Dev Series</a></p></li>
-<li><p><a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html">RStudio’s Shiny Tutorials</a></p></li>
-</ul>
-</section>
-<section id="git" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="git"><span class="header-section-number">1.4</span> Git</h3>
-<ul>
-<li><a href="https://happygitwithr.com/">Happy Git with R</a></li>
-</ul>
-</section>
-<section id="programming" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="programming"><span class="header-section-number">1.5</span> Programming</h3>
-<ul>
-<li><a href="https://csgillespie.github.io/efficientR/">Efficient R programming</a></li>
-</ul>
-</section>
-</section>
-<section id="statistics" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="statistics"><span class="header-section-number">2</span> Statistics</h2>
-<ul>
-<li><p><a href="https://datasciencebox.org/">Data Science in A Box</a></p></li>
-<li><p><a href="https://openintro-ims.netlify.app/">Intro to Modern Statistics</a></p></li>
-<li><p><a href="https://www.openintro.org/">OpenIntro Project</a></p></li>
-<li><p><a href="https://stat545.com/">Stat 545</a></p></li>
-<li><p><a href="https://lakens.github.io/statistical_inferences/">Improving Your Statistical Inferences</a></p></li>
-<li><p><a href="https://github.com/rmcelreath/stat_rethinking_2023">Statistical Rethinking</a> [<a href="https://youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus">YouTube</a>]</p></li>
-<li><p><a href="http://www.sthda.com/english/">Statistical tools for high-throughput data analysis</a></p></li>
-<li><p><a href="https://www.datanovia.com/en/">Datanovia</a></p></li>
-<li><p><a href="https://github.com/erikgahner/awesome-statistics">Awesome statistics</a></p></li>
-<li><p><a href="https://github.com/academic/awesome-datascience">Awesome data science</a></p></li>
-<li><p><a href="https://github.com/mhoehle/BayesianDecisionAnalysis">PyData Global Bayesian Decision Analysis</a></p></li>
-<li><p><a href="http://allendowney.github.io/ThinkBayes2/">Think Bayes 2 by Allen B. Downey</a></p></li>
-<li><p><a href="https://algs4.cs.princeton.edu/home/">Algorithms, 4th Edition</a></p></li>
-</ul>
-</section>
-<section id="epidemiology" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="epidemiology"><span class="header-section-number">3</span> Epidemiology</h2>
-<ul>
-<li><p><a href="https://epirhandbook.com/en/">Epidemiologist R handbook</a></p></li>
-<li><p><a href="https://www.r4epi.com/">R for Epidemiology</a></p></li>
-<li><p><a href="https://bookdown.org/taragonmd/phds/">Population Health Data Science with R</a></p></li>
-<li><p><a href="https://global.oup.com/academic/product/epidemiology-with-r-9780198841333?cc=us&amp;lang=en&amp;#">Epidemiology with R</a></p></li>
-<li><p><a href="https://github.com/mhoehle/STA427_SM4IDE">STA427_SM4IDE Statistical Methods in Infectious Disease Epidemiology</a></p></li>
-<li><p><a href="https://book.declaredesign.org/">Research Design in the Social Sciences</a></p></li>
-</ul>
-</section>
-<section id="others" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="others"><span class="header-section-number">4</span> Others</h2>
-<ul>
-<li><a href="https://web.stanford.edu/class/bios221/book/">Modern Statistics for Modern Biology</a></li>
-<li><a href="https://rcompanion.org/handbook/">An R Companion for the Handbook of Biological Statistics</a></li>
-</ul>
-</section>
-<section id="platforms" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="platforms"><span class="header-section-number">5</span> Platforms</h2>
-<ul>
-<li><p><a href="https://bookdown.org/">BOOKDOWN</a></p></li>
-<li><p><a href="https://quarto.org/docs/gallery/">Quarto Gallery</a></p></li>
-<li><p><a href="https://leanpub.com/">Leanpub</a></p></li>
-<li><p><a href="https://datacarpentry.org/">Data Carpentry</a></p></li>
-</ul>
-</section>
-<section id="credits" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="credits"><span class="header-section-number">6</span> Credits:</h2>
-<ul>
-<li>Featured photo from Pexels: Portrait Photo of Excited Man in Blue T-shirt Standing In Front of White Background by <a href="https://www.pexels.com/@olly/"><strong>Andrea Piacquadio</strong></a></li>
+<li><strong>Modular R Code</strong>: Organized using a clean directory structure for scalability and maintenance.</li>
+<li><strong>Tech Stack</strong>: <code>R</code>, <code>Shiny</code>, <code>tidyverse</code>, <code>readxl</code>, <code>DT</code>, <code>bs4Dash</code>, <code>route</code>.</li>
+<li><strong>Impact</strong>: Eliminated manual data entry errors and reduced the clinical data-to-analysis lead time by over 90%.</li>
 </ul>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{minn_oo2023,
-  author = {Minn Oo, Myo},
-  title = {Awesome {Resources}},
-  date = {2023-06-02},
-  url = {https://myominnoo.github.io/blog/2023-06-02-awesome-resources/},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-minn_oo2023" class="csl-entry quarto-appendix-citeas" role="listitem">
-Minn Oo, Myo. 2023. <span>“Awesome Resources.”</span> June 2, 2023. <a href="https://myominnoo.github.io/blog/2023-06-02-awesome-resources/">https://myominnoo.github.io/blog/2023-06-02-awesome-resources/</a>.
-</div></div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -987,6 +898,38 @@ Minn Oo, Myo. 2023. <span>“Awesome Resources.”</span> June 2, 2023. <a href=
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"right","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

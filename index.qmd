@@ -1,6 +1,6 @@
 ---
 title: "Myo Minn Oo"
-subtitle: "Epidemiology, Data Science, and Design"
+subtitle: "Epidemiology, Data Science, and Visualization"
 page-layout: full
 lightbox: true
 toc: false
