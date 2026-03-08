@@ -15,9 +15,36 @@ page-layout: article
 image: featured.png
 ---
 
+## wpgdata {#sec-rpkg-wpgdata}
+
+<img src="./wpgdata-logo.png" align="right" height="138"/>
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/wpgdata)](https://CRAN.R-project.org/package=wpgdata)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/myominnoo/wpgdata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/myominnoo/wpgdata/actions/workflows/R-CMD-check.yaml)
+
+<!-- badges: end -->
+
+`wpgdata` provides a simple R interface to query and download datasets
+from the [City of Winnipeg Open Data Portal](https://data.winnipeg.ca)
+using the OData V4 API. It supports filtering rows with R expressions
+or raw OData strings, selecting columns, sorting, and automatic
+pagination with a progress bar — making it easy to access Winnipeg's
+open data directly from R without manual API calls.
+
+<a href="https://myominnoo.github.io/wpgdata/" target="_blank">Documentation</a>
+\| <a href="https://github.com/myominnoo/wpgdata/" target="_blank">Source
+Code</a> \|
+<a href="https://cran.r-project.org/package=wpgdata" target="_blank">CRAN</a><br>
+
+
 ## mStats {#sec-rpkg-mStats}
 
-<img src="../assets/img/mStats-logo.png" align="right" height="120"/>
+<img src="./mStats-logo.png" align="right" height="120"/>
 
 <!-- badges: start -->
 
@@ -52,7 +79,7 @@ Code</a> \|
 
 ## shinyAuthX {#sec-rpkg-shinyAuthX}
 
-<img src="../assets/img/shinyAuthX-logo.png" align="right" height="138"/>
+<img src="./shinyAuthX-logo.png" align="right" height="138"/>
 
 <!-- badges: start -->
 

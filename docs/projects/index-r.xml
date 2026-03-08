@@ -9,7 +9,7 @@
 <link>https://myominnoo.github.io/projects/#category=R</link>
 <atom:link href="https://myominnoo.github.io/projects/index-r.xml" rel="self" type="application/rss+xml"/>
 <description>Epidemiology, Data Science, Consulting</description>
-<generator>quarto-1.8.25</generator>
+<generator>quarto-1.8.27</generator>
 <lastBuildDate>Sun, 31 Dec 2023 06:00:00 GMT</lastBuildDate>
 <item>
   <title>HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations</title>
@@ -334,6 +334,67 @@
   <media:content url="https://myominnoo.github.io/projects/2023-covidab/featured.png" medium="image" type="image/png" height="74" width="144"/>
 </item>
 <item>
+  <title>R Packages</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.github.io/projects/r-packages/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="sec-rpkg-wpgdata" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-rpkg-wpgdata"><span class="header-section-number">1</span> wpgdata</h2>
+<p><img src="https://myominnoo.github.io/projects/r-packages/wpgdata-logo.png" align="right" height="138"></p>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=wpgdata"><img src="https://www.r-pkg.org/badges/version/wpgdata.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" class="img-fluid" alt="Lifecycle: experimental"></a> <a href="https://github.com/myominnoo/wpgdata/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/wpgdata/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a></p>
+<!-- badges: end -->
+<p><code>wpgdata</code> provides a simple R interface to query and download datasets from the <a href="https://data.winnipeg.ca">City of Winnipeg Open Data Portal</a> using the OData V4 API. It supports filtering rows with R expressions or raw OData strings, selecting columns, sorting, and automatic pagination with a progress bar — making it easy to access Winnipeg’s open data directly from R without manual API calls.</p>
+<p><a href="https://myominnoo.github.io/wpgdata/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/wpgdata/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=wpgdata" target="_blank">CRAN</a><br></p>
+</section>
+<section id="sec-rpkg-mStats" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-rpkg-mStats"><span class="header-section-number">2</span> mStats</h2>
+<p><img src="https://myominnoo.github.io/projects/r-packages/mStats-logo.png" align="right" height="120"></p>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=mStats"><img src="https://www.r-pkg.org/badges/version/mStats.png" class="img-fluid" alt="CRAN status"></a> <a href="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/mStats?branch=main"><img src="https://codecov.io/gh/myominnoo/mStats/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
+<!-- badges: end -->
+<p>mStats is a versatile and efficient collection of functions that I have curated and developed to enhance my work in various domains. This collection encompasses a range of statistical tools and utilities that have proven invaluable in my research and analysis endeavors.</p>
+<p>As an avid user of mStats, I am delighted to share this valuable resource with the broader community. Together, we can leverage the power of mStats to overcome statistical challenges, drive impactful insights, and advance the frontiers of knowledge in our respective fields.</p>
+<p>Stay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.</p>
+<p><a href="https://myominnoo.github.io/mStats/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/mStats/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=mStats" target="_blank">CRAN</a><br></p>
+</section>
+<section id="sec-rpkg-shinyAuthX" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-rpkg-shinyAuthX"><span class="header-section-number">3</span> shinyAuthX</h2>
+<p><img src="https://myominnoo.github.io/projects/r-packages/shinyAuthX-logo.png" align="right" height="138"></p>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=shinyAuthX"><img src="https://www.r-pkg.org/badges/version/shinyAuthX.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a> <a href="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/shinyAuthX?branch=main"><img src="https://codecov.io/gh/myominnoo/shinyAuthX/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a></p>
+<!-- badges: end -->
+<p>ShinyAuthX is a powerful R package specifically designed for user authentication within Shiny apps. It provides a comprehensive suite of authentication features including user sign-in, sign-up, sign-out, and password recovery, seamlessly integrating user-friendly UI and Server components. It empowers shiny app developers to create secure and user-friendly authentication systems.</p>
+<p><a href="https://myominnoo.shinyapps.io/shinyAuthX/">Open in New Window.</a></p>
+ <iframe src="https://myominnoo.shinyapps.io/shinyAuthX/" style="border: none; width: 100%; height: 510px" frameborder="0"></iframe>
+<p><a href="https://myominnoo.github.io/shinyAuthX/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/shinyAuthX/" target="_blank">Source Code</a> | <a href="" target="https://github.com/myominnoo/shinyAuthX/">CRAN</a><br></p>
+</section>
+<section id="sec-rpkg-u5mr" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-rpkg-u5mr"><span class="header-section-number">4</span> u5mr</h2>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=u5mr"><img src="https://www.r-pkg.org/badges/version/u5mr.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
+<!-- badges: end -->
+<p>Introducing u5mr, an open-source R package designed for estimating child mortality rates. This package includes the implementation of various methods to estimate child mortality.</p>
+<p>One notable feature of u5mr is its incorporation of the maternal age cohort-derived (MAC) and period-derived (MAP) methods proposed by Rajaratnam et al.&nbsp;These methods provide additional flexibility and accuracy in estimating child mortality rates, enhancing the reliability of the results.</p>
+<p>To learn more about the MAC and MAP methods, refer to the publication by Rajaratnam et al.&nbsp;available at <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1000253">Rajaratnam et al</a>.</p>
+<p><a href="https://myominnoo.github.io/u5mr/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/u5mr/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=u5mr" target="_blank">CRAN</a><br></p>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>Package</category>
+  <guid>https://myominnoo.github.io/projects/r-packages/</guid>
+  <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.github.io/projects/r-packages/featured.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
   <title>MalCon: Malaria Health Facility Survey Monitoring Dashboard</title>
   <dc:creator>Myo Minn Oo</dc:creator>
   <link>https://myominnoo.github.io/projects/2021-malcon/</link>
@@ -437,58 +498,6 @@
   <guid>https://myominnoo.github.io/projects/2021-u5mr-mis/</guid>
   <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
   <media:content url="https://myominnoo.github.io/projects/2021-u5mr-mis/featured.png" medium="image" type="image/png" height="81" width="144"/>
-</item>
-<item>
-  <title>R Packages</title>
-  <dc:creator>Myo Minn Oo</dc:creator>
-  <link>https://myominnoo.github.io/projects/r-packages/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="sec-rpkg-mStats" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-rpkg-mStats"><span class="header-section-number">1</span> mStats</h2>
-<p><img src="https://myominnoo.github.io/projects/assets/img/mStats-logo.png" align="right" height="120"></p>
-<!-- badges: start -->
-<p><a href="https://CRAN.R-project.org/package=mStats"><img src="https://www.r-pkg.org/badges/version/mStats.png" class="img-fluid" alt="CRAN status"></a> <a href="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/mStats?branch=main"><img src="https://codecov.io/gh/myominnoo/mStats/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
-<!-- badges: end -->
-<p>mStats is a versatile and efficient collection of functions that I have curated and developed to enhance my work in various domains. This collection encompasses a range of statistical tools and utilities that have proven invaluable in my research and analysis endeavors.</p>
-<p>As an avid user of mStats, I am delighted to share this valuable resource with the broader community. Together, we can leverage the power of mStats to overcome statistical challenges, drive impactful insights, and advance the frontiers of knowledge in our respective fields.</p>
-<p>Stay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.</p>
-<p><a href="https://myominnoo.github.io/mStats/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/mStats/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=mStats" target="_blank">CRAN</a><br></p>
-</section>
-<section id="sec-rpkg-shinyAuthX" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="sec-rpkg-shinyAuthX"><span class="header-section-number">2</span> shinyAuthX</h2>
-<p><img src="https://myominnoo.github.io/projects/assets/img/shinyAuthX-logo.png" align="right" height="138"></p>
-<!-- badges: start -->
-<p><a href="https://CRAN.R-project.org/package=shinyAuthX"><img src="https://www.r-pkg.org/badges/version/shinyAuthX.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a> <a href="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/shinyAuthX?branch=main"><img src="https://codecov.io/gh/myominnoo/shinyAuthX/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a></p>
-<!-- badges: end -->
-<p>ShinyAuthX is a powerful R package specifically designed for user authentication within Shiny apps. It provides a comprehensive suite of authentication features including user sign-in, sign-up, sign-out, and password recovery, seamlessly integrating user-friendly UI and Server components. It empowers shiny app developers to create secure and user-friendly authentication systems.</p>
-<p><a href="https://myominnoo.shinyapps.io/shinyAuthX/">Open in New Window.</a></p>
- <iframe src="https://myominnoo.shinyapps.io/shinyAuthX/" style="border: none; width: 100%; height: 510px" frameborder="0"></iframe>
-<p><a href="https://myominnoo.github.io/shinyAuthX/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/shinyAuthX/" target="_blank">Source Code</a> | <a href="" target="https://github.com/myominnoo/shinyAuthX/">CRAN</a><br></p>
-</section>
-<section id="sec-rpkg-u5mr" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-rpkg-u5mr"><span class="header-section-number">3</span> u5mr</h2>
-<!-- badges: start -->
-<p><a href="https://CRAN.R-project.org/package=u5mr"><img src="https://www.r-pkg.org/badges/version/u5mr.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
-<!-- badges: end -->
-<p>Introducing u5mr, an open-source R package designed for estimating child mortality rates. This package includes the implementation of various methods to estimate child mortality.</p>
-<p>One notable feature of u5mr is its incorporation of the maternal age cohort-derived (MAC) and period-derived (MAP) methods proposed by Rajaratnam et al.&nbsp;These methods provide additional flexibility and accuracy in estimating child mortality rates, enhancing the reliability of the results.</p>
-<p>To learn more about the MAC and MAP methods, refer to the publication by Rajaratnam et al.&nbsp;available at <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1000253">Rajaratnam et al</a>.</p>
-<p><a href="https://myominnoo.github.io/u5mr/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/u5mr/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=u5mr" target="_blank">CRAN</a><br></p>
-
-
-</section>
-
- ]]></description>
-  <category>R</category>
-  <category>Package</category>
-  <guid>https://myominnoo.github.io/projects/r-packages/</guid>
-  <pubDate>Fri, 22 Oct 2021 05:00:00 GMT</pubDate>
-  <media:content url="https://myominnoo.github.io/projects/r-packages/featured.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 </channel>
 </rss>

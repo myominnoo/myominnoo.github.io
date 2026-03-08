@@ -16,7 +16,7 @@ listing:
       - description
       - categories
     categories: numbered
-    sort: "date desc"
+    sort: "date-modified desc"
     sort-ui: true
     filter-ui: true
     feed:

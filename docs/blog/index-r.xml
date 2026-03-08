@@ -9,7 +9,7 @@
 <link>https://myominnoo.github.io/blog/#category=R</link>
 <atom:link href="https://myominnoo.github.io/blog/index-r.xml" rel="self" type="application/rss+xml"/>
 <description>Epidemiology, Data Science, Consulting</description>
-<generator>quarto-1.8.25</generator>
+<generator>quarto-1.8.27</generator>
 <lastBuildDate>Sat, 02 Dec 2023 06:00:00 GMT</lastBuildDate>
 <item>
   <title>Adding a Custom Email to Your Netlify-Hosted Quarto Website</title>

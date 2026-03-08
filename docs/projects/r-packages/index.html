@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -41,8 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-54c8f25464f32f8783bd446cee98020d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b754b9fd3853d7e56faef54c29c5d52b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-de8274a4d1ecc1e6aaeaf6e5564b5074.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-e55abfcab0185cbbd1fae9a5b8ba5f92.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -281,8 +281,6 @@ cookieconsent.run({
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Myo Minn Oo</span>
     </a>
@@ -344,9 +342,10 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-rpkg-mStats" id="toc-sec-rpkg-mStats" class="nav-link active" data-scroll-target="#sec-rpkg-mStats"><span class="header-section-number">1</span> mStats</a></li>
-  <li><a href="#sec-rpkg-shinyAuthX" id="toc-sec-rpkg-shinyAuthX" class="nav-link" data-scroll-target="#sec-rpkg-shinyAuthX"><span class="header-section-number">2</span> shinyAuthX</a></li>
-  <li><a href="#sec-rpkg-u5mr" id="toc-sec-rpkg-u5mr" class="nav-link" data-scroll-target="#sec-rpkg-u5mr"><span class="header-section-number">3</span> u5mr</a></li>
+  <li><a href="#sec-rpkg-wpgdata" id="toc-sec-rpkg-wpgdata" class="nav-link active" data-scroll-target="#sec-rpkg-wpgdata"><span class="header-section-number">1</span> wpgdata</a></li>
+  <li><a href="#sec-rpkg-mStats" id="toc-sec-rpkg-mStats" class="nav-link" data-scroll-target="#sec-rpkg-mStats"><span class="header-section-number">2</span> mStats</a></li>
+  <li><a href="#sec-rpkg-shinyAuthX" id="toc-sec-rpkg-shinyAuthX" class="nav-link" data-scroll-target="#sec-rpkg-shinyAuthX"><span class="header-section-number">3</span> shinyAuthX</a></li>
+  <li><a href="#sec-rpkg-u5mr" id="toc-sec-rpkg-u5mr" class="nav-link" data-scroll-target="#sec-rpkg-u5mr"><span class="header-section-number">4</span> u5mr</a></li>
   </ul>
 </nav>
 </nav>
@@ -388,7 +387,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 21, 2026</p>
+      <p class="date-modified">March 8, 2026</p>
     </div>
   </div>
     
@@ -399,9 +398,18 @@ cookieconsent.run({
 </header>
 
 
-<section id="sec-rpkg-mStats" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-rpkg-mStats"><span class="header-section-number">1</span> mStats</h2>
-<p><img src="../assets/img/mStats-logo.png" align="right" height="120"></p>
+<section id="sec-rpkg-wpgdata" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-rpkg-wpgdata"><span class="header-section-number">1</span> wpgdata</h2>
+<p><img src="./wpgdata-logo.png" align="right" height="138"></p>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=wpgdata"><img src="https://www.r-pkg.org/badges/version/wpgdata.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" class="img-fluid" alt="Lifecycle: experimental"></a> <a href="https://github.com/myominnoo/wpgdata/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/wpgdata/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a></p>
+<!-- badges: end -->
+<p><code>wpgdata</code> provides a simple R interface to query and download datasets from the <a href="https://data.winnipeg.ca">City of Winnipeg Open Data Portal</a> using the OData V4 API. It supports filtering rows with R expressions or raw OData strings, selecting columns, sorting, and automatic pagination with a progress bar — making it easy to access Winnipeg’s open data directly from R without manual API calls.</p>
+<p><a href="https://myominnoo.github.io/wpgdata/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/wpgdata/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=wpgdata" target="_blank">CRAN</a><br></p>
+</section>
+<section id="sec-rpkg-mStats" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-rpkg-mStats"><span class="header-section-number">2</span> mStats</h2>
+<p><img src="./mStats-logo.png" align="right" height="120"></p>
 <!-- badges: start -->
 <p><a href="https://CRAN.R-project.org/package=mStats"><img src="https://www.r-pkg.org/badges/version/mStats.png" class="img-fluid" alt="CRAN status"></a> <a href="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/mStats/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/mStats?branch=main"><img src="https://codecov.io/gh/myominnoo/mStats/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
 <!-- badges: end -->
@@ -410,9 +418,9 @@ cookieconsent.run({
 <p>Stay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.</p>
 <p><a href="https://myominnoo.github.io/mStats/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/mStats/" target="_blank">Source Code</a> | <a href="https://cran.r-project.org/package=mStats" target="_blank">CRAN</a><br></p>
 </section>
-<section id="sec-rpkg-shinyAuthX" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="sec-rpkg-shinyAuthX"><span class="header-section-number">2</span> shinyAuthX</h2>
-<p><img src="../assets/img/shinyAuthX-logo.png" align="right" height="138"></p>
+<section id="sec-rpkg-shinyAuthX" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-rpkg-shinyAuthX"><span class="header-section-number">3</span> shinyAuthX</h2>
+<p><img src="./shinyAuthX-logo.png" align="right" height="138"></p>
 <!-- badges: start -->
 <p><a href="https://CRAN.R-project.org/package=shinyAuthX"><img src="https://www.r-pkg.org/badges/version/shinyAuthX.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a> <a href="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/myominnoo/shinyAuthX/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/myominnoo/shinyAuthX?branch=main"><img src="https://codecov.io/gh/myominnoo/shinyAuthX/branch/main/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a></p>
 <!-- badges: end -->
@@ -421,8 +429,8 @@ cookieconsent.run({
  <iframe src="https://myominnoo.shinyapps.io/shinyAuthX/" style="border: none; width: 100%; height: 510px" frameborder="0"></iframe>
 <p><a href="https://myominnoo.github.io/shinyAuthX/" target="_blank">Documentation</a> | <a href="https://github.com/myominnoo/shinyAuthX/" target="_blank">Source Code</a> | <a href="" target="https://github.com/myominnoo/shinyAuthX/">CRAN</a><br></p>
 </section>
-<section id="sec-rpkg-u5mr" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-rpkg-u5mr"><span class="header-section-number">3</span> u5mr</h2>
+<section id="sec-rpkg-u5mr" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-rpkg-u5mr"><span class="header-section-number">4</span> u5mr</h2>
 <!-- badges: start -->
 <p><a href="https://CRAN.R-project.org/package=u5mr"><img src="https://www.r-pkg.org/badges/version/u5mr.png" class="img-fluid" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" class="img-fluid" alt="Lifecycle: stable"></a></p>
 <!-- badges: end -->
