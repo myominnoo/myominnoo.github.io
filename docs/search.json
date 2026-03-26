@@ -126,109 +126,53 @@
     "text": "3 Technical Deep-Dive\n\nStatistical Modeling: Utilized R for multiple logistic regression and odds ratio calculations with 95% confidence intervals.\nData Visualization: Created prevalence plots and genotype distribution charts to communicate the “preventable burden” to stakeholders.\nTech Stack: R, tidyverse, gtsummary, officeverse.\nImpact: Provided the first comprehensive evidence for targeted HPV vaccination in this population, directly informing regional cancer prevention strategies."
   },
   {
-    "objectID": "projects/2025-colp-paper/index.html",
-    "href": "projects/2025-colp-paper/index.html",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "objectID": "projects/2026-data-viz/index.html#interactive-plot-example",
+    "href": "projects/2026-data-viz/index.html#interactive-plot-example",
+    "title": "2026 Data Viz Collection",
+    "section": "\n2 Interactive Plot Example",
+    "text": "2 Interactive Plot Example\nThe following is an interactive plot created using the ggiraph package. Hover over the points to see the car names.\n\nCode```{r}\n#| label: ggiraph-example\n#| message: false\n#| warning: false\n\nlibrary(ggplot2)\nlibrary(ggiraph)\n\nlibrary(ggplot2)\n\n# A tiny bit of tidying up\npenguin_df &lt;- palmerpenguins::penguins_raw |&gt;\n  janitor::clean_names() |&gt;\n  dplyr::filter(!is.na(culmen_length_mm))\n\n# Setting up our colours\npenguin_colours &lt;- c(\n  \"Adelie Penguin (Pygoscelis adeliae)\" = \"#E18C1C\",\n  \"Chinstrap penguin (Pygoscelis antarctica)\" = \"#E8A9C2\",\n  \"Gentoo penguin (Pygoscelis papua)\" = \"#2A483E\"\n)\n\n# Our theme\ntheme_chester_penguins &lt;- function(base_text_size = 20) {\n  theme_minimal(base_size = base_text_size) +\n    theme(\n      text = element_text(family = \"Open Sans\", colour = \"#534959\"),\n      axis.text = element_text(colour = \"#534959\"),\n      legend.position = \"none\",\n      axis.title = element_blank(),\n      plot.title.position = \"plot\",\n      plot.title = ggtext::element_textbox_simple(\n        family = \"Domine\",\n        face = \"bold\",\n        size = rel(1.5),\n        colour = \"#15081D\",\n        margin = margin(0, 0, base_text_size, 0)\n      ),\n      panel.grid = element_line(colour = \"#FFFFFF\"),\n      plot.background = element_rect(fill = \"#f9f5fc\", colour = \"#f9f5fc\"),\n      plot.margin = margin_auto(base_text_size * 1.5),\n      geom = element_geom(ink = \"#6b2c91\")\n    )\n}\n\n# Our parameterised interactive plotting function\nmake_beak_off_plot &lt;- function(df = penguin_df, palette = penguin_colours) {\n  beak_means_df &lt;- df |&gt;\n    dplyr::group_by(species) |&gt;\n    dplyr::summarise(mean_length = mean(culmen_length_mm, na.rm = TRUE))\n\n  beak_range_df &lt;- df |&gt;\n    dplyr::filter(\n      culmen_length_mm == max(culmen_length_mm, na.rm = TRUE) |\n        culmen_length_mm == min(culmen_length_mm, na.rm = TRUE)\n    )\n\n  interactive_plot &lt;- df |&gt;\n    ggplot(aes(x = culmen_length_mm, y = species)) +\n    geom_vline(\n      data = beak_range_df,\n      aes(xintercept = culmen_length_mm),\n      linetype = 3,\n      colour = \"#333333\"\n    ) +\n    geom_segment(\n      data = beak_means_df,\n      aes(x = mean_length, xend = mean_length, y = -Inf, yend = species),\n      linetype = 3\n    ) +\n    ggiraph::geom_jitter_interactive(\n      aes(\n        x = culmen_length_mm,\n        y = species,\n        fill = species,\n        size = body_mass_g,\n        tooltip = paste0(\"&lt;b&gt;\", individual_id, \"&lt;/b&gt; from \", island)\n      ),\n      shape = 21,\n      width = 0,\n      height = 0.15,\n      colour = \"#333333\",\n      stroke = 0.5\n    ) +\n    ggtext::geom_textbox(\n      data = beak_range_df,\n      aes(\n        y = max(df$species),\n        label = dplyr::case_when(\n          culmen_length_mm == min(culmen_length_mm) ~\n            paste0(\"🞀 \", culmen_length_mm, \"mm\"),\n          TRUE ~ paste0(culmen_length_mm, \"mm\", \" 🞂\")\n        ),\n        hjust = dplyr::case_when(\n          culmen_length_mm == min(culmen_length_mm) ~ 0,\n          TRUE ~ 1\n        ),\n        halign = dplyr::case_when(\n          culmen_length_mm == min(culmen_length_mm) ~ 0,\n          TRUE ~ 1\n        )\n      ),\n      family = \"Open Sans\",\n      colour = \"#333333\",\n      fontface = \"bold\",\n      fill = NA,\n      box.padding = unit(0, \"pt\"),\n      size = 5,\n      box.colour = NA,\n      nudge_y = 0.33\n    ) +\n    ggtext::geom_textbox(\n      data = beak_means_df,\n      aes(\n        x = mean_length,\n        y = species,\n        label = paste0(\n          species,\n          \" mean&lt;br&gt;**\",\n          janitor::round_half_up(mean_length),\n          \"mm**\"\n        )\n      ),\n      hjust = 0,\n      nudge_y = -0.4,\n      box.colour = NA,\n      family = \"Open Sans\",\n      colour = \"#333333\",\n      fill = \"#f9f5fc\"\n    ) +\n    labs(title = \"Beak lengths by species\") +\n    scale_fill_manual(values = palette) +\n    scale_x_continuous(\n      label = function(x) paste0(x, \"mm\"),\n      limits = range(\n        palmerpenguins::penguins_raw$`Culmen Length (mm)`,\n        na.rm = TRUE\n      )\n    ) +\n    scale_y_discrete(labels = function(x) gsub(\"(.)( )(.*)\", \"\\\\1\", x)) +\n    theme_chester_penguins() +\n    theme(axis.text.y = element_blank())\n\n  ggiraph::girafe(\n    ggobj = interactive_plot,\n    width_svg = 12,   # width in inches\n    height_svg = 7,  # height in inches\n    options = list(ggiraph::opts_tooltip(\n      css = \"background-color:#333333;color:#f9f5fc;padding:7.5px;letter-spacing:0.025em;line-height:1.3;border-radius:5px;font-family:Open Sans;\"\n    ))\n  )\n}\n\nmake_beak_off_plot()\n```\n\n\n\n\n\n[^1]“Make It Your Own - Tips and Tricks for Stand-Out Dataviz with R and Ggplot2.” 2026. February 19, 2026. https://www.cararthompson.com/talks/manchester_useR/."
+  },
+  {
+    "objectID": "projects/r-packages/index.html",
+    "href": "projects/r-packages/index.html",
+    "title": "R Packages",
     "section": "",
-    "text": "[Accepted for Publication: American Journal of Reproductive Immunology (Feb 2026)]\nRole: Bioinformatics Lead & Epidemiologist\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Mucosal Immunology, Transcriptomics, Reproductive Health"
+    "text": "wpgdata provides a simple R interface to query and download datasets from the City of Winnipeg Open Data Portal using the OData V4 API. It supports filtering rows with R expressions or raw OData strings, selecting columns, sorting, and automatic pagination with a progress bar — making it easy to access Winnipeg’s open data directly from R without manual API calls.\nDocumentation | Source Code | CRAN"
   },
   {
-    "objectID": "projects/2025-colp-paper/index.html#the-challenge",
-    "href": "projects/2025-colp-paper/index.html#the-challenge",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
-    "section": "1 The Challenge",
-    "text": "1 The Challenge\nUnderstanding the spatial and molecular composition of Tissue-Resident Memory (TRM) T cells in the female reproductive tract is critical for developing mucosal vaccines and HIV prevention strategies. However, the interplay between these cells in the ectocervix vs. the endocervix required high-resolution analysis that traditional bulk sequencing cannot provide."
-  },
-  {
-    "objectID": "projects/2025-colp-paper/index.html#the-solution",
-    "href": "projects/2025-colp-paper/index.html#the-solution",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
-    "section": "2 The Solution",
-    "text": "2 The Solution\nI integrated flow cytometry phenotyping with single-cell RNA sequencing (scRNA-seq) to map the molecular landscape of the cervical mucosa. This multi-modal approach allowed the research team to move beyond broad cell categories to identify unique, niche-specific T cell clusters.\n\nHigh-Resolution Mapping: Leveraged scRNA-seq to generate a molecular data matrix at the individual cell level, uncovering distinct molecular signatures for TRM subsets.\nCross-Platform Integration: Coupled flow cytometry data with transcriptomic profiles to validate the presence and composition of established T cell subsets.\nClinical Association Analysis: Investigated how these cellular compositions correlate with clinical findings from patients at a colposcopy clinic in Nairobi."
-  },
-  {
-    "objectID": "projects/2025-colp-paper/index.html#technical-deep-dive",
-    "href": "projects/2025-colp-paper/index.html#technical-deep-dive",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
-    "section": "3 Technical Deep-Dive",
-    "text": "3 Technical Deep-Dive\n\nBioinformatics Pipeline: Developed custom R workflows for scRNA-seq processing, including quality control, normalization, dimensional reduction (UMAP/t-SNE), and cluster annotation.\nTech Stack: R, Seurat, Bioconductor, SingleCellExperiment, ggplot2.\nImpact: Resulted in the manuscript “Enumeration, phenotyping, and clinical associations of tissue-resident T cells in the ecto- and endocervix of women attending a colposcopy clinic”, accepted in the American Journal of Reproductive Immunology (2026)."
-  },
-  {
-    "objectID": "projects/2021-malcon/index.html",
-    "href": "projects/2021-malcon/index.html",
-    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "objectID": "projects/r-packages/index.html#sec-rpkg-wpgdata",
+    "href": "projects/r-packages/index.html#sec-rpkg-wpgdata",
+    "title": "R Packages",
     "section": "",
-    "text": "View Dashboard | View Project Repository\nRole: Senior Research Fellow | Postdoctoral Scientific Collaborator\nOrganization: Swiss TPH | PNG Institute of Medical Research (PNGIMR)\nDomain: Malaria Control, Surveillance, Global Health"
+    "text": "wpgdata provides a simple R interface to query and download datasets from the City of Winnipeg Open Data Portal using the OData V4 API. It supports filtering rows with R expressions or raw OData strings, selecting columns, sorting, and automatic pagination with a progress bar — making it easy to access Winnipeg’s open data directly from R without manual API calls.\nDocumentation | Source Code | CRAN"
   },
   {
-    "objectID": "projects/2021-malcon/index.html#the-challenge",
-    "href": "projects/2021-malcon/index.html#the-challenge",
-    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
-    "section": "1 The Challenge",
-    "text": "1 The Challenge\nMonitoring a nationwide malaria control program requires the integration of diverse data streams, from clinical reporting rates to regional incidence trends. For the Malaria Control (MalCon) project in Papua New Guinea, stakeholders needed a centralized, interactive platform to visualize these indicators in real-time, enabling rapid response to outbreaks and effective resource allocation."
+    "objectID": "projects/r-packages/index.html#sec-rpkg-mStats",
+    "href": "projects/r-packages/index.html#sec-rpkg-mStats",
+    "title": "R Packages",
+    "section": "2 mStats",
+    "text": "2 mStats\n\n\n   \n\nmStats is a versatile and efficient collection of functions that I have curated and developed to enhance my work in various domains. This collection encompasses a range of statistical tools and utilities that have proven invaluable in my research and analysis endeavors.\nAs an avid user of mStats, I am delighted to share this valuable resource with the broader community. Together, we can leverage the power of mStats to overcome statistical challenges, drive impactful insights, and advance the frontiers of knowledge in our respective fields.\nStay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.\nDocumentation | Source Code | CRAN"
   },
   {
-    "objectID": "projects/2021-malcon/index.html#the-solution",
-    "href": "projects/2021-malcon/index.html#the-solution",
-    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
-    "section": "2 The Solution",
-    "text": "2 The Solution\nI developed the MalCon Dashboard, a comprehensive, responsive static analytics platform that serves as the primary tool for monitoring malaria indicators across PNG. The dashboard transforms raw surveillance data into actionable geospatial and temporal insights.\n\nGeospatial aspect: Integrated interactive maps to visualize survey data collection performance and operational issues at the provincial and district levels.\nData Governance: Built a robust automated pipeline to aggregate and clean surveillance data from multiple sources, ensuring the dashboard remains current with minimal manual intervention."
+    "objectID": "projects/r-packages/index.html#sec-rpkg-shinyAuthX",
+    "href": "projects/r-packages/index.html#sec-rpkg-shinyAuthX",
+    "title": "R Packages",
+    "section": "3 shinyAuthX",
+    "text": "3 shinyAuthX\n\n\n   \n\nShinyAuthX is a powerful R package specifically designed for user authentication within Shiny apps. It provides a comprehensive suite of authentication features including user sign-in, sign-up, sign-out, and password recovery, seamlessly integrating user-friendly UI and Server components. It empowers shiny app developers to create secure and user-friendly authentication systems.\nOpen in New Window.\n \nDocumentation | Source Code | CRAN"
   },
   {
-    "objectID": "projects/2021-malcon/index.html#technical-deep-dive",
-    "href": "projects/2021-malcon/index.html#technical-deep-dive",
-    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
-    "section": "3 Technical Deep-Dive",
-    "text": "3 Technical Deep-Dive\n\nModular Dashboard Architecture: Utilized a modular R/flexdashboard structure to ensure the platform remains scalable as new indicators or data sources are added.\nInteractive Visualizations: Leveraged high-performance R packages to create responsive charts and maps that allow users to drill down into specific regions or timeframes.\nTech Stack: R, leaflet (mapping), plotly, tidyverse, flexdashboard, GitHub Actions.\nImpact: Provided the PNG National Malaria Control Program and global partners with a unified “source of truth,” significantly improving the speed and transparency in monitoring of national survey progress.\n\nRead the Final Report\nAs part of the survey, I completed a draft for an automated report, streamlining the reporting process and enhancing efficiency. Recognizing the need for advanced data collection methods, I conceptualized a QR linkage system to be implemented in the upcoming malaria indicator survey. In addition, I contributed technical consultations to both the Institute and the National Technical Working Group for Malaria. We also attempted to assess the accuracy, reliability, and viability of using repeated malaria surveys to calculate under-five mortality as an effective intervention."
+    "objectID": "projects/r-packages/index.html#sec-rpkg-u5mr",
+    "href": "projects/r-packages/index.html#sec-rpkg-u5mr",
+    "title": "R Packages",
+    "section": "4 u5mr",
+    "text": "4 u5mr\n\n \n\nIntroducing u5mr, an open-source R package designed for estimating child mortality rates. This package includes the implementation of various methods to estimate child mortality.\nOne notable feature of u5mr is its incorporation of the maternal age cohort-derived (MAC) and period-derived (MAP) methods proposed by Rajaratnam et al. These methods provide additional flexibility and accuracy in estimating child mortality rates, enhancing the reliability of the results.\nTo learn more about the MAC and MAP methods, refer to the publication by Rajaratnam et al. available at Rajaratnam et al.\nDocumentation | Source Code | CRAN"
   },
   {
-    "objectID": "projects/2023-iiq2/index.html",
-    "href": "projects/2023-iiq2/index.html",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Research and Data Science Projects",
     "section": "",
-    "text": "Read about IIQ study | ClinicalTrials.gov (NCT02079077) | Fowke Lab\nView Dasboard\nRole: Additional Support - Dashboard Developer"
-  },
-  {
-    "objectID": "projects/2023-iiq2/index.html#the-challenge",
-    "href": "projects/2023-iiq2/index.html#the-challenge",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
-    "section": "1 The Challenge",
-    "text": "1 The Challenge\nThe IIQ2 Phase 2 study in Nairobi, Kenya, investigates whether low-dose aspirin can induce an “Immune Quiescent” (IIQ) phenotype to reduce HIV susceptibility. Managing a Phase 2 trial involves tracking complex enrollment targets, participant retention, and specimen collection across multiple clinical sites. Prof. Keith Fowke’s lab required a quick dashboard to monitor study progress and ensure data quality in real-time."
-  },
-  {
-    "objectID": "projects/2023-iiq2/index.html#the-solution",
-    "href": "projects/2023-iiq2/index.html#the-solution",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
-    "section": "2 The Solution",
-    "text": "2 The Solution\nI developed a specialized monitoring dashboard within two weeks to serve as the “mission control” for the study. This tool provides the leadership team with an immediate snapshot of trial health, moving away from static weekly reports to dynamic, live data exploration.\n\nEnrollment Tracking: Automated the visualization of recruitment vs. targets, allowing for rapid adjustments to clinical outreach strategies.\nRetention Analytics: Built modules to identify drop-out patterns and monitor participant follow-up schedules across the longitudinal study design.\nSpecimen Governance: Integrated tracking for biological samples to ensure alignment between clinical visits and lab processing."
-  },
-  {
-    "objectID": "projects/2023-iiq2/index.html#technical-deep-dive",
-    "href": "projects/2023-iiq2/index.html#technical-deep-dive",
-    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
-    "section": "3 Technical Deep-Dive",
-    "text": "3 Technical Deep-Dive\n\nAutomated Data Pipeline: Established a workflow to pull and clean data from clinical databases, ensuring the dashboard reflects the most current study status.\nTech Stack: R, flexdashboard, ggplot2, dplyr, lubridate.\nImpact: Improved administrative efficiency and provided the team with data-driven insights to maintain the trial’s rigorous timeline and high retention rates."
-  },
-  {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Kickstart Your Project",
-    "section": "",
-    "text": "Need immediate clarity on a complex dataset or research design? Book a free 30-minute discovery call. We’ll discuss your specific objectives and explore how clinical research, evidence synthesis, or health economics frameworks can strengthen your project’s outcomes.\nSchedule a Discovery Call"
-  },
-  {
-    "objectID": "contact.html#book-a-free-30-minute-consultation",
-    "href": "contact.html#book-a-free-30-minute-consultation",
-    "title": "Kickstart Your Project",
-    "section": "",
-    "text": "Need immediate clarity on a complex dataset or research design? Book a free 30-minute discovery call. We’ll discuss your specific objectives and explore how clinical research, evidence synthesis, or health economics frameworks can strengthen your project’s outcomes.\nSchedule a Discovery Call"
-  },
-  {
-    "objectID": "contact.html#tell-me-about-your-project",
-    "href": "contact.html#tell-me-about-your-project",
-    "title": "Kickstart Your Project",
-    "section": "Tell me about your project!",
-    "text": "Tell me about your project!\nHave a specific research idea, a “messy” database, or a consulting need in mind? Complete the brief form below. Whether it’s a long-term academic collaboration or a targeted data science task, share your vision and I will get back to you within 24 hours to discuss next steps.\n\n  \n  \n    ✓ Thank you! Your message has been sent. I'll get back to you within 24 hours.\n  \n\n  \n    \n      Name\n      \n    \n\n    \n      Email Address\n      \n    \n    \n    \n      Project Type\n      \n        Select an option...\n        Epidemiological Research\n        Data Science\n        Data Pipeline\n        R Shiny\n        Statistical Analysis\n        Mixed\n        Other\n      \n    \n\n    \n      Project Description\n      \n    \n\n    \n      Send Message"
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n2026 Data Viz Collection\n\n\n\nR\n\nData Viz\n\nggplot2\n\n\n\n\n\n\n\n\n\nMar 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nR Packages\n\n\n\nR\n\nPackage\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nMalCon: Malaria Health Facility Survey Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nSurveillance\n\nSurvey\n\nDashboard\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nFeasibility of U5MR Estimation via Serial MIS Data\n\n\n\nR\n\nPackage\n\nDemography\n\nMaternal & Child Health\n\nData Validation\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nCOVID-19 Longitudinal Antibody Trajectory Analysis\n\n\n\nR\n\nShiny\n\nCOVID-19\n\nLongitudinal Data Analysis\n\nModelling\n\n\n\n\n\n\n\n\n\nJun 2, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nSWOP HPV Study Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nStudy Enrollment\n\nProject Management\n\nHPV\n\n\n\n\n\n\n\n\n\nJul 4, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nHPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations\n\n\n\nR\n\nInfectious Disease\n\nGlobal Health\n\nImmunology\n\n\n\n\n\n\n\n\n\nDec 31, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIIQ2 Phase 2: Clinical Trial Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nXpert Magic: Automated Data Pipeline\n\n\n\nR\n\nHealth Informatics\n\nBiomedical Research\n\nShiny\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIIQ2 Phase 2: Clinical Trial Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nBioinformatics\n\nEpidemiology\n\nscRNA sequencing\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/2023-covidab/index.html",
@@ -266,46 +210,109 @@
     "text": "4 Technical Deep-Dive\n\nLongitudinal and Mixed-Effects Modeling: Leveraged R to calculate statistics across multiple time points and booster intervals.\nTech Stack: R, Shiny, ggplot2, plotly, tidyverse, lme4.\nImpact: Served as the “comprehensive platform” for the study, enabling deep-dive collaborations with research partners and accelerating the dissemination of findings on long-term vaccine effectiveness.\n\n\n\n\nInput parameters and modelling outputs on the fly:"
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Research and Data Science Projects",
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Kickstart Your Project",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nR Packages\n\n\n\nR\n\nPackage\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nMalCon: Malaria Health Facility Survey Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nSurveillance\n\nSurvey\n\nDashboard\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nFeasibility of U5MR Estimation via Serial MIS Data\n\n\n\nR\n\nPackage\n\nDemography\n\nMaternal & Child Health\n\nData Validation\n\n\n\n\n\n\n\n\n\nOct 22, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nCOVID-19 Longitudinal Antibody Trajectory Analysis\n\n\n\nR\n\nShiny\n\nCOVID-19\n\nLongitudinal Data Analysis\n\nModelling\n\n\n\n\n\n\n\n\n\nJun 2, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nSWOP HPV Study Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nStudy Enrollment\n\nProject Management\n\nHPV\n\n\n\n\n\n\n\n\n\nJul 4, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nHPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations\n\n\n\nR\n\nInfectious Disease\n\nGlobal Health\n\nImmunology\n\n\n\n\n\n\n\n\n\nDec 31, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIIQ2 Phase 2: Clinical Trial Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nXpert Magic: Automated Data Pipeline\n\n\n\nR\n\nHealth Informatics\n\nBiomedical Research\n\nShiny\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIIQ2 Phase 2: Clinical Trial Monitoring Dashboard\n\n\n\nR\n\nflexdashboard\n\nGitHub\n\nGitHub Action\n\nBioinformatics\n\nEpidemiology\n\nscRNA sequencing\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\n\n\n\nNo matching items"
+    "text": "Need immediate clarity on a complex dataset or research design? Book a free 30-minute discovery call. We’ll discuss your specific objectives and explore how clinical research, evidence synthesis, or health economics frameworks can strengthen your project’s outcomes.\nSchedule a Discovery Call"
   },
   {
-    "objectID": "projects/r-packages/index.html",
-    "href": "projects/r-packages/index.html",
-    "title": "R Packages",
+    "objectID": "contact.html#book-a-free-30-minute-consultation",
+    "href": "contact.html#book-a-free-30-minute-consultation",
+    "title": "Kickstart Your Project",
     "section": "",
-    "text": "wpgdata provides a simple R interface to query and download datasets from the City of Winnipeg Open Data Portal using the OData V4 API. It supports filtering rows with R expressions or raw OData strings, selecting columns, sorting, and automatic pagination with a progress bar — making it easy to access Winnipeg’s open data directly from R without manual API calls.\nDocumentation | Source Code | CRAN"
+    "text": "Need immediate clarity on a complex dataset or research design? Book a free 30-minute discovery call. We’ll discuss your specific objectives and explore how clinical research, evidence synthesis, or health economics frameworks can strengthen your project’s outcomes.\nSchedule a Discovery Call"
   },
   {
-    "objectID": "projects/r-packages/index.html#sec-rpkg-wpgdata",
-    "href": "projects/r-packages/index.html#sec-rpkg-wpgdata",
-    "title": "R Packages",
+    "objectID": "contact.html#tell-me-about-your-project",
+    "href": "contact.html#tell-me-about-your-project",
+    "title": "Kickstart Your Project",
+    "section": "Tell me about your project!",
+    "text": "Tell me about your project!\nHave a specific research idea, a “messy” database, or a consulting need in mind? Complete the brief form below. Whether it’s a long-term academic collaboration or a targeted data science task, share your vision and I will get back to you within 24 hours to discuss next steps.\n\n  \n  \n    ✓ Thank you! Your message has been sent. I'll get back to you within 24 hours.\n  \n\n  \n    \n      Name\n      \n    \n\n    \n      Email Address\n      \n    \n    \n    \n      Project Type\n      \n        Select an option...\n        Epidemiological Research\n        Data Science\n        Data Pipeline\n        R Shiny\n        Statistical Analysis\n        Mixed\n        Other\n      \n    \n\n    \n      Project Description\n      \n    \n\n    \n      Send Message"
+  },
+  {
+    "objectID": "projects/2023-iiq2/index.html",
+    "href": "projects/2023-iiq2/index.html",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
     "section": "",
-    "text": "wpgdata provides a simple R interface to query and download datasets from the City of Winnipeg Open Data Portal using the OData V4 API. It supports filtering rows with R expressions or raw OData strings, selecting columns, sorting, and automatic pagination with a progress bar — making it easy to access Winnipeg’s open data directly from R without manual API calls.\nDocumentation | Source Code | CRAN"
+    "text": "Read about IIQ study | ClinicalTrials.gov (NCT02079077) | Fowke Lab\nView Dasboard\nRole: Additional Support - Dashboard Developer"
   },
   {
-    "objectID": "projects/r-packages/index.html#sec-rpkg-mStats",
-    "href": "projects/r-packages/index.html#sec-rpkg-mStats",
-    "title": "R Packages",
-    "section": "2 mStats",
-    "text": "2 mStats\n\n\n   \n\nmStats is a versatile and efficient collection of functions that I have curated and developed to enhance my work in various domains. This collection encompasses a range of statistical tools and utilities that have proven invaluable in my research and analysis endeavors.\nAs an avid user of mStats, I am delighted to share this valuable resource with the broader community. Together, we can leverage the power of mStats to overcome statistical challenges, drive impactful insights, and advance the frontiers of knowledge in our respective fields.\nStay tuned for updates and enhancements to mStats as I continue to refine and expand its capabilities to meet the evolving needs of the research community.\nDocumentation | Source Code | CRAN"
+    "objectID": "projects/2023-iiq2/index.html#the-challenge",
+    "href": "projects/2023-iiq2/index.html#the-challenge",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nThe IIQ2 Phase 2 study in Nairobi, Kenya, investigates whether low-dose aspirin can induce an “Immune Quiescent” (IIQ) phenotype to reduce HIV susceptibility. Managing a Phase 2 trial involves tracking complex enrollment targets, participant retention, and specimen collection across multiple clinical sites. Prof. Keith Fowke’s lab required a quick dashboard to monitor study progress and ensure data quality in real-time."
   },
   {
-    "objectID": "projects/r-packages/index.html#sec-rpkg-shinyAuthX",
-    "href": "projects/r-packages/index.html#sec-rpkg-shinyAuthX",
-    "title": "R Packages",
-    "section": "3 shinyAuthX",
-    "text": "3 shinyAuthX\n\n\n   \n\nShinyAuthX is a powerful R package specifically designed for user authentication within Shiny apps. It provides a comprehensive suite of authentication features including user sign-in, sign-up, sign-out, and password recovery, seamlessly integrating user-friendly UI and Server components. It empowers shiny app developers to create secure and user-friendly authentication systems.\nOpen in New Window.\n \nDocumentation | Source Code | CRAN"
+    "objectID": "projects/2023-iiq2/index.html#the-solution",
+    "href": "projects/2023-iiq2/index.html#the-solution",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI developed a specialized monitoring dashboard within two weeks to serve as the “mission control” for the study. This tool provides the leadership team with an immediate snapshot of trial health, moving away from static weekly reports to dynamic, live data exploration.\n\nEnrollment Tracking: Automated the visualization of recruitment vs. targets, allowing for rapid adjustments to clinical outreach strategies.\nRetention Analytics: Built modules to identify drop-out patterns and monitor participant follow-up schedules across the longitudinal study design.\nSpecimen Governance: Integrated tracking for biological samples to ensure alignment between clinical visits and lab processing."
   },
   {
-    "objectID": "projects/r-packages/index.html#sec-rpkg-u5mr",
-    "href": "projects/r-packages/index.html#sec-rpkg-u5mr",
-    "title": "R Packages",
-    "section": "4 u5mr",
-    "text": "4 u5mr\n\n \n\nIntroducing u5mr, an open-source R package designed for estimating child mortality rates. This package includes the implementation of various methods to estimate child mortality.\nOne notable feature of u5mr is its incorporation of the maternal age cohort-derived (MAC) and period-derived (MAP) methods proposed by Rajaratnam et al. These methods provide additional flexibility and accuracy in estimating child mortality rates, enhancing the reliability of the results.\nTo learn more about the MAC and MAP methods, refer to the publication by Rajaratnam et al. available at Rajaratnam et al.\nDocumentation | Source Code | CRAN"
+    "objectID": "projects/2023-iiq2/index.html#technical-deep-dive",
+    "href": "projects/2023-iiq2/index.html#technical-deep-dive",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nAutomated Data Pipeline: Established a workflow to pull and clean data from clinical databases, ensuring the dashboard reflects the most current study status.\nTech Stack: R, flexdashboard, ggplot2, dplyr, lubridate.\nImpact: Improved administrative efficiency and provided the team with data-driven insights to maintain the trial’s rigorous timeline and high retention rates."
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html",
+    "href": "projects/2021-malcon/index.html",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "",
+    "text": "View Dashboard | View Project Repository\nRole: Senior Research Fellow | Postdoctoral Scientific Collaborator\nOrganization: Swiss TPH | PNG Institute of Medical Research (PNGIMR)\nDomain: Malaria Control, Surveillance, Global Health"
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html#the-challenge",
+    "href": "projects/2021-malcon/index.html#the-challenge",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nMonitoring a nationwide malaria control program requires the integration of diverse data streams, from clinical reporting rates to regional incidence trends. For the Malaria Control (MalCon) project in Papua New Guinea, stakeholders needed a centralized, interactive platform to visualize these indicators in real-time, enabling rapid response to outbreaks and effective resource allocation."
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html#the-solution",
+    "href": "projects/2021-malcon/index.html#the-solution",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI developed the MalCon Dashboard, a comprehensive, responsive static analytics platform that serves as the primary tool for monitoring malaria indicators across PNG. The dashboard transforms raw surveillance data into actionable geospatial and temporal insights.\n\nGeospatial aspect: Integrated interactive maps to visualize survey data collection performance and operational issues at the provincial and district levels.\nData Governance: Built a robust automated pipeline to aggregate and clean surveillance data from multiple sources, ensuring the dashboard remains current with minimal manual intervention."
+  },
+  {
+    "objectID": "projects/2021-malcon/index.html#technical-deep-dive",
+    "href": "projects/2021-malcon/index.html#technical-deep-dive",
+    "title": "MalCon: Malaria Health Facility Survey Monitoring Dashboard",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nModular Dashboard Architecture: Utilized a modular R/flexdashboard structure to ensure the platform remains scalable as new indicators or data sources are added.\nInteractive Visualizations: Leveraged high-performance R packages to create responsive charts and maps that allow users to drill down into specific regions or timeframes.\nTech Stack: R, leaflet (mapping), plotly, tidyverse, flexdashboard, GitHub Actions.\nImpact: Provided the PNG National Malaria Control Program and global partners with a unified “source of truth,” significantly improving the speed and transparency in monitoring of national survey progress.\n\nRead the Final Report\nAs part of the survey, I completed a draft for an automated report, streamlining the reporting process and enhancing efficiency. Recognizing the need for advanced data collection methods, I conceptualized a QR linkage system to be implemented in the upcoming malaria indicator survey. In addition, I contributed technical consultations to both the Institute and the National Technical Working Group for Malaria. We also attempted to assess the accuracy, reliability, and viability of using repeated malaria surveys to calculate under-five mortality as an effective intervention."
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html",
+    "href": "projects/2025-colp-paper/index.html",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "",
+    "text": "[Accepted for Publication: American Journal of Reproductive Immunology (Feb 2026)]\nRole: Bioinformatics Lead & Epidemiologist\nPosition: Postdoctoral Fellowship @ University of Manitoba\nDomain: Mucosal Immunology, Transcriptomics, Reproductive Health"
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html#the-challenge",
+    "href": "projects/2025-colp-paper/index.html#the-challenge",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "1 The Challenge",
+    "text": "1 The Challenge\nUnderstanding the spatial and molecular composition of Tissue-Resident Memory (TRM) T cells in the female reproductive tract is critical for developing mucosal vaccines and HIV prevention strategies. However, the interplay between these cells in the ectocervix vs. the endocervix required high-resolution analysis that traditional bulk sequencing cannot provide."
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html#the-solution",
+    "href": "projects/2025-colp-paper/index.html#the-solution",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "2 The Solution",
+    "text": "2 The Solution\nI integrated flow cytometry phenotyping with single-cell RNA sequencing (scRNA-seq) to map the molecular landscape of the cervical mucosa. This multi-modal approach allowed the research team to move beyond broad cell categories to identify unique, niche-specific T cell clusters.\n\nHigh-Resolution Mapping: Leveraged scRNA-seq to generate a molecular data matrix at the individual cell level, uncovering distinct molecular signatures for TRM subsets.\nCross-Platform Integration: Coupled flow cytometry data with transcriptomic profiles to validate the presence and composition of established T cell subsets.\nClinical Association Analysis: Investigated how these cellular compositions correlate with clinical findings from patients at a colposcopy clinic in Nairobi."
+  },
+  {
+    "objectID": "projects/2025-colp-paper/index.html#technical-deep-dive",
+    "href": "projects/2025-colp-paper/index.html#technical-deep-dive",
+    "title": "IIQ2 Phase 2: Clinical Trial Monitoring Dashboard",
+    "section": "3 Technical Deep-Dive",
+    "text": "3 Technical Deep-Dive\n\nBioinformatics Pipeline: Developed custom R workflows for scRNA-seq processing, including quality control, normalization, dimensional reduction (UMAP/t-SNE), and cluster annotation.\nTech Stack: R, Seurat, Bioconductor, SingleCellExperiment, ggplot2.\nImpact: Resulted in the manuscript “Enumeration, phenotyping, and clinical associations of tissue-resident T cells in the ecto- and endocervix of women attending a colposcopy clinic”, accepted in the American Journal of Reproductive Immunology (2026)."
   },
   {
     "objectID": "projects/2023-xpert-magic/index.html",

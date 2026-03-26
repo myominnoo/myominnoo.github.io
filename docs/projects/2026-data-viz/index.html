@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Myo Minn Oo">
+<meta name="dcterms.date" content="2026-03-26">
+<title>Myo Minn Oo | 2026 Data Viz Collection – Myo Minn Oo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/img/favicon.ico" rel="icon">
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b754b9fd3853d7e56faef54c29c5d52b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-de8274a4d1ecc1e6aaeaf6e5564b5074.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e55abfcab0185cbbd1fae9a5b8ba5f92.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a6a58ce65f2645804a66e92b16afffd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LW606KXSWS"></script><script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LW606KXSWS', { 'anonymize_ip': true});
+</script><script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script><style>html{ scroll-behavior: smooth; }</style>
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="../../site_libs/ggiraphjs-0.9.4/girafe.css" rel="stylesheet">
+<script src="../../site_libs/ggiraphjs-0.9.4/girafe.js"></script><script src="../../site_libs/girafe-binding-0.9.6/girafe.js"></script><link href="../../site_libs/liberation-sans-0.5.0/css/liberation-sans.css" rel="stylesheet">
+<link href="../../site_libs/liberation-serif-0.5.0/css/liberation-serif.css" rel="stylesheet">
+<link href="../../site_libs/liberation-mono-0.5.0/css/liberation-mono.css" rel="stylesheet">
+</head>
+<body class="floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Myo Minn Oo</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../r-shiny/index.html"> 
+<span class="menu-text">Shiny Apps</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/myominnoo/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=0000-0003-4089-016X"> <i class="bi bi-mortarboard" role="img" aria-label="Google Scholar">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/myominnoo"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#penguin-data-viz" id="toc-penguin-data-viz" class="nav-link active" data-scroll-target="#penguin-data-viz"><span class="header-section-number">1</span> Penguin Data Viz</a>
+  <ul>
+<li><a href="#cara-thompsons-tutorials1" id="toc-cara-thompsons-tutorials1" class="nav-link" data-scroll-target="#cara-thompsons-tutorials1"><span class="header-section-number">1.1</span> Cara Thompson’s Tutorials[^1]</a></li>
+  </ul>
+</li>
+  <li><a href="#interactive-plot-example" id="toc-interactive-plot-example" class="nav-link" data-scroll-target="#interactive-plot-example"><span class="header-section-number">2</span> Interactive Plot Example</a></li>
+  </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">2026 Data Viz Collection</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Data Viz</div>
+    <div class="quarto-category">ggplot2</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Myo Minn Oo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 26, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">March 26, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header><section id="penguin-data-viz" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="penguin-data-viz">
+<span class="header-section-number">1</span> Penguin Data Viz</h2>
+<section id="cara-thompsons-tutorials1" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="cara-thompsons-tutorials1">
+<span class="header-section-number">1.1</span> Cara Thompson’s Tutorials[^1]</h3>
+</section></section><section id="interactive-plot-example" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="interactive-plot-example">
+<span class="header-section-number">2</span> Interactive Plot Example</h2>
+<p>The following is an interactive plot created using the <code>ggiraph</code> package. Hover over the points to see the car names.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#| label: ggiraph-example</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#| message: false</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#| warning: false</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(ggiraph)</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># A tiny bit of tidying up</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>penguin_df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins_raw <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(culmen_length_mm))</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># Setting up our colours</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>penguin_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="st">"Adelie Penguin (Pygoscelis adeliae)"</span> <span class="ot">=</span> <span class="st">"#E18C1C"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="st">"Chinstrap penguin (Pygoscelis antarctica)"</span> <span class="ot">=</span> <span class="st">"#E8A9C2"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="st">"Gentoo penguin (Pygoscelis papua)"</span> <span class="ot">=</span> <span class="st">"#2A483E"</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>)</span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="co"># Our theme</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>theme_chester_penguins <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_text_size =</span> <span class="dv">20</span>) {</span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> base_text_size) <span class="sc">+</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    <span class="fu">theme</span>(</span>
+<span id="cb1-27"><a href="#cb1-27"></a>      <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Open Sans"</span>, <span class="at">colour =</span> <span class="st">"#534959"</span>),</span>
+<span id="cb1-28"><a href="#cb1-28"></a>      <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"#534959"</span>),</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30"></a>      <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-31"><a href="#cb1-31"></a>      <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb1-32"><a href="#cb1-32"></a>      <span class="at">plot.title =</span> ggtext<span class="sc">::</span><span class="fu">element_textbox_simple</span>(</span>
+<span id="cb1-33"><a href="#cb1-33"></a>        <span class="at">family =</span> <span class="st">"Domine"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34"></a>        <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35"></a>        <span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>),</span>
+<span id="cb1-36"><a href="#cb1-36"></a>        <span class="at">colour =</span> <span class="st">"#15081D"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37"></a>        <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">0</span>, <span class="dv">0</span>, base_text_size, <span class="dv">0</span>)</span>
+<span id="cb1-38"><a href="#cb1-38"></a>      ),</span>
+<span id="cb1-39"><a href="#cb1-39"></a>      <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"#FFFFFF"</span>),</span>
+<span id="cb1-40"><a href="#cb1-40"></a>      <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f9f5fc"</span>, <span class="at">colour =</span> <span class="st">"#f9f5fc"</span>),</span>
+<span id="cb1-41"><a href="#cb1-41"></a>      <span class="at">plot.margin =</span> <span class="fu">margin_auto</span>(base_text_size <span class="sc">*</span> <span class="fl">1.5</span>),</span>
+<span id="cb1-42"><a href="#cb1-42"></a>      <span class="at">geom =</span> <span class="fu">element_geom</span>(<span class="at">ink =</span> <span class="st">"#6b2c91"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43"></a>    )</span>
+<span id="cb1-44"><a href="#cb1-44"></a>}</span>
+<span id="cb1-45"><a href="#cb1-45"></a></span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="co"># Our parameterised interactive plotting function</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a>make_beak_off_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">df =</span> penguin_df, <span class="at">palette =</span> penguin_colours) {</span>
+<span id="cb1-48"><a href="#cb1-48"></a>  beak_means_df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_length =</span> <span class="fu">mean</span>(culmen_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-51"><a href="#cb1-51"></a></span>
+<span id="cb1-52"><a href="#cb1-52"></a>  beak_range_df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb1-54"><a href="#cb1-54"></a>      culmen_length_mm <span class="sc">==</span> <span class="fu">max</span>(culmen_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|</span></span>
+<span id="cb1-55"><a href="#cb1-55"></a>        culmen_length_mm <span class="sc">==</span> <span class="fu">min</span>(culmen_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-56"><a href="#cb1-56"></a>    )</span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
+<span id="cb1-58"><a href="#cb1-58"></a>  interactive_plot <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> culmen_length_mm, <span class="at">y =</span> species)) <span class="sc">+</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb1-61"><a href="#cb1-61"></a>      <span class="at">data =</span> beak_range_df,</span>
+<span id="cb1-62"><a href="#cb1-62"></a>      <span class="fu">aes</span>(<span class="at">xintercept =</span> culmen_length_mm),</span>
+<span id="cb1-63"><a href="#cb1-63"></a>      <span class="at">linetype =</span> <span class="dv">3</span>,</span>
+<span id="cb1-64"><a href="#cb1-64"></a>      <span class="at">colour =</span> <span class="st">"#333333"</span></span>
+<span id="cb1-65"><a href="#cb1-65"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a>    <span class="fu">geom_segment</span>(</span>
+<span id="cb1-67"><a href="#cb1-67"></a>      <span class="at">data =</span> beak_means_df,</span>
+<span id="cb1-68"><a href="#cb1-68"></a>      <span class="fu">aes</span>(<span class="at">x =</span> mean_length, <span class="at">xend =</span> mean_length, <span class="at">y =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">yend =</span> species),</span>
+<span id="cb1-69"><a href="#cb1-69"></a>      <span class="at">linetype =</span> <span class="dv">3</span></span>
+<span id="cb1-70"><a href="#cb1-70"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-71"><a href="#cb1-71"></a>    ggiraph<span class="sc">::</span><span class="fu">geom_jitter_interactive</span>(</span>
+<span id="cb1-72"><a href="#cb1-72"></a>      <span class="fu">aes</span>(</span>
+<span id="cb1-73"><a href="#cb1-73"></a>        <span class="at">x =</span> culmen_length_mm,</span>
+<span id="cb1-74"><a href="#cb1-74"></a>        <span class="at">y =</span> species,</span>
+<span id="cb1-75"><a href="#cb1-75"></a>        <span class="at">fill =</span> species,</span>
+<span id="cb1-76"><a href="#cb1-76"></a>        <span class="at">size =</span> body_mass_g,</span>
+<span id="cb1-77"><a href="#cb1-77"></a>        <span class="at">tooltip =</span> <span class="fu">paste0</span>(<span class="st">"&lt;b&gt;"</span>, individual_id, <span class="st">"&lt;/b&gt; from "</span>, island)</span>
+<span id="cb1-78"><a href="#cb1-78"></a>      ),</span>
+<span id="cb1-79"><a href="#cb1-79"></a>      <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb1-80"><a href="#cb1-80"></a>      <span class="at">width =</span> <span class="dv">0</span>,</span>
+<span id="cb1-81"><a href="#cb1-81"></a>      <span class="at">height =</span> <span class="fl">0.15</span>,</span>
+<span id="cb1-82"><a href="#cb1-82"></a>      <span class="at">colour =</span> <span class="st">"#333333"</span>,</span>
+<span id="cb1-83"><a href="#cb1-83"></a>      <span class="at">stroke =</span> <span class="fl">0.5</span></span>
+<span id="cb1-84"><a href="#cb1-84"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-85"><a href="#cb1-85"></a>    ggtext<span class="sc">::</span><span class="fu">geom_textbox</span>(</span>
+<span id="cb1-86"><a href="#cb1-86"></a>      <span class="at">data =</span> beak_range_df,</span>
+<span id="cb1-87"><a href="#cb1-87"></a>      <span class="fu">aes</span>(</span>
+<span id="cb1-88"><a href="#cb1-88"></a>        <span class="at">y =</span> <span class="fu">max</span>(df<span class="sc">$</span>species),</span>
+<span id="cb1-89"><a href="#cb1-89"></a>        <span class="at">label =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb1-90"><a href="#cb1-90"></a>          culmen_length_mm <span class="sc">==</span> <span class="fu">min</span>(culmen_length_mm) <span class="sc">~</span></span>
+<span id="cb1-91"><a href="#cb1-91"></a>            <span class="fu">paste0</span>(<span class="st">"🞀 "</span>, culmen_length_mm, <span class="st">"mm"</span>),</span>
+<span id="cb1-92"><a href="#cb1-92"></a>          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste0</span>(culmen_length_mm, <span class="st">"mm"</span>, <span class="st">" 🞂"</span>)</span>
+<span id="cb1-93"><a href="#cb1-93"></a>        ),</span>
+<span id="cb1-94"><a href="#cb1-94"></a>        <span class="at">hjust =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb1-95"><a href="#cb1-95"></a>          culmen_length_mm <span class="sc">==</span> <span class="fu">min</span>(culmen_length_mm) <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb1-96"><a href="#cb1-96"></a>          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb1-97"><a href="#cb1-97"></a>        ),</span>
+<span id="cb1-98"><a href="#cb1-98"></a>        <span class="at">halign =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb1-99"><a href="#cb1-99"></a>          culmen_length_mm <span class="sc">==</span> <span class="fu">min</span>(culmen_length_mm) <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb1-100"><a href="#cb1-100"></a>          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb1-101"><a href="#cb1-101"></a>        )</span>
+<span id="cb1-102"><a href="#cb1-102"></a>      ),</span>
+<span id="cb1-103"><a href="#cb1-103"></a>      <span class="at">family =</span> <span class="st">"Open Sans"</span>,</span>
+<span id="cb1-104"><a href="#cb1-104"></a>      <span class="at">colour =</span> <span class="st">"#333333"</span>,</span>
+<span id="cb1-105"><a href="#cb1-105"></a>      <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb1-106"><a href="#cb1-106"></a>      <span class="at">fill =</span> <span class="cn">NA</span>,</span>
+<span id="cb1-107"><a href="#cb1-107"></a>      <span class="at">box.padding =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"pt"</span>),</span>
+<span id="cb1-108"><a href="#cb1-108"></a>      <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb1-109"><a href="#cb1-109"></a>      <span class="at">box.colour =</span> <span class="cn">NA</span>,</span>
+<span id="cb1-110"><a href="#cb1-110"></a>      <span class="at">nudge_y =</span> <span class="fl">0.33</span></span>
+<span id="cb1-111"><a href="#cb1-111"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-112"><a href="#cb1-112"></a>    ggtext<span class="sc">::</span><span class="fu">geom_textbox</span>(</span>
+<span id="cb1-113"><a href="#cb1-113"></a>      <span class="at">data =</span> beak_means_df,</span>
+<span id="cb1-114"><a href="#cb1-114"></a>      <span class="fu">aes</span>(</span>
+<span id="cb1-115"><a href="#cb1-115"></a>        <span class="at">x =</span> mean_length,</span>
+<span id="cb1-116"><a href="#cb1-116"></a>        <span class="at">y =</span> species,</span>
+<span id="cb1-117"><a href="#cb1-117"></a>        <span class="at">label =</span> <span class="fu">paste0</span>(</span>
+<span id="cb1-118"><a href="#cb1-118"></a>          species,</span>
+<span id="cb1-119"><a href="#cb1-119"></a>          <span class="st">" mean&lt;br&gt;**"</span>,</span>
+<span id="cb1-120"><a href="#cb1-120"></a>          janitor<span class="sc">::</span><span class="fu">round_half_up</span>(mean_length),</span>
+<span id="cb1-121"><a href="#cb1-121"></a>          <span class="st">"mm**"</span></span>
+<span id="cb1-122"><a href="#cb1-122"></a>        )</span>
+<span id="cb1-123"><a href="#cb1-123"></a>      ),</span>
+<span id="cb1-124"><a href="#cb1-124"></a>      <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb1-125"><a href="#cb1-125"></a>      <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.4</span>,</span>
+<span id="cb1-126"><a href="#cb1-126"></a>      <span class="at">box.colour =</span> <span class="cn">NA</span>,</span>
+<span id="cb1-127"><a href="#cb1-127"></a>      <span class="at">family =</span> <span class="st">"Open Sans"</span>,</span>
+<span id="cb1-128"><a href="#cb1-128"></a>      <span class="at">colour =</span> <span class="st">"#333333"</span>,</span>
+<span id="cb1-129"><a href="#cb1-129"></a>      <span class="at">fill =</span> <span class="st">"#f9f5fc"</span></span>
+<span id="cb1-130"><a href="#cb1-130"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-131"><a href="#cb1-131"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Beak lengths by species"</span>) <span class="sc">+</span></span>
+<span id="cb1-132"><a href="#cb1-132"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> palette) <span class="sc">+</span></span>
+<span id="cb1-133"><a href="#cb1-133"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb1-134"><a href="#cb1-134"></a>      <span class="at">label =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">"mm"</span>),</span>
+<span id="cb1-135"><a href="#cb1-135"></a>      <span class="at">limits =</span> <span class="fu">range</span>(</span>
+<span id="cb1-136"><a href="#cb1-136"></a>        palmerpenguins<span class="sc">::</span>penguins_raw<span class="sc">$</span><span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>,</span>
+<span id="cb1-137"><a href="#cb1-137"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-138"><a href="#cb1-138"></a>      )</span>
+<span id="cb1-139"><a href="#cb1-139"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-140"><a href="#cb1-140"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">"(.)( )(.*)"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, x)) <span class="sc">+</span></span>
+<span id="cb1-141"><a href="#cb1-141"></a>    <span class="fu">theme_chester_penguins</span>() <span class="sc">+</span></span>
+<span id="cb1-142"><a href="#cb1-142"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb1-143"><a href="#cb1-143"></a></span>
+<span id="cb1-144"><a href="#cb1-144"></a>  ggiraph<span class="sc">::</span><span class="fu">girafe</span>(</span>
+<span id="cb1-145"><a href="#cb1-145"></a>    <span class="at">ggobj =</span> interactive_plot,</span>
+<span id="cb1-146"><a href="#cb1-146"></a>    <span class="at">width_svg =</span> <span class="dv">12</span>,   <span class="co"># width in inches</span></span>
+<span id="cb1-147"><a href="#cb1-147"></a>    <span class="at">height_svg =</span> <span class="dv">7</span>,  <span class="co"># height in inches</span></span>
+<span id="cb1-148"><a href="#cb1-148"></a>    <span class="at">options =</span> <span class="fu">list</span>(ggiraph<span class="sc">::</span><span class="fu">opts_tooltip</span>(</span>
+<span id="cb1-149"><a href="#cb1-149"></a>      <span class="at">css =</span> <span class="st">"background-color:#333333;color:#f9f5fc;padding:7.5px;letter-spacing:0.025em;line-height:1.3;border-radius:5px;font-family:Open Sans;"</span></span>
+<span id="cb1-150"><a href="#cb1-150"></a>    ))</span>
+<span id="cb1-151"><a href="#cb1-151"></a>  )</span>
+<span id="cb1-152"><a href="#cb1-152"></a>}</span>
+<span id="cb1-153"><a href="#cb1-153"></a></span>
+<span id="cb1-154"><a href="#cb1-154"></a><span class="fu">make_beak_off_plot</span>()</span>
+<span id="cb1-155"><a href="#cb1-155"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div class="girafe html-widget html-fill-item" id="htmlwidget-31a9e1d288c7e84f37fe" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-31a9e1d288c7e84f37fe">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='ggiraph-svg' role='graphics-document' id='svg_c8277d0d5bfa4b74' viewBox='0 0 864 504'>\n <defs id='svg_c8277d0d5bfa4b74_defs'>\n  <clipPath id='svg_c8277d0d5bfa4b74_c1'>\n   <rect x='0' y='0' width='864' height='504'/>\n  <\/clipPath>\n  <clipPath id='svg_c8277d0d5bfa4b74_c2'>\n   <rect x='29.89' y='71.23' width='804.22' height='378.9'/>\n  <\/clipPath>\n <\/defs>\n <g id='svg_c8277d0d5bfa4b74_rootg' class='ggiraph-svg-rootg'>\n  <g clip-path='url(#svg_c8277d0d5bfa4b74_c1)'>\n   <rect x='0' y='0' width='864' height='504' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round' class='ggiraph-svg-bg'/>\n   <rect x='0' y='0' width='864' height='504' fill='#F9F5FC' fill-opacity='1' stroke='#F9F5FC' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='round'/>\n  <\/g>\n  <g clip-path='url(#svg_c8277d0d5bfa4b74_c2)'>\n   <polyline points='143.54,450.13 143.54,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.97' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='409.40,450.13 409.40,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.97' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='675.26,450.13 675.26,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.97' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='29.89,379.09 834.11,379.09' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='29.89,260.68 834.11,260.68' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='29.89,142.28 834.11,142.28' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='276.47,450.13 276.47,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='542.33,450.13 542.33,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='808.19,450.13 808.19,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='66.44' y1='450.13' x2='66.44' y2='71.23' stroke='#333333' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='797.56' y1='450.13' x2='797.56' y2='71.23' stroke='#333333' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='244.34' y1='450.13' x2='244.34' y2='379.09' stroke='#6B2C91' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='511.33' y1='450.13' x2='511.33' y2='260.68' stroke='#6B2C91' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='476' y1='450.13' x2='476' y2='142.28' stroke='#6B2C91' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <circle id='svg_c8277d0d5bfa4b74_e1' cx='252.55' cy='369.76' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e2' cx='263.18' cy='362.29' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e3' cx='284.45' cy='391' r='2.63pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N2A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e4' cx='188.74' cy='381.75' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N3A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e5' cx='257.86' cy='367.16' r='3.12pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N3A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e6' cx='247.23' cy='378.73' r='3.09pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e7' cx='255.2' cy='393.46' r='4.03pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e8' cx='119.62' cy='368.78' r='2.92pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e9' cx='329.64' cy='373.36' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e10' cx='217.98' cy='379.01' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e11' cx='217.98' cy='362.52' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e12' cx='305.72' cy='385.62' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e13' cx='239.25' cy='382.33' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e14' cx='132.91' cy='379.46' r='3.82pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e15' cx='186.08' cy='365.3' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e16' cx='241.91' cy='382.81' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N9A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e17' cx='342.94' cy='383.06' r='3.9pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N9A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e18' cx='127.59' cy='363.41' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N10A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e19' cx='435.99' cy='383.03' r='3.65pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N10A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e20' cx='217.98' cy='381.15' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e21' cx='215.32' cy='394.87' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e22' cx='167.47' cy='389.58' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e23' cx='228.62' cy='366.66' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e24' cx='244.57' cy='394.91' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e25' cx='151.52' cy='382.53' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e26' cx='292.42' cy='376.07' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e27' cx='289.77' cy='372.97' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e28' cx='220.64' cy='371.48' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e29' cx='289.77' cy='371.18' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e30' cx='263.18' cy='392.64' r='2.63pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e31' cx='202.03' cy='394.72' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e32' cx='263.18' cy='395.98' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e33' cx='300.4' cy='386.46' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e34' cx='180.76' cy='377.09' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e35' cx='255.2' cy='368.83' r='3.61pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e36' cx='244.57' cy='369.83' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e37' cx='334.96' cy='385.19' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e38' cx='212.67' cy='367.44' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e39' cx='271.16' cy='382.58' r='4.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e40' cx='183.42' cy='370.34' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N26A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e41' cx='297.74' cy='378.74' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N26A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e42' cx='170.13' cy='377.15' r='2.4pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e43' cx='385.47' cy='379.23' r='3.82pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e44' cx='196.71' cy='371.57' r='2.22pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e45' cx='265.84' cy='370.69' r='3.97pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e46' cx='305.72' cy='362.28' r='2.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e47' cx='210.01' cy='371.39' r='2.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e48' cx='170.13' cy='372.5' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e49' cx='337.62' cy='375.65' r='3.61pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e50' cx='265.84' cy='388.87' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e51' cx='279.13' cy='370.97' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e52' cx='143.54' cy='379.36' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e53' cx='329.64' cy='363.68' r='3.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e54' cx='130.25' cy='395.44' r='2.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e55' cx='313.69' cy='390.14' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e56' cx='249.89' cy='382.07' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e57' cx='292.42' cy='383.92' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e58' cx='183.42' cy='368.63' r='1.88pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e59' cx='212.67' cy='393.69' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e60' cx='162.15' cy='383.97' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e61' cx='311.03' cy='361.76' r='3.82pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e62' cx='212.67' cy='392.25' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e63' cx='305.72' cy='361.7' r='3.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e64' cx='180.76' cy='362.09' r='1.88pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e65' cx='319.01' cy='367.74' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e66' cx='156.84' cy='384.99' r='2.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e67' cx='305.72' cy='375.69' r='3.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e68' cx='167.47' cy='385.92' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e69' cx='324.33' cy='378.43' r='3.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e70' cx='103.66' cy='386.73' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e71' cx='268.5' cy='395.6' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e72' cx='265.84' cy='395.72' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e73' cx='430.67' cy='363.38' r='3.61pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e74' cx='156.84' cy='371.88' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e75' cx='350.91' cy='388.97' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e76' cx='300.4' cy='391.75' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e77' cx='202.03' cy='388.72' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e78' cx='175.45' cy='374.33' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e79' cx='332.3' cy='362.55' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e80' cx='132.91' cy='370.97' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e81' cx='353.57' cy='395.17' r='4.05pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e82' cx='188.74' cy='395.87' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e83' cx='146.2' cy='367.49' r='3.65pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e84' cx='204.69' cy='382.84' r='2.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e85' cx='311.03' cy='361.37' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e86' cx='178.1' cy='362.59' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e87' cx='194.06' cy='396.49' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e88' cx='231.28' cy='369.37' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e89' cx='247.23' cy='362.98' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e90' cx='162.15' cy='371.09' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N45A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e91' cx='305.72' cy='380.37' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N45A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e92' cx='116.96' cy='371.66' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e93' cx='265.84' cy='376.88' r='3.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e94' cx='175.45' cy='375.27' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N48A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e95' cx='297.74' cy='376.48' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N48A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e96' cx='225.96' cy='396.1' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e97' cx='284.45' cy='392.88' r='3.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e98' cx='93.03' cy='389.91' r='2.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e99' cx='361.55' cy='378.65' r='3.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e100' cx='143.54' cy='362.4' r='3.2pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e101' cx='303.06' cy='395.44' r='4.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e102' cx='215.32' cy='384.71' r='2.36pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e103' cx='217.98' cy='369.41' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e104' cx='220.64' cy='388.07' r='2.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e105' cx='268.5' cy='374.52' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e106' cx='239.25' cy='371.05' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e107' cx='228.62' cy='378.12' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e108' cx='225.96' cy='389.03' r='2.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e109' cx='361.55' cy='371.05' r='4.1pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e110' cx='225.96' cy='391.34' r='3.3pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e111' cx='425.35' cy='362.88' r='3.97pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e112' cx='268.5' cy='379.18' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e113' cx='334.96' cy='368.71' r='3.71pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e114' cx='265.84' cy='384.93' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e115' cx='348.25' cy='366.15' r='3.54pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e116' cx='239.25' cy='368.65' r='2.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e117' cx='204.69' cy='392.92' r='3.25pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e118' cx='162.15' cy='387.1' r='2.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e119' cx='305.72' cy='367.55' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e120' cx='175.45' cy='394.92' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e121' cx='215.32' cy='372.3' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e122' cx='281.79' cy='382.27' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e123' cx='313.69' cy='363.78' r='3.35pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e124' cx='148.86' cy='388.68' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e125' cx='292.42' cy='373.84' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e126' cx='244.57' cy='365.05' r='2.67pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e127' cx='316.35' cy='389.62' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e128' cx='249.89' cy='361.93' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e129' cx='385.47' cy='364.65' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e130' cx='236.59' cy='363.98' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e131' cx='358.89' cy='375.32' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e132' cx='191.4' cy='390.66' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N76A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e133' cx='210.01' cy='379.56' r='3.88pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N76A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e134' cx='225.96' cy='375.23' r='2.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N77A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e135' cx='305.72' cy='387.07' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N77A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e136' cx='159.49' cy='377.41' r='2.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N78A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e137' cx='281.79' cy='365.91' r='3.45pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N78A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e138' cx='196.71' cy='373.77' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N79A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e139' cx='268.5' cy='371.63' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N79A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e140' cx='281.79' cy='367.55' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N80A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e141' cx='292.42' cy='364.25' r='2.92pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N80A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e142' cx='66.44' cy='361.33' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N81A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e143' cx='295.08' cy='371.89' r='3.2pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N81A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e144' cx='204.69' cy='386.23' r='2.22pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N82A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e145' cx='249.89' cy='369.63' r='3.12pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N82A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e146' cx='255.2' cy='392.49' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N83A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e147' cx='186.08' cy='367.66' r='2.92pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N83A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e148' cx='170.13' cy='391.25' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N84A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e149' cx='217.98' cy='370.81' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N84A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e150' cx='170.13' cy='393.14' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e151' cx='316.35' cy='390.42' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e152' cx='438.65' cy='158.99' r='3.9pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N31A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e153' cx='542.33' cy='155.16' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N31A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e154' cx='507.77' cy='150.8' r='3.86pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e155' cx='542.33' cy='159.41' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e156' cx='478.53' cy='137.06' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N33A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e157' cx='449.28' cy='155.45' r='3.93pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N33A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e158' cx='420.04' cy='153.13' r='4.12pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e159' cx='454.6' cy='128.18' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e160' cx='364.21' cy='150.84' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e161' cx='457.26' cy='135.28' r='4.37pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e162' cx='300.4' cy='159.89' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e163' cx='515.75' cy='141.22' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e164' cx='422.69' cy='143.47' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e165' cx='499.79' cy='160.04' r='4.81pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e166' cx='430.67' cy='139.7' r='3.65pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e167' cx='523.72' cy='156.63' r='4.81pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e168' cx='329.64' cy='149.19' r='3.61pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e169' cx='521.06' cy='142.1' r='5.07pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e170' cx='441.31' cy='135.87' r='4.12pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e171' cx='507.77' cy='149.63' r='4.5pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e172' cx='547.65' cy='138.98' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e173' cx='412.06' cy='159.96' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e174' cx='449.28' cy='156.21' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e175' cx='443.96' cy='153.46' r='4.3pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e176' cx='353.57' cy='156.47' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e177' cx='438.65' cy='155.16' r='4.33pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e178' cx='396.11' cy='152.59' r='3.56pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e179' cx='483.84' cy='131.06' r='4.69pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e180' cx='494.48' cy='140.38' r='3.97pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e181' cx='542.33' cy='158.63' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e182' cx='470.55' cy='140.4' r='4.43pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e183' cx='350.91' cy='144.13' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e184' cx='412.06' cy='132.39' r='4.3pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e185' cx='797.56' cy='142.6' r='4.93pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e186' cx='518.4' cy='138.44' r='4.37pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N2A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e187' cx='499.79' cy='133.37' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N2A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e188' cx='345.6' cy='140.55' r='4.23pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e189' cx='393.45' cy='134.61' r='4.43pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e190' cx='382.82' cy='150.26' r='3.77pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e191' cx='507.77' cy='159.73' r='4.5pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e192' cx='348.25' cy='125.94' r='3.42pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e193' cx='531.7' cy='131.52' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e194' cx='417.38' cy='145.65' r='3.73pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e195' cx='531.7' cy='131.24' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e196' cx='555.62' cy='137.75' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e197' cx='372.18' cy='146.61' r='4.19pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e198' cx='422.69' cy='136.03' r='3.65pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e199' cx='555.62' cy='128.63' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e200' cx='406.74' cy='146.13' r='4.33pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e201' cx='414.72' cy='152.81' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e202' cx='451.94' cy='150.99' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e203' cx='502.45' cy='148.64' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e204' cx='412.06' cy='157' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e205' cx='544.99' cy='132.16' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e206' cx='449.28' cy='159.27' r='4.19pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e207' cx='409.4' cy='129.3' r='4.3pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e208' cx='377.5' cy='141.48' r='3.73pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N16A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e209' cx='422.69' cy='142.22' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N16A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e210' cx='361.55' cy='153.28' r='3.86pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e211' cx='552.97' cy='156.7' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e212' cx='417.38' cy='143.4' r='3.65pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e213' cx='441.31' cy='125.52' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e214' cx='428.01' cy='127.12' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e215' cx='656.65' cy='136.91' r='4.69pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e216' cx='430.67' cy='136.07' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e217' cx='537.01' cy='135.21' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e218' cx='441.31' cy='158.82' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e219' cx='529.04' cy='145.78' r='4.78pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e220' cx='369.52' cy='134.72' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e221' cx='560.94' cy='136.78' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e222' cx='481.18' cy='137.8' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N54A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e223' cx='446.62' cy='126.98' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N54A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e224' cx='494.48' cy='127.44' r='4.33pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e225' cx='449.28' cy='139.15' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e226' cx='446.62' cy='154.02' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e227' cx='505.11' cy='133.64' r='4.78pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e228' cx='475.87' cy='126.27' r='3.97pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e229' cx='571.58' cy='138.69' r='4.9pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e230' cx='414.72' cy='131.46' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e231' cx='414.72' cy='148.68' r='4.87pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e232' cx='518.4' cy='135.98' r='3.99pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e233' cx='608.8' cy='144.43' r='4.56pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e234' cx='473.21' cy='132.77' r='4.07pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e235' cx='542.33' cy='139.95' r='4.5pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e236' cx='406.74' cy='137.99' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e237' cx='563.6' cy='141.98' r='4.66pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e238' cx='366.86' cy='142.83' r='3.97pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e239' cx='576.89' cy='149.71' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e240' cx='475.87' cy='132.08' r='4.18pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e241' cx='598.16' cy='143.9' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e242' cx='475.87' cy='150.08' r='4.23pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e243' cx='600.82' cy='135.58' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e244' cx='422.69' cy='143.2' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e245' cx='529.04' cy='152.57' r='4.69pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e246' cx='396.11' cy='147.95' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e247' cx='563.6' cy='150.88' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e248' cx='526.38' cy='135.65' r='4.21pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e249' cx='459.92' cy='138.59' r='4.18pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e250' cx='499.79' cy='128.58' r='3.99pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e251' cx='571.58' cy='155.45' r='4.43pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e252' cx='502.45' cy='137.73' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e253' cx='699.19' cy='159.07' r='4.66pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e254' cx='467.89' cy='140.55' r='4.25pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e255' cx='518.4' cy='135.12' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e256' cx='470.55' cy='125.93' r='4.07pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e257' cx='457.26' cy='147.96' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e258' cx='321.67' cy='156.89' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e259' cx='632.72' cy='142.23' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e260' cx='364.21' cy='136.59' r='3.95pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e261' cx='491.82' cy='133.6' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e262' cx='555.62' cy='127.11' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e263' cx='537.01' cy='138.88' r='4.87pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e264' cx='369.52' cy='150.87' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e265' cx='582.21' cy='140.82' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e266' cx='441.31' cy='144.99' r='3.8pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e267' cx='677.92' cy='138.49' r='4.81pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e268' cx='396.11' cy='126.1' r='4.18pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e269' cx='510.43' cy='132.92' r='4.9pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e270' cx='467.89' cy='152.08' r='4.21pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e271' cx='457.26' cy='154.5' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e272' cx='552.97' cy='135.44' r='4.75pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e273' cx='414.72' cy='158.63' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N43A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e274' cx='539.67' cy='138.43' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N43A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e275' cx='449.28' cy='250.22' r='2.95pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e276' cx='542.33' cy='263.08' r='3.38pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e277' cx='576.89' cy='276.66' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e278' cx='420.04' cy='272.67' r='2.98pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e279' cx='614.11' cy='276.44' r='3.2pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e280' cx='414.72' cy='250.18' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e281' cx='438.65' cy='272.97' r='2.63pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e282' cx='576.89' cy='243.91' r='3.23pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e283' cx='435.99' cy='256.83' r='3.61pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e284' cx='576.89' cy='262.8' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e285' cx='451.94' cy='245.46' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N68A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e286' cx='587.53' cy='270.95' r='3.25pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N68A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e287' cx='462.57' cy='265.5' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e288' cx='595.5' cy='278.4' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e289' cx='433.33' cy='267.53' r='3.04pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N70A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e290' cx='555.62' cy='265.73' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N70A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e291' cx='550.31' cy='265.44' r='2.7pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e292' cx='755.02' cy='264.22' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e293' cx='446.62' cy='260.63' r='2.89pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e294' cx='521.06' cy='256.11' r='3.82pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e295' cx='340.28' cy='256.23' r='3.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e296' cx='502.45' cy='251.38' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e297' cx='361.55' cy='257.38' r='2.01pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e298' cx='558.28' cy='270.61' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e299' cx='454.6' cy='252.89' r='2.7pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N89A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e300' cx='595.5' cy='271.38' r='3.61pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N89A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e301' cx='555.62' cy='259.04' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e302' cx='529.04' cy='251.05' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e303' cx='446.62' cy='267.33' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e304' cx='616.77' cy='272.72' r='3.93pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e305' cx='300.4' cy='267.86' r='2.56pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e306' cx='653.99' cy='257.89' r='3.73pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e307' cx='342.94' cy='269.03' r='2.77pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N65A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e308' cx='568.92' cy='260.52' r='3.56pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N65A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e309' cx='534.36' cy='276.42' r='3.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e310' cx='475.87' cy='259.46' r='3.38pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e311' cx='478.53' cy='253.56' r='3.33pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e312' cx='595.5' cy='255.62' r='4.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e313' cx='459.92' cy='260.49' r='1.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e314' cx='635.38' cy='256.66' r='3.9pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e315' cx='515.75' cy='251.31' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N74A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e316' cx='441.31' cy='265.41' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N74A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e317' cx='566.26' cy='262.04' r='3.01pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N75A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e318' cx='422.69' cy='265.4' r='2.95pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N75A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e319' cx='566.26' cy='246.87' r='3.15pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N86A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e320' cx='563.6' cy='261.56' r='3.86pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N86A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e321' cx='544.99' cy='276.77' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N87A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e322' cx='515.75' cy='276.69' r='3.73pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N87A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e323' cx='582.21' cy='259.48' r='2.63pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N88A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e324' cx='537.01' cy='260.86' r='3.15pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N88A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e325' cx='491.82' cy='255.92' r='2.73pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N90A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e326' cx='579.55' cy='265.52' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N90A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e327' cx='428.01' cy='262.01' r='3.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N92A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e328' cx='560.94' cy='258.13' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N92A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e329' cx='342.94' cy='261.83' r='2.77pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N93A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e330' cx='600.82' cy='269.81' r='2.89pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N93A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e331' cx='414.72' cy='251.98' r='2.63pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N94A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e332' cx='523.72' cy='258.61' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N94A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e333' cx='547.65' cy='248.75' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N95A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e334' cx='425.35' cy='246.23' r='2.98pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N95A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e335' cx='592.84' cy='259.32' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N96A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e336' cx='457.26' cy='260.09' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N96A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e337' cx='428.01' cy='267.89' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N98A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e338' cx='696.53' cy='254.49' r='3.47pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N98A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e339' cx='369.52' cy='264.37' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N99A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e340' cx='531.7' cy='263.21' r='3.25pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N99A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e341' cx='563.6' cy='267.68' r='3.56pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N100A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e342' cx='547.65' cy='269.64' r='3.25pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N100A2&amp;lt;/b&amp;gt; from Dream'/>\n   <text x='66.44' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>🞀<\/text>\n   <text x='78.67' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>32.1mm<\/text>\n   <text x='738.89' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>59.6mm<\/text>\n   <text x='789.02' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>🞂<\/text>\n   <polygon points='249.82,450.30 382.86,450.30 382.64,450.30 383.52,450.26 384.39,450.09 385.21,449.77 385.97,449.33 386.66,448.78 387.24,448.12 387.71,447.37 388.06,446.56 388.27,445.70 388.34,444.82 388.34,444.82 388.34,408.08 388.34,408.08 388.27,407.20 388.06,406.35 387.71,405.53 387.24,404.79 386.66,404.13 385.97,403.57 385.21,403.13 384.39,402.82 383.52,402.64 382.86,402.60 249.82,402.60 250.48,402.64 249.60,402.61 248.72,402.71 247.88,402.96 247.08,403.34 246.35,403.84 245.72,404.45 245.19,405.15 244.78,405.93 244.50,406.77 244.36,407.64 244.34,408.08 244.34,444.82 244.36,444.38 244.36,445.26 244.50,446.14 244.78,446.97 245.19,447.75 245.72,448.46 246.35,449.07 247.08,449.57 247.88,449.95 248.72,450.19 249.60,450.30' fill='#F9F5FC' fill-opacity='1' stroke='none'/>\n   <text x='249.82' y='415.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Adelie<\/text>\n   <text x='283.54' y='415.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Penguin<\/text>\n   <text x='249.82' y='429.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>(Pygoscelis<\/text>\n   <text x='309.28' y='429.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>adeliae)<\/text>\n   <text x='351.58' y='429.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>mean<\/text>\n   <text x='249.82' y='442.39' font-size='8.28pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>39mm<\/text>\n   <polygon points='516.81,338.50 649.85,338.50 649.63,338.49 650.51,338.46 651.37,338.28 652.20,337.97 652.96,337.53 653.64,336.97 654.23,336.31 654.70,335.56 655.05,334.75 655.26,333.90 655.33,333.02 655.33,333.02 655.33,283.08 655.33,283.08 655.26,282.20 655.05,281.34 654.70,280.53 654.23,279.78 653.64,279.12 652.96,278.57 652.20,278.13 651.37,277.81 650.51,277.64 649.85,277.60 516.81,277.60 517.47,277.64 516.59,277.60 515.71,277.71 514.86,277.95 514.07,278.33 513.34,278.83 512.71,279.44 512.18,280.15 511.77,280.93 511.49,281.76 511.35,282.63 511.33,283.08 511.33,333.02 511.35,332.58 511.35,333.46 511.49,334.33 511.77,335.16 512.18,335.94 512.71,336.65 513.34,337.26 514.07,337.76 514.86,338.14 515.71,338.39 516.59,338.49' fill='#F9F5FC' fill-opacity='1' stroke='none'/>\n   <text x='516.81' y='290.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Chinstrap<\/text>\n   <text x='567.08' y='290.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>penguin<\/text>\n   <text x='516.81' y='304.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>(Pygoscelis<\/text>\n   <text x='576.26' y='304.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>antarctica)<\/text>\n   <text x='516.81' y='317.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>mean<\/text>\n   <text x='516.81' y='330.58' font-size='8.28pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>49mm<\/text>\n   <polygon points='481.48,213.49 614.52,213.49 614.30,213.49 615.18,213.45 616.04,213.27 616.87,212.96 617.63,212.52 618.31,211.96 618.90,211.30 619.37,210.56 619.71,209.75 619.93,208.89 620.00,208.01 620.00,208.01 620.00,171.27 620.00,171.27 619.93,170.39 619.71,169.53 619.37,168.72 618.90,167.98 618.31,167.32 617.63,166.76 616.87,166.32 616.04,166.01 615.18,165.83 614.52,165.79 481.48,165.79 482.14,165.83 481.26,165.79 480.38,165.90 479.53,166.14 478.74,166.52 478.01,167.02 477.37,167.63 476.84,168.34 476.43,169.12 476.16,169.96 476.01,170.83 476.00,171.27 476.00,208.01 476.01,207.57 476.01,208.45 476.16,209.32 476.43,210.16 476.84,210.94 477.37,211.64 478.01,212.26 478.74,212.76 479.53,213.13 480.38,213.38 481.26,213.49' fill='#F9F5FC' fill-opacity='1' stroke='none'/>\n   <text x='481.48' y='179.18' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Gentoo<\/text>\n   <text x='520.73' y='179.18' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>penguin<\/text>\n   <text x='481.48' y='192.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>(Pygoscelis<\/text>\n   <text x='540.93' y='192.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>papua)<\/text>\n   <text x='578.34' y='192.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>mean<\/text>\n   <text x='481.48' y='205.58' font-size='8.28pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>48mm<\/text>\n  <\/g>\n  <g clip-path='url(#svg_c8277d0d5bfa4b74_c1)'>\n   <text x='254.25' y='470.58' font-size='12pt' font-family='Open Sans' fill='#534959' fill-opacity='1'>40mm<\/text>\n   <text x='520.11' y='470.58' font-size='12pt' font-family='Open Sans' fill='#534959' fill-opacity='1'>50mm<\/text>\n   <text x='785.96' y='470.58' font-size='12pt' font-family='Open Sans' fill='#534959' fill-opacity='1'>60mm<\/text>\n   <text x='29.89' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>Beak<\/text>\n   <text x='109.69' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>lengths<\/text>\n   <text x='243.48' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>by<\/text>\n   <text x='287.28' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>species<\/text>\n  <\/g>\n <\/g>\n<\/svg>","js":null,"uid":"svg_c8277d0d5bfa4b74","ratio":1.714285714285714,"settings":{"tooltip":{"css":".tooltip_SVGID_ { background-color:#333333;color:#f9f5fc;padding:7.5px;letter-spacing:0.025em;line-height:1.3;border-radius:5px;font-family:Open Sans; ; position:absolute;pointer-events:none;z-index:9999;}","placement":"doc","opacity":0.9,"offx":10,"offy":10,"use_cursor_pos":true,"use_fill":false,"use_stroke":false,"delay_over":200,"delay_out":500},"hover":{"css":".hover_data_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_data_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_data_SVGID_ { fill:orange;stroke:black; }\nline.hover_data_SVGID_, polyline.hover_data_SVGID_ { fill:none;stroke:orange; }\nrect.hover_data_SVGID_, polygon.hover_data_SVGID_, path.hover_data_SVGID_ { fill:orange;stroke:none; }\nimage.hover_data_SVGID_ { stroke:orange; }","reactive":true,"nearest_distance":null,"linked":false},"hover_inv":{"css":""},"hover_key":{"css":".hover_key_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_key_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_key_SVGID_ { fill:orange;stroke:black; }\nline.hover_key_SVGID_, polyline.hover_key_SVGID_ { fill:none;stroke:orange; }\nrect.hover_key_SVGID_, polygon.hover_key_SVGID_, path.hover_key_SVGID_ { fill:orange;stroke:none; }\nimage.hover_key_SVGID_ { stroke:orange; }","reactive":true},"hover_theme":{"css":".hover_theme_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_theme_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_theme_SVGID_ { fill:orange;stroke:black; }\nline.hover_theme_SVGID_, polyline.hover_theme_SVGID_ { fill:none;stroke:orange; }\nrect.hover_theme_SVGID_, polygon.hover_theme_SVGID_, path.hover_theme_SVGID_ { fill:orange;stroke:none; }\nimage.hover_theme_SVGID_ { stroke:orange; }","reactive":true},"select":{"css":".select_data_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_data_SVGID_ { stroke:none;fill:red; }\ncircle.select_data_SVGID_ { fill:red;stroke:black; }\nline.select_data_SVGID_, polyline.select_data_SVGID_ { fill:none;stroke:red; }\nrect.select_data_SVGID_, polygon.select_data_SVGID_, path.select_data_SVGID_ { fill:red;stroke:none; }\nimage.select_data_SVGID_ { stroke:red; }","type":"multiple","only_shiny":true,"selected":[],"linked":false},"select_inv":{"css":""},"select_key":{"css":".select_key_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_key_SVGID_ { stroke:none;fill:red; }\ncircle.select_key_SVGID_ { fill:red;stroke:black; }\nline.select_key_SVGID_, polyline.select_key_SVGID_ { fill:none;stroke:red; }\nrect.select_key_SVGID_, polygon.select_key_SVGID_, path.select_key_SVGID_ { fill:red;stroke:none; }\nimage.select_key_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"select_theme":{"css":".select_theme_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_theme_SVGID_ { stroke:none;fill:red; }\ncircle.select_theme_SVGID_ { fill:red;stroke:black; }\nline.select_theme_SVGID_, polyline.select_theme_SVGID_ { fill:none;stroke:red; }\nrect.select_theme_SVGID_, polygon.select_theme_SVGID_, path.select_theme_SVGID_ { fill:red;stroke:none; }\nimage.select_theme_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"zoom":{"min":1,"max":1,"duration":300,"default_on":false},"toolbar":{"position":"topright","pngname":"diagram","tooltips":null,"fixed":false,"hidden":[],"delay_over":200,"delay_out":500},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>[^1]“Make It Your Own - Tips and Tricks for Stand-Out Dataviz with R and Ggplot2.” 2026. February 19, 2026. https://www.cararthompson.com/talks/manchester_useR/.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/myominnoo\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="light"><script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "myominnoo/myominnoo.github.io";
+    script.dataset.repoId = "R_kgDOKxsXWA";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOKxsXWM4CbQdw";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2021-2026 Myo Minn Oo</p>
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Change cookies 🍪</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,187 @@
+---
+title: "2026 Data Viz Collection"
+author: "Myo Minn Oo"
+date: 2026-03-26
+date-modified: last-modified
+date-format: long
+categories: 
+  - R
+  - Data Viz
+  - ggplot2
+code-fold: true
+code-tools: false
+code-link: true
+code-line-numbers: true
+page-layout: article
+image: featured.png
+---
+
+
+## Penguin Data Viz
+
+### Cara Thompson's Tutorials[^1]
+
+
+## Interactive Plot Example
+
+The following is an interactive plot created using the `ggiraph` package. Hover over the points to see the car names.
+
+```{r}
+#| label: ggiraph-example
+#| echo: fenced
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(ggiraph)
+
+library(ggplot2)
+
+# A tiny bit of tidying up
+penguin_df <- palmerpenguins::penguins_raw |>
+  janitor::clean_names() |>
+  dplyr::filter(!is.na(culmen_length_mm))
+
+# Setting up our colours
+penguin_colours <- c(
+  "Adelie Penguin (Pygoscelis adeliae)" = "#E18C1C",
+  "Chinstrap penguin (Pygoscelis antarctica)" = "#E8A9C2",
+  "Gentoo penguin (Pygoscelis papua)" = "#2A483E"
+)
+
+# Our theme
+theme_chester_penguins <- function(base_text_size = 20) {
+  theme_minimal(base_size = base_text_size) +
+    theme(
+      text = element_text(family = "Open Sans", colour = "#534959"),
+      axis.text = element_text(colour = "#534959"),
+      legend.position = "none",
+      axis.title = element_blank(),
+      plot.title.position = "plot",
+      plot.title = ggtext::element_textbox_simple(
+        family = "Domine",
+        face = "bold",
+        size = rel(1.5),
+        colour = "#15081D",
+        margin = margin(0, 0, base_text_size, 0)
+      ),
+      panel.grid = element_line(colour = "#FFFFFF"),
+      plot.background = element_rect(fill = "#f9f5fc", colour = "#f9f5fc"),
+      plot.margin = margin_auto(base_text_size * 1.5),
+      geom = element_geom(ink = "#6b2c91")
+    )
+}
+
+# Our parameterised interactive plotting function
+make_beak_off_plot <- function(df = penguin_df, palette = penguin_colours) {
+  beak_means_df <- df |>
+    dplyr::group_by(species) |>
+    dplyr::summarise(mean_length = mean(culmen_length_mm, na.rm = TRUE))
+
+  beak_range_df <- df |>
+    dplyr::filter(
+      culmen_length_mm == max(culmen_length_mm, na.rm = TRUE) |
+        culmen_length_mm == min(culmen_length_mm, na.rm = TRUE)
+    )
+
+  interactive_plot <- df |>
+    ggplot(aes(x = culmen_length_mm, y = species)) +
+    geom_vline(
+      data = beak_range_df,
+      aes(xintercept = culmen_length_mm),
+      linetype = 3,
+      colour = "#333333"
+    ) +
+    geom_segment(
+      data = beak_means_df,
+      aes(x = mean_length, xend = mean_length, y = -Inf, yend = species),
+      linetype = 3
+    ) +
+    ggiraph::geom_jitter_interactive(
+      aes(
+        x = culmen_length_mm,
+        y = species,
+        fill = species,
+        size = body_mass_g,
+        tooltip = paste0("<b>", individual_id, "</b> from ", island)
+      ),
+      shape = 21,
+      width = 0,
+      height = 0.15,
+      colour = "#333333",
+      stroke = 0.5
+    ) +
+    ggtext::geom_textbox(
+      data = beak_range_df,
+      aes(
+        y = max(df$species),
+        label = dplyr::case_when(
+          culmen_length_mm == min(culmen_length_mm) ~
+            paste0("🞀 ", culmen_length_mm, "mm"),
+          TRUE ~ paste0(culmen_length_mm, "mm", " 🞂")
+        ),
+        hjust = dplyr::case_when(
+          culmen_length_mm == min(culmen_length_mm) ~ 0,
+          TRUE ~ 1
+        ),
+        halign = dplyr::case_when(
+          culmen_length_mm == min(culmen_length_mm) ~ 0,
+          TRUE ~ 1
+        )
+      ),
+      family = "Open Sans",
+      colour = "#333333",
+      fontface = "bold",
+      fill = NA,
+      box.padding = unit(0, "pt"),
+      size = 5,
+      box.colour = NA,
+      nudge_y = 0.33
+    ) +
+    ggtext::geom_textbox(
+      data = beak_means_df,
+      aes(
+        x = mean_length,
+        y = species,
+        label = paste0(
+          species,
+          " mean<br>**",
+          janitor::round_half_up(mean_length),
+          "mm**"
+        )
+      ),
+      hjust = 0,
+      nudge_y = -0.4,
+      box.colour = NA,
+      family = "Open Sans",
+      colour = "#333333",
+      fill = "#f9f5fc"
+    ) +
+    labs(title = "Beak lengths by species") +
+    scale_fill_manual(values = palette) +
+    scale_x_continuous(
+      label = function(x) paste0(x, "mm"),
+      limits = range(
+        palmerpenguins::penguins_raw$`Culmen Length (mm)`,
+        na.rm = TRUE
+      )
+    ) +
+    scale_y_discrete(labels = function(x) gsub("(.)( )(.*)", "\\1", x)) +
+    theme_chester_penguins() +
+    theme(axis.text.y = element_blank())
+
+  ggiraph::girafe(
+    ggobj = interactive_plot,
+    width_svg = 12,   # width in inches
+    height_svg = 7,  # height in inches
+    options = list(ggiraph::opts_tooltip(
+      css = "background-color:#333333;color:#f9f5fc;padding:7.5px;letter-spacing:0.025em;line-height:1.3;border-radius:5px;font-family:Open Sans;"
+    ))
+  )
+}
+
+make_beak_off_plot()
+```
+
+[^1]“Make It Your Own - Tips and Tricks for Stand-Out Dataviz with R and Ggplot2.” 2026. February 19, 2026. https://www.cararthompson.com/talks/manchester_useR/.
+

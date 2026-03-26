@@ -10,7 +10,810 @@
 <atom:link href="https://myominnoo.github.io/projects/index-r.xml" rel="self" type="application/rss+xml"/>
 <description>Epidemiology, Data Science, Consulting</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Sun, 31 Dec 2023 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 26 Mar 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>2026 Data Viz Collection</title>
+  <dc:creator>Myo Minn Oo</dc:creator>
+  <link>https://myominnoo.github.io/projects/2026-data-viz/</link>
+  <description><![CDATA[ <section id="penguin-data-viz" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="penguin-data-viz">
+<span class="header-section-number">1</span> Penguin Data Viz</h2>
+<section id="cara-thompsons-tutorials1" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="cara-thompsons-tutorials1">
+<span class="header-section-number">1.1</span> Cara Thompson’s Tutorials[^1]</h3>
+</section></section><section id="interactive-plot-example" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="interactive-plot-example">
+<span class="header-section-number">2</span> Interactive Plot Example</h2>
+<p>The following is an interactive plot created using the <code>ggiraph</code> package. Hover over the points to see the car names.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| label: ggiraph-example</span></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| message: false</span></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| warning: false</span></span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggiraph)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-10"></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># A tiny bit of tidying up</span></span>
+<span id="cb1-12">penguin_df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> palmerpenguins<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span>penguins_raw <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-13">  janitor<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">clean_names</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-14">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(culmen_length_mm))</span>
+<span id="cb1-15"></span>
+<span id="cb1-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Setting up our colours</span></span>
+<span id="cb1-17">penguin_colours <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb1-18">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Adelie Penguin (Pygoscelis adeliae)"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E18C1C"</span>,</span>
+<span id="cb1-19">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Chinstrap penguin (Pygoscelis antarctica)"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E8A9C2"</span>,</span>
+<span id="cb1-20">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Gentoo penguin (Pygoscelis papua)"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#2A483E"</span></span>
+<span id="cb1-21">)</span>
+<span id="cb1-22"></span>
+<span id="cb1-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Our theme</span></span>
+<span id="cb1-24">theme_chester_penguins <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_text_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>) {</span>
+<span id="cb1-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> base_text_size) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-26">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb1-27">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open Sans"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#534959"</span>),</span>
+<span id="cb1-28">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#534959"</span>),</span>
+<span id="cb1-29">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>,</span>
+<span id="cb1-30">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb1-31">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span>,</span>
+<span id="cb1-32">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> ggtext<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb1-33">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Domine"</span>,</span>
+<span id="cb1-34">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb1-35">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rel</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>),</span>
+<span id="cb1-36">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#15081D"</span>,</span>
+<span id="cb1-37">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, base_text_size, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb1-38">      ),</span>
+<span id="cb1-39">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FFFFFF"</span>),</span>
+<span id="cb1-40">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#f9f5fc"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#f9f5fc"</span>),</span>
+<span id="cb1-41">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin_auto</span>(base_text_size <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>),</span>
+<span id="cb1-42">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">geom =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_geom</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ink =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#6b2c91"</span>)</span>
+<span id="cb1-43">    )</span>
+<span id="cb1-44">}</span>
+<span id="cb1-45"></span>
+<span id="cb1-46"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Our parameterised interactive plotting function</span></span>
+<span id="cb1-47">make_beak_off_plot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">df =</span> penguin_df, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> penguin_colours) {</span>
+<span id="cb1-48">  beak_means_df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-49">    dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(species) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-50">    dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean_length =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(culmen_length_mm, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>))</span>
+<span id="cb1-51"></span>
+<span id="cb1-52">  beak_range_df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-53">    dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(</span>
+<span id="cb1-54">      culmen_length_mm <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(culmen_length_mm, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span></span>
+<span id="cb1-55">        culmen_length_mm <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(culmen_length_mm, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb1-56">    )</span>
+<span id="cb1-57"></span>
+<span id="cb1-58">  interactive_plot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-59">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> culmen_length_mm, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> species)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-60">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(</span>
+<span id="cb1-61">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> beak_range_df,</span>
+<span id="cb1-62">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> culmen_length_mm),</span>
+<span id="cb1-63">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>,</span>
+<span id="cb1-64">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#333333"</span></span>
+<span id="cb1-65">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-66">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb1-67">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> beak_means_df,</span>
+<span id="cb1-68">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> mean_length, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend =</span> mean_length, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> species),</span>
+<span id="cb1-69">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb1-70">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-71">    ggiraph<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_jitter_interactive</span>(</span>
+<span id="cb1-72">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb1-73">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> culmen_length_mm,</span>
+<span id="cb1-74">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> species,</span>
+<span id="cb1-75">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> species,</span>
+<span id="cb1-76">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> body_mass_g,</span>
+<span id="cb1-77">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tooltip =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;b&gt;"</span>, individual_id, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;/b&gt; from "</span>, island)</span>
+<span id="cb1-78">      ),</span>
+<span id="cb1-79">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">shape =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">21</span>,</span>
+<span id="cb1-80">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb1-81">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">height =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.15</span>,</span>
+<span id="cb1-82">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#333333"</span>,</span>
+<span id="cb1-83">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">stroke =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span></span>
+<span id="cb1-84">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-85">    ggtext<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_textbox</span>(</span>
+<span id="cb1-86">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> beak_range_df,</span>
+<span id="cb1-87">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb1-88">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>species),</span>
+<span id="cb1-89">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">case_when</span>(</span>
+<span id="cb1-90">          culmen_length_mm <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(culmen_length_mm) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span></span>
+<span id="cb1-91">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"🞀 "</span>, culmen_length_mm, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mm"</span>),</span>
+<span id="cb1-92">          <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(culmen_length_mm, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mm"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" 🞂"</span>)</span>
+<span id="cb1-93">        ),</span>
+<span id="cb1-94">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">case_when</span>(</span>
+<span id="cb1-95">          culmen_length_mm <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(culmen_length_mm) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb1-96">          <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb1-97">        ),</span>
+<span id="cb1-98">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">case_when</span>(</span>
+<span id="cb1-99">          culmen_length_mm <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(culmen_length_mm) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb1-100">          <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb1-101">        )</span>
+<span id="cb1-102">      ),</span>
+<span id="cb1-103">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open Sans"</span>,</span>
+<span id="cb1-104">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#333333"</span>,</span>
+<span id="cb1-105">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fontface =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb1-106">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>,</span>
+<span id="cb1-107">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.padding =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unit</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pt"</span>),</span>
+<span id="cb1-108">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb1-109">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.colour =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>,</span>
+<span id="cb1-110">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nudge_y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.33</span></span>
+<span id="cb1-111">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-112">    ggtext<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_textbox</span>(</span>
+<span id="cb1-113">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> beak_means_df,</span>
+<span id="cb1-114">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb1-115">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> mean_length,</span>
+<span id="cb1-116">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> species,</span>
+<span id="cb1-117">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(</span>
+<span id="cb1-118">          species,</span>
+<span id="cb1-119">          <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" mean&lt;br&gt;**"</span>,</span>
+<span id="cb1-120">          janitor<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round_half_up</span>(mean_length),</span>
+<span id="cb1-121">          <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mm**"</span></span>
+<span id="cb1-122">        )</span>
+<span id="cb1-123">      ),</span>
+<span id="cb1-124">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb1-125">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nudge_y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>,</span>
+<span id="cb1-126">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.colour =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>,</span>
+<span id="cb1-127">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open Sans"</span>,</span>
+<span id="cb1-128">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#333333"</span>,</span>
+<span id="cb1-129">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#f9f5fc"</span></span>
+<span id="cb1-130">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-131">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Beak lengths by species"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-132">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> palette) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-133">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(</span>
+<span id="cb1-134">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mm"</span>),</span>
+<span id="cb1-135">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>(</span>
+<span id="cb1-136">        palmerpenguins<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span>penguins_raw<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Culmen Length (mm)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>,</span>
+<span id="cb1-137">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span id="cb1-138">      )</span>
+<span id="cb1-139">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-140">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_discrete</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"(.)( )(.*)"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">1"</span>, x)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-141">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_chester_penguins</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-142">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>())</span>
+<span id="cb1-143"></span>
+<span id="cb1-144">  ggiraph<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">girafe</span>(</span>
+<span id="cb1-145">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ggobj =</span> interactive_plot,</span>
+<span id="cb1-146">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width_svg =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>,   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># width in inches</span></span>
+<span id="cb1-147">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">height_svg =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>,  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># height in inches</span></span>
+<span id="cb1-148">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">options =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(ggiraph<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opts_tooltip</span>(</span>
+<span id="cb1-149">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">css =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"background-color:#333333;color:#f9f5fc;padding:7.5px;letter-spacing:0.025em;line-height:1.3;border-radius:5px;font-family:Open Sans;"</span></span>
+<span id="cb1-150">    ))</span>
+<span id="cb1-151">  )</span>
+<span id="cb1-152">}</span>
+<span id="cb1-153"></span>
+<span id="cb1-154"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make_beak_off_plot</span>()</span>
+<span id="cb1-155"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div></div>
+</details><div class="cell-output-display">
+<div class="girafe html-widget html-fill-item" id="htmlwidget-31a9e1d288c7e84f37fe" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-31a9e1d288c7e84f37fe">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='ggiraph-svg' role='graphics-document' id='svg_c8277d0d5bfa4b74' viewBox='0 0 864 504'>\n <defs id='svg_c8277d0d5bfa4b74_defs'>\n  <clipPath id='svg_c8277d0d5bfa4b74_c1'>\n   <rect x='0' y='0' width='864' height='504'/>\n  <\/clipPath>\n  <clipPath id='svg_c8277d0d5bfa4b74_c2'>\n   <rect x='29.89' y='71.23' width='804.22' height='378.9'/>\n  <\/clipPath>\n <\/defs>\n <g id='svg_c8277d0d5bfa4b74_rootg' class='ggiraph-svg-rootg'>\n  <g clip-path='url(#svg_c8277d0d5bfa4b74_c1)'>\n   <rect x='0' y='0' width='864' height='504' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round' class='ggiraph-svg-bg'/>\n   <rect x='0' y='0' width='864' height='504' fill='#F9F5FC' fill-opacity='1' stroke='#F9F5FC' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='round'/>\n  <\/g>\n  <g clip-path='url(#svg_c8277d0d5bfa4b74_c2)'>\n   <polyline points='143.54,450.13 143.54,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.97' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='409.40,450.13 409.40,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.97' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='675.26,450.13 675.26,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.97' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='29.89,379.09 834.11,379.09' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='29.89,260.68 834.11,260.68' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='29.89,142.28 834.11,142.28' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='276.47,450.13 276.47,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='542.33,450.13 542.33,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='808.19,450.13 808.19,71.23' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.94' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='66.44' y1='450.13' x2='66.44' y2='71.23' stroke='#333333' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='797.56' y1='450.13' x2='797.56' y2='71.23' stroke='#333333' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='244.34' y1='450.13' x2='244.34' y2='379.09' stroke='#6B2C91' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='511.33' y1='450.13' x2='511.33' y2='260.68' stroke='#6B2C91' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <line x1='476' y1='450.13' x2='476' y2='142.28' stroke='#6B2C91' stroke-opacity='1' stroke-width='1.94' stroke-dasharray='2,6' stroke-linejoin='round' stroke-linecap='butt'/>\n   <circle id='svg_c8277d0d5bfa4b74_e1' cx='252.55' cy='369.76' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e2' cx='263.18' cy='362.29' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e3' cx='284.45' cy='391' r='2.63pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N2A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e4' cx='188.74' cy='381.75' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N3A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e5' cx='257.86' cy='367.16' r='3.12pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N3A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e6' cx='247.23' cy='378.73' r='3.09pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e7' cx='255.2' cy='393.46' r='4.03pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e8' cx='119.62' cy='368.78' r='2.92pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e9' cx='329.64' cy='373.36' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e10' cx='217.98' cy='379.01' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e11' cx='217.98' cy='362.52' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e12' cx='305.72' cy='385.62' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e13' cx='239.25' cy='382.33' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e14' cx='132.91' cy='379.46' r='3.82pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e15' cx='186.08' cy='365.3' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e16' cx='241.91' cy='382.81' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N9A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e17' cx='342.94' cy='383.06' r='3.9pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N9A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e18' cx='127.59' cy='363.41' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N10A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e19' cx='435.99' cy='383.03' r='3.65pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N10A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e20' cx='217.98' cy='381.15' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e21' cx='215.32' cy='394.87' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e22' cx='167.47' cy='389.58' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e23' cx='228.62' cy='366.66' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e24' cx='244.57' cy='394.91' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e25' cx='151.52' cy='382.53' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e26' cx='292.42' cy='376.07' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e27' cx='289.77' cy='372.97' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e28' cx='220.64' cy='371.48' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e29' cx='289.77' cy='371.18' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e30' cx='263.18' cy='392.64' r='2.63pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e31' cx='202.03' cy='394.72' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e32' cx='263.18' cy='395.98' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e33' cx='300.4' cy='386.46' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e34' cx='180.76' cy='377.09' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e35' cx='255.2' cy='368.83' r='3.61pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e36' cx='244.57' cy='369.83' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e37' cx='334.96' cy='385.19' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e38' cx='212.67' cy='367.44' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e39' cx='271.16' cy='382.58' r='4.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e40' cx='183.42' cy='370.34' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N26A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e41' cx='297.74' cy='378.74' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N26A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e42' cx='170.13' cy='377.15' r='2.4pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e43' cx='385.47' cy='379.23' r='3.82pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e44' cx='196.71' cy='371.57' r='2.22pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e45' cx='265.84' cy='370.69' r='3.97pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e46' cx='305.72' cy='362.28' r='2.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e47' cx='210.01' cy='371.39' r='2.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e48' cx='170.13' cy='372.5' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e49' cx='337.62' cy='375.65' r='3.61pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e50' cx='265.84' cy='388.87' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e51' cx='279.13' cy='370.97' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e52' cx='143.54' cy='379.36' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e53' cx='329.64' cy='363.68' r='3.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e54' cx='130.25' cy='395.44' r='2.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e55' cx='313.69' cy='390.14' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e56' cx='249.89' cy='382.07' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e57' cx='292.42' cy='383.92' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e58' cx='183.42' cy='368.63' r='1.88pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e59' cx='212.67' cy='393.69' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N25A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e60' cx='162.15' cy='383.97' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e61' cx='311.03' cy='361.76' r='3.82pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N27A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e62' cx='212.67' cy='392.25' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e63' cx='305.72' cy='361.7' r='3.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e64' cx='180.76' cy='362.09' r='1.88pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e65' cx='319.01' cy='367.74' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e66' cx='156.84' cy='384.99' r='2.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e67' cx='305.72' cy='375.69' r='3.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N30A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e68' cx='167.47' cy='385.92' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e69' cx='324.33' cy='378.43' r='3.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e70' cx='103.66' cy='386.73' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e71' cx='268.5' cy='395.6' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e72' cx='265.84' cy='395.72' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e73' cx='430.67' cy='363.38' r='3.61pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e74' cx='156.84' cy='371.88' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e75' cx='350.91' cy='388.97' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e76' cx='300.4' cy='391.75' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e77' cx='202.03' cy='388.72' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e78' cx='175.45' cy='374.33' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e79' cx='332.3' cy='362.55' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e80' cx='132.91' cy='370.97' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e81' cx='353.57' cy='395.17' r='4.05pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e82' cx='188.74' cy='395.87' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e83' cx='146.2' cy='367.49' r='3.65pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e84' cx='204.69' cy='382.84' r='2.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e85' cx='311.03' cy='361.37' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e86' cx='178.1' cy='362.59' r='3.28pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e87' cx='194.06' cy='396.49' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e88' cx='231.28' cy='369.37' r='3.42pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e89' cx='247.23' cy='362.98' r='3.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e90' cx='162.15' cy='371.09' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N45A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e91' cx='305.72' cy='380.37' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N45A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e92' cx='116.96' cy='371.66' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e93' cx='265.84' cy='376.88' r='3.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e94' cx='175.45' cy='375.27' r='2.7pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N48A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e95' cx='297.74' cy='376.48' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N48A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e96' cx='225.96' cy='396.1' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e97' cx='284.45' cy='392.88' r='3.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e98' cx='93.03' cy='389.91' r='2.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e99' cx='361.55' cy='378.65' r='3.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e100' cx='143.54' cy='362.4' r='3.2pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e101' cx='303.06' cy='395.44' r='4.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e102' cx='215.32' cy='384.71' r='2.36pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e103' cx='217.98' cy='369.41' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N49A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e104' cx='220.64' cy='388.07' r='2.07pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e105' cx='268.5' cy='374.52' r='3.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e106' cx='239.25' cy='371.05' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e107' cx='228.62' cy='378.12' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e108' cx='225.96' cy='389.03' r='2.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e109' cx='361.55' cy='371.05' r='4.1pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e110' cx='225.96' cy='391.34' r='3.3pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e111' cx='425.35' cy='362.88' r='3.97pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e112' cx='268.5' cy='379.18' r='2.56pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e113' cx='334.96' cy='368.71' r='3.71pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e114' cx='265.84' cy='384.93' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e115' cx='348.25' cy='366.15' r='3.54pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e116' cx='239.25' cy='368.65' r='2.01pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e117' cx='204.69' cy='392.92' r='3.25pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e118' cx='162.15' cy='387.1' r='2.77pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e119' cx='305.72' cy='367.55' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e120' cx='175.45' cy='394.92' r='2.48pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e121' cx='215.32' cy='372.3' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e122' cx='281.79' cy='382.27' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e123' cx='313.69' cy='363.78' r='3.35pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e124' cx='148.86' cy='388.68' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e125' cx='292.42' cy='373.84' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e126' cx='244.57' cy='365.05' r='2.67pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e127' cx='316.35' cy='389.62' r='3.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e128' cx='249.89' cy='361.93' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e129' cx='385.47' cy='364.65' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e130' cx='236.59' cy='363.98' r='2.73pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A1&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e131' cx='358.89' cy='375.32' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A2&amp;lt;/b&amp;gt; from Torgersen'/>\n   <circle id='svg_c8277d0d5bfa4b74_e132' cx='191.4' cy='390.66' r='2.95pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N76A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e133' cx='210.01' cy='379.56' r='3.88pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N76A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e134' cx='225.96' cy='375.23' r='2.86pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N77A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e135' cx='305.72' cy='387.07' r='3.38pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N77A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e136' cx='159.49' cy='377.41' r='2.52pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N78A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e137' cx='281.79' cy='365.91' r='3.45pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N78A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e138' cx='196.71' cy='373.77' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N79A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e139' cx='268.5' cy='371.63' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N79A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e140' cx='281.79' cy='367.55' r='2.83pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N80A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e141' cx='292.42' cy='364.25' r='2.92pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N80A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e142' cx='66.44' cy='361.33' r='2.31pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N81A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e143' cx='295.08' cy='371.89' r='3.2pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N81A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e144' cx='204.69' cy='386.23' r='2.22pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N82A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e145' cx='249.89' cy='369.63' r='3.12pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N82A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e146' cx='255.2' cy='392.49' r='3.69pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N83A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e147' cx='186.08' cy='367.66' r='2.92pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N83A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e148' cx='170.13' cy='391.25' r='2.89pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N84A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e149' cx='217.98' cy='370.81' r='3.23pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N84A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e150' cx='170.13' cy='393.14' r='3.17pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e151' cx='316.35' cy='390.42' r='3.47pt' fill='#E18C1C' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e152' cx='438.65' cy='158.99' r='3.9pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N31A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e153' cx='542.33' cy='155.16' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N31A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e154' cx='507.77' cy='150.8' r='3.86pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e155' cx='542.33' cy='159.41' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e156' cx='478.53' cy='137.06' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N33A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e157' cx='449.28' cy='155.45' r='3.93pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N33A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e158' cx='420.04' cy='153.13' r='4.12pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e159' cx='454.6' cy='128.18' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e160' cx='364.21' cy='150.84' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e161' cx='457.26' cy='135.28' r='4.37pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e162' cx='300.4' cy='159.89' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e163' cx='515.75' cy='141.22' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e164' cx='422.69' cy='143.47' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e165' cx='499.79' cy='160.04' r='4.81pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N37A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e166' cx='430.67' cy='139.7' r='3.65pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e167' cx='523.72' cy='156.63' r='4.81pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e168' cx='329.64' cy='149.19' r='3.61pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e169' cx='521.06' cy='142.1' r='5.07pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e170' cx='441.31' cy='135.87' r='4.12pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e171' cx='507.77' cy='149.63' r='4.5pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N40A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e172' cx='547.65' cy='138.98' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e173' cx='412.06' cy='159.96' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N41A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e174' cx='449.28' cy='156.21' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e175' cx='443.96' cy='153.46' r='4.3pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N42A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e176' cx='353.57' cy='156.47' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e177' cx='438.65' cy='155.16' r='4.33pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N44A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e178' cx='396.11' cy='152.59' r='3.56pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e179' cx='483.84' cy='131.06' r='4.69pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N46A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e180' cx='494.48' cy='140.38' r='3.97pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e181' cx='542.33' cy='158.63' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N47A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e182' cx='470.55' cy='140.4' r='4.43pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e183' cx='350.91' cy='144.13' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N50A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e184' cx='412.06' cy='132.39' r='4.3pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e185' cx='797.56' cy='142.6' r='4.93pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e186' cx='518.4' cy='138.44' r='4.37pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N2A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e187' cx='499.79' cy='133.37' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N2A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e188' cx='345.6' cy='140.55' r='4.23pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e189' cx='393.45' cy='134.61' r='4.43pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N4A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e190' cx='382.82' cy='150.26' r='3.77pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e191' cx='507.77' cy='159.73' r='4.5pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N5A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e192' cx='348.25' cy='125.94' r='3.42pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e193' cx='531.7' cy='131.52' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e194' cx='417.38' cy='145.65' r='3.73pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e195' cx='531.7' cy='131.24' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N7A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e196' cx='555.62' cy='137.75' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e197' cx='372.18' cy='146.61' r='4.19pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e198' cx='422.69' cy='136.03' r='3.65pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e199' cx='555.62' cy='128.63' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N11A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e200' cx='406.74' cy='146.13' r='4.33pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e201' cx='414.72' cy='152.81' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N12A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e202' cx='451.94' cy='150.99' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e203' cx='502.45' cy='148.64' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e204' cx='412.06' cy='157' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e205' cx='544.99' cy='132.16' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e206' cx='449.28' cy='159.27' r='4.19pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e207' cx='409.4' cy='129.3' r='4.3pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e208' cx='377.5' cy='141.48' r='3.73pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N16A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e209' cx='422.69' cy='142.22' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N16A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e210' cx='361.55' cy='153.28' r='3.86pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e211' cx='552.97' cy='156.7' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N17A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e212' cx='417.38' cy='143.4' r='3.65pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e213' cx='441.31' cy='125.52' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e214' cx='428.01' cy='127.12' r='3.82pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e215' cx='656.65' cy='136.91' r='4.69pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e216' cx='430.67' cy='136.07' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e217' cx='537.01' cy='135.21' r='4.72pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e218' cx='441.31' cy='158.82' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e219' cx='529.04' cy='145.78' r='4.78pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N51A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e220' cx='369.52' cy='134.72' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e221' cx='560.94' cy='136.78' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N53A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e222' cx='481.18' cy='137.8' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N54A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e223' cx='446.62' cy='126.98' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N54A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e224' cx='494.48' cy='127.44' r='4.33pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e225' cx='449.28' cy='139.15' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N55A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e226' cx='446.62' cy='154.02' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e227' cx='505.11' cy='133.64' r='4.78pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N56A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e228' cx='475.87' cy='126.27' r='3.97pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e229' cx='571.58' cy='138.69' r='4.9pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N58A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e230' cx='414.72' cy='131.46' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e231' cx='414.72' cy='148.68' r='4.87pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N60A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e232' cx='518.4' cy='135.98' r='3.99pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e233' cx='608.8' cy='144.43' r='4.56pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N1A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e234' cx='473.21' cy='132.77' r='4.07pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e235' cx='542.33' cy='139.95' r='4.5pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N6A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e236' cx='406.74' cy='137.99' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e237' cx='563.6' cy='141.98' r='4.66pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N8A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e238' cx='366.86' cy='142.83' r='3.97pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e239' cx='576.89' cy='149.71' r='4.47pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N13A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e240' cx='475.87' cy='132.08' r='4.18pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e241' cx='598.16' cy='143.9' r='4.63pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N14A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e242' cx='475.87' cy='150.08' r='4.23pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e243' cx='600.82' cy='135.58' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N15A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e244' cx='422.69' cy='143.2' r='4.09pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e245' cx='529.04' cy='152.57' r='4.69pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N18A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e246' cx='396.11' cy='147.95' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e247' cx='563.6' cy='150.88' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N19A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e248' cx='526.38' cy='135.65' r='4.21pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e249' cx='459.92' cy='138.59' r='4.18pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N20A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e250' cx='499.79' cy='128.58' r='3.99pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e251' cx='571.58' cy='155.45' r='4.43pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N21A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e252' cx='502.45' cy='137.73' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e253' cx='699.19' cy='159.07' r='4.66pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N22A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e254' cx='467.89' cy='140.55' r='4.25pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e255' cx='518.4' cy='135.12' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N23A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e256' cx='470.55' cy='125.93' r='4.07pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e257' cx='457.26' cy='147.96' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N24A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e258' cx='321.67' cy='156.89' r='4.05pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e259' cx='632.72' cy='142.23' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N28A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e260' cx='364.21' cy='136.59' r='3.95pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e261' cx='491.82' cy='133.6' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N29A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e262' cx='555.62' cy='127.11' r='4.26pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e263' cx='537.01' cy='138.88' r='4.87pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N32A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e264' cx='369.52' cy='150.87' r='4.01pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e265' cx='582.21' cy='140.82' r='4.59pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N34A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e266' cx='441.31' cy='144.99' r='3.8pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e267' cx='677.92' cy='138.49' r='4.81pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N35A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e268' cx='396.11' cy='126.1' r='4.18pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e269' cx='510.43' cy='132.92' r='4.9pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N36A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e270' cx='467.89' cy='152.08' r='4.21pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N38A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e271' cx='457.26' cy='154.5' r='4.16pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e272' cx='552.97' cy='135.44' r='4.75pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N39A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e273' cx='414.72' cy='158.63' r='4.4pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N43A1&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e274' cx='539.67' cy='138.43' r='4.53pt' fill='#2A483E' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N43A2&amp;lt;/b&amp;gt; from Biscoe'/>\n   <circle id='svg_c8277d0d5bfa4b74_e275' cx='449.28' cy='250.22' r='2.95pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e276' cx='542.33' cy='263.08' r='3.38pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e277' cx='576.89' cy='276.66' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e278' cx='420.04' cy='272.67' r='2.98pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e279' cx='614.11' cy='276.44' r='3.2pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e280' cx='414.72' cy='250.18' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N64A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e281' cx='438.65' cy='272.97' r='2.63pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e282' cx='576.89' cy='243.91' r='3.23pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N66A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e283' cx='435.99' cy='256.83' r='3.61pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e284' cx='576.89' cy='262.8' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e285' cx='451.94' cy='245.46' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N68A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e286' cx='587.53' cy='270.95' r='3.25pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N68A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e287' cx='462.57' cy='265.5' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e288' cx='595.5' cy='278.4' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e289' cx='433.33' cy='267.53' r='3.04pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N70A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e290' cx='555.62' cy='265.73' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N70A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e291' cx='550.31' cy='265.44' r='2.7pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e292' cx='755.02' cy='264.22' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N71A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e293' cx='446.62' cy='260.63' r='2.89pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e294' cx='521.06' cy='256.11' r='3.82pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e295' cx='340.28' cy='256.23' r='3.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e296' cx='502.45' cy='251.38' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N73A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e297' cx='361.55' cy='257.38' r='2.01pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e298' cx='558.28' cy='270.61' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N85A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e299' cx='454.6' cy='252.89' r='2.7pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N89A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e300' cx='595.5' cy='271.38' r='3.61pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N89A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e301' cx='555.62' cy='259.04' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e302' cx='529.04' cy='251.05' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N61A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e303' cx='446.62' cy='267.33' r='3.17pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e304' cx='616.77' cy='272.72' r='3.93pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N62A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e305' cx='300.4' cy='267.86' r='2.56pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e306' cx='653.99' cy='257.89' r='3.73pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N63A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e307' cx='342.94' cy='269.03' r='2.77pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N65A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e308' cx='568.92' cy='260.52' r='3.56pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N65A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e309' cx='534.36' cy='276.42' r='3.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e310' cx='475.87' cy='259.46' r='3.38pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N67A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e311' cx='478.53' cy='253.56' r='3.33pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e312' cx='595.5' cy='255.62' r='4.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N69A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e313' cx='459.92' cy='260.49' r='1.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e314' cx='635.38' cy='256.66' r='3.9pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N72A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e315' cx='515.75' cy='251.31' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N74A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e316' cx='441.31' cy='265.41' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N74A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e317' cx='566.26' cy='262.04' r='3.01pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N75A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e318' cx='422.69' cy='265.4' r='2.95pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N75A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e319' cx='566.26' cy='246.87' r='3.15pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N86A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e320' cx='563.6' cy='261.56' r='3.86pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N86A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e321' cx='544.99' cy='276.77' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N87A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e322' cx='515.75' cy='276.69' r='3.73pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N87A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e323' cx='582.21' cy='259.48' r='2.63pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N88A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e324' cx='537.01' cy='260.86' r='3.15pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N88A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e325' cx='491.82' cy='255.92' r='2.73pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N90A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e326' cx='579.55' cy='265.52' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N90A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e327' cx='428.01' cy='262.01' r='3.07pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N92A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e328' cx='560.94' cy='258.13' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N92A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e329' cx='342.94' cy='261.83' r='2.77pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N93A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e330' cx='600.82' cy='269.81' r='2.89pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N93A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e331' cx='414.72' cy='251.98' r='2.63pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N94A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e332' cx='523.72' cy='258.61' r='3.52pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N94A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e333' cx='547.65' cy='248.75' r='3.28pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N95A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e334' cx='425.35' cy='246.23' r='2.98pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N95A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e335' cx='592.84' cy='259.32' r='3.42pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N96A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e336' cx='457.26' cy='260.09' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N96A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e337' cx='428.01' cy='267.89' r='3.12pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N98A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e338' cx='696.53' cy='254.49' r='3.47pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N98A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e339' cx='369.52' cy='264.37' r='2.83pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N99A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e340' cx='531.7' cy='263.21' r='3.25pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N99A2&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e341' cx='563.6' cy='267.68' r='3.56pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N100A1&amp;lt;/b&amp;gt; from Dream'/>\n   <circle id='svg_c8277d0d5bfa4b74_e342' cx='547.65' cy='269.64' r='3.25pt' fill='#E8A9C2' fill-opacity='1' stroke='#333333' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='&amp;lt;b&amp;gt;N100A2&amp;lt;/b&amp;gt; from Dream'/>\n   <text x='66.44' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>🞀<\/text>\n   <text x='78.67' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>32.1mm<\/text>\n   <text x='738.89' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>59.6mm<\/text>\n   <text x='789.02' y='108.28' font-size='10.67pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>🞂<\/text>\n   <polygon points='249.82,450.30 382.86,450.30 382.64,450.30 383.52,450.26 384.39,450.09 385.21,449.77 385.97,449.33 386.66,448.78 387.24,448.12 387.71,447.37 388.06,446.56 388.27,445.70 388.34,444.82 388.34,444.82 388.34,408.08 388.34,408.08 388.27,407.20 388.06,406.35 387.71,405.53 387.24,404.79 386.66,404.13 385.97,403.57 385.21,403.13 384.39,402.82 383.52,402.64 382.86,402.60 249.82,402.60 250.48,402.64 249.60,402.61 248.72,402.71 247.88,402.96 247.08,403.34 246.35,403.84 245.72,404.45 245.19,405.15 244.78,405.93 244.50,406.77 244.36,407.64 244.34,408.08 244.34,444.82 244.36,444.38 244.36,445.26 244.50,446.14 244.78,446.97 245.19,447.75 245.72,448.46 246.35,449.07 247.08,449.57 247.88,449.95 248.72,450.19 249.60,450.30' fill='#F9F5FC' fill-opacity='1' stroke='none'/>\n   <text x='249.82' y='415.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Adelie<\/text>\n   <text x='283.54' y='415.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Penguin<\/text>\n   <text x='249.82' y='429.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>(Pygoscelis<\/text>\n   <text x='309.28' y='429.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>adeliae)<\/text>\n   <text x='351.58' y='429.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>mean<\/text>\n   <text x='249.82' y='442.39' font-size='8.28pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>39mm<\/text>\n   <polygon points='516.81,338.50 649.85,338.50 649.63,338.49 650.51,338.46 651.37,338.28 652.20,337.97 652.96,337.53 653.64,336.97 654.23,336.31 654.70,335.56 655.05,334.75 655.26,333.90 655.33,333.02 655.33,333.02 655.33,283.08 655.33,283.08 655.26,282.20 655.05,281.34 654.70,280.53 654.23,279.78 653.64,279.12 652.96,278.57 652.20,278.13 651.37,277.81 650.51,277.64 649.85,277.60 516.81,277.60 517.47,277.64 516.59,277.60 515.71,277.71 514.86,277.95 514.07,278.33 513.34,278.83 512.71,279.44 512.18,280.15 511.77,280.93 511.49,281.76 511.35,282.63 511.33,283.08 511.33,333.02 511.35,332.58 511.35,333.46 511.49,334.33 511.77,335.16 512.18,335.94 512.71,336.65 513.34,337.26 514.07,337.76 514.86,338.14 515.71,338.39 516.59,338.49' fill='#F9F5FC' fill-opacity='1' stroke='none'/>\n   <text x='516.81' y='290.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Chinstrap<\/text>\n   <text x='567.08' y='290.99' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>penguin<\/text>\n   <text x='516.81' y='304.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>(Pygoscelis<\/text>\n   <text x='576.26' y='304.19' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>antarctica)<\/text>\n   <text x='516.81' y='317.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>mean<\/text>\n   <text x='516.81' y='330.58' font-size='8.28pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>49mm<\/text>\n   <polygon points='481.48,213.49 614.52,213.49 614.30,213.49 615.18,213.45 616.04,213.27 616.87,212.96 617.63,212.52 618.31,211.96 618.90,211.30 619.37,210.56 619.71,209.75 619.93,208.89 620.00,208.01 620.00,208.01 620.00,171.27 620.00,171.27 619.93,170.39 619.71,169.53 619.37,168.72 618.90,167.98 618.31,167.32 617.63,166.76 616.87,166.32 616.04,166.01 615.18,165.83 614.52,165.79 481.48,165.79 482.14,165.83 481.26,165.79 480.38,165.90 479.53,166.14 478.74,166.52 478.01,167.02 477.37,167.63 476.84,168.34 476.43,169.12 476.16,169.96 476.01,170.83 476.00,171.27 476.00,208.01 476.01,207.57 476.01,208.45 476.16,209.32 476.43,210.16 476.84,210.94 477.37,211.64 478.01,212.26 478.74,212.76 479.53,213.13 480.38,213.38 481.26,213.49' fill='#F9F5FC' fill-opacity='1' stroke='none'/>\n   <text x='481.48' y='179.18' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>Gentoo<\/text>\n   <text x='520.73' y='179.18' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>penguin<\/text>\n   <text x='481.48' y='192.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>(Pygoscelis<\/text>\n   <text x='540.93' y='192.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>papua)<\/text>\n   <text x='578.34' y='192.38' font-size='8.28pt' font-family='Open Sans' fill='#333333' fill-opacity='1'>mean<\/text>\n   <text x='481.48' y='205.58' font-size='8.28pt' font-weight='bold' font-family='Open Sans' fill='#333333' fill-opacity='1'>48mm<\/text>\n  <\/g>\n  <g clip-path='url(#svg_c8277d0d5bfa4b74_c1)'>\n   <text x='254.25' y='470.58' font-size='12pt' font-family='Open Sans' fill='#534959' fill-opacity='1'>40mm<\/text>\n   <text x='520.11' y='470.58' font-size='12pt' font-family='Open Sans' fill='#534959' fill-opacity='1'>50mm<\/text>\n   <text x='785.96' y='470.58' font-size='12pt' font-family='Open Sans' fill='#534959' fill-opacity='1'>60mm<\/text>\n   <text x='29.89' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>Beak<\/text>\n   <text x='109.69' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>lengths<\/text>\n   <text x='243.48' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>by<\/text>\n   <text x='287.28' y='51.31' font-size='22.5pt' font-weight='bold' font-family='Domine' fill='#15081D' fill-opacity='1'>species<\/text>\n  <\/g>\n <\/g>\n<\/svg>","js":null,"uid":"svg_c8277d0d5bfa4b74","ratio":1.714285714285714,"settings":{"tooltip":{"css":".tooltip_SVGID_ { background-color:#333333;color:#f9f5fc;padding:7.5px;letter-spacing:0.025em;line-height:1.3;border-radius:5px;font-family:Open Sans; ; position:absolute;pointer-events:none;z-index:9999;}","placement":"doc","opacity":0.9,"offx":10,"offy":10,"use_cursor_pos":true,"use_fill":false,"use_stroke":false,"delay_over":200,"delay_out":500},"hover":{"css":".hover_data_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_data_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_data_SVGID_ { fill:orange;stroke:black; }\nline.hover_data_SVGID_, polyline.hover_data_SVGID_ { fill:none;stroke:orange; }\nrect.hover_data_SVGID_, polygon.hover_data_SVGID_, path.hover_data_SVGID_ { fill:orange;stroke:none; }\nimage.hover_data_SVGID_ { stroke:orange; }","reactive":true,"nearest_distance":null,"linked":false},"hover_inv":{"css":""},"hover_key":{"css":".hover_key_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_key_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_key_SVGID_ { fill:orange;stroke:black; }\nline.hover_key_SVGID_, polyline.hover_key_SVGID_ { fill:none;stroke:orange; }\nrect.hover_key_SVGID_, polygon.hover_key_SVGID_, path.hover_key_SVGID_ { fill:orange;stroke:none; }\nimage.hover_key_SVGID_ { stroke:orange; }","reactive":true},"hover_theme":{"css":".hover_theme_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_theme_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_theme_SVGID_ { fill:orange;stroke:black; }\nline.hover_theme_SVGID_, polyline.hover_theme_SVGID_ { fill:none;stroke:orange; }\nrect.hover_theme_SVGID_, polygon.hover_theme_SVGID_, path.hover_theme_SVGID_ { fill:orange;stroke:none; }\nimage.hover_theme_SVGID_ { stroke:orange; }","reactive":true},"select":{"css":".select_data_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_data_SVGID_ { stroke:none;fill:red; }\ncircle.select_data_SVGID_ { fill:red;stroke:black; }\nline.select_data_SVGID_, polyline.select_data_SVGID_ { fill:none;stroke:red; }\nrect.select_data_SVGID_, polygon.select_data_SVGID_, path.select_data_SVGID_ { fill:red;stroke:none; }\nimage.select_data_SVGID_ { stroke:red; }","type":"multiple","only_shiny":true,"selected":[],"linked":false},"select_inv":{"css":""},"select_key":{"css":".select_key_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_key_SVGID_ { stroke:none;fill:red; }\ncircle.select_key_SVGID_ { fill:red;stroke:black; }\nline.select_key_SVGID_, polyline.select_key_SVGID_ { fill:none;stroke:red; }\nrect.select_key_SVGID_, polygon.select_key_SVGID_, path.select_key_SVGID_ { fill:red;stroke:none; }\nimage.select_key_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"select_theme":{"css":".select_theme_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_theme_SVGID_ { stroke:none;fill:red; }\ncircle.select_theme_SVGID_ { fill:red;stroke:black; }\nline.select_theme_SVGID_, polyline.select_theme_SVGID_ { fill:none;stroke:red; }\nrect.select_theme_SVGID_, polygon.select_theme_SVGID_, path.select_theme_SVGID_ { fill:red;stroke:none; }\nimage.select_theme_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"zoom":{"min":1,"max":1,"duration":300,"default_on":false},"toolbar":{"position":"topright","pngname":"diagram","tooltips":null,"fixed":false,"hidden":[],"delay_over":200,"delay_out":500},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>[^1]“Make It Your Own - Tips and Tricks for Stand-Out Dataviz with R and Ggplot2.” 2026. February 19, 2026. https://www.cararthompson.com/talks/manchester_useR/.</p>
+
+
+</section> ]]></description>
+  <category>R</category>
+  <category>Data Viz</category>
+  <category>ggplot2</category>
+  <guid>https://myominnoo.github.io/projects/2026-data-viz/</guid>
+  <pubDate>Thu, 26 Mar 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://myominnoo.github.io/projects/2026-data-viz/featured.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
 <item>
   <title>HPV Prevelance and Targeted HPV Vaccination Recommendation for High-Risk Populations</title>
   <dc:creator>Myo Minn Oo</dc:creator>
